@@ -1,17 +1,17 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "rawilk/laravel-base",
+    "description": "Useful blade components and functionality for most Laravel projects.",
     "keywords": [
-        ":vendor_name",
-        "laravel",
-        "package_slug"
+        "Laravel",
+        "Blade",
+        "Livewire"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/rawilk/laravel-base",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Randall Wilk",
+            "email": "wilk.randall@gmail.com",
             "homepage": "https://randallwilk.dev",
             "role": "Developer"
         }
@@ -32,13 +32,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Rawilk\\LaravelBase\\": "src",
+            "Rawilk\\LaravelBase\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Rawilk\\LaravelBase\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -53,10 +53,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Rawilk\\LaravelBase\\LaravelBaseServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\SkeletonFacade"
+                "LaravelBase": "Rawilk\\LaravelBase\\Facades\\LaravelBaseFacade"
             }
         }
     },
