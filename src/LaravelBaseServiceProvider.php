@@ -2,19 +2,16 @@
 
 namespace Rawilk\LaravelBase;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rawilk\LaravelBase\Commands\LaravelBaseCommand;
+use Illuminate\Support\ServiceProvider;
 
-class LaravelBaseServiceProvider extends PackageServiceProvider
+class LaravelBaseServiceProvider extends ServiceProvider
 {
-    public function configurePackage(Package $package): void
+    public function register(): void
     {
-        $package
-            ->name('laravel-base')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-base_table')
-            ->hasCommand(LaravelBaseCommand::class);
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-base.php', 'laravel-base');
+    }
+
+    public function boot(): void
+    {
     }
 }
