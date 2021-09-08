@@ -35,9 +35,10 @@ return (new PhpCsFixer\Config)
             'on_multiline' => 'ensure_fully_multiline',
             'keep_multiple_spaces_after_comma' => true,
         ],
-        'types_spaces' => [
-            'space' => 'none',
-        ],
+        // TODO: enable once the github action uses the 3.1.0 release of php-cs-fixer
+        // 'types_spaces' => [
+        //     'space' => 'none',
+        // ],
         'single_trait_insert_per_statement' => false,
     ])
     ->setFinder($finder);
