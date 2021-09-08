@@ -2,9 +2,9 @@
 
 namespace Rawilk\LaravelBase;
 
+use Rawilk\LaravelBase\Commands\LaravelBaseCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rawilk\LaravelBase\Commands\LaravelBaseCommand;
 
 class LaravelBaseServiceProvider extends PackageServiceProvider
 {
