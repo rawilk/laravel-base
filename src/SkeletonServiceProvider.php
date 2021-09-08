@@ -2,9 +2,9 @@
 
 namespace VendorName\Skeleton;
 
-use VendorName\Skeleton\Commands\SkeletonCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use VendorName\Skeleton\Commands\SkeletonCommand;
 
 class SkeletonServiceProvider extends PackageServiceProvider
 {
