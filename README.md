@@ -28,6 +28,16 @@ php artisan vendor:publish --provider="Rawilk\LaravelBase\LaravelBaseServiceProv
 
 You can view the default configuration here: https://github.com/rawilk/laravel-base/blob/main/config/laravel-base.php
 
+Alternatively you can run the install command this package provides, which will publish all of the package assets
+and set up the providers for you.
+
+```bash
+php artisan laravel-base:install
+```
+
+**Warning:** You should not run this command on an existing project! When installing or updating on an existing project, you should manually
+publish/configure as needed.
+
 ## Usage
 
 More documentation pending!
