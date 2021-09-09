@@ -10,6 +10,14 @@ use Rawilk\LaravelBase\LaravelBase;
 
 final class HelpersTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        LaravelBase::$findAppTimezoneUsingCallback = null;
+        LaravelBase::$findUserTimezoneUsingCallback = null;
+    }
+
     /** @test */
     public function minDateToUTC_converts_correctly(): void
     {
@@ -56,6 +64,41 @@ final class HelpersTest extends TestCase
         LaravelBase::findAppTimezoneUsing($callback);
 
         $this->assertEquals('America/New_York', appTimezone());
+    }
+
+    /** @test */
+    public function userTimezone_gets_the_authenticated_users_timezone(): void
+    {
+        $user = new TestUser(['timezone' => 'America/Chicago']);
+        config(['app.timezone' => 'UTC']);
+
+        // Before we are logged in, the app timezone should be returned as a fallback value.
+        $this->assertEquals('UTC', userTimezone());
+
+        $this->actingAs($user);
+
+        $this->assertEquals('America/Chicago', userTimezone());
+    }
+
+    /** @test */
+    public function userTimezone_can_use_a_custom_callback_to_find_the_users_timezone(): void
+    {
+        $user = new TestUser(['tz' => 'America/New_York']);
+        config(['app.timezone' => 'UTC']);
+        $this->actingAs($user);
+
+        $callback = function ($user) {
+            return $user->tz;
+        };
+
+        LaravelBase::findUserTimezoneUsing($callback);
+
+        $this->assertEquals('America/New_York', userTimezone());
+
+        // userTimezone should still fallback on the appTimezone if no timezone is returned.
+        LaravelBase::findUserTimezoneUsing(fn () => null);
+
+        $this->assertEquals('UTC', userTimezone());
     }
 }
 

@@ -54,3 +54,20 @@ if (! function_exists('appTimezone')) {
             : call_user_func(LaravelBase::$findAppTimezoneUsingCallback);
     }
 }
+
+if (! function_exists('userTimezone')) {
+    /**
+     * Retrieve the authenticated user's timezone.
+     * Fallback on the appTimezone if no authenticated user.
+     *
+     * @return string
+     */
+    function userTimezone(): string
+    {
+        $userTimezone = is_null(LaravelBase::$findUserTimezoneUsingCallback)
+            ? auth()->user()?->timezone
+            : call_user_func(LaravelBase::$findUserTimezoneUsingCallback, auth()->user());
+
+        return $userTimezone ?? appTimezone();
+    }
+}

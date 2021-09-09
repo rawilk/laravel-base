@@ -17,6 +17,13 @@ class LaravelBase
     public static $findAppTimezoneUsingCallback;
 
     /**
+     * The callback that is responsible for retrieving the authenticated user's timezone.
+     *
+     * @var callable|null
+     */
+    public static $findUserTimezoneUsingCallback;
+
+    /**
      * Register a callback that is responsible for retrieving the configured app timezone.
      *
      * @param callable $callback
@@ -24,5 +31,15 @@ class LaravelBase
     public static function findAppTimezoneUsing(callable $callback): void
     {
         static::$findAppTimezoneUsingCallback = $callback;
+    }
+
+    /**
+     * Register a callback that is responsible for retrieving the authenticated user's timezone.
+     *
+     * @param callable $callback
+     */
+    public static function findUserTimezoneUsing(callable $callback): void
+    {
+        static::$findUserTimezoneUsingCallback = $callback;
     }
 }
