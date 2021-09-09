@@ -18,7 +18,7 @@ if (! function_exists('minDateToUTC')) {
             return null;
         }
 
-        return Carbon::parse($date, auth()->user()->timezone ?? 'UTC')->startOfDay()->utc();
+        return Carbon::parse($date, userTimezone())->startOfDay()->utc();
     }
 }
 
@@ -37,7 +37,7 @@ if (! function_exists('maxDateToUTC')) {
             return null;
         }
 
-        return Carbon::parse($date, auth()->user()->timezone ?? 'UTC')->endOfDay()->utc();
+        return Carbon::parse($date, userTimezone())->endOfDay()->utc();
     }
 }
 
