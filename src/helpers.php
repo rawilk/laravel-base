@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Rawilk\LaravelBase\LaravelBase;
 
 if (! function_exists('minDateToUTC')) {
     /**
@@ -37,5 +38,19 @@ if (! function_exists('maxDateToUTC')) {
         }
 
         return Carbon::parse($date, auth()->user()->timezone ?? 'UTC')->endOfDay()->utc();
+    }
+}
+
+if (! function_exists('appTimezone')) {
+    /**
+     * Retrieve the configured application timezone.
+     *
+     * @return string
+     */
+    function appTimezone(): string
+    {
+        return is_null(LaravelBase::$findAppTimezoneUsingCallback)
+            ? config('app.timezone')
+            : call_user_func(LaravelBase::$findAppTimezoneUsingCallback);
     }
 }
