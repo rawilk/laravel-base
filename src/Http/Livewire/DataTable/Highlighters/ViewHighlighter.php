@@ -52,7 +52,7 @@ final class ViewHighlighter implements Highlighter
         foreach ($matches as $match) {
             $node->textContent = str_replace(
                 $match,
-                view('laravel-base::partials.highlighters.highlight', ['slot' => $match]),
+                view('laravel-base::partials.highlighters.highlight', ['slot' => $match])->render(),
                 $node->textContent,
             );
         }
