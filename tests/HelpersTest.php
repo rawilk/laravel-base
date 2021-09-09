@@ -100,6 +100,39 @@ final class HelpersTest extends TestCase
 
         $this->assertEquals('UTC', userTimezone());
     }
+
+    /** @test */
+    public function can_convert_empty_strings_to_null(): void
+    {
+        $data = [
+            'foo' => 'bar',
+            'bool_value' => true,
+            'int_value' => 0,
+            'empty_value' => '',
+            'value_with_space' => ' ',
+        ];
+
+        $expected = [
+            'foo' => 'bar',
+            'bool_value' => true,
+            'int_value' => 0,
+            'empty_value' => null,
+            'value_with_space' => ' ',
+        ];
+
+        $this->assertSame($expected, convertEmptyStringsToNull($data));
+    }
+
+    /** @test */
+    public function can_prefix_a_list_of_columns_with_a_models_table(): void
+    {
+        $expected = 'test_users.name,test_users.email,test_users.timezone';
+
+        $this->assertEquals(
+            $expected,
+            prefixSelectColumns(TestUser::class, 'name', 'email', 'timezone')
+        );
+    }
 }
 
 class TestUser extends User
