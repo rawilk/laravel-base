@@ -2,6 +2,7 @@
 
 namespace Rawilk\LaravelBase\Http\Livewire\DataTable;
 
+use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 
 /**
@@ -89,5 +90,15 @@ trait WithFiltering
         if ($this->showFilters) {
             $this->emitSelf('filters-applied');
         }
+    }
+
+    protected function localizeMinDate($date): null|CarbonInterface
+    {
+        return minDateToUTC($date);
+    }
+
+    protected function localizeMaxDate($date): null|CarbonInterface
+    {
+        return maxDateToUTC($date);
     }
 }
