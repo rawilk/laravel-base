@@ -21,7 +21,6 @@ return (new PhpCsFixer\Config)
         'phpdoc_scalar' => true,
         'unary_operator_spaces' => true,
         'binary_operator_spaces' => true,
-        'declare_parentheses' => true,
         'new_with_braces' => false,
         'blank_line_before_statement' => [
             'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
