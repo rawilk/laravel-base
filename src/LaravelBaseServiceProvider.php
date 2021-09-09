@@ -25,6 +25,10 @@ class LaravelBaseServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
+            __DIR__ . '/../config/laravel-base.php' => config_path('laravel-base.php'),
+        ], 'laravel-base-config');
+
+        $this->publishes([
             __DIR__ . '/../stubs/LaravelBaseServiceProvider.php' => app_path('Providers/LaravelBaseServiceProvider.php'),
         ], 'laravel-base-support');
     }

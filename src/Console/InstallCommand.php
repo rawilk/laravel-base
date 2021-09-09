@@ -17,6 +17,7 @@ final class InstallCommand extends Command
     public function handle(): void
     {
         // Publish...
+        $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-config', '--force' => true]);
         $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-support', '--force' => true]);
 
         // LaravelBase Provider...
