@@ -6,8 +6,12 @@
 
 **Note:** Package is still in early stages of development, so functionality is subject to change.
 
-Laravel Base is a package I've created to provide functionality and blade components I commonly need in most projects without the need to keep duplicating
+LaravelBase is a package I've created to provide functionality and blade components I commonly need in most projects without the need to keep duplicating
 the code between projects. This package is very opinionated and may not be suitable for other people, so use at your own risk!
+
+If you are using Laravel Fortify and/or Jetstream, you **should not use** this package, as there will be conflicts between them. While I think those two packages are
+great, I decided to take some of the functionality and create my own versions of some of it to satisfy my own needs and preferences. It is meant mainly for my
+own personal use, but you are of course free to use it if it suits your project's needs.
 
 ## Installation
 
