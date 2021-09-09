@@ -12,3 +12,5 @@ body:
       attributes:
           label: Feature Description
           description: How should this feature look like?
+      validations:
+          required: true
