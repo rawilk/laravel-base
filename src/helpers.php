@@ -10,9 +10,9 @@ if (! function_exists('minDateToUTC')) {
      * filter by a date column stored in the UTC timezone.
      *
      * @param null|string|\Carbon\Carbon $date
-     * @return \Carbon\Carbon|null
+     * @return \Carbon\CarbonInterface|null
      */
-    function minDateToUTC($date): null|Carbon
+    function minDateToUTC($date): null|\Carbon\CarbonInterface
     {
         if (! $date) {
             return null;
@@ -29,9 +29,9 @@ if (! function_exists('maxDateToUTC')) {
      * filter by a date column stored in the UTC timezone.
      *
      * @param null|string|\Carbon\Carbon $date
-     * @return \Carbon\Carbon|null
+     * @return \Carbon\CarbonInterface|null
      */
-    function maxDateToUTC($date): null|Carbon
+    function maxDateToUTC($date): null|\Carbon\CarbonInterface
     {
         if (! $date) {
             return null;
