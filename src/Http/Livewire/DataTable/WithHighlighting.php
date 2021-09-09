@@ -20,6 +20,6 @@ trait WithHighlighting
 
         $highlighter = static::$highlighters[$highlighter] ?? StringHighlighter::class;
 
-        return (new $highlighter())->highlight($content, $this->filters[$filterKey] ?? '');
+        return (new $highlighter)->highlight($content, $this->filters[$filterKey] ?? '');
     }
 }

@@ -15,7 +15,7 @@ final class ViewHighlighter implements Highlighter
     {
         $slot = $value instanceof View ? $value->gatherData()['slot'] : $value;
 
-        $dom = new DOMDocument();
+        $dom = new DOMDocument;
         $dom->loadHTML($slot, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         preg_match_all('#' . preg_quote($search) . '#i', $slot, $matches);
