@@ -10,33 +10,6 @@ body:
               ---
 
               Thank you for taking the time to file a bug report. To address this bug as fast as possible, we need some information.
-    - type: input
-      id: os
-      attributes:
-          label: Operating system
-          description: "Which operating system do you use? Please provide the version as we well."
-          placeholder: "macOS Big Sur 11.5.2"
-      validations:
-          required: true
-    - type: input
-      id: browser
-      attributes:
-          label: Browser
-          description: "Which browser are you using? Please provide the version as well."
-          placeholder: "Chrome 82.0.1"
-      validations:
-          required: true
-    - type: dropdown
-      id: priority
-      attributes:
-          label: Priority
-          description: How important is this issue to be fixed?
-          options:
-              - Low
-              - Medium
-              - High
-      validations:
-          required: true
     - type: textarea
       id: bug-description
       attributes:
@@ -55,3 +28,17 @@ body:
           label: Relevant log output
           description: If applicable, provide relevant log (error) output. No need for backticks here.
           render: shell
+
+    -   type: input
+            id: os
+            attributes:
+                label: Operating system
+                description: "Which operating system do you use? Please provide the version as we well."
+                placeholder: "macOS Big Sur 11.5.2"
+
+    -   type: input
+        id: browser
+        attributes:
+            label: Browser
+            description: "Which browser are you using? Please provide the version as well."
+            placeholder: "Chrome 82.0.1"
