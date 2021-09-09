@@ -13,5 +13,17 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configurePublishing();
+    }
+
+    protected function configurePublishing(): void
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->publishes([
+            __DIR__ . '/../stubs/LaravelBaseServiceProvider.php' => app_path('Providers/LaravelBaseServiceProvider.php'),
+        ], 'laravel-base-support');
     }
 }
