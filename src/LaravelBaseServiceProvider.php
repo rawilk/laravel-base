@@ -16,6 +16,13 @@ class LaravelBaseServiceProvider extends ServiceProvider
     {
         $this->configurePublishing();
         $this->configureCommands();
+
+        $this->bootResources();
+    }
+
+    protected function bootResources(): void
+    {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-base');
     }
 
     protected function configurePublishing(): void
@@ -31,6 +38,10 @@ class LaravelBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../stubs/LaravelBaseServiceProvider.php' => app_path('Providers/LaravelBaseServiceProvider.php'),
         ], 'laravel-base-support');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/laravel-base'),
+        ], 'laravel-base-views');
     }
 
     protected function configureCommands(): void
