@@ -22,7 +22,7 @@ You can publish the config file with:
 php artisan vendor:publish --provider="Rawilk\LaravelBase\LaravelBaseServiceProvider" --tag="laravel-base-config"
 ```
 
-You can view the default configuration here: https://github.com/rawilk/laravel-base/blog/main/config/laravel-base.php
+You can view the default configuration here: https://github.com/rawilk/laravel-base/blob/main/config/laravel-base.php
 
 ## Usage
 
