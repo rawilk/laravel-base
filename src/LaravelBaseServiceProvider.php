@@ -3,6 +3,7 @@
 namespace Rawilk\LaravelBase;
 
 use Illuminate\Support\ServiceProvider;
+use Rawilk\LaravelBase\Console\InstallCommand;
 
 class LaravelBaseServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,7 @@ class LaravelBaseServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configurePublishing();
+        $this->configureCommands();
     }
 
     protected function configurePublishing(): void
@@ -25,5 +27,16 @@ class LaravelBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../stubs/LaravelBaseServiceProvider.php' => app_path('Providers/LaravelBaseServiceProvider.php'),
         ], 'laravel-base-support');
+    }
+
+    protected function configureCommands(): void
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->commands([
+            InstallCommand::class,
+        ]);
     }
 }
