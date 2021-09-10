@@ -133,6 +133,16 @@ final class HelpersTest extends TestCase
             prefixSelectColumns(TestUser::class, 'name', 'email', 'timezone')
         );
     }
+
+    /** @test */
+    public function bladeComponentName_returns_prefixed_component_name_if_one_is_set(): void
+    {
+        $this->assertEquals('html', bladeComponentName('html'));
+
+        config(['laravel-base.component_prefix' => 'tw']);
+
+        $this->assertEquals('tw-html', bladeComponentName('html'));
+    }
 }
 
 class TestUser extends User
