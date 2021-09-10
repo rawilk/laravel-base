@@ -1,7 +1,7 @@
 # laravel-base
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rawilk/laravel-base.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-base)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/rawilk/laravel-base/run-tests?label=tests)](https://github.com/rawilk/laravel-base/actions?query=workflow%3Arun-tests+branch%3Amain)
+![Tests](https://github.com/rawilk/laravel-base/workflows/Tests/badge.svg?style=flat-square)
 [![Total Downloads](https://img.shields.io/packagist/dt/rawilk/laravel-base.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-base)
 
 **Note:** Package is still in early stages of development, so functionality is subject to change.
