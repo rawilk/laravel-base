@@ -20,6 +20,6 @@ class App extends BladeComponent
     {
         return $this->title
             ? "{$this->title} {$this->titleSeparator} " . appName()
-            : appName();
+            : (string) appName();
     }
 }
