@@ -25,7 +25,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            RayServiceProvider::class,
+            // RayServiceProvider::class,
             LivewireServiceProvider::class,
             LaravelBaseServiceProvider::class,
         ];
