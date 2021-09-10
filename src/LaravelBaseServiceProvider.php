@@ -3,6 +3,7 @@
 namespace Rawilk\LaravelBase;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 use Rawilk\LaravelBase\Console\InstallCommand;
 
 class LaravelBaseServiceProvider extends ServiceProvider
@@ -18,11 +19,23 @@ class LaravelBaseServiceProvider extends ServiceProvider
         $this->configureCommands();
 
         $this->bootResources();
+        $this->bootBladeComponents();
     }
 
     protected function bootResources(): void
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-base');
+    }
+
+    protected function bootBladeComponents(): void
+    {
+        $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
+            $prefix = config('laravel-base.component_prefix', '');
+
+            foreach (config('laravel-base.components', []) as $alias => $component) {
+                $blade->component($component['class'], $alias, $prefix);
+            }
+        });
     }
 
     protected function configurePublishing(): void
