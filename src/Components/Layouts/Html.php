@@ -12,7 +12,6 @@ class Html extends BladeComponent
         public string $title = '',
         public $html = null, // Only use as a slot to make use of slot attributes
     ) {
-
     }
 
     public function title(): string
