@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="/css/top-styles.css">
+                <link rel="stylesheet" href="/css/other-top-styles.css">
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="csrf-token" content="">
+        <title>Laravel</title>
+
+        <link rel="stylesheet" href="/css/app.css">
+                <link rel="stylesheet" href="/css/other-styles.css">
+    </head>
+    <body >
+        <div>My content</div>
+    </body>
+</html>

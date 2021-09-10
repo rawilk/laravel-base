@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Rawilk\FormComponents\FormComponentsServiceProvider;
 use Rawilk\LaravelBase\LaravelBaseServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
 
@@ -27,6 +28,7 @@ class TestCase extends Orchestra
         return [
             // RayServiceProvider::class,
             LivewireServiceProvider::class,
+            FormComponentsServiceProvider::class,
             LaravelBaseServiceProvider::class,
         ];
     }

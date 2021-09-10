@@ -20,6 +20,11 @@ return [
             'view' => 'laravel-base::components.layouts.html',
         ],
 
+        'app' => [
+            'class' => Components\Layouts\App::class,
+            'view' => 'laravel-base::components.layouts.app',
+        ],
+
     ],
 
     /*
