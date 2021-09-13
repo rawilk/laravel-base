@@ -13,6 +13,7 @@ class App extends BladeComponent
         public string $titleSeparator = '|',
         public bool $livewire = true,
         public bool $laravelFormComponents = true,
+        public bool $assets = true, // Option only here to make testing easier...
     ) {
     }
 

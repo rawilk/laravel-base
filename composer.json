@@ -22,6 +22,7 @@
         "illuminate/support": "^8.56"
     },
     "require-dev": {
+        "blade-ui-kit/blade-heroicons": "^1.2",
         "friendsofphp/php-cs-fixer": "^3.0",
         "livewire/livewire": "^2.5",
         "nunomaduro/collision": "^5.9",
@@ -59,8 +60,16 @@
         "laravel": {
             "providers": [
                 "Rawilk\\LaravelBase\\LaravelBaseServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "LaravelBaseAssets": "Rawilk\\LaravelBase\\Facades\\LaravelBaseAssets"
+            }
         }
+    },
+    "suggest": {
+        "blade-ui-kit/blade-heroicons": "Needed for the icons used in this package.",
+        "livewire/livewire": "Needed to make use of certain helpers and macros from this package.",
+        "rawilk/laravel-form-components": "Necessary for certain blade components in this package to work properly."
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -13,3 +13,7 @@
 /psalm.xml.dist     export-ignore
 /tests              export-ignore
 /testbench.yaml     export-ignore
+/webpack.mix.js     export-ignore
+/package.json       export-ignore
+/package-lock.json  export-ignore
+/bin                export-ignore

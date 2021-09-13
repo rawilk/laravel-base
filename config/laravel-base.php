@@ -25,6 +25,11 @@ return [
             'view' => 'laravel-base::components.layouts.app',
         ],
 
+        'notification' => [
+            'class' => Components\Alerts\Notification::class,
+            'view' => 'laravel-base::components.alerts.notification',
+        ],
+
     ],
 
     /*
@@ -42,5 +47,20 @@ return [
     |
     */
     'component_prefix' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | LaravelBase Assets URL
+    |--------------------------------------------------------------------------
+    |
+    | This value sets the path to the LaravelBase JavaScript assets, for cases
+    | where your app's domain root is not the correct path. By default,
+    | LaravelBase will load its JavaScript assets from the app's
+    | "relative root".
+    |
+    | Examples: "/assets", "myapp.com/app",
+    |
+    */
+    'asset_url' => null,
 
 ];

@@ -23,6 +23,10 @@
         @fcJavaScript
     @endif
 
+    @if ($assets)
+        @lbJavaScript
+    @endif
+
     {{ $js ?? '' }}
     @stack('js')
 </x-dynamic-component>

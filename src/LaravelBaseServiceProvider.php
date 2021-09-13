@@ -2,9 +2,14 @@
 
 namespace Rawilk\LaravelBase;
 
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
+use Livewire\Component;
 use Rawilk\LaravelBase\Console\InstallCommand;
+use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
 
 class LaravelBaseServiceProvider extends ServiceProvider
 {
@@ -20,6 +25,9 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
         $this->bootResources();
         $this->bootBladeComponents();
+        $this->bootDirectives();
+        $this->bootMacros();
+        $this->bootRoutes();
     }
 
     protected function bootResources(): void
@@ -36,6 +44,34 @@ class LaravelBaseServiceProvider extends ServiceProvider
                 $blade->component($component['class'], $alias, $prefix);
             }
         });
+    }
+
+    protected function bootDirectives(): void
+    {
+        Blade::directive('lbJavaScript', function (string $expression) {
+            return "<?php echo \\Rawilk\\LaravelBase\\Facades\\LaravelBaseAssets::javaScript({$expression}); ?>";
+        });
+    }
+
+    protected function bootMacros(): void
+    {
+        if (class_exists(Component::class)) {
+            Component::macro('notify', function (string|null $message, string $type = 'success', array $options = []) {
+                /** @var \Livewire\Component $this */
+                $this->dispatchBrowserEvent('notify', [
+                    'message' => $message,
+                    'type' => $type,
+                    'id' => (string) Str::uuid(),
+                    'autoDismiss' => $options['autoDismiss'] ?? true,
+                ]);
+            });
+        }
+    }
+
+    protected function bootRoutes(): void
+    {
+        Route::get('/laravel-base/laravel-base.js', [LaravelBaseAssets::class, 'source']);
+        Route::get('/laravel-base/laravel-base.js.map', [LaravelBaseAssets::class, 'maps']);
     }
 
     protected function configurePublishing(): void

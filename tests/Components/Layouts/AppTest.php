@@ -15,7 +15,7 @@ final class AppTest extends TestCase
     public function can_be_rendered(): void
     {
         $this->assertMatchesSnapshot(
-            (string) $this->blade('<x-app :livewire="false" :laravel-form-components="false" />')
+            (string) $this->blade('<x-app :livewire="false" :laravel-form-components="false" :assets="false" />')
         );
     }
 
@@ -23,7 +23,7 @@ final class AppTest extends TestCase
     public function can_include_livewire_and_laravel_form_components_scripts_automatically(): void
     {
         $rendered = (string) $this->blade(
-            '<x-app livewire laravel-form-components />'
+            '<x-app livewire laravel-form-components :assets="false" />'
         );
 
         $this->assertStringContainsString('livewire', $rendered);
@@ -34,7 +34,7 @@ final class AppTest extends TestCase
     public function custom_attributes_are_forwarded_to_the_body_tag(): void
     {
         $this->assertMatchesSnapshot(
-            (string) $this->blade('<x-app :livewire="false" :laravel-form-components="false" class="my-body-class" id="my-body" />')
+            (string) $this->blade('<x-app :livewire="false" :laravel-form-components="false" :assets="false" class="my-body-class" id="my-body" />')
         );
     }
 
@@ -42,7 +42,7 @@ final class AppTest extends TestCase
     public function renders_title_correctly(): void
     {
         $template = <<<HTML
-        <x-app :livewire="false" :laravel-form-components="false" title="My Custom Title">
+        <x-app :livewire="false" :laravel-form-components="false" :assets="false" title="My Custom Title">
         </x-app>
         HTML;
 
@@ -53,7 +53,7 @@ final class AppTest extends TestCase
     public function can_have_a_custom_title_separator(): void
     {
         $template = <<<HTML
-        <x-app :livewire="false" :laravel-form-components="false" title="My Custom Title" title-separator="-">
+        <x-app :livewire="false" :laravel-form-components="false" :assets="false" title="My Custom Title" title-separator="-">
         </x-app>
         HTML;
 
@@ -64,7 +64,7 @@ final class AppTest extends TestCase
     public function renders_content_in_default_slot(): void
     {
         $template = <<<HTML
-        <x-app :livewire="false" :laravel-form-components="false">
+        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <div>My content</div>
         </x-app>
         HTML;
@@ -76,7 +76,7 @@ final class AppTest extends TestCase
     public function tags_can_be_added_to_head_via_slot(): void
     {
         $template = <<<HTML
-        <x-app :livewire="false" :laravel-form-components="false">
+        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <x-slot name="headTop">
                 <link rel="stylesheet" href="/css/top-styles.css">
             </x-slot>
@@ -96,7 +96,7 @@ final class AppTest extends TestCase
     public function tags_can_be_added_to_head_via_slot_or_stacks(): void
     {
         $template = <<<HTML
-        <x-app :livewire="false" :laravel-form-components="false">
+        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <x-slot name="headTop">
                 <link rel="stylesheet" href="/css/top-styles.css">
             </x-slot>
@@ -124,7 +124,7 @@ final class AppTest extends TestCase
     public function scripts_can_be_added_to_end_of_body_via_slot_or_stacks(): void
     {
         $template = <<<HTML
-        <x-app :livewire="false" :laravel-form-components="false">
+        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <div>My content</div>
 
             <x-slot name="js">

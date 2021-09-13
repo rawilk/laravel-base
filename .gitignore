@@ -5,6 +5,7 @@
 .phpunit.result.cache
 build
 composer.lock
+package-lock.json
 coverage
 node_modules
 phpunit.xml
