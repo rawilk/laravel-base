@@ -49,6 +49,11 @@ return [
             'view' => 'laravel-base::components.table.table',
         ],
 
+        'tr' => [
+            'class' => Components\Table\Tr::class,
+            'view' => 'laravel-base::components.table.tr',
+        ],
+
     ],
 
     /*

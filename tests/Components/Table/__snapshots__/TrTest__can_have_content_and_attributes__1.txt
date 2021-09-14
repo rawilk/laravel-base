@@ -1,0 +1,5 @@
+<tr
+ role="row"  tabindex="-1"  aria-rowindex="2"  wire:loading.class.delay="opacity-50" class="bg-orange-100"
+>
+    <td>My cell</td>
+</tr>

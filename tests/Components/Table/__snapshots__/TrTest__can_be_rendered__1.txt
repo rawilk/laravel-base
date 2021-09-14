@@ -1,0 +1,5 @@
+<tr
+ role="row" class="odd:bg-white even:bg-blue-gray-50"
+>
+    
+</tr>
