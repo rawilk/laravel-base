@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* flatpickr */
+@import 'flatpickr/dist/flatpickr.min.css';
+
+@layer components {
+    @import '../../vendor/rawilk/laravel-form-components/resources/js/laravel-form-components-styles/src/styles.css';
+    @import '../../vendor/rawilk/laravel-base/resources/css/components/index.css';
+}
