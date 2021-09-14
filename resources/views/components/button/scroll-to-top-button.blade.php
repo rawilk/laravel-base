@@ -1,7 +1,6 @@
 <div x-data="scrollToTopButton" class="scroll-to-top-button | absolute top-0 right-0 h-screen w-screen pointer-events-none">
     <button
         x-on:click="toTop"
-        x-ref="button"
         type="button"
         x-bind:class="{
             'opacity-0 translate-y-1': ! show,
