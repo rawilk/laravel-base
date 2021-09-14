@@ -65,6 +65,11 @@ return [
             'default_class' => 'relative overflow-hidden border-blue-gray-200 bg-blue-gray-50 text-left text-blue-gray-500 text-xs leading-4 font-medium uppercase focus:outline-none tracking-wider px-6 py-3',
         ],
 
+        'td' => [
+            'class' => Components\Table\Td::class,
+            'view' => 'laravel-base::components.table.td',
+        ],
+
     ],
 
     /*
