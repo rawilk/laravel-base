@@ -35,6 +35,11 @@ return [
             'view' => 'laravel-base::components.alerts.alert',
         ],
 
+        'session-alert' => [
+            'class' => Components\Alerts\SessionAlert::class,
+            'view' => 'laravel-base::components.alerts.session-alert',
+        ],
+
     ],
 
     /*

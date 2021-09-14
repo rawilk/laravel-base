@@ -1,4 +1,4 @@
-<div {{ $attributes->class($alertClass()) }}
+<div {{ $attributes->merge(['class' => $alertClass(), 'role' => 'alert']) }}
      @if ($dismiss)
          x-data="{ open: true }"
          x-show="open"
