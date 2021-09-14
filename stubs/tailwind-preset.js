@@ -74,6 +74,10 @@ module.exports = {
                 'blue-gray': [`2px dotted ${colors.blueGray['500']}`, '2px'],
             },
 
+            transitionTimingFunction: {
+                css: 'ease',
+            },
+
         },
 
     },

@@ -40,6 +40,10 @@ return [
             'view' => 'laravel-base::components.alerts.session-alert',
         ],
 
+        'scroll-to-top-button' => [
+            'class' => 'laravel-base::components.button.scroll-to-top-button',
+        ],
+
     ],
 
     /*
