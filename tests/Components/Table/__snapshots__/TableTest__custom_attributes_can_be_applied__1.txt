@@ -1,0 +1,14 @@
+<div class="table-container align-middle min-w-full overflow-hidden overflow-x-auto relative shadow sm:rounded-lg"
+>
+    <table class="table | min-w-full divide-y divide-blue-gray-200 my-table-class" id="my-table">
+                    <thead role="rowgroup" class="th-class" id="my-th">
+                <tr><th>My heading</th></tr>
+            </thead>
+        
+        <tbody
+            role="rowgroup" class="tbody-class" id="my-tbody" x-ref="tbody"
+        >
+            <tr><td>My row</td></tr>
+        </tbody>
+    </table>
+</div>

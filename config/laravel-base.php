@@ -44,6 +44,11 @@ return [
             'class' => 'laravel-base::components.button.scroll-to-top-button',
         ],
 
+        'table' => [
+            'class' => Components\Table\Table::class,
+            'view' => 'laravel-base::components.table.table',
+        ],
+
     ],
 
     /*
