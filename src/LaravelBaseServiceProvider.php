@@ -86,6 +86,8 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../stubs/LaravelBaseServiceProvider.php' => app_path('Providers/LaravelBaseServiceProvider.php'),
+            __DIR__ . '/../stubs/tailwind-safelist-preset.js' => base_path('tailwind-safelist-preset.js'),
+            __DIR__ . '/../stubs/tailwind-preset.js' => base_path('tailwind-preset.js'),
         ], 'laravel-base-support');
 
         $this->publishes([
