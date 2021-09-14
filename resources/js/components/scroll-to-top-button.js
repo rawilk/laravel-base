@@ -1,4 +1,4 @@
-export default (options) => ({
+export default () => ({
     show: false,
     observer: null,
 
