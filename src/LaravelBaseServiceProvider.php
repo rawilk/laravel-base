@@ -33,6 +33,8 @@ class LaravelBaseServiceProvider extends ServiceProvider
     protected function bootResources(): void
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-base');
+
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'laravel-base');
     }
 
     protected function bootBladeComponents(): void
