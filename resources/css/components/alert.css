@@ -1,0 +1,11 @@
+.alert-text {
+    @apply text-sm leading-5 font-medium;
+}
+
+.alert-title + .alert-text {
+    @apply font-normal;
+}
+
+.alert-text a {
+    @apply font-medium underline transition focus:outline-blue-gray;
+}

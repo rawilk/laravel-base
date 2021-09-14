@@ -30,6 +30,11 @@ return [
             'view' => 'laravel-base::components.alerts.notification',
         ],
 
+        'alert' => [
+            'class' => Components\Alerts\Alert::class,
+            'view' => 'laravel-base::components.alerts.alert',
+        ],
+
     ],
 
     /*

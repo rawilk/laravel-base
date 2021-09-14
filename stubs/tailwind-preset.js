@@ -32,8 +32,8 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
 
-        // vendor
-
+        // vendor plugins
+        require('./vendor/rawilk/laravel-base/resources/js/tailwind-plugins/alert'),
     ],
 
     darkMode: false, // or 'media' or 'class'
