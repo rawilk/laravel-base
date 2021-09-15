@@ -1,0 +1,5 @@
+<a href="/"
+      class="app-link inline-flex items-center space-x-2"
+>
+   My link
+</a>

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Rawilk\LaravelBase\LaravelBase;
 
 if (! function_exists('appName')) {
@@ -130,5 +131,26 @@ if (! function_exists('prefixSelectColumns')) {
             ->flatten()
             ->map(fn (string $column) => "{$table}.{$column}")
             ->implode(',');
+    }
+}
+
+if (! function_exists('isExternalLink')) {
+    /**
+     * Determine if the given url is an external url (i.e. not the app's url).
+     *
+     * @param string|null $url
+     * @return bool
+     */
+    function isExternalLink(null|string $url): bool
+    {
+        // This is probably a relative link.
+        if (Str::startsWith($url, ['#', '/'])) {
+            return false;
+        }
+
+        $parsed = parse_url($url);
+        $parsedSiteUrl = parse_url(config('app.url'));
+
+        return ($parsed['host'] ?? '') !== ($parsedSiteUrl['host'] ?? '');
     }
 }

@@ -1,0 +1,5 @@
+<a href="http://acme.test/foo"
+      class="app-link"
+>
+   my link
+</a>

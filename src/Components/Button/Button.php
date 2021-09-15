@@ -6,9 +6,12 @@ namespace Rawilk\LaravelBase\Components\Button;
 
 use Illuminate\Support\Arr;
 use Rawilk\LaravelBase\Components\BladeComponent;
+use Rawilk\LaravelBase\Components\Concerns\HandlesExternalLinks;
 
 final class Button extends BladeComponent
 {
+    use HandlesExternalLinks;
+
     public function __construct(
         public string $variant = 'white',
         public bool $block = false,
@@ -17,6 +20,7 @@ final class Button extends BladeComponent
         public null | string $size = 'md',
         public null | string $href = null,
         public string $containerClass = '',
+        public bool $blockReferrer = false, // Only applies to external links
         public $extraAttributes = '',
     ) {
     }

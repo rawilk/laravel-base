@@ -1,0 +1,6 @@
+<a href="http://google.com"
+          rel="nofollow noopener noreferrer external "
+      class="app-link inline-flex items-center space-x-2"
+>
+   google
+</a>

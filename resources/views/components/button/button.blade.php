@@ -10,6 +10,9 @@
         @if ($href)
             href="{{ $href }}"
             {{ $attributes->class($buttonClass()) }}
+            @if ($isExternalLink())
+                rel="{{ $rel($attributes->get('rel')) }}"
+            @endif
         @else
             {{ $attributes->merge(['type' => 'button', 'class' => $buttonClass()]) }}
         @endif

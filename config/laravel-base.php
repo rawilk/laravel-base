@@ -79,6 +79,11 @@ return [
             'view' => 'laravel-base::components.button.button',
         ],
 
+        'link' => [
+            'class' => Components\Navigation\Link::class,
+            'view' => 'laravel-base::components.navigation.link',
+        ],
+
     ],
 
     /*
