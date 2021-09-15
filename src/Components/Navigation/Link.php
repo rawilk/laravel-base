@@ -13,7 +13,7 @@ class Link extends BladeComponent
     use HandlesExternalLinks;
 
     public function __construct(
-        public null|string $href = '#',
+        public null | string $href = '#',
         public bool $dark = false,
         public bool $supportsIcons = true,
         public bool $blockReferrer = false, // Only applies to external links
