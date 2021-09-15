@@ -12,55 +12,38 @@ return [
     | into your app by this package. You can disable or overwrite any
     | component class or alias you want.
     |
+    | These component references are mostly for convenience and can also be
+    | referenced (as well as any components not listed here) by using
+    | <x-laravel-base::component-name> syntax.
+    |
+    | Note: Any components listed here that have an array for the config
+    | value shouldn't be renamed or removed from the config since the
+    | underlying component will reference the config values in the
+    | component's array.
+    |
     */
     'components' => [
 
-        'html' => [
-            'class' => Components\Layouts\Html::class,
-            'view' => 'laravel-base::components.layouts.html',
-        ],
+        'html' => Components\Layouts\Html::class,
 
-        'app' => [
-            'class' => Components\Layouts\App::class,
-            'view' => 'laravel-base::components.layouts.app',
-        ],
+        'app' => Components\Layouts\App::class,
 
-        'notification' => [
-            'class' => Components\Alerts\Notification::class,
-            'view' => 'laravel-base::components.alerts.notification',
-        ],
+        'notification' => Components\Alerts\Notification::class,
 
-        'alert' => [
-            'class' => Components\Alerts\Alert::class,
-            'view' => 'laravel-base::components.alerts.alert',
-        ],
+        'alert' => Components\Alerts\Alert::class,
 
-        'action-message' => [
-            'class' => 'laravel-base::components.alerts.action-message',
-        ],
+        'action-message' => 'laravel-base::components.alerts.action-message',
 
-        'session-alert' => [
-            'class' => Components\Alerts\SessionAlert::class,
-            'view' => 'laravel-base::components.alerts.session-alert',
-        ],
+        'session-alert' => Components\Alerts\SessionAlert::class,
 
-        'scroll-to-top-button' => [
-            'class' => 'laravel-base::components.button.scroll-to-top-button',
-        ],
+        'scroll-to-top-button' => 'laravel-base::components.button.scroll-to-top-button',
 
-        'table' => [
-            'class' => Components\Table\Table::class,
-            'view' => 'laravel-base::components.table.table',
-        ],
+        'table' => Components\Table\Table::class,
 
-        'tr' => [
-            'class' => Components\Table\Tr::class,
-            'view' => 'laravel-base::components.table.tr',
-        ],
+        'tr' => Components\Table\Tr::class,
 
         'th' => [
             'class' => Components\Table\Th::class,
-            'view' => 'laravel-base::components.table.th',
 
             /*
              * You may customize the classes added to a <th> tag by default here instead of
@@ -69,20 +52,11 @@ return [
             'default_class' => 'relative overflow-hidden border-blue-gray-200 bg-blue-gray-50 text-left text-blue-gray-500 text-xs leading-4 font-medium uppercase focus:outline-none tracking-wider px-6 py-3',
         ],
 
-        'td' => [
-            'class' => Components\Table\Td::class,
-            'view' => 'laravel-base::components.table.td',
-        ],
+        'td' => Components\Table\Td::class,
 
-        'button' => [
-            'class' => Components\Button\Button::class,
-            'view' => 'laravel-base::components.button.button',
-        ],
+        'button' => Components\Button\Button::class,
 
-        'link' => [
-            'class' => Components\Navigation\Link::class,
-            'view' => 'laravel-base::components.navigation.link',
-        ],
+        'link' => Components\Navigation\Link::class,
 
     ],
 

@@ -12,11 +12,28 @@ abstract class BladeComponent extends Component
 {
     public function render()
     {
-        $alias = Str::kebab(class_basename($this));
+        return view("laravel-base::components.{$this::getName()}");
+    }
 
-        $config = config("laravel-base.components.{$alias}");
+    /*
+     * This method is pretty much a direct copy of how livewire/livewire
+     * determines which view to render in Component.php.
+     */
+    public static function getName(): string
+    {
+        $namespace = collect(explode('.', Str::replace(['/', '\\'], '.', 'Rawilk\\LaravelBase\\Components')))
+            ->map([Str::class, 'kebab'])
+            ->implode('.');
 
-        return view($config['view']);
+        $fullName = collect(explode('.', str_replace(['/', '\\'], '.', static::class)))
+            ->map([Str::class, 'kebab'])
+            ->implode('.');
+
+        if (Str::startsWith($fullName, $namespace)) {
+            return (string) Str::of($fullName)->substr(strlen($namespace) + 1);
+        }
+
+        return $fullName;
     }
 
     /**

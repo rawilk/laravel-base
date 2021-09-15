@@ -46,7 +46,9 @@ class LaravelBaseServiceProvider extends ServiceProvider
             $prefix = config('laravel-base.component_prefix', '');
 
             foreach (config('laravel-base.components', []) as $alias => $component) {
-                $blade->component($component['class'], $alias, $prefix);
+                $componentClass = is_string($component) ? $component : $component['class'];
+
+                $blade->component($componentClass, $alias, $prefix);
             }
         });
     }
