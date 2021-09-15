@@ -14,8 +14,8 @@ class Link extends BladeComponent
 
     public function __construct(
         public bool $dark = false,
-        public null|string $containerClass = '',
-        public null|string $href = null,
+        public null | string $containerClass = '',
+        public null | string $href = null,
         public bool $supportsIcons = false,
         public bool $blockReferrer = false, // Only applies to external links
     ) {
