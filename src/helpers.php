@@ -5,24 +5,6 @@ declare(strict_types=1);
 use Carbon\Carbon;
 use Rawilk\LaravelBase\LaravelBase;
 
-if (! function_exists('bladeComponentName')) {
-    /**
-     * Return a prefixed version of a laravel-base blade component's
-     * component name if a prefix is defined in the config.
-     *
-     * @param string $component
-     * @return string
-     */
-    function bladeComponentName(string $component): string
-    {
-        $prefix = config('laravel-base.component_prefix');
-
-        return $prefix
-            ? "{$prefix}-{$component}"
-            : $component;
-    }
-}
-
 if (! function_exists('appName')) {
     /**
      * Convenience method for getting the configured
