@@ -74,6 +74,11 @@ return [
             'view' => 'laravel-base::components.table.td',
         ],
 
+        'button' => [
+            'class' => Components\Button\Button::class,
+            'view' => 'laravel-base::components.button.button',
+        ],
+
     ],
 
     /*
