@@ -14,8 +14,8 @@ final class Button extends BladeComponent
         public bool $block = false,
         public bool $icon = false,
         public bool $rounded = false,
-        public null|string $size = 'md',
-        public null|string $href = null,
+        public null | string $size = 'md',
+        public null | string $href = null,
         public string $containerClass = '',
         public $extraAttributes = '',
     ) {
