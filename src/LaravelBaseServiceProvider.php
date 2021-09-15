@@ -39,6 +39,9 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
     protected function bootBladeComponents(): void
     {
+        // Allows us to not have to register every single component in the config file.
+        Blade::componentNamespace('Rawilk\\LaravelBase\\Components', 'laravel-base');
+
         $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
             $prefix = config('laravel-base.component_prefix', '');
 
