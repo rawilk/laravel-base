@@ -18,14 +18,14 @@ class Dropdown extends BladeComponent
         public bool $right = false,
         public bool $splitButton = false,
         public string $buttonVariant = 'white', // Only applies when $triggerText is supplied
-        public null|string $triggerText = null,
+        public null | string $triggerText = null,
         public bool $disabled = false,
-        public null|string $size = null, // Only applies when $triggerText is supplied
-        public null|string $placement = null,
+        public null | string $size = null, // Only applies when $triggerText is supplied
+        public null | string $placement = null,
         public bool $dropUp = false,
-        public string|int $offset = 8,
+        public string | int $offset = 8,
         public bool $fixed = false,
-        public null|string|bool $id = null,
+        public null | string | bool $id = null,
         public string $widthClass = 'w-56', // For the menu itself
         public bool $padMenu = true,
         public $trigger = null, // To use a custom trigger
@@ -94,7 +94,7 @@ class Dropdown extends BladeComponent
             return $this->placement;
         }
 
-        return match(true) {
+        return match (true) {
             $this->dropUp && $this->right => Popper::PLACEMENT_TOP_RIGHT,
             $this->dropUp && ! $this->right => Popper::PLACEMENT_TOP_LEFT,
             ! $this->dropUp && $this->right => Popper::PLACEMENT_BOTTOM_RIGHT,
