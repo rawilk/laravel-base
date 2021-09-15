@@ -1,4 +1,4 @@
-<x-dynamic-component :component="bladeComponentName('html')" :title="$title ?? ''" {{ $attributes }}>
+<x-laravel-base::layouts.html :title="$title ?? ''" {{ $attributes }}>
     <x-slot name="headTop">
         {{ $headTop ?? '' }}
         @stack('head-top')
@@ -29,4 +29,4 @@
 
     {{ $js ?? '' }}
     @stack('js')
-</x-dynamic-component>
+</x-laravel-base::layouts.html>
