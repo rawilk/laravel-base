@@ -28,7 +28,7 @@
     @apply text-blue-gray-600 hover:text-blue-gray-500;
 }
 
-a:not(.button)[rel*="external"]:after {
+a:not(.button):not(.no-external-indicator)[rel*="external"]:after {
     content: "";
     background: no-repeat var(--icon-external-link);
     width: 15px;
