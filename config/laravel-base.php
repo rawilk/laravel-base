@@ -43,6 +43,10 @@ return [
         'app' => Components\Layouts\App::class,
         'html' => Components\Layouts\Html::class,
 
+        // Lists
+        'info-list' => 'laravel-base::components.lists.info-list',
+        'info-list-item' => Components\Lists\InfoListItem::class,
+
         // Misc
         'copy-to-clipboard' => Components\Misc\CopyToClipboard::class,
 

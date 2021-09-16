@@ -1,0 +1,3 @@
+<dl {{ $attributes }}>
+    {{ $slot }}
+</dl>
