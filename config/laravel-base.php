@@ -36,6 +36,7 @@ return [
 
         // Elements
         'badge' => Components\Elements\Badge::class,
+        'card' => Components\Elements\Card::class,
         'tooltip' => Components\Elements\Tooltip::class,
 
         // Layouts
