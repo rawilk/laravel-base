@@ -34,6 +34,7 @@ module.exports = {
 
         // vendor plugins
         require('./vendor/rawilk/laravel-base/resources/js/tailwind-plugins/alert'),
+        require('./vendor/rawilk/laravel-base/resources/js/tailwind-plugins/badge'),
         require('./vendor/rawilk/laravel-base/resources/js/tailwind-plugins/button'),
     ],
 

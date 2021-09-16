@@ -9,6 +9,19 @@ module.exports = {
             'alert--success',
             'alert--warning',
 
+            // Badges...
+            'badge--blue-gray',
+            'badge--cool-gray',
+            'badge--blue',
+            'badge--red',
+            'badge--rose',
+            'badge--green',
+            'badge--orange',
+            'badge--indigo',
+            'badge--pink',
+            'badge--yellow',
+            'badge--gray',
+
             // Buttons...
             'button--blue-gray',
             'button--cool-gray',

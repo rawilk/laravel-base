@@ -66,6 +66,8 @@ return [
 
         'dropdown-divider' => 'laravel-base::components.navigation.dropdown-divider',
 
+        'badge' => Components\Elements\Badge::class,
+
     ],
 
     /*

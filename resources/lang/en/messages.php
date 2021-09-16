@@ -3,6 +3,10 @@
 return [
     'action_message' => 'Saved.',
 
+    'badge' => [
+        'remove_button' => 'Remove',
+    ],
+
     'dropdown' => [
         'open_menu' => 'Open menu',
     ],
