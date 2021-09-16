@@ -4,6 +4,7 @@ return [
     'action_message' => 'Saved.',
     'copy_to_clipboard' => 'Copy to clipboard',
     'copied_to_clipboard' => 'Copied!',
+    'remove_filter' => 'Remove filter',
 
     'badge' => [
         'remove_button' => 'Remove',

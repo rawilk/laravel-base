@@ -37,6 +37,7 @@ return [
         // Elements
         'badge' => Components\Elements\Badge::class,
         'card' => Components\Elements\Card::class,
+        'filter-breadcrumbs' => 'laravel-base::components.elements.filter-breadcrumbs',
         'tooltip' => Components\Elements\Tooltip::class,
 
         // Layouts

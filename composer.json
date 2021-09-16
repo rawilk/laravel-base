@@ -68,6 +68,7 @@
     },
     "suggest": {
         "blade-ui-kit/blade-heroicons": "Needed for the icons used in this package.",
+        "khatabwedaa/blade-css-icons": "Needed for the icons used in this package.",
         "livewire/livewire": "Needed to make use of certain helpers and macros from this package.",
         "rawilk/laravel-form-components": "Necessary for certain blade components in this package to work properly."
     },
