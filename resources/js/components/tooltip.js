@@ -28,7 +28,6 @@ export default options => ({
     },
 
     hide() {
-        console.log('i should hide');
         const tooltip = document.getElementById(this.tooltipId);
         if (tooltip) {
             tooltip.parentNode.removeChild(tooltip);
@@ -44,7 +43,6 @@ export default options => ({
     },
 
     show() {
-        console.log('I should show');
         // Abort if tooltip is already showing...
         if (this.title === null) {
             return;
