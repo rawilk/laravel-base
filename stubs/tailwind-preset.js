@@ -80,6 +80,10 @@ module.exports = {
                 css: 'ease',
             },
 
+            zIndex: {
+                top: '9999',
+            },
+
         },
 
     },

@@ -46,6 +46,12 @@ return [
         // Misc
         'copy-to-clipboard' => Components\Misc\CopyToClipboard::class,
 
+        // Modal
+        'dialog-modal' => Components\Modal\DialogModal::class,
+        'modal' => Components\Modal\Modal::class,
+        'slide-over' => Components\Modal\SlideOver::class,
+        'slide-over-form' => Components\Modal\SlideOverForm::class,
+
         // Navigation
         'dropdown' => Components\Navigation\Dropdown::class,
         'dropdown-item' => Components\Navigation\DropdownItem::class,
