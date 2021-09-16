@@ -24,8 +24,8 @@ class Tooltip extends BladeComponent
 
     public function __construct(
         public string $placement = '',
-        public null|string $title = '',
-        private null|string|array|Collection $triggers = null,
+        public null | string $title = '',
+        private null | string | array | Collection $triggers = null,
     ) {
         if (! $placement) {
             $this->placement = static::TOP;
