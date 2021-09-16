@@ -44,6 +44,8 @@ return [
         'html' => Components\Layouts\Html::class,
 
         // Lists
+        'description-list' => 'laravel-base::components.lists.description-list',
+        'description-list-item' => Components\Lists\DescriptionListItem::class,
         'info-list' => 'laravel-base::components.lists.info-list',
         'info-list-item' => Components\Lists\InfoListItem::class,
 
