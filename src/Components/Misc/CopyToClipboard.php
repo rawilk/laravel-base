@@ -11,7 +11,7 @@ class CopyToClipboard extends BladeComponent
     public bool $textIsArray = false;
 
     public function __construct(
-        public string $text = '',
+        public $text = '',
         public $title = 'laravel-base::messages.copy_to_clipboard',
         public $message = 'laravel-base::messages.copied_to_clipboard',
         public string $icon = 'heroicon-o-clipboard-copy',
