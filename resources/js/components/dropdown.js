@@ -11,7 +11,7 @@ const focusElement = (el, menu) => {
     } catch (e) {}
 };
 
-export default (options) => ({
+export default options => ({
     open: false,
     fixed: options.fixed || false,
     disabled: options.disabled || false,
