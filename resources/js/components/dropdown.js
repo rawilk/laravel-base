@@ -104,7 +104,7 @@ export default options => ({
             return this.focusableElements;
         }
 
-        return this.focusableElements = this.$refs.menu.querySelectorAll(FOCUSABLE_ELEMENTS);
+        return this.focusableElements = this.menu.querySelectorAll(FOCUSABLE_ELEMENTS);
     },
 
     /*
@@ -135,7 +135,7 @@ export default options => ({
             this.focusedIndex = 0;
         }
 
-        focusElement(elements[this.focusedIndex], this.$refs.menu);
+        focusElement(elements[this.focusedIndex], this.menu);
     },
 
     focusPrevious() {
@@ -162,7 +162,7 @@ export default options => ({
             this.focusedIndex = elements.length - 1;
         }
 
-        focusElement(elements[this.focusedIndex], this.$refs.menu);
+        focusElement(elements[this.focusedIndex], this.menu);
     },
 
     focusFirst() {
@@ -176,7 +176,7 @@ export default options => ({
 
         this.focusedIndex = 0;
 
-        focusElement(elements[this.focusedIndex], this.$refs.menu);
+        focusElement(elements[this.focusedIndex], this.menu);
     },
 
     focusLast() {
@@ -190,6 +190,6 @@ export default options => ({
 
         this.focusedIndex = elements.length - 1;
 
-        focusElement(elements[this.focusedIndex], this.$refs.menu);
+        focusElement(elements[this.focusedIndex], this.menu);
     },
 });
