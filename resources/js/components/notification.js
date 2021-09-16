@@ -1,4 +1,4 @@
-export default (options) => ({
+export default options => ({
     notices: [],
     visible: [],
     timeShown: options.timeout || 5000, // in ms
