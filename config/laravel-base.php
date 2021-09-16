@@ -42,6 +42,9 @@ return [
         'app' => Components\Layouts\App::class,
         'html' => Components\Layouts\Html::class,
 
+        // Misc
+        'copy-to-clipboard' => Components\Misc\CopyToClipboard::class,
+
         // Navigation
         'dropdown' => Components\Navigation\Dropdown::class,
         'dropdown-item' => Components\Navigation\DropdownItem::class,

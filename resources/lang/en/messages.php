@@ -2,6 +2,8 @@
 
 return [
     'action_message' => 'Saved.',
+    'copy_to_clipboard' => 'Copy to clipboard',
+    'copied_to_clipboard' => 'Copied!',
 
     'badge' => [
         'remove_button' => 'Remove',
