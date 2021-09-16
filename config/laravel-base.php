@@ -54,6 +54,8 @@ return [
 
         'td' => Components\Table\Td::class,
 
+        'column-select' => Components\Table\ColumnSelect::class,
+
         'button' => Components\Button\Button::class,
 
         'link' => Components\Navigation\Link::class,

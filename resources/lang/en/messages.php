@@ -14,5 +14,6 @@ return [
         'select_all_rows' => 'Select all <strong>:total</strong> :item_name',
         'clear_selection' => 'Clear selection',
         'all_rows_selected' => 'All <strong>:total</strong> :item_name are selected.',
+        'column_select' => 'Columns',
     ],
 ];
