@@ -10,7 +10,7 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class FeedItem extends BladeComponent
 {
     public function __construct(
-        public null|CarbonInterface $ago = null,
+        public null | CarbonInterface $ago = null,
         public bool $convertToUserTimezone = true,
         public string $dateFormat = 'M. d, Y g:i a',
         public $icon = null,
