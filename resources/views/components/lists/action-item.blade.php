@@ -1,4 +1,7 @@
-<div {{ $attributes->class('action-item | group') }}>
+<div {{ $attributes->class('action-item | group') }}
+     x-data
+     x-on:click="$refs.link.focus(); $refs.link.click();"
+>
     @if ($before)
         <div {{ $before->attributes }}>{{ $before }}</div>
     @endif
@@ -16,6 +19,7 @@
                 href="{{ $href }}"
                 class="focus:outline-none"
                 hide-external-indicator
+                x-ref="link"
             >
                 {{-- extended touch target to entire panel --}}
                 <span class="absolute inset-0" aria-hidden="true"></span>
