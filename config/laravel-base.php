@@ -40,6 +40,10 @@ return [
         'filter-breadcrumbs' => 'laravel-base::components.elements.filter-breadcrumbs',
         'tooltip' => Components\Elements\Tooltip::class,
 
+        // Feeds
+        'feed' => Components\Feeds\Feed::class,
+        'feed-item' => Components\Feeds\FeedItem::class,
+
         // Layouts
         'app' => Components\Layouts\App::class,
         'html' => Components\Layouts\Html::class,
