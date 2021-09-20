@@ -15,8 +15,8 @@ class Tabs extends BladeComponent
     public const PILLS = 'pills';
 
     public function __construct(
-        public null|string $id = null,
-        public null|string $navStyle = null,
+        public null | string $id = null,
+        public null | string $navStyle = null,
         public bool $fullWidthTabs = false, // Only applies to UNDERLINE style
     ) {
         $this->id = $this->id ?? 'tabs-' . Str::random(6);
