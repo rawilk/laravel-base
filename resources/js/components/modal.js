@@ -60,6 +60,6 @@ export default options => ({
     },
 
     prevFocusableIndex() {
-        return Math.max(0, this.focusables().indexOf(document.activeElement)) -1;
+        return Math.max(0, this.focusables().indexOf(document.activeElement)) - 1;
     },
 });

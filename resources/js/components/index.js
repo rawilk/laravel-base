@@ -3,6 +3,8 @@ import dropdown from './dropdown';
 import modal from './modal';
 import notification from './notification';
 import scrollToTopButton from './scroll-to-top-button';
+import tabs from './tabs';
+import tab from './tab';
 import tooltip from './tooltip';
 
 document.addEventListener('alpine:init', () => {
@@ -11,5 +13,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('modal', modal);
     Alpine.data('notification', notification);
     Alpine.data('scrollToTopButton', scrollToTopButton);
+    Alpine.data('tabs', tabs);
+    Alpine.data('tab', tab);
     Alpine.data('tooltip', tooltip);
 });

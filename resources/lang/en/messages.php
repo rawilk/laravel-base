@@ -18,6 +18,12 @@ return [
         'close_button' => 'Close',
     ],
 
+    'tabs' => [
+        'nav_label' => 'Tabs',
+        'select_tab' => 'Select a tab',
+        'selected_tab_label' => 'Selected tab',
+    ],
+
     'table' => [
         'click_to_sort' => 'Click to sort :direction',
         'clear_sort' => 'Click to clear sorting',

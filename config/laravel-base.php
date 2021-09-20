@@ -89,6 +89,10 @@ return [
         'td' => Components\Table\Td::class,
         'column-select' => Components\Table\ColumnSelect::class,
 
+        // Tabs
+        'tab' => Components\Tabs\Tab::class,
+        'tabs' => Components\Tabs\Tabs::class,
+
     ],
 
     /*
