@@ -34,6 +34,9 @@ return [
         'button' => Components\Button\Button::class,
         'scroll-to-top-button' => 'laravel-base::components.button.scroll-to-top-button',
 
+        // DateTime
+        'countdown' => Components\DateTime\Countdown::class,
+
         // Elements
         'badge' => Components\Elements\Badge::class,
         'card' => Components\Elements\Card::class,
