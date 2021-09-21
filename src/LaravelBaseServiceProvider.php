@@ -97,6 +97,7 @@ class LaravelBaseServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/resources/js/bootstrap.js' => resource_path('js/bootstrap.js'),
             __DIR__ . '/../stubs/build/tailwind-safelist-preset.js' => base_path('tailwind-safelist-preset.js'),
             __DIR__ . '/../stubs/build/tailwind-preset.js' => base_path('tailwind-preset.js'),
+            __DIR__ . '/../stubs/build/tailwind.config.js' => base_path('tailwind.config.js'),
             __DIR__ . '/../stubs/build/webpack.mix.js' => base_path('webpack.mix.js'),
         ], 'laravel-base-support');
 
