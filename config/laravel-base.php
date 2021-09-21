@@ -72,6 +72,16 @@ return [
         'dropdown' => Components\Navigation\Dropdown::class,
         'dropdown-item' => Components\Navigation\DropdownItem::class,
         'dropdown-divider' => 'laravel-base::components.navigation.dropdown-divider',
+        'inner-nav' => [
+            'class' => Components\Navigation\InnerNav::class,
+
+            /*
+             * This will be the default space from the top the nav links will be
+             * when stickyNav is enabled.
+             */
+            'default_sticky_offset' => 'md:top-2',
+        ],
+        'inner-nav-item' => Components\Navigation\InnerNavItem::class,
         'link' => Components\Navigation\Link::class,
 
         // Table
