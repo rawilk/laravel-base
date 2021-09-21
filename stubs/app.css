@@ -11,3 +11,7 @@
     @import '../../vendor/rawilk/laravel-form-components/resources/js/laravel-form-components-styles/src/styles.css';
     @import '../../vendor/rawilk/laravel-base/resources/css/components/index.css';
 }
+
+@layer utilities {
+    @import '../../vendor/rawilk/laravel-base/resources/css/utils/app.css';
+}
