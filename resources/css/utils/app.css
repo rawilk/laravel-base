@@ -1,0 +1,7 @@
+* {
+    @apply relative box-border;
+}
+
+[x-cloak] {
+    display: none;
+}
