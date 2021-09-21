@@ -30,6 +30,9 @@ return [
         'notification' => Components\Alerts\Notification::class,
         'session-alert' => Components\Alerts\SessionAlert::class,
 
+        // Auth
+        'confirms-password' => Components\Auth\ConfirmsPassword::class,
+
         // Button
         'button' => Components\Button\Button::class,
         'scroll-to-top-button' => 'laravel-base::components.button.scroll-to-top-button',

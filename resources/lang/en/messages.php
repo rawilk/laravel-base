@@ -4,7 +4,15 @@ return [
     'action_message' => 'Saved.',
     'copy_to_clipboard' => 'Copy to clipboard',
     'copied_to_clipboard' => 'Copied!',
+    'confirm_modal_cancel' => 'Nevermind',
     'remove_filter' => 'Remove filter',
+
+    'confirms_password' => [
+        'title' => 'Confirm Password',
+        'content' => 'For your security, please confirm your password to continue.',
+        'button' => 'Confirm',
+        'password_placeholder' => 'Password',
+    ],
 
     'badge' => [
         'remove_button' => 'Remove',
