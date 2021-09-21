@@ -69,6 +69,7 @@ return [
         'slide-over-form' => Components\Modal\SlideOverForm::class,
 
         // Navigation
+        'action-menu' => Components\Navigation\ActionMenu::class,
         'dropdown' => Components\Navigation\Dropdown::class,
         'dropdown-item' => Components\Navigation\DropdownItem::class,
         'dropdown-divider' => 'laravel-base::components.navigation.dropdown-divider',
