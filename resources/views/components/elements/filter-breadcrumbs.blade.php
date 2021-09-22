@@ -12,7 +12,7 @@
                         'value' => $value,
                         'valueDisplay' => $breadcrumb['valueDisplay'][$loop->index]
                     ]"
-                    wire:key="filter-breadcrumb-{{ $breadcrumb['key'] }}-{{ $breadcrumb['value'] }}"
+                    wire:key="filter-breadcrumb-{{ $breadcrumb['key'] }}-{{ $value }}"
                 />
             @endforeach
 
