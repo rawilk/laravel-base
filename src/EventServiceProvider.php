@@ -15,13 +15,4 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
     ];
-
-    public function boot(): void
-    {
-        // if (Features::enabled(Features::emailVerification())) {
-        //     $this->listen[Registered::class] = [
-        //         SendEmailVerificationNotification::class,
-        //     ];
-        // }
-    }
 }
