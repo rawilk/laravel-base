@@ -32,6 +32,7 @@ class SimpleViewResponse implements
     public function toResponse($request)
     {
         if (! is_callable($this->view) || is_string($this->view)) {
+            /** @psalm-suppress InvalidReturnStatement */
             return view($this->view, ['request' => $request]);
         }
 

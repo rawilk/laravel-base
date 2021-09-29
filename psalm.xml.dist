@@ -15,7 +15,8 @@
     </projectFiles>
 
     <issueHandlers>
-        <NoInterfaceProperties errorLevel="suppress" />
+        <NoInterfaceProperties errorLevel="suppress"/>
+        <UndefinedInterfaceMethod errorLevel="suppress"/>
     </issueHandlers>
 
     <plugins>

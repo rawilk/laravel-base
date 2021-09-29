@@ -17,6 +17,9 @@ class SuccessfulPasswordResetLinkRequestResponse implements SuccessfulPasswordRe
     {
     }
 
+    /**
+     * @psalm-suppress InvalidReturnType
+     */
     public function toResponse($request)
     {
         Session::flash(Alert::SUCCESS, __($this->status));
