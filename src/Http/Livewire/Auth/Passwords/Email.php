@@ -34,7 +34,7 @@ class Email extends Component
                     __('auth.general_throttle', [
                         'seconds' => $e->secondsUntilAvailable,
                         'minutes' => $e->minutesUntilAvailable,
-                    ])
+                    ]),
                 ],
             ]);
         }

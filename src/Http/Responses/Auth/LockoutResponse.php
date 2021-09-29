@@ -24,8 +24,8 @@ class LockoutResponse implements LockoutResponseContract
                     __('auth.throttle', [
                         'seconds' => $seconds,
                         'minutes' => ceil($seconds / 60),
-                    ])
-                ]
+                    ]),
+                ],
             ])->status(Response::HTTP_TOO_MANY_REQUESTS);
         });
     }

@@ -13,7 +13,6 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Component;
 use Livewire\Livewire;
 use Rawilk\LaravelBase\Console\InstallCommand;
-use Rawilk\LaravelBase\Contracts;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
 use Rawilk\LaravelBase\Http\Livewire\Auth\ConfirmPassword;
 use Rawilk\LaravelBase\Http\Livewire\Auth\Passwords\Email;

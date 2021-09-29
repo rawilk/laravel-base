@@ -19,7 +19,7 @@ class FailedPasswordResetLinkRequestResponse implements FailedPasswordResetLinkR
     public function toResponse($request)
     {
         throw ValidationException::withMessages([
-            'email' => [__($this->status)]
+            'email' => [__($this->status)],
         ]);
     }
 }
