@@ -56,7 +56,7 @@ trait ConfirmsPasswords
             'confirmablePassword' => ['required', 'string', 'password'],
         ], [
             'required' => __('laravel-base::validation.confirms_password.required'),
-            'password' => __('laravel-base::validation.confirms_password.password'),
+            'password' => __('auth.password'),
         ]);
 
         Session::put('auth.password_confirmed_at', time());

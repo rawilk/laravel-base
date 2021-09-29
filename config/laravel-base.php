@@ -1,6 +1,7 @@
 <?php
 
 use Rawilk\LaravelBase\Components;
+use Rawilk\LaravelBase\Features;
 
 return [
     /*
@@ -139,5 +140,143 @@ return [
     |
     */
     'asset_url' => null,
+
+    /*
+    |--------------------------------------------------------------------------
+    | LaravelBase Guard
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which authentication guard LaravelBase will use while
+    | authenticating users. This value should correspond with one of your
+    | guards that is already present in your "auth" configuration file.
+    |
+    */
+    'guard' => 'web',
+
+    /*
+    |--------------------------------------------------------------------------
+    | LaravelBase Routes Prefix / Subdomain
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which prefix LaravelBase will assign to all the routes
+    | that it registers with the application. If necessary, you may change
+    | subdomain under which all the LaravelBase routes will be available.
+    |
+    */
+    'prefix' => '',
+
+    'domain' => null,
+
+    /*
+    |--------------------------------------------------------------------------
+    | LaravelBase Routes Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which middleware LaravelBase will assign to the routes
+    | that it registers with the application. If necessary, you may change
+    | these middleware but typically this provided default is preferred.
+    |
+    */
+    'middleware' => ['web'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Username / Email
+    |--------------------------------------------------------------------------
+    |
+    | This value defines which model attributes should be considered as your
+    | application's "username" field. Typically, this might be the email
+    | address of the users but you are free to change this value here.
+    |
+    | Out of the box, LaravelBase expects forgot password and reset password
+    | requests to have a field named 'email'. If the application uses
+    | another name for hte field you may define it below as needed.
+    |
+    */
+    'username' => 'email',
+
+    'email' => 'email',
+
+    /*
+    |--------------------------------------------------------------------------
+    | LaravelBase Password Broker
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which password broker LaravelBase can use when a user
+    | is resetting their password. This configured value should match one
+    | of your password brokers setup in your "auth" configuration file.
+    |
+    */
+    'passwords' => 'users',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Home Path
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the path where users will get redirected during
+    | authentication or password reset when the operations are successful
+    | and the user is authenticated. You are free to change this value.
+    |
+    */
+    'home' => '/',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Features
+    |--------------------------------------------------------------------------
+    |
+    | Some of the LaravelBase features are optional. You may disable the features
+    | by removing them from this array. You're free to only remove some of
+    | these features or you can remove all of these if you need to.
+    |
+    */
+    'features' => [
+        Features::registration(),
+        // Features::emailVerification(),
+        Features::resetPasswords(),
+        Features::twoFactorAuthentication([
+            'confirmPassword' => true, // Forces confirm password when enabling, disabling, etc.
+        ]),
+
+        // Profile features...
+        Features::avatars(),
+        Features::updateProfileInformation(),
+        Features::updatePasswords(),
+        Features::accountDeletion(),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Avatar Disk
+    |--------------------------------------------------------------------------
+    |
+    | This configuration value determines the default disk that will be used
+    | when storing profile photos for your application's users. We've set it
+    | to a sensible default for a custom disk name, but this will require
+    | you to create the disk before you can use this feature. You may set
+    | it to "public" to avoid this.
+    |
+    */
+    'avatar_disk' => 'avatars',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Livewire Components
+    |--------------------------------------------------------------------------
+    |
+    | Here you may customize the Livewire components used for certain actions
+    | such as logging in. The components provided in this package should
+    | work in most cases, but sometimes you may need more control over
+    | the component, so you may either extend or use a completely custom
+    | class of your own.
+    |
+    */
+    'livewire' => [
+        'login' => \Rawilk\LaravelBase\Http\Livewire\Auth\Login::class,
+        'register' => \Rawilk\LaravelBase\Http\Livewire\Auth\Register::class,
+    ],
 
 ];

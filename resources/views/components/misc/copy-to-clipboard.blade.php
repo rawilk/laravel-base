@@ -1,7 +1,7 @@
 <div x-data="{ copied: false, text: {{ $textIsArray ? $text : "'" . $text . "'" }} }"
      x-on:click="() => {
         if (! copied) {
-            $clipboard(Array.isArray(text) ? text.join('\\n') : text);
+            $clipboard(Array.isArray(text) ? text.join('\n') : text);
             copied = true;
         }
      }"
