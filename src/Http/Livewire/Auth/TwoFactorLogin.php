@@ -45,7 +45,7 @@ class TwoFactorLogin extends Component
                     __('auth.throttle', [
                         'seconds' => $e->secondsUntilAvailable,
                         'minutes' => $e->minutesUntilAvailable,
-                    ])
+                    ]),
                 ],
             ]);
         }
@@ -53,7 +53,7 @@ class TwoFactorLogin extends Component
         $this->resetErrorBag();
 
         $request->merge([
-            'code'  => $this->code,
+            'code' => $this->code,
             'recoveryCode' => $this->recoveryCode,
         ]);
 

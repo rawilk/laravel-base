@@ -18,7 +18,7 @@ class Otp extends BladeComponent
 
     public function gridCols(): string
     {
-        return match($this->length) {
+        return match ($this->length) {
             2 => 'grid-cols-2',
             3 => 'grid-cols-3',
             4 => 'grid-cols-4',

@@ -17,7 +17,7 @@ trait HasAvatar
     {
         tap($this->avatar_path, function ($previous) use ($photo) {
             $this->forceFill([
-                'avatar_path' => $photo->storePublicly('/', ['disk' => $this->avatarDisk()])
+                'avatar_path' => $photo->storePublicly('/', ['disk' => $this->avatarDisk()]),
             ])->save();
 
             if ($previous) {
