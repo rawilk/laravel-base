@@ -5,14 +5,22 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Http\Responses;
 
 use Illuminate\Contracts\Support\Responsable;
+use Rawilk\LaravelBase\Contracts\Auth\ConfirmPasswordViewResponse;
 use Rawilk\LaravelBase\Contracts\Auth\LoginViewResponse;
 use Rawilk\LaravelBase\Contracts\Auth\RegisterViewResponse;
+use Rawilk\LaravelBase\Contracts\Auth\RequestPasswordResetLinkViewResponse;
+use Rawilk\LaravelBase\Contracts\Auth\ResetPasswordViewResponse;
+use Rawilk\LaravelBase\Contracts\Auth\TwoFactorChallengeViewResponse;
 use Rawilk\LaravelBase\Contracts\Auth\VerifyEmailViewResponse;
 
 class SimpleViewResponse implements
     LoginViewResponse,
+    ResetPasswordViewResponse,
     RegisterViewResponse,
-    VerifyEmailViewResponse
+    RequestPasswordResetLinkViewResponse,
+    TwoFactorChallengeViewResponse,
+    VerifyEmailViewResponse,
+    ConfirmPasswordViewResponse
 {
     /**
      * @param callable|string $view The name of the view or the callable used to generate the view.
