@@ -121,7 +121,8 @@ class Features
     public static function twoFactorAuthentication(array $options = []): string
     {
         if (count($options)) {
-            Config::set('laravel-base-options.two-factor-authentication', $options);
+            // Note: Cannot use the Config facade here otherwise it breaks the console
+            config(['laravel-base-options.two-factor-authentication' => $options]);
         }
 
         return 'two-factor-authentication';
