@@ -192,6 +192,7 @@ final class InstallCommand extends Command
             is_array($packages) ? $packages : func_get_args()
         );
 
+        /** @psalm-suppress UnusedClosureParam */
         (new Process($command, base_path(), ['COMPOSER_MEMORY_LIMIT' => '-1']))
             ->setTimeout(null)
             ->run(function ($type, $output) {
