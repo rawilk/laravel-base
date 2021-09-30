@@ -125,7 +125,7 @@ final class InstallCommand extends Command
             (new Filesystem)->delete(app_path('Models/User.php'));
         }
 
-        copy(__DIR__ . '/../../stubs/Models/User/User.php', app_path('Models/User/User.php'));
+        copy(__DIR__ . '/../../stubs/app/Models/User/User.php', app_path('Models/User/User.php'));
 
         // Factories...
         copy(__DIR__ . '/../../database/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
