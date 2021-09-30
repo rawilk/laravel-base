@@ -93,16 +93,17 @@ final class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Notifications/Users'));
         (new Filesystem)->ensureDirectoryExists(app_path('Listeners/Users'));
         (new Filesystem)->ensureDirectoryExists(app_path('Helpers'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Models/User'));
 
         (new Filesystem)->deleteDirectory(resource_path('sass'));
 
         // Service Providers...
         copy(__DIR__ . '/../../stubs/app/Providers/ViewComposerServiceProvider.php', app_path('Providers/ViewComposerServiceProvider.php'));
-        copy(__DIR__ . '/../../stubs/app/Providers/BladeComponentsServiceProvider.php', app_path('Providers/BladeComponentServiceProvider.php'));
+        copy(__DIR__ . '/../../stubs/app/Providers/BladeComponentsServiceProvider.php', app_path('Providers/BladeComponentsServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/NavigationServiceProvider.php', app_path('Providers/NavigationServiceProvider.php'));
         $this->installServiceProviderAfter('LaravelBaseServiceProvider', 'ViewComposerServiceProvider');
-        $this->installServiceProviderAfter('ViewComposerServiceProvider', 'BladeComponentServiceProvider');
-        $this->installServiceProviderAfter('BladeComponentServiceProvider', 'NavigationServiceProvider');
+        $this->installServiceProviderAfter('ViewComposerServiceProvider', 'BladeComponentsServiceProvider');
+        $this->installServiceProviderAfter('BladeComponentsServiceProvider', 'NavigationServiceProvider');
 
         // Support...
         copy(__DIR__ . '/../../stubs/app/Support/Queues.php', app_path('Support/Queues.php'));
