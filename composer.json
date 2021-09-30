@@ -51,7 +51,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Rawilk\\LaravelBase\\Tests\\": "tests"
+            "Rawilk\\LaravelBase\\Tests\\": "tests",
+            "App\\": "stubs/app/"
         }
     },
     "scripts": {
