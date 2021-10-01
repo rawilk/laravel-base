@@ -63,17 +63,17 @@ final class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@popperjs/core' => '^2.10.1',
+                '@popperjs/core' => '^2.10.2',
                 '@ryangjchandler/alpine-clipboard' => '^2.0.0',
                 '@tailwindcss/aspect-ratio' => '^0.2.1',
-                '@tailwindcss/forms' => '^0.3.3',
+                '@tailwindcss/forms' => '^0.3.4',
                 '@tailwindcss/typography' => '^0.4.1',
                 'alpinejs' => '^3.4.2',
-                'filepond' => '^4.29.1',
+                'filepond' => '^4.30.0',
                 'flatpickr' => '^4.6.9',
                 'laravel-mix' => '^6.0.31',
                 'postcss-import' => '^14.0.2',
-                'tailwindcss' => '^2.2.15',
+                'tailwindcss' => '^2.2.16',
             ] + $packages;
         });
 
