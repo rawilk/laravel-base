@@ -26,6 +26,9 @@ final class InstallCommand extends Command
         $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-support', '--force' => true]);
         $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-migrations', '--force' => true]);
 
+        // "Home" Route...
+        $this->replaceInFile('/home', '/', app_path('Providers/RouteServiceProvider.php'));
+
         // LaravelBase Provider...
         $this->installServiceProviderAfter('RouteServiceProvider', 'LaravelBaseServiceProvider');
 
@@ -154,6 +157,11 @@ final class InstallCommand extends Command
         // View Composers...
         copy(__DIR__ . '/../../stubs/app/Http/ViewComposers/SessionAlertViewComposer.php', app_path('Http/ViewComposers/SessionAlertViewComposer.php'));
 
+        // Routes...
+        if (! Str::contains(file_get_contents(base_path('routes/web.php')), "'/dashboard'")) {
+            (new Filesystem)->append(base_path('routes/web.php'), $this->livewireRouteDefinition());
+        }
+
         // Assets...
         copy(__DIR__ . '/../../stubs/resources/css/app.css', resource_path('css/app.css'));
         copy(__DIR__ . '/../../stubs/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
@@ -202,6 +210,23 @@ final class InstallCommand extends Command
             $path,
             str_replace($search, $replace, file_get_contents($path))
         );
+    }
+
+    private function livewireRouteDefinition(): string
+    {
+        return <<<'EOF'
+
+// Admin Routes...
+Route::middleware(['auth:web'])
+    ->prefix(config('laravel-base.admin_route_prefix', 'admin'))
+    ->as(config('laravel-base.admin_route_name_prefix', 'admin.'))
+    ->group(static function () {
+        // Dashboard...
+        Route::view('/dashboard', 'admin.dashboard.index')->name('dashboard');
+    });
+
+EOF;
+
     }
 
     private function requireComposerPackages($packages): void

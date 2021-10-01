@@ -35,7 +35,7 @@ final class MainMenuItems
         $this->menu->add(
             View::create($this->iconView, [
                 'label' => __('Dashboard'),
-                'url' => url('/'),
+                'url' => route('admin.dashboard'),
                 'icon' => 'heroicon-o-home',
             ])
         );

@@ -218,8 +218,11 @@ return [
     | authentication or password reset when the operations are successful
     | and the user is authenticated. You are free to change this value.
     |
+    | Leave value as "null" to default the value to the
+    | RouteServiceProvider::HOME value.
+    |
     */
-    'home' => '/',
+    'home' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -245,6 +248,21 @@ return [
         Features::updatePasswords(),
         Features::accountDeletion(),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define a route prefix and name prefix for any admin routes
+    | defined in this package and/or your application. We've set a sensible
+    | default for you.
+    |
+    */
+    'admin_route_prefix' => 'admin',
+
+    'admin_route_name_prefix' => 'admin.',
+
 
     /*
     |--------------------------------------------------------------------------

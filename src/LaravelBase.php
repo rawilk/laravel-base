@@ -18,6 +18,7 @@ use Rawilk\LaravelBase\Contracts\Profile\DeletesUsers;
 use Rawilk\LaravelBase\Contracts\Profile\UpdatesUserPasswords;
 use Rawilk\LaravelBase\Contracts\Profile\UpdatesUserProfileInformation;
 use Rawilk\LaravelBase\Http\Responses\SimpleViewResponse;
+use Rawilk\LaravelBase\Services\Routing;
 
 class LaravelBase
 {
@@ -82,7 +83,7 @@ class LaravelBase
      */
     public static function redirects(string $redirect, null|string $default = null): string
     {
-        return Config::get("laravel-base.redirects.{$redirect}") ?? $default ?? Config::get('laravel-base.home');
+        return Config::get("laravel-base.redirects.{$redirect}") ?? $default ?? Routing::home();
     }
 
     /**

@@ -1,6 +1,8 @@
 <nav class="bg-gray-100 border-r border-gray-200 pt-5 pb-4 flex flex-col flex-grow overflow-y-auto">
     <div class="flex-shrink-0 px-4 flex items-center">
-        {{-- logo here --}}
+        <a href="{{ homeRoute() }}">
+            <x-logo class="w-auto h-8 text-blue-600" />
+        </a>
     </div>
 
     <div class="flex-grow mt-5 flex flex-col">
