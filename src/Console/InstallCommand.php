@@ -68,7 +68,7 @@ final class InstallCommand extends Command
                 '@tailwindcss/aspect-ratio' => '^0.2.1',
                 '@tailwindcss/forms' => '^0.3.3',
                 '@tailwindcss/typography' => '^0.4.1',
-                'alpinejs' => '^3.4.0',
+                'alpinejs' => '^3.4.2',
                 'filepond' => '^4.29.1',
                 'flatpickr' => '^4.6.9',
                 'laravel-mix' => '^6.0.31',
@@ -96,6 +96,7 @@ final class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Livewire'));
         (new Filesystem)->ensureDirectoryExists(app_path('Services'));
         (new Filesystem)->ensureDirectoryExists(app_path('Support'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Support/Auth'));
         (new Filesystem)->ensureDirectoryExists(app_path('Notifications/Users'));
         (new Filesystem)->ensureDirectoryExists(app_path('Listeners/Users'));
         (new Filesystem)->ensureDirectoryExists(app_path('Helpers'));
@@ -104,6 +105,7 @@ final class InstallCommand extends Command
         (new Filesystem)->deleteDirectory(resource_path('sass'));
 
         // Service Providers...
+        copy(__DIR__ . '/../../stubs/app/Providers/AuthServiceProvider.php', app_path('Providers/AuthServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/ViewComposerServiceProvider.php', app_path('Providers/ViewComposerServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/BladeComponentsServiceProvider.php', app_path('Providers/BladeComponentsServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/NavigationServiceProvider.php', app_path('Providers/NavigationServiceProvider.php'));
@@ -113,6 +115,7 @@ final class InstallCommand extends Command
 
         // Support...
         copy(__DIR__ . '/../../stubs/app/Support/Queues.php', app_path('Support/Queues.php'));
+        copy(__DIR__ . '/../../stubs/app/Support/Auth/CustomUserProvider.php', app_path('Support/Auth/CustomUserProvider.php'));
 
         // Services...
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Services/Menus', app_path('Services/Menus'));
@@ -157,7 +160,8 @@ final class InstallCommand extends Command
 
         // Config...
         copy(__DIR__ . '/../../stubs/config/site.php', base_path('config/site.php'));
-        $this->replaceInFile('\App\Models\User::class', '\App\Models\User\User::class', base_path('config/auth.php'));
+        $this->replaceInFile('App\Models\User::class', 'App\Models\User\User::class', base_path('config/auth.php'));
+        $this->replaceInFile("'eloquent'", "'customEloquent'", base_path('config/auth.php'));
 
         // Tests...
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/tests/Feature', base_path('tests/Feature'));
