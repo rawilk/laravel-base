@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Console;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\VendorPublishCommand;
+use Illuminate\Session\Console\SessionTableCommand;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 
@@ -22,9 +24,13 @@ final class InstallCommand extends Command
         // Publish...
         $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-config', '--force' => true]);
         $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-support', '--force' => true]);
+        $this->callSilent(VendorPublishCommand::class, ['--tag' => 'laravel-base-migrations', '--force' => true]);
 
         // LaravelBase Provider...
         $this->installServiceProviderAfter('RouteServiceProvider', 'LaravelBaseServiceProvider');
+
+        // Configure Session...
+        $this->configureSession();
 
         // AuthenticateSession Middleware...
         $this->replaceInFile(
@@ -42,7 +48,7 @@ final class InstallCommand extends Command
         $this->info('LaravelBase scaffolding installed successfully.');
     }
 
-    protected function installLivewireStack(): void
+    private function installLivewireStack(): void
     {
         // Install Packages...
         $this->requireComposerPackages(
@@ -161,7 +167,20 @@ final class InstallCommand extends Command
         $this->comment('Please execute "npm install && npx mix" to build your assets.');
     }
 
-    protected function installServiceProviderAfter($after, $name): void
+    private function configureSession(): void
+    {
+        if (! class_exists('CreateSessionsTable')) {
+            try {
+                $this->call(SessionTableCommand::class);
+            } catch (Exception) {}
+        }
+
+        $this->replaceInFile("'SESSION_DRIVER', 'file'", "'SESSION_DRIVER', 'database'", config_path('session.php'));
+        $this->replaceInFile('SESSION_DRIVER=file', 'SESSION_DRIVER=database', base_path('.env'));
+        $this->replaceInFile('SESSION_DRIVER=file', 'SESSION_DRIVER=database', base_path('.env.example'));
+    }
+
+    private function installServiceProviderAfter($after, $name): void
     {
         if (! Str::contains($appConfig = file_get_contents(config_path('app.php')), 'App\\Providers\\' . $name . '::class')) {
             file_put_contents(config_path('app.php'), str_replace(
@@ -172,7 +191,7 @@ final class InstallCommand extends Command
         }
     }
 
-    protected function replaceInFile(string $search, string $replace, string $path): void
+    private function replaceInFile(string $search, string $replace, string $path): void
     {
         file_put_contents(
             $path,
@@ -180,7 +199,7 @@ final class InstallCommand extends Command
         );
     }
 
-    protected function requireComposerPackages($packages): void
+    private function requireComposerPackages($packages): void
     {
         $composer = $this->option('composer');
 
@@ -207,7 +226,7 @@ final class InstallCommand extends Command
      * @param callable $callback
      * @param bool $dev
      */
-    protected function updateNodePackages(callable $callback, bool $dev = true): void
+    private function updateNodePackages(callable $callback, bool $dev = true): void
     {
         if (! file_exists(base_path('package.json'))) {
             return;

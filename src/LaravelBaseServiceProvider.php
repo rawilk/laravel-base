@@ -3,6 +3,8 @@
 namespace Rawilk\LaravelBase;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
@@ -139,6 +141,25 @@ class LaravelBaseServiceProvider extends ServiceProvider
                 ]);
             });
         }
+
+        Blueprint::macro('dateTimestamps', function () {
+            /** @var \Illuminate\Database\Schema\Blueprint $this */
+            $this->dateTime('created_at')->nullable();
+            $this->dateTime('updated_at')->nullable();
+        });
+
+        Builder::macro('modelSearch', function (array|string $field, string|null $string, $boolean = 'and') {
+            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            if (is_array($field) && ! empty($string)) {
+                return $this->where(function ($query) use ($field, $string) {
+                    foreach ($field as $searchField) {
+                        $query->orWhere($searchField, 'LIKE', "%{$string}%");
+                    }
+                }, boolean: $boolean);
+            }
+
+            return $string ? $this->where($field, 'LIKE', "%{$string}%", boolean: $boolean) : $this;
+        });
     }
 
     protected function bootRoutes(): void
@@ -167,6 +188,10 @@ class LaravelBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/laravel-base'),
         ], 'laravel-base-views');
+
+        $this->publishes([
+            __DIR__ . '/../database/migrations/2014_10_12_000000_create_users_table.php' => database_path('migrations/2014_10_12_000000_create_users_table.php'),
+        ], 'laravel-base-migrations');
     }
 
     protected function configureCommands(): void
@@ -198,6 +223,12 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
     protected function configureRoutes(): void
     {
+        // Most of our routes are bound to Livewire components, so if Livewire has not been
+        // installed yet, it will break the application.
+        if (! class_exists(Component::class)) {
+            return;
+        }
+
         if (! LaravelBase::$registersRoutes) {
             return;
         }
