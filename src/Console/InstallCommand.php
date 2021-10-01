@@ -226,7 +226,6 @@ Route::middleware(['auth:web'])
     });
 
 EOF;
-
     }
 
     private function requireComposerPackages($packages): void
