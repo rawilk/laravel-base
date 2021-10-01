@@ -12,7 +12,7 @@ trait WithHighlighting
         'view' => ViewHighlighter::class,
     ];
 
-    public function highlight($content, null | string $filterKey = 'search', string $highlighter = 'string')
+    public function highlight($content, null|string $filterKey = 'search', string $highlighter = 'string')
     {
         if (! $content || ! ($this->filters[$filterKey] ?? '')) {
             return (string) $content;
