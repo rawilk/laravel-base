@@ -78,12 +78,12 @@ class LaravelBase
         return Config::get('laravel-base.email', 'email');
     }
 
-    /**
+    /*
      * Get the completion redirect path for a specific feature.
      */
     public static function redirects(string $redirect, null|string $default = null): string
     {
-        return Config::get("laravel-base.redirects.{$redirect}") ?? $default ?? Routing::home();
+        return (string) (Config::get("laravel-base.redirects.{$redirect}") ?? $default ?? Routing::home());
     }
 
     /**
