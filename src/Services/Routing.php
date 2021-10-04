@@ -24,6 +24,8 @@ class Routing
             ? RouteServiceProvider::HOME
             : '/';
 
-        return Config::get('laravel-base.home', $default);
+        $home = Config::get('laravel-base.home');
+
+        return is_null($home) ? $default : $home;
     }
 }
