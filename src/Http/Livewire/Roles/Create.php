@@ -38,7 +38,7 @@ class Create extends Component
     public function render(): View
     {
         return view('laravel-base::livewire.roles.create.index', [
-            'permissions' => app(config('permission.models.permission'))::groupedPermissions()
+            'permissions' => app(config('permission.models.permission'))::groupedPermissions(),
         ])->layout(LaravelBase::adminViewLayout(), [
             'title' => __('laravel-base::roles.create.title'),
         ]);

@@ -10,8 +10,8 @@ class Td extends BladeComponent
 {
     public function __construct(
         public bool $hidden = false,
-        public bool | string | int $colIndex = false,
-        public null | string $role = 'cell',
+        public bool|string|int $colIndex = false,
+        public null|string $role = 'cell',
     ) {
     }
 }

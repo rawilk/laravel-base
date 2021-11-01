@@ -9,7 +9,7 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class Notification extends BladeComponent
 {
     public function __construct(
-        public string | int $timeout = 5000, // in ms
+        public string|int $timeout = 5000, // in ms
     ) {
     }
 

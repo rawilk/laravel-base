@@ -12,7 +12,7 @@ class DropdownItem extends BladeComponent
 {
     use HandlesExternalLinks;
 
-    public function __construct(public null | string $href = null, public bool $blockReferrer = false, public bool $active = false)
+    public function __construct(public null|string $href = null, public bool $blockReferrer = false, public bool $active = false)
     {
     }
 

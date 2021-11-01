@@ -16,7 +16,6 @@ use Livewire\Component;
 use Livewire\Livewire;
 use Rawilk\LaravelBase\Console\InstallCommand;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
-use Rawilk\LaravelBase\Http;
 use Rawilk\LaravelBase\Http\Responses;
 
 class LaravelBaseServiceProvider extends ServiceProvider

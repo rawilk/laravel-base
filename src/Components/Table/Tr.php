@@ -10,9 +10,9 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class Tr extends BladeComponent
 {
     public function __construct(
-        public null | string $role = 'row',
-        public bool | string | int $tabIndex = false,
-        public bool | string | int $rowIndex = false,
+        public null|string $role = 'row',
+        public bool|string|int $tabIndex = false,
+        public bool|string|int $rowIndex = false,
         public bool $striped = true,
         public bool $selected = false,
         public bool $wireLoads = false, // Automatically add a wire:loading directive

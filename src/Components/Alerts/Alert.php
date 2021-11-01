@@ -16,11 +16,11 @@ class Alert extends BladeComponent
     public const WARNING = 'warning';
 
     public function __construct(
-        public null | string $type = null,
-        public bool | string $icon = true,
+        public null|string $type = null,
+        public bool|string $icon = true,
         public bool $dismiss = false,
         public bool $border = true,
-        public null | string $title = '',
+        public null|string $title = '',
     ) {
         if (is_null($type)) {
             $this->type = static::INFO;

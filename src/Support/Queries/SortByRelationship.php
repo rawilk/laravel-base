@@ -23,7 +23,7 @@ class SortByRelationship
         return new static($query);
     }
 
-    public function __construct(private EloquentBuilder | QueryBuilder | Relation $query)
+    public function __construct(private EloquentBuilder|QueryBuilder|Relation $query)
     {
     }
 

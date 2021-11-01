@@ -9,7 +9,7 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class SlideOverForm extends BladeComponent
 {
     public function __construct(
-        public null | string $id = null,
+        public null|string $id = null,
         public bool $wide = true,
         public bool $showClose = true,
         public $title = null,

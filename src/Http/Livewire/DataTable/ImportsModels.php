@@ -18,7 +18,9 @@ trait ImportsModels
     public $upload;
 
     abstract protected function guesses(): array;
+
     abstract public function import(): void;
+
     abstract public static function importId(): string;
 
     public function showImportModal(string $importId = ''): void
@@ -40,7 +42,7 @@ trait ImportsModels
         }
 
         Validator::make(['upload' => $value], [
-            'upload' => ['required', 'mimes:' . $this->mimes()]
+            'upload' => ['required', 'mimes:' . $this->mimes()],
         ])->validate();
     }
 
