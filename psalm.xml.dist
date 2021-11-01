@@ -17,6 +17,9 @@
     <issueHandlers>
         <NoInterfaceProperties errorLevel="suppress"/>
         <UndefinedInterfaceMethod errorLevel="suppress"/>
+        <ParamNameMismatch errorLevel="suppress" />
+        <MoreSpecificImplementedParamType errorLevel="suppress" />
+        <UndefinedMagicMethod errorLevel="suppress" />
     </issueHandlers>
 
     <plugins>

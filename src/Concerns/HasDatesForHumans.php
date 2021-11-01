@@ -33,6 +33,7 @@ trait HasDatesForHumans
 
     protected function dateTimeForHumansFormat(): string
     {
+        /** @psalm-suppress UndefinedThisPropertyFetch */
         return property_exists($this, 'dateTimeForHumansFormat')
             ? $this->dateTimeForHumansFormat
             : 'M. d, Y g:i a';

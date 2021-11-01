@@ -17,6 +17,7 @@ class ImpersonationController
 
         Auth::loginUsingId(Session::pull('impersonate'));
 
+        /** @psalm-suppress UndefinedFunction */
         return redirect()->to(homeRoute());
     }
 }

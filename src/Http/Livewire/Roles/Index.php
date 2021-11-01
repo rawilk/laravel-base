@@ -76,6 +76,7 @@ class Index extends Component
 
         $ids = $this->selectedRowsQuery->pluck('id');
 
+        /** @psalm-suppress UndefinedMethod */
         $deleteCount = $this->roleModel::destroy($ids);
 
         $this->showDeleteAll = false;
@@ -100,6 +101,7 @@ class Index extends Component
 
     public function getRowsQueryProperty()
     {
+        /** @psalm-suppress UndefinedMethod */
         $query = $this->roleModel::query()
             ->when($this->filters['search'], fn ($query, $search) => $query->modelSearch(['name', 'description'], $search))
             ->when($this->filters['created-min'], fn ($query, $date) => $query->where('created_at', '>=', $this->localizeMinDate($date)))

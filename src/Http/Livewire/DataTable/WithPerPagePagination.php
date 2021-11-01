@@ -18,6 +18,7 @@ trait WithPerPagePagination
 
     protected function perPageOptions(): array
     {
+        /** @psalm-suppress UndefinedThisPropertyFetch */
         return property_exists($this, 'perPageOptions')
             ? $this->perPageOptions
             : [10, 25, 50];
