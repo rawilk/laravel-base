@@ -15,7 +15,7 @@ module.exports = {
             // './config/site.php',
 
             // vendor
-            './vendor/rawilk/laravel-base/resources/js/*.js',
+            './vendor/rawilk/laravel-base/resources/js/**/*.js',
             './vendor/rawilk/laravel-base/src/**/*.php',
             './vendor/rawilk/laravel-base/resources/**/*.php',
             './vendor/rawilk/laravel-form-components/resources/js/*.js',

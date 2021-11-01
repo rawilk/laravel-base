@@ -1,0 +1,7 @@
+.topbar-section {
+    @apply px-2 py-2 first:pl-0 last:pr-0
+}
+
+.topbar-section + .topbar-section {
+    @apply pl-0;
+}

@@ -68,6 +68,7 @@ trait WithFiltering
     public function resetFilters(): void
     {
         $this->reset('filters');
+        $this->emit('filters-reset');
     }
 
     public function toggleShowFilters(): void
@@ -81,6 +82,17 @@ trait WithFiltering
         if (! $this->showFilters) {
             $this->emit('filters-hidden');
         }
+    }
+
+    /*
+     * Dummy method for triggering a $refresh on the component. Could've just
+     * used $wire.$refresh() in the UI, but this allows us to show the
+     * loading indicator on the button as well. Could also override
+     * this method for custom filtering logic in components too.
+     */
+    public function applyFilters(): void
+    {
+        $this->emitSelf('filters-applied');
     }
 
     public function updatedFilters(): void

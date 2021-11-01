@@ -5,18 +5,18 @@ export default options => ({
     init() {
         this.$watch('show', value => {
             if (value) {
-                this.$dispatch('modal-shown', this.id);
                 document.body.classList.add('overflow-y-hidden');
-                setTimeout(() => { this.autofocus() }, 100)
+                setTimeout(() => { this.autofocus() }, 100);
+                this.$dispatch('modal-shown', this.id);
             } else {
                 document.body.classList.remove('overflow-y-hidden');
+                this.$dispatch('modal-closed', this.id);
             }
         });
     },
 
     hideModal() {
         this.show = false;
-        this.$dispatch('modal-closed', this.id);
     },
 
     focusables() {

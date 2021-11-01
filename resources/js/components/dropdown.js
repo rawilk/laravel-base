@@ -19,11 +19,14 @@ export default options => ({
     offset: options.offset,
     focusedIndex: -1,
     focusableElements: null,
+    // We need to store a reference to our $root element, as sometimes in Livewire components
+    // it will can be undefined on a re-render. (Possible bug?)
+    _root: null,
     _popper: null,
 
     get trigger () {
         if (! this.$refs.trigger) {
-            return this.$root.querySelector('[x-ref="trigger"]');
+            return this._root.querySelector('[x-ref="trigger"]');
         }
 
         return this.$refs.trigger;
@@ -31,13 +34,15 @@ export default options => ({
 
     get menu () {
         if (! this.$refs.menu) {
-            return this.$root.querySelector('[x-ref="menu"]');
+            return this._root.querySelector('[x-ref="menu"]');
         }
 
         return this.$refs.menu;
     },
 
     init() {
+        this._root = this.$root;
+
         createPopper = window.Popper ? window.Popper.createPopper : window.createPopper;
 
         if (typeof createPopper !== 'function') {
@@ -82,7 +87,7 @@ export default options => ({
                 {
                     name: 'preventOverflow',
                     options: {
-                        boundariesElement: this.$root,
+                        boundariesElement: this._root,
                     },
                 },
             ],

@@ -23,6 +23,7 @@
         "illuminate/contracts": "^8.56",
         "illuminate/support": "^8.56",
         "jenssegers/agent": "^2.6",
+        "maatwebsite/excel": "^3.1",
         "pragmarx/google2fa": "^8.0"
     },
     "require-dev": {
@@ -37,6 +38,7 @@
         "psalm/plugin-laravel": "^1.5",
         "rawilk/laravel-casters": "^2.0",
         "rawilk/laravel-form-components": "^6.0",
+        "spatie/laravel-permission": "^5.1",
         "spatie/laravel-ray": "^1.25",
         "spatie/phpunit-snapshot-assertions": "^4.2",
         "vimeo/psalm": "^4.8"
@@ -78,8 +80,10 @@
         "blade-ui-kit/blade-heroicons": "Needed for the icons used in this package.",
         "khatabwedaa/blade-css-icons": "Needed for the icons used in this package.",
         "livewire/livewire": "Needed to make use of certain helpers and macros from this package.",
+        "rawilk/laravel-breadcrumbs": "Needed for using breadcrumbs in the stubbed layouts.",
         "rawilk/laravel-casters": "Required for the User stub that comes with this package.",
-        "rawilk/laravel-form-components": "Necessary for certain blade components in this package to work properly."
+        "rawilk/laravel-form-components": "Necessary for certain blade components in this package to work properly.",
+        "spatie/laravel-permission": "Necessary for the permissions component of the package."
     },
     "minimum-stability": "dev",
     "prefer-stable": true

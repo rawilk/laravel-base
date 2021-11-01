@@ -29,4 +29,63 @@ return [
         'verify_button' => 'Verify code',
         'invalid_code' => 'The provided two factor authentication code was invalid.',
     ],
+
+    // User management menu title...
+    'user_management' => 'User Management',
+
+    // Main users page...
+    'index' => [
+        'title' => 'Users',
+    ],
+
+    // Labels...
+    'labels' => [
+        'name' => 'Name',
+        'email' => 'Email',
+        'timezone' => 'Timezone',
+        'is_active' => 'Status',
+        'status_active' => 'Active',
+        'status_inactive' => 'Inactive',
+    ],
+
+    // Impersonation...
+    'impersonate' => [
+        'leave' => 'Leave impersonation',
+        'notice' => 'You are impersonating :name.',
+        'button' => 'Impersonate',
+    ],
+
+    // Alerts...
+    'alerts' => [
+        'activated' => ':name was activated!',
+        'bulk_activated' => ':count user was activated.|:count users were activated.',
+        'bulk_deactivated' => ':count user was deactivated.|:count users were deactivated.',
+        'bulk_deleted' => ':count user was deleted.|:count users were deleted.',
+        'deactivated' => ':name was deactivated!',
+        'deleted' => ':name was deleted!',
+    ],
+
+    // Confirm Delete...
+    'confirm_delete' => [
+        'title' => 'Delete User',
+        'text' => 'This will permanently delete <strong>:name</strong>! You will not be able to recover any data associated with this user.',
+    ],
+
+    // Confirm Bulk Delete...
+    'confirm_bulk_delete' => [
+        'title' => 'Delete Selected Users',
+        'text' => 'This will permanently delete the selected user(s). Please be sure you want to do this.',
+    ],
+
+    // Actions...
+    'actions' => [
+        'activate' => 'Activate',
+        'deactivate' => 'Deactivate',
+    ],
+
+    // Deactivation Notice...
+    'deactivated' => [
+        'title' => 'Account Deactivated',
+        'message' => 'Your account has been deactivated. If you believe this is a mistake, please contact our support to resolve this issue.',
+    ],
 ];

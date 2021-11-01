@@ -46,6 +46,8 @@ return [
         'card' => Components\Elements\Card::class,
         'filter-breadcrumbs' => 'laravel-base::components.elements.filter-breadcrumbs',
         'tooltip' => Components\Elements\Tooltip::class,
+        'tooltip-help' => Components\Elements\TooltipHelp::class,
+        'topbar' => Components\Elements\Topbar::class,
 
         // Feeds
         'feed' => Components\Feeds\Feed::class,
@@ -67,8 +69,10 @@ return [
         'copy-to-clipboard' => Components\Misc\CopyToClipboard::class,
 
         // Modal
+        'advanced-filters' => Components\Modal\AdvancedFilters::class,
         'dialog-modal' => Components\Modal\DialogModal::class,
         'modal' => Components\Modal\Modal::class,
+        'import-modal' => Components\Modal\ImportModal::class,
         'slide-over' => Components\Modal\SlideOver::class,
         'slide-over-form' => Components\Modal\SlideOverForm::class,
 
@@ -177,7 +181,8 @@ return [
     | these middleware but typically this provided default is preferred.
     |
     */
-    'middleware' => ['web'],
+    'middleware' => ['web', \Rawilk\LaravelBase\Http\Middleware\EnsureActiveUserMiddleware::class],
+    'admin_middleware' => ['web', 'auth', \Rawilk\LaravelBase\Http\Middleware\EnsureActiveUserMiddleware::class],
 
     /*
     |--------------------------------------------------------------------------
@@ -247,6 +252,10 @@ return [
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::accountDeletion(),
+
+        // Admin features...
+        Features::userManagement(),
+        Features::roleManagement(),
     ],
 
     /*
@@ -262,6 +271,18 @@ return [
     'admin_route_prefix' => 'admin',
 
     'admin_route_name_prefix' => 'admin.',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin View Layout
+    |--------------------------------------------------------------------------
+    |
+    | Here you may customize the path to the layout view that should be used
+    | to render any admin views from this package's routes. We've set a
+    | default for you if you are using the stubs from this package.
+    |
+    */
+    'admin_view_layout' => 'layouts.app.base',
 
     /*
     |--------------------------------------------------------------------------
@@ -292,6 +313,12 @@ return [
     'livewire' => [
         'login' => \Rawilk\LaravelBase\Http\Livewire\Auth\Login::class,
         'register' => \Rawilk\LaravelBase\Http\Livewire\Auth\Register::class,
+        'roles' => [
+            'index' => \Rawilk\LaravelBase\Http\Livewire\Roles\Index::class,
+            'create' => \Rawilk\LaravelBase\Http\Livewire\Roles\Create::class,
+            'edit' => \Rawilk\LaravelBase\Http\Livewire\Roles\Edit::class,
+            'import' => \Rawilk\LaravelBase\Http\Livewire\Roles\Import::class,
+        ],
     ],
 
 ];

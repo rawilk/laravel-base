@@ -49,6 +49,10 @@
     border-left-color: var(--tooltip-arrow-color);
 }
 
+.tooltip kbd {
+    @apply text-xs;
+}
+
 /* right placement */
 .tooltip[data-popper-placement="right"] .tooltip-arrow {
     left: 0;

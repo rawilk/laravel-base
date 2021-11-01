@@ -10,6 +10,7 @@ use Illuminate\Pipeline\Pipeline;
 use Livewire\Component;
 use Rawilk\LaravelBase\Actions\Auth\AttemptToAuthenticate;
 use Rawilk\LaravelBase\Actions\Auth\EnsureLoginIsNotThrottled;
+use Rawilk\LaravelBase\Actions\Auth\EnsureUserAccountIsActive;
 use Rawilk\LaravelBase\Actions\Auth\PrepareAuthenticatedSession;
 use Rawilk\LaravelBase\Actions\Auth\RedirectIfTwoFactorAuthenticatable;
 use Rawilk\LaravelBase\Contracts\Auth\LoginResponse;
@@ -53,6 +54,7 @@ class Login extends Component
                 EnsureLoginIsNotThrottled::class,
                 Features::canManageTwoFactorAuthentication() ? RedirectIfTwoFactorAuthenticatable::class : null,
                 AttemptToAuthenticate::class,
+                EnsureUserAccountIsActive::class,
                 PrepareAuthenticatedSession::class,
             ]));
     }

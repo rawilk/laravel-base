@@ -2,10 +2,20 @@
 
 return [
     'action_message' => 'Saved.',
+    'add_button' => 'Add :item',
+    'bulk_actions' => 'Bulk Actions',
+    'cancel_button' => 'Cancel',
     'copy_to_clipboard' => 'Copy to clipboard',
     'copied_to_clipboard' => 'Copied!',
     'confirm_modal_cancel' => 'Nevermind',
+    'create_button' => 'Create',
+    'delete_button' => 'Delete',
+    'edit_button' => 'Edit',
+    'export_button' => 'Export Excel',
+    'import_button' => 'Import',
     'remove_filter' => 'Remove filter',
+    'update_button' => 'Update',
+    'save_button' => 'Save',
 
     'confirms_password' => [
         'title' => 'Confirm Password',
@@ -22,8 +32,53 @@ return [
         'open_menu' => 'Open menu',
     ],
 
+    'filters' => [
+        'apply_button' => 'Apply Filters',
+        'reset_button' => 'Clear Filters',
+        // 'trigger_button_tooltip' => 'Filters',
+        'trigger_button_tooltip' => "Filters<br>Shortcut: Press <kbd>ctrl</kbd> + <kbd>f</kbd>",
+        'modal_title' => 'Filters',
+        // General labels...
+        'labels' => [
+            'created_at_min' => 'Created Min.',
+            'created_at_max' => 'Created Max.',
+            'updated_at_min' => 'Last Updated Min.',
+            'updated_at_max' => 'Last Updated Max.',
+        ],
+    ],
+
+    'labels' => [
+        'form' => [
+            'max_characters' => 'Max of :max characters allowed.',
+            'errors_found' => 'Your submission contains some errors. Please fix them before continuing.',
+            'make_selection' => 'Select',
+            'select_all' => 'All',
+            'select_none' => 'None',
+            'collapse_all' => 'Collapse All',
+            'expand_all' => 'Expand All',
+            'search_placeholder' => 'Search...',
+            'per_page' => 'Per page',
+        ],
+        'model' => [
+            'id' => 'ID',
+            'created_at' => 'Created',
+            'updated_at' => 'Last Updated',
+        ],
+        'topbar' => [
+            'show_menu' => 'Show menu',
+            'hide_menu' => 'Hide menu',
+        ],
+    ],
+
     'modal' => [
         'close_button' => 'Close',
+        'import' => [
+            'title' => 'Import',
+            'button' => 'Import',
+            'upload_hint' => '.csv, .xls, or .xlsx file',
+            'importing' => 'Importing',
+            'change_upload' => 'Change',
+        ],
     ],
 
     'tabs' => [

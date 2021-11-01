@@ -56,9 +56,11 @@ final class InstallCommand extends Command
         // Install Packages...
         $this->requireComposerPackages(
             'livewire/livewire',
+            'spatie/laravel-permission',
             'spatie/laravel-menu',
             'rawilk/laravel-form-components',
             'rawilk/laravel-casters',
+            'rawilk/laravel-breadcrumbs',
             'khatabwedaa/blade-css-icons',
             'blade-ui-kit/blade-heroicons',
         );
@@ -66,6 +68,7 @@ final class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
+                '@alpinejs/collapse' => '^3.4.2',
                 '@popperjs/core' => '^2.10.2',
                 '@ryangjchandler/alpine-clipboard' => '^2.0.0',
                 '@tailwindcss/aspect-ratio' => '^0.2.1',
@@ -111,10 +114,12 @@ final class InstallCommand extends Command
         copy(__DIR__ . '/../../stubs/app/Providers/AuthServiceProvider.php', app_path('Providers/AuthServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/ViewComposerServiceProvider.php', app_path('Providers/ViewComposerServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/BladeComponentsServiceProvider.php', app_path('Providers/BladeComponentsServiceProvider.php'));
+        copy(__DIR__ . '/../../stubs/app/Providers/BreadcrumbsServiceProvider.php', app_path('Providers/BreadcrumbsServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/NavigationServiceProvider.php', app_path('Providers/NavigationServiceProvider.php'));
         $this->installServiceProviderAfter('LaravelBaseServiceProvider', 'ViewComposerServiceProvider');
         $this->installServiceProviderAfter('ViewComposerServiceProvider', 'BladeComponentsServiceProvider');
-        $this->installServiceProviderAfter('BladeComponentsServiceProvider', 'NavigationServiceProvider');
+        $this->installServiceProviderAfter('BladeComponentsServiceProvider', 'BreadcrumbsServiceProvider');
+        $this->installServiceProviderAfter('BreadcrumbsServiceProvider', 'NavigationServiceProvider');
 
         // Support...
         copy(__DIR__ . '/../../stubs/app/Support/Queues.php', app_path('Support/Queues.php'));
@@ -168,6 +173,7 @@ final class InstallCommand extends Command
 
         // Config...
         copy(__DIR__ . '/../../stubs/config/site.php', base_path('config/site.php'));
+        copy(__DIR__ . '/../../stubs/config/permission.php', base_path('config/permission.php'));
         $this->replaceInFile('App\Models\User::class', 'App\Models\User\User::class', base_path('config/auth.php'));
         $this->replaceInFile("'eloquent'", "'customEloquent'", base_path('config/auth.php'));
 

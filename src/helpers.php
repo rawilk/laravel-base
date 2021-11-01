@@ -114,6 +114,46 @@ if (! function_exists('convertEmptyStringsToNull')) {
     }
 }
 
+if (! function_exists('pageTitle')) {
+    /**
+     * Format the given title segments into a single string for the <title> tag.
+     *
+     * @param mixed ...$segments
+     * @return string
+     */
+    function pageTitle(...$segments): string
+    {
+        return collect($segments)->flatten()->implode(' | ');
+    }
+}
+
+if (! function_exists('isImpersonating')) {
+    /**
+     * Determine if a user is currently being impersonated.
+     *
+     * @return bool
+     */
+    function isImpersonating(): bool
+    {
+        return session()->has('impersonate');
+    }
+}
+
+if (! function_exists('realUserId')) {
+    /**
+     * Return the correct authenticated user's id depending on
+     * if a user is being impersonated or not.
+     *
+     * @return null|int
+     */
+    function realUserId(): null|int
+    {
+        return isImpersonating()
+            ? (int) session()->get('impersonate')
+            : auth()->id();
+    }
+}
+
 if (! function_exists('prefixSelectColumns')) {
     /**
      * Prefix the given columns with the given model's table name for a select statement.

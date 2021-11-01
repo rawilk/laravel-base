@@ -256,6 +256,16 @@ class LaravelBase
         static::$confirmPasswordsUsingCallback = $callback;
     }
 
+    public static function configuredView(string $feature, string $default = ''): string
+    {
+        return (string) Config::get("laravel-base.views.{$feature}", $default);
+    }
+
+    public static function adminViewLayout(): string
+    {
+        return (string) Config::get('laravel-base.admin_view_layout', 'layouts.app.base');
+    }
+
     /**
      * Configure LaravelBase to not register its routes.
      *

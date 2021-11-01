@@ -60,6 +60,22 @@ class Features
     }
 
     /*
+     * Determine if the application is using the user management feature.
+     */
+    public static function managesUsers(): bool
+    {
+        return static::enabled(static::userManagement());
+    }
+
+    /*
+     * Determine if the application is using the role management feature.
+     */
+    public static function managesRoles(): bool
+    {
+        return static::enabled(static::roleManagement());
+    }
+
+    /*
      * Enable the registration feature.
      */
     public static function registration(): string
@@ -113,6 +129,22 @@ class Features
     public static function avatars(): string
     {
         return 'avatars';
+    }
+
+    /*
+     * Enable the user management feature.
+     */
+    public static function userManagement(): string
+    {
+        return 'user-management';
+    }
+
+    /*
+     * Enable the role management feature.
+     */
+    public static function roleManagement(): string
+    {
+        return 'role-management';
     }
 
     /*

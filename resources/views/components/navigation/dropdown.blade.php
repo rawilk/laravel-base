@@ -1,6 +1,7 @@
 <div x-data="dropdown({ {{ $configToJson() }} })"
      x-on:keydown.escape.prevent.window="closeMenu"
      x-on:click.outside="closeMenu(false)"
+     x-on:modal-shown.window="closeMenu(false)"
      x-on:keydown.tab.prevent="closeMenu"
      x-on:keydown.arrow-down.prevent="focusNext"
      x-on:keydown.arrow-up.prevent="focusPrevious"
@@ -32,7 +33,7 @@
          x-transition:enter-end="transform opacity-100 scale-100"
          x-bind:aria-hidden="JSON.stringify(! open)"
          x-bind:class="{ 'invisible': ! open }"
-         class="dropdown-menu z-top absolute origin-top-right right-0 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none min-w-48 {{ $widthClass }}"
+         class="dropdown-menu z-top absolute origin-top-right right-0 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none min-w-48 {{ $widthClass }}"
          role="menu"
          aria-orientation="vertical"
          @unless ($id === false)

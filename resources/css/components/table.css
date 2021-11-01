@@ -1,3 +1,22 @@
 .table-check {
+    width: 1%;
     justify-content: flex-start;
+}
+
+td.table-check {
+    @apply pr-0;
+}
+
+td.table-actions {
+    @apply px-0 text-left whitespace-nowrap;
+    width: 1%;
+}
+
+.table-actions > [x-data] {
+    @apply -ml-3;
+}
+
+.table-actions + td,
+.table-actions + th {
+    @apply pl-0;
 }

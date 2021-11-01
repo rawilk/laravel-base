@@ -13,6 +13,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Rawilk\LaravelBase\Actions\Auth\AttemptToAuthenticate;
 use Rawilk\LaravelBase\Actions\Auth\EnsureLoginIsNotThrottled;
+use Rawilk\LaravelBase\Actions\Auth\EnsureUserAccountIsActive;
 use Rawilk\LaravelBase\Actions\Auth\PrepareAuthenticatedSession;
 use Rawilk\LaravelBase\Actions\Auth\RedirectIfTwoFactorAuthenticatable;
 use Rawilk\LaravelBase\Contracts\Auth\FailedTwoFactorLoginResponse;
@@ -104,6 +105,7 @@ class TwoFactorLogin extends Component
         return app(Pipeline::class)
             ->send($request)
             ->through([
+                EnsureUserAccountIsActive::class,
                 PrepareAuthenticatedSession::class,
             ]);
     }

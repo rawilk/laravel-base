@@ -1,4 +1,4 @@
-<div x-data="modal({ id: '{{ $id }}', show: @entangle($attributes->wire('model')) })"
+<div x-data="modal({ id: '{{ $id() }}', show: @entangle($attributes->wire('model')) })"
      x-on:close.stop="hideModal"
      x-on:keydown.escape.window="hideModal"
      x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
@@ -6,7 +6,7 @@
      x-show="show"
      class="fixed z-top inset-0 overflow-y-auto"
      style="display: none;"
-     id="{{ $id }}"
+     id="{{ $id() }}"
 >
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         {{-- Backdrop --}}

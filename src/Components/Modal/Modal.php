@@ -17,7 +17,7 @@ class Modal extends BladeComponent
 
     public function id(): null|string
     {
-        return $this->id ?? md5((string) $this->attributes->wire('model'));
+        return $this->id ?? $this->id = md5((string) $this->attributes->wire('model'));
     }
 
     public function maxWidth(): string

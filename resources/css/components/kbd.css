@@ -1,0 +1,13 @@
+kbd {
+    @apply font-mono
+        text-sm
+        inline-flex
+        items-center
+        justify-center
+        bg-gray-100
+        text-gray-500
+        px-1
+        rounded-md
+        border
+        border-gray-50;
+}

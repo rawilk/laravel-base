@@ -5,7 +5,7 @@ use Rawilk\LaravelBase\Features;
 use Rawilk\LaravelBase\Http\Controllers;
 use Rawilk\LaravelBase\Http\Livewire;
 
-Route::group(['middleware' => config('laravel-base.middleware', ['web'])], function () {
+Route::group(['middleware' => config('laravel-base.middleware', ['web', \Rawilk\LaravelBase\Http\Middleware\EnsureActiveUserMiddleware::class])], function () {
     Route::middleware(['guest:' . config('laravel-base.guard')])->group(function () {
         // Authentication...
         Route::get('/login', config('laravel-base.livewire.login', Livewire\Auth\Login::class))

@@ -16,17 +16,7 @@ use Livewire\Component;
 use Livewire\Livewire;
 use Rawilk\LaravelBase\Console\InstallCommand;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
-use Rawilk\LaravelBase\Http\Livewire\Auth\ConfirmPassword;
-use Rawilk\LaravelBase\Http\Livewire\Auth\Passwords\Email;
-use Rawilk\LaravelBase\Http\Livewire\Auth\Passwords\Reset;
-use Rawilk\LaravelBase\Http\Livewire\Auth\TwoFactorLogin;
-use Rawilk\LaravelBase\Http\Livewire\Auth\Verify;
-use Rawilk\LaravelBase\Http\Livewire\Profile\DeleteUserForm;
-use Rawilk\LaravelBase\Http\Livewire\Profile\LogoutOtherBrowserSessionsForm;
-use Rawilk\LaravelBase\Http\Livewire\Profile\ProfileNavigationMenu;
-use Rawilk\LaravelBase\Http\Livewire\Profile\TwoFactorAuthenticationForm;
-use Rawilk\LaravelBase\Http\Livewire\Profile\UpdatePasswordForm;
-use Rawilk\LaravelBase\Http\Livewire\Profile\UpdateProfileInformationForm;
+use Rawilk\LaravelBase\Http;
 use Rawilk\LaravelBase\Http\Responses;
 
 class LaravelBaseServiceProvider extends ServiceProvider
@@ -48,6 +38,7 @@ class LaravelBaseServiceProvider extends ServiceProvider
         );
 
         $this->app->register(EventServiceProvider::class);
+        $this->app->register(AuthServiceProvider::class);
     }
 
     public function boot(): void
@@ -96,36 +87,43 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
     protected function bootLivewire(): void
     {
-        if (! class_exists(Livewire::class)) {
+        if (! class_exists(Component::class)) {
             return;
         }
 
-        Livewire::component('login', Config::get('laravel-base.livewire.login'));
+        Livewire::component('login', Config::get('laravel-base.livewire.login', Http\Livewire\Auth\Login::class));
 
         if (Features::enabled(Features::registration())) {
-            Livewire::component('register', Config::get('laravel-base.livewire.register'));
+            Livewire::component('register', Config::get('laravel-base.livewire.register', Http\Livewire\Auth\Register::class));
         }
 
         if (Features::enabled(Features::emailVerification())) {
-            Livewire::component('verify-email', Verify::class);
+            Livewire::component('verify-email', Http\Livewire\Auth\Verify::class);
         }
 
         if (Features::enabled(Features::resetPasswords())) {
-            Livewire::component('password.email', Email::class);
-            Livewire::component('password.reset', Reset::class);
+            Livewire::component('password.email', Http\Livewire\Auth\Passwords\Email::class);
+            Livewire::component('password.reset', Http\Livewire\Auth\Passwords\Reset::class);
         }
 
         if (Features::canManageTwoFactorAuthentication()) {
-            Livewire::component('two-factor-challenge', TwoFactorLogin::class);
+            Livewire::component('two-factor-challenge', Http\Livewire\Auth\TwoFactorLogin::class);
         }
 
-        Livewire::component('profile-navigation-menu', ProfileNavigationMenu::class);
-        Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
-        Livewire::component('profile.update-password-form', UpdatePasswordForm::class);
-        Livewire::component('profile.two-factor-authentication-form', TwoFactorAuthenticationForm::class);
-        Livewire::component('profile.delete-user-form', DeleteUserForm::class);
-        Livewire::component('profile.logout-other-browser-sessions-form', LogoutOtherBrowserSessionsForm::class);
-        Livewire::component('password.confirm', ConfirmPassword::class);
+        Livewire::component('profile-navigation-menu', Http\Livewire\Profile\ProfileNavigationMenu::class);
+        Livewire::component('profile.update-profile-information-form', Http\Livewire\Profile\UpdateProfileInformationForm::class);
+        Livewire::component('profile.update-password-form', Http\Livewire\Profile\UpdatePasswordForm::class);
+        Livewire::component('profile.two-factor-authentication-form', Http\Livewire\Profile\TwoFactorAuthenticationForm::class);
+        Livewire::component('profile.delete-user-form', Http\Livewire\Profile\DeleteUserForm::class);
+        Livewire::component('profile.logout-other-browser-sessions-form', Http\Livewire\Profile\LogoutOtherBrowserSessionsForm::class);
+        Livewire::component('password.confirm', Http\Livewire\Auth\ConfirmPassword::class);
+
+        if (Features::managesRoles()) {
+            Livewire::component('admin.roles.index', Config::get('laravel-base.livewire.roles.index', Http\Livewire\Roles\Index::class));
+            Livewire::component('admin.roles.create', Config::get('laravel-base.livewire.roles.create', Http\Livewire\Roles\Create::class));
+            Livewire::component('admin.roles.edit', Config::get('laravel-base.livewire.roles.edit', Http\Livewire\Roles\Edit::class));
+            Livewire::component('admin.roles.import', Config::get('laravel-base.livewire.roles.import', Http\Livewire\Roles\Import::class));
+        }
     }
 
     protected function bootMacros(): void
@@ -236,8 +234,12 @@ class LaravelBaseServiceProvider extends ServiceProvider
         Route::group([
             'domain' => config('laravel-base.domain'),
             'prefix' => config('laravel-base.prefix'),
-        ], function () {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/routes.php');
-        });
+        ], fn () => $this->loadRoutesFrom(__DIR__ . '/../routes/routes.php'));
+
+        Route::group(array_filter([
+            'domain' => config('laravel-base.domain'),
+            'prefix' => config('laravel-base.admin_route_prefix'),
+            'as' => config('laravel-base.admin_route_name_prefix'),
+        ]), fn () => $this->loadRoutesFrom(__DIR__ . '/../routes/admin-routes.php'));
     }
 }

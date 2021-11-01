@@ -1,6 +1,6 @@
 @props(['breadcrumbs' => []])
 
-<div {{ $attributes->merge(['id' => 'filter-breadcrumbs', 'class' => 'flex flex-wrap']) }}>
+<div {{ $attributes->merge(['id' => 'filter-breadcrumbs', 'class' => 'filter-breadcrumbs flex flex-wrap']) }}>
     @foreach ($breadcrumbs as $breadcrumb)
         @if (is_array($breadcrumb['value']))
 

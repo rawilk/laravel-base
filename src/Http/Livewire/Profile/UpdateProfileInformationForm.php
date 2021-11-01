@@ -29,7 +29,7 @@ class UpdateProfileInformationForm extends Component
     public function updatedPhoto(): void
     {
         $this->validateOnly('photo', [
-            'photo' => ['image', 'max:1024'],
+            'photo' => ['mimes:jpg,jpeg,png', 'max:1024'],
         ]);
     }
 

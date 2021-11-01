@@ -1,0 +1,36 @@
+.dark-inputs .form-text,
+.dark-inputs .form-select {
+    @apply bg-blue-gray-600 border-blue-gray-500 placeholder-cool-gray-400 text-cool-gray-200;
+}
+
+.dark-inputs .custom-select__button {
+    @apply bg-blue-gray-600 border-blue-gray-500 text-cool-gray-200;
+}
+
+.dark-inputs .custom-select__menu-container {
+    @apply bg-blue-gray-600;
+}
+
+.dark-inputs .custom-select__option--selected {
+    @apply bg-blue-gray-400;
+}
+
+.dark-inputs .custom-select__option--hovered {
+    @apply bg-blue-gray-700;
+}
+
+.dark-inputs .custom-select__placeholder {
+    @apply text-cool-gray-400;
+}
+
+.dark-inputs .custom-select-clear {
+    @apply text-cool-gray-200 hover:text-cool-gray-400;
+}
+
+.dark-inputs .leading-addon {
+    @apply bg-blue-gray-700 border-blue-gray-500;
+}
+
+.dark-inputs .form-label {
+    @apply text-cool-gray-300;
+}
