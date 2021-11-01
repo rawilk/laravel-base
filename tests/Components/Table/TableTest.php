@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Tests\Components\Table;
 
 use Rawilk\LaravelBase\Tests\TestCase;
-use Spatie\Snapshots\MatchesSnapshots;
 
 final class TableTest extends TestCase
 {
-    use MatchesSnapshots;
-
     /** @test */
     public function can_be_rendered(): void
     {
-        $this->assertMatchesSnapshot((string) $this->blade('<x-table />'));
+        $this->blade('<x-table />')
+            ->assertSeeInOrder([
+                '<table',
+                '<tbody',
+            ], false);
     }
 
     /** @test */
@@ -34,7 +35,15 @@ final class TableTest extends TestCase
         </x-table>
         HTML;
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
+        $this->blade($template)
+            ->assertSeeTextInOrder([
+                'My heading',
+                'My row',
+            ])
+            ->assertSeeInOrder([
+                '<thead',
+                '<tbody',
+            ], false);
     }
 
     /** @test */
@@ -52,6 +61,15 @@ final class TableTest extends TestCase
         </x-table>
         HTML;
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
+        $this->blade($template)
+            ->assertSeeInOrder([
+                'id="my-table"',
+                'id="my-th"',
+                'id="my-tbody"',
+            ], false)
+            ->assertSee('x-ref="tbody"', false)
+            ->assertSee('tbody-class')
+            ->assertSee('th-class')
+            ->assertSeeText('My row');
     }
 }
