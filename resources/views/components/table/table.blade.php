@@ -1,7 +1,9 @@
 <div @class([
     'table-container',
     'align-middle min-w-full overflow-hidden overflow-x-auto relative',
-    'shadow lg:rounded-lg' => $rounded,
+    'lg:rounded-lg' => $rounded,
+    'shadow' => $shadow,
+    $containerClass,
 ])
 >
     <table {{ $attributes->class('table | min-w-full divide-y divide-blue-gray-200') }}>
