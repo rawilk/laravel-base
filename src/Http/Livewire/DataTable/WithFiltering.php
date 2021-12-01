@@ -4,6 +4,7 @@ namespace Rawilk\LaravelBase\Http\Livewire\DataTable;
 
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * @property-read \Illuminate\Support\Collection $filterBreadcrumbs
@@ -26,9 +27,15 @@ trait WithFiltering
         return collect($this->filters())
             ->reject(fn ($value) => empty($value) && $value !== 0 && $value !== '0')
             ->map(function ($value, $key) {
-                $valueDisplay = method_exists($this, 'mapFilterValue')
-                    ? $this->mapFilterValue($key, $value)
-                    : $value;
+                $method = 'mapFilter' . Str::studly($key) . 'Value';
+
+                if (method_exists($this, $method)) {
+                    $valueDisplay = $this->{$method}($value);
+                } else {
+                    $valueDisplay = method_exists($this, 'mapFilterValue')
+                        ? $this->mapFilterValue($key, $value)
+                        : $value;
+                }
 
                 return [
                     'key' => $key,
