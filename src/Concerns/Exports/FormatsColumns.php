@@ -2,6 +2,7 @@
 
 namespace Rawilk\LaravelBase\Concerns\Exports;
 
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 trait FormatsColumns
@@ -25,7 +26,7 @@ trait FormatsColumns
 
     protected function columnLetter(int $index): string
     {
-        return range('A', 'Z')[$index] ?? '';
+        return Coordinate::stringFromColumnIndex($index + 1);
     }
 
     protected function columnFormat(string $column): null|string
