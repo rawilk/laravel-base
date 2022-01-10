@@ -37,7 +37,7 @@
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-laravel": "^1.5",
         "rawilk/laravel-casters": "^2.0",
-        "rawilk/laravel-form-components": "^6.0",
+        "rawilk/laravel-form-components": "^7.0.0-alpha.1",
         "spatie/laravel-permission": "^5.1",
         "spatie/laravel-ray": "^1.25",
         "spatie/phpunit-snapshot-assertions": "^4.2",
