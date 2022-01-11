@@ -56,12 +56,18 @@ trait WithFiltering
             return;
         }
 
+        $callbackIsDefined = method_exists($this, 'onFilterRemoved');
+
         if (is_array($this->filters[$key])) {
             $this->filters[$key] = collect($this->filters[$key])
                 // Using a 'loose' comparison on purpose here.
                 ->reject(fn ($filterValue) => $filterValue == $value)
                 ->values()
                 ->toArray();
+
+            if ($callbackIsDefined) {
+                $this->onFilterRemoved($key, $value, $this->filters[$key]);
+            }
 
             return;
         }
@@ -70,12 +76,20 @@ trait WithFiltering
         $freshInstance = new static($this->id);
 
         $this->filters[$key] = $freshInstance->filters[$key];
+
+        if ($callbackIsDefined) {
+            $this->onFilterRemoved($key, $value, $this->filters[$key]);
+        }
     }
 
     public function resetFilters(): void
     {
         $this->reset('filters');
         $this->emit('filters-reset');
+
+        if (method_exists($this, 'onFiltersReset')) {
+            $this->onFiltersReset();
+        }
     }
 
     public function toggleShowFilters(): void
@@ -102,9 +116,13 @@ trait WithFiltering
         $this->emitSelf('filters-applied');
     }
 
-    public function updatedFilters(): void
+    public function updatedFilters($value = null, $key = null): void
     {
         $this->resetPage();
+
+        if (method_exists($this, 'onFiltersUpdated')) {
+            $this->onFiltersUpdated($value, $key);
+        }
 
         if ($this->showFilters) {
             $this->emitSelf('filters-applied');
