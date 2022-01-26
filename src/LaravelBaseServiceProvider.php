@@ -157,6 +157,15 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
             return $string ? $this->where($field, 'LIKE', "%{$string}%", boolean: $boolean) : $this;
         });
+
+        if (! Builder::hasGlobalMacro('toSqlWithBindings')) {
+            Builder::macro('toSqlWithBindings', function () {
+                /** @var \Illuminate\Database\Eloquent\Builder $this */
+                $sql = str_replace(['?'], ["'%s'"], $this->toSql());
+
+                return vsprintf($sql, $this->getBindings());
+            });
+        }
     }
 
     protected function bootRoutes(): void
