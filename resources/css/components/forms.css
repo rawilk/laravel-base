@@ -24,6 +24,11 @@
         @apply text-gray-200;
     }
 
+    .dark-inputs .custom-select-option.has-focus .custom-select-option__container,
+    .dark-inputs .tree-select-option.has-focus .tree-select-option__container {
+        @apply text-gray-200;
+    }
+
     .dark-inputs .custom-select-option.has-focus,
     .dark-inputs .tree-select-option.has-focus {
         @apply bg-slate-700;
