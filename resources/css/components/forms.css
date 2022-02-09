@@ -25,7 +25,9 @@
     }
 
     .dark-inputs .custom-select-option.has-focus .custom-select-option__container,
-    .dark-inputs .tree-select-option.has-focus .tree-select-option__container {
+    .dark-inputs .custom-select-option.selected .custom-select-option__container,
+    .dark-inputs .tree-select-option.has-focus .tree-select-option__container,
+    .dark-inputs .tree-select-option.selected .tree-select-option__container {
         @apply text-slate-600;
     }
 
