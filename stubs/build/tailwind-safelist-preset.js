@@ -10,8 +10,8 @@ module.exports = {
             'alert--warning',
 
             // Badges...
-            'badge--blue-gray',
-            'badge--cool-gray',
+            'badge--slate',
+            'badge--gray',
             'badge--blue',
             'badge--red',
             'badge--rose',
@@ -23,8 +23,8 @@ module.exports = {
             'badge--gray',
 
             // Buttons...
-            'button--blue-gray',
-            'button--cool-gray',
+            'button--slate',
+            'button--gray',
             'button--gray',
             'button--blue',
             'button--red',
@@ -35,8 +35,8 @@ module.exports = {
             'button--pink',
             'button--yellow',
             'button--white',
-            'button--outline-blue-gray',
-            'button--outline-cool-gray',
+            'button--outline-slate',
+            'button--outline-gray',
             'button--outline-gray',
             'button--outline-blue',
             'button--outline-red',

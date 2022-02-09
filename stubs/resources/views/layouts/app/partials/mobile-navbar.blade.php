@@ -37,7 +37,7 @@
                     x-on:set-nav-open.window="open = $event.detail"
                     x-init="$watch('open', value => { $dispatch('set-nav-open', value) })"
                     x-on:click="open = false"
-                    class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-blue-gray focus:bg-gray-600"
+                    class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-slate focus:bg-gray-600"
                     aria-label="{{ __('Close sidebar') }}"
                 >
                     <x-css-close class="h-6 w-6 text-white" />

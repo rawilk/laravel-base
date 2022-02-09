@@ -1,5 +1,6 @@
-.button {
-    @apply inline-flex
+@layer components {
+    .button {
+        @apply inline-flex
         flex
         items-center
         justify-center
@@ -17,29 +18,30 @@
         focus:ring-2
         focus:ring-offset-1
         focus:ring-opacity-25;
-}
+    }
 
-.button:not(.button--icon) {
-    @apply space-x-2;
-}
+    .button:not(.button--icon) {
+        @apply space-x-2;
+    }
 
-.button--disabled:not(.button--busy),
-.button[disabled]:not(.button--busy) {
-    @apply opacity-75 cursor-not-allowed;
-}
+    .button--disabled:not(.button--busy),
+    .button[disabled]:not(.button--busy) {
+        @apply opacity-75 cursor-not-allowed;
+    }
 
-.button--busy {
-    @apply opacity-75 cursor-wait;
-}
+    .button--busy {
+        @apply opacity-75 cursor-wait;
+    }
 
-.button svg:not(.plain) {
-    @apply h-5 w-5;
-}
+    .button svg:not(.plain) {
+        @apply h-5 w-5;
+    }
 
-.button--white {
-    @apply border-solid border-blue-gray-300 bg-white text-blue-gray-700;
-}
+    .button--white {
+        @apply border-solid border-slate-300 bg-white text-slate-700;
+    }
 
-.button--white:not([disabled]):not(.button--disabled):not(.button--busy):not(.button--no-hover) {
-    @apply hover:bg-blue-gray-50 focus:ring-blue-500;
+    .button--white:not([disabled]):not(.button--disabled):not(.button--busy):not(.button--no-hover) {
+        @apply hover:bg-slate-50 focus:ring-blue-500;
+    }
 }

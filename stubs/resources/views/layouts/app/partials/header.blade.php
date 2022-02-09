@@ -49,7 +49,7 @@
                 <x-link
                     :app-link="false"
                     href="{!! route('profile.show') !!}"
-                    class="block px-4 py-2 text-base font-medium text-blue-gray-500 hover:text-blue-gray-800 hover:bg-blue-gray-100 focus:outline-blue-gray"
+                    class="block px-4 py-2 text-base font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-100 focus:outline-slate"
                 >
                     {{ __('My profile') }}
                 </x-link>
@@ -57,7 +57,7 @@
                 <button
                     type="submit"
                     form="logout-form"
-                    class="block w-full text-left px-4 py-2 text-base font-medium text-blue-gray-500 hover:text-blue-gray-800 hover:bg-blue-gray-100 focus:outline-blue-gray"
+                    class="block w-full text-left px-4 py-2 text-base font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-100 focus:outline-slate"
                 >
                     {{ __('labels.user.logout_button') }}
                 </button>

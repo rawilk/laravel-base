@@ -18,7 +18,7 @@
              x-transition:leave="ease-in-out duration-500"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
-             class="absolute inset-0 bg-blue-gray-500 bg-opacity-75 transition-opacity"
+             class="absolute inset-0 bg-slate-500 bg-opacity-75 transition-opacity"
         >
         </div>
 

@@ -13,7 +13,7 @@
     </div>
 
     @if ($footer)
-        <div {{ $componentSlot($footer)->attributes->class('card-footer bg-blue-gray-50 px-4 py-4 sm:px-6 lg:rounded-b-lg') }}>
+        <div {{ $componentSlot($footer)->attributes->class('card-footer bg-slate-50 px-4 py-4 sm:px-6 lg:rounded-b-lg') }}>
             {{ $footer }}
         </div>
     @endif

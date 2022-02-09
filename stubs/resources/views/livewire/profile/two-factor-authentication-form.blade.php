@@ -2,7 +2,7 @@
     <x-card>
         <x-slot name="header">
             <h2>{{ __('laravel-base::users.profile.two_factor_title') }}</h2>
-            <p class="text-sm text-cool-gray-500">
+            <p class="text-sm text-gray-500">
                 {{ __('laravel-base::users.profile.two_factor_sub_title') }}
             </p>
         </x-slot>

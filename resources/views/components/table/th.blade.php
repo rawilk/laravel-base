@@ -18,7 +18,7 @@
             @class([
                 'flex items-center space-x-1',
                 "text-{$align}",
-                'text-xs leading-4 font-medium text-cool-gray-500 uppercase tracking-wider group focus:outline-none focus:underline',
+                'text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none focus:underline',
                 'whitespace-no-wrap' => $nowrap,
             ])
         >

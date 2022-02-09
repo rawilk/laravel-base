@@ -13,15 +13,15 @@
 
         <div class="rounded-lg overflow-hidden" role="none">
             {{-- header --}}
-            <div class="px-5 py-5 bg-blue-gray-100" role="none">
+            <div class="px-5 py-5 bg-slate-100" role="none">
                 <div class="flex justify-between">
                     <div>
-                        <div class="text-base text-blue-gray-600 font-medium">{{ auth()->user()->name->full }}</div>
-                        <div class="text-sm text-blue-gray-500 font-medium">{{ auth()->user()->email }}</div>
+                        <div class="text-base text-slate-600 font-medium">{{ auth()->user()->name->full }}</div>
+                        <div class="text-sm text-slate-500 font-medium">{{ auth()->user()->email }}</div>
                     </div>
 
                     <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full border border-blue-gray-300" src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name->full }}">
+                        <img class="h-10 w-10 rounded-full border border-slate-300" src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name->full }}">
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 <x-link
                     :app-link="false"
                     href="{!! route('profile.show') !!}"
-                    class="-m-3 p-3 flex items-start rounded-lg hover:bg-blue-gray-100 transition-colors focus:outline-blue-gray"
+                    class="-m-3 p-3 flex items-start rounded-lg hover:bg-slate-100 transition-colors focus:outline-slate"
                     role="menuitem"
                 >
                     <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
@@ -39,10 +39,10 @@
                     </div>
 
                     <div class="ml-4">
-                        <p class="text-base font-medium text-blue-gray-900">
+                        <p class="text-base font-medium text-slate-900">
                             {{ __('My profile') }}
                         </p>
-                        <p class="mt-1 text-sm text-blue-gray-500">
+                        <p class="mt-1 text-sm text-slate-500">
                             {{ __('Manage your account settings.') }}
                         </p>
                     </div>
@@ -50,15 +50,15 @@
             </div>
 
             {{-- footer --}}
-            <div class="px-5 py-5 bg-blue-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8" role="none">
+            <div class="px-5 py-5 bg-slate-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8" role="none">
                 <div class="flow-root" role="none">
                     <button
                         type="submit"
                         form="logout-form"
-                        class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-blue-gray-900 hover:bg-blue-gray-200 transition-colors focus:outline-blue-gray"
+                        class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-slate-900 hover:bg-slate-200 transition-colors focus:outline-slate"
                         role="menuitem"
                     >
-                        <x-heroicon-s-logout class="flex-shrink-0 h-6 w-6 text-blue-gray-400" />
+                        <x-heroicon-s-logout class="flex-shrink-0 h-6 w-6 text-slate-400" />
                         <span class="ml-3">{{ __('Sign Out') }}</span>
                     </button>
                 </div>

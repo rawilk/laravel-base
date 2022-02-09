@@ -1,33 +1,35 @@
-.feed-item-line {
-    @apply absolute
+@layer components {
+    .feed-item-line {
+        @apply absolute
         top-5
         left-5
         -ml-px
         h-full
         w-0.5
-        bg-blue-gray-200;
-}
+        bg-slate-200;
+    }
 
-.feed-item:last-child .feed-item-line {
-    display: none;
-}
+    .feed-item:last-child .feed-item-line {
+        display: none;
+    }
 
-.feed-item-ring {
-    @apply h-8
+    .feed-item-ring {
+        @apply h-8
         w-8
-        bg-blue-gray-200
+        bg-slate-200
         rounded-full
         ring-8
         ring-gray-100
         flex
         items-center
         justify-center;
-}
+    }
 
-.feed-item-ring svg {
-    @apply h-5 w-5;
-}
+    .feed-item-ring svg {
+        @apply h-5 w-5;
+    }
 
-.feed-white .feed-item-ring {
-    @apply ring-white;
+    .feed-white .feed-item-ring {
+        @apply ring-white;
+    }
 }

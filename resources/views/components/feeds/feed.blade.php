@@ -1,6 +1,6 @@
 <div {{ $attributes->class($containerClass()) }}>
     <ul @class([
-        'divide-y divide-blue-gray-200' => $stacked,
+        'divide-y divide-slate-200' => $stacked,
         '-mb-8' => ! $stacked,
     ])>
         {{ $slot }}

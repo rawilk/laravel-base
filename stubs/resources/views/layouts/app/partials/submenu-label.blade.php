@@ -22,8 +22,8 @@
         <span>{{ $label }}</span>
 
         <x-css-chevron-right
-            class="ml-auto h-5 w-5 transform group-hover:text-blue-gray-400 group-focus:text-blue-gray-400"
-            x-bind:class="{ 'rotate-90': open, 'text-blue-gray-300': ! open && ! hasActiveChild, 'text-blue-gray-400': hasActiveChild || open }"
+            class="ml-auto h-5 w-5 transform group-hover:text-slate-400 group-focus:text-slate-400"
+            x-bind:class="{ 'rotate-90': open, 'text-slate-300': ! open && ! hasActiveChild, 'text-slate-400': hasActiveChild || open }"
         />
     </button>
 </div>

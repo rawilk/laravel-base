@@ -5,7 +5,7 @@
         @unless ($upload)
             <div class="py-12 flex flex-col items-center justify-between">
                 <div class="filepond--centered space-y-4">
-                    <x-css-software-upload class="text-cool-gray-400 h-8 w-8 mx-auto" />
+                    <x-css-software-upload class="text-gray-400 h-8 w-8 mx-auto" />
 
                     <x-form-components::files.file-pond
                         wire:model="upload"

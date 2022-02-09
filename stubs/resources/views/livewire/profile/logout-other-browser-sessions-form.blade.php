@@ -2,7 +2,7 @@
     <x-card>
         <x-slot name="header">
             <h2>{{ __('Browser Sessions') }}</h2>
-            <p class="text-sm text-cool-gray-500">{{ __('Manage and logout your active sessions on other browsers and devices.') }}</p>
+            <p class="text-sm text-gray-500">{{ __('Manage and logout your active sessions on other browsers and devices.') }}</p>
         </x-slot>
 
         <div class="max-w-xl text-sm text-gray-600">

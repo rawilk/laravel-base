@@ -2,7 +2,7 @@
     <x-card>
         <x-slot name="header">
             <h2>{{ __('Profile Information') }}</h2>
-            <p class="text-sm text-cool-gray-500">
+            <p class="text-sm text-gray-500">
                 {{ __('Update your account\'s profile information and email address.') }}
             </p>
         </x-slot>

@@ -1,4 +1,4 @@
-<div class="tab-style-underline | border-b border-blue-gray-200">
+<div class="tab-style-underline | border-b border-slate-200">
     <nav @class([
             '-mb-px',
             'space-x-8 flex' => ! $fullWidthTabs,
@@ -13,7 +13,7 @@
                    'text-center' => $fullWidthTabs,
                ])
                x-bind:class="{
-                   'border-transparent text-blue-gray-500 hover:text-blue-gray-700 hover:border-blue-gray-300': activeTab !== tab.id && ! tab.disabled,
+                   'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300': activeTab !== tab.id && ! tab.disabled,
                    'border-blue-500 text-blue-600': activeTab === tab.id,
                    'border-transparent opacity-25 cursor-not-allowed': tab.disabled,
                 }"

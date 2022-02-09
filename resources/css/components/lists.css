@@ -1,39 +1,41 @@
-.action-item {
-    @apply relative
+@layer components {
+    .action-item {
+        @apply relative
         bg-white
         p-6
         cursor-pointer
         focus-within:ring-2
         focus-within:ring-inset
         focus-within:ring-blue-500;
-}
+    }
 
-.action-item:first-child {
-    @apply rounded-tl-lg
-    rounded-tr-lg
-    sm:rounded-tr-none;
-}
+    .action-item:first-child {
+        @apply rounded-tl-lg
+        rounded-tr-lg
+        sm:rounded-tr-none;
+    }
 
-.action-item:nth-child(2) {
-    @apply sm:rounded-tr-lg;
-}
+    .action-item:nth-child(2) {
+        @apply sm:rounded-tr-lg;
+    }
 
-.action-item:nth-last-child(2) {
-    @apply sm:rounded-bl-lg;
-}
+    .action-item:nth-last-child(2) {
+        @apply sm:rounded-bl-lg;
+    }
 
-/* For when we have an un-even amount of actions in the list... */
-.action-item:nth-last-child(2):nth-child(even) {
-    @apply sm:rounded-bl-none;
-}
+    /* For when we have an un-even amount of actions in the list... */
+    .action-item:nth-last-child(2):nth-child(even) {
+        @apply sm:rounded-bl-none;
+    }
 
-.action-item:last-child {
-    @apply rounded-bl-lg
+    .action-item:last-child {
+        @apply rounded-bl-lg
         rounded-br-lg
         sm:rounded-bl-none;
-}
+    }
 
-/* For when we have an un-even amount of actions in the list... */
-.action-item:last-child:nth-child(odd) {
-    @apply sm:col-span-2;
+    /* For when we have an un-even amount of actions in the list... */
+    .action-item:last-child:nth-child(odd) {
+        @apply sm:col-span-2;
+    }
 }

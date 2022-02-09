@@ -6,9 +6,9 @@
 <x-laravel-base::table.tr>
     <x-laravel-base::table.td colspan="{{ $colspan }}">
         <div class="flex justify-center items-center space-x-2">
-            <x-dynamic-component :component="$icon" class="h-9 w-9 text-blue-gray-400" />
+            <x-dynamic-component :component="$icon" class="h-9 w-9 text-slate-400" />
 
-            <span class="font-medium py-8 text-blue-gray-400 text-xl">
+            <span class="font-medium py-8 text-slate-400 text-xl">
                 {{ $slot }}
             </span>
         </div>

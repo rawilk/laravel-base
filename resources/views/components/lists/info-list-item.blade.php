@@ -2,7 +2,7 @@
     <dt {{ $componentSlot($label)->attributes->class($labelClasses()) }}>{{ $label }}</dt>
     <dd @class([
         'mt-1 text-sm leading-5 sm:mt-0 sm:col-span-2',
-        'text-blue-gray-500' => $dimmed,
+        'text-slate-500' => $dimmed,
         'text-gray-900' => ! $dimmed,
     ])>
         {{ $slot }}

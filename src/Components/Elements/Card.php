@@ -25,7 +25,7 @@ class Card extends BladeComponent
         return match ($this->type) {
             static::ERROR => 'bg-red-300 text-red-800',
             static::SUCCESS => 'bg-green-300 text-green-800',
-            default => 'bg-blue-gray-50',
+            default => 'bg-slate-50',
         };
     }
 }

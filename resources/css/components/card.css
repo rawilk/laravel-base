@@ -1,11 +1,13 @@
-.card .card-header + .card-body .table-container {
-    @apply sm:rounded-t-none;
-}
+@layer components {
+    .card .card-header + .card-body .table-container {
+        @apply sm:rounded-t-none;
+    }
 
-.card .card-header + .card-body .table thead tr:first-child th {
-    @apply bg-gray-100;
-}
+    .card .card-header + .card-body .table thead tr:first-child th {
+        @apply bg-gray-100;
+    }
 
-.card .info-list-item:last-child {
-    @apply lg:rounded-b-lg;
+    .card .info-list-item:last-child {
+        @apply lg:rounded-b-lg;
+    }
 }

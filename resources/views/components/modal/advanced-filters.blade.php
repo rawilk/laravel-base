@@ -12,7 +12,7 @@
         {{-- backdrop --}}
         <div x-show="show"
              x-on:click="show = false"
-             class="absolute inset-0 bg-blue-gray-500 bg-opacity-75"
+             class="absolute inset-0 bg-slate-500 bg-opacity-75"
         >
         </div>
 
@@ -25,7 +25,7 @@
                  aria-modal="true"
                  class="w-screen max-w-xl"
             >
-                <div class="h-full flex flex-col space-y-6 bg-blue-gray-800 text-cool-gray-300 dark-inputs shadow-xl">
+                <div class="h-full flex flex-col space-y-6 bg-slate-800 text-gray-300 dark-inputs shadow-xl">
                     {{-- header --}}
                     <header class="flex-shrink-0">
                         <div class="pt-6 pb-4 sm:pt-10 px-4 sm:px-6">
@@ -34,7 +34,7 @@
                                 <div class="h-7 flex items-center">
                                     <button
                                         x-on:click="show = false"
-                                        class="text-blue-gray-400 hover:text-blue-gray-200 hover:bg-blue-gray-400 rounded-full transition-colors focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 p-3"
+                                        class="text-slate-400 hover:text-slate-200 hover:bg-slate-400 rounded-full transition-colors focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 p-3"
                                     >
                                         <span class="sr-only">{{ __('laravel-base::messages.modal.close_button') }}</span>
                                         <x-heroicon-s-x class="h-6 w-6" />
@@ -68,7 +68,7 @@
 
                                 @if ($resetClick)
                                     <x-laravel-base::button.link
-                                        class="text-xs text-cool-gray-300 hover:text-cool-gray-200"
+                                        class="text-xs text-gray-300 hover:text-gray-200"
                                         wire:click="{{ $resetClick }}"
                                         wire:target="{{ $resetClick }}"
                                     >

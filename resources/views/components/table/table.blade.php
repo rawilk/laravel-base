@@ -6,7 +6,7 @@
     $containerClass,
 ])
 >
-    <table {{ $attributes->class('table | min-w-full divide-y divide-blue-gray-200') }}>
+    <table {{ $attributes->class('table | min-w-full divide-y divide-slate-200') }}>
         @if ($head)
             <thead {{ $head->attributes->merge(['role' => 'rowgroup']) }}>
                 {{ $head }}

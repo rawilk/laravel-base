@@ -5,7 +5,7 @@
     x-on:keydown.escape.window="hide"
     {{ $triggerEventListeners() }}
     tabindex="0"
-    {{ $attributes->class('focus:ring-0 focus:outline-blue-gray relative') }}
+    {{ $attributes->class('focus:ring-0 focus:outline-slate relative') }}
 >
     {{ $slot }}
 </span>

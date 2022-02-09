@@ -8,8 +8,8 @@
             >
         </div>
         <div class="ml-3">
-            <div class="text-base font-medium text-blue-gray-800">{{ auth()->user()->name->full }}</div>
-            <div class="text-sm font-medium text-blue-gray-500">{{ auth()->user()->email }}</div>
+            <div class="text-base font-medium text-slate-800">{{ auth()->user()->name->full }}</div>
+            <div class="text-sm font-medium text-slate-500">{{ auth()->user()->email }}</div>
         </div>
     </div>
 </div>

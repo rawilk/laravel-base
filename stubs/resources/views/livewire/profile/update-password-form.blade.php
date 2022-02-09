@@ -2,7 +2,7 @@
     <x-card>
         <x-slot name="header">
             <h2>{{ __('Update Password') }}</h2>
-            <p class="text-sm text-cool-gray-500">{{ __('Ensure your account is using a long, random password to stay secure.') }}</p>
+            <p class="text-sm text-gray-500">{{ __('Ensure your account is using a long, random password to stay secure.') }}</p>
         </x-slot>
 
         <x-form wire:submit.prevent="updatePassword" id="update-password-form">

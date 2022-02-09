@@ -2,9 +2,9 @@
      @include('laravel-base::components.tabs.partials.tab-nav-attrs')
 >
     <template x-for="(tab, index) in tabs">
-        <a class="text-blue-gray-900 group last:rounded-r-lg relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium inline-flex items-center justify-center text-center focus:outline-none"
+        <a class="text-slate-900 group last:rounded-r-lg relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium inline-flex items-center justify-center text-center focus:outline-none"
            x-bind:class="{
-               'focus:z-10 hover:bg-gray-50 hover:text-blue-gray-700': ! tab.disabled,
+               'focus:z-10 hover:bg-gray-50 hover:text-slate-700': ! tab.disabled,
                'opacity-25 cursor-not-allowed': tab.disabled,
                'rounded-l-lg': index === 0,
            }"

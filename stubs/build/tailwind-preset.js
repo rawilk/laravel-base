@@ -45,8 +45,8 @@ module.exports = {
         extend: {
 
             colors: {
-                'blue-gray': colors.blueGray,
-                'cool-gray': colors.blueGray,
+                'slate': colors.blueGray,
+                'gray': colors.blueGray,
                 rose: colors.rose,
                 orange: colors.orange,
                 indigo: colors.indigo,
@@ -73,7 +73,7 @@ module.exports = {
             },
 
             outline: {
-                'blue-gray': [`2px dotted ${colors.blueGray['500']}`, '2px'],
+                'slate': [`2px dotted ${colors.blueGray['500']}`, '2px'],
             },
 
             transitionTimingFunction: {

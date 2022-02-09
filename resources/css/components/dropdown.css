@@ -1,35 +1,37 @@
-.dropdown-item {
-    @apply px-4
+@layer components {
+    .dropdown-item {
+        @apply px-4
         py-2
         text-sm
         leading-5
-        text-blue-gray-500
+        text-slate-500
         flex
         items-center;
-}
+    }
 
-.dropdown-item:not(.dropdown-item--active):not([disabled]) {
-    @apply hover:bg-blue-gray-100
-        hover:text-blue-gray-700
-        focus:outline-blue-gray
-        focus:bg-blue-gray-100
-        focus:text-blue-gray-700;
-}
+    .dropdown-item:not(.dropdown-item--active):not([disabled]) {
+        @apply hover:bg-slate-100
+        hover:text-slate-700
+        focus:outline-slate
+        focus:bg-slate-100
+        focus:text-slate-700;
+    }
 
-.dropdown-item--active {
-    @apply bg-blue-gray-200
-        text-blue-gray-700
-        hover:bg-blue-gray-300;
-}
+    .dropdown-item--active {
+        @apply bg-slate-200
+        text-slate-700
+        hover:bg-slate-300;
+    }
 
-.dropdown-item svg {
-    @apply w-4 h-4;
-}
+    .dropdown-item svg {
+        @apply w-4 h-4;
+    }
 
-.dropdown-item svg:not(.colorless) {
-    @apply text-blue-gray-400;
-}
+    .dropdown-item svg:not(.colorless) {
+        @apply text-slate-400;
+    }
 
-.dropdown-item[disabled] {
-    @apply opacity-50 cursor-not-allowed;
+    .dropdown-item[disabled] {
+        @apply opacity-50 cursor-not-allowed;
+    }
 }

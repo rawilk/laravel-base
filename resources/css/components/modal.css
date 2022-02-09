@@ -1,13 +1,14 @@
-.modal-title {
-    @apply text-lg leading-6 font-medium text-blue-gray-900;
-}
+@layer components {
+    .modal-title {
+        @apply text-lg leading-6 font-medium text-slate-900;
+    }
 
-.modal-content {
-    @apply text-sm leading-5 text-blue-gray-500;
-}
+    .modal-content {
+        @apply text-sm leading-5 text-slate-500;
+    }
 
-.modal-footer {
-    @apply bg-blue-gray-50
+    .modal-footer {
+        @apply bg-slate-50
         px-4
         py-3
         mt-3
@@ -18,9 +19,10 @@
         sm:px-6
         sm:flex
         sm:flex-row-reverse;
-}
+    }
 
-.modal-footer .button:not(.button--block),
-.modal-footer .button-container:not(.button--block) {
-    @apply w-full sm:w-auto;
+    .modal-footer .button:not(.button--block),
+    .modal-footer .button-container:not(.button--block) {
+        @apply w-full sm:w-auto;
+    }
 }

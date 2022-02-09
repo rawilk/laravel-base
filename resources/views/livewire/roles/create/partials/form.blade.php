@@ -4,7 +4,7 @@
         <x-card>
             <x-slot name="header">
                 <h2>{{ __('laravel-base::roles.create.role_info_title') }}</h2>
-                <p class="text-sm text-cool-gray-500">{{ __('laravel-base::roles.create.role_info_subtitle') }}</p>
+                <p class="text-sm text-gray-500">{{ __('laravel-base::roles.create.role_info_subtitle') }}</p>
             </x-slot>
 
             {{-- name --}}
@@ -36,7 +36,7 @@
         <x-card>
             <x-slot name="header">
                 <h2>{{ __('laravel-base::roles.create.permissions_title') }}</h2>
-                <p class="text-sm text-cool-gray-500">{{ __('laravel-base::roles.create.permissions_subtitle') }}</p>
+                <p class="text-sm text-gray-500">{{ __('laravel-base::roles.create.permissions_subtitle') }}</p>
             </x-slot>
 
             @include('laravel-base::livewire.roles.partials.permission-options')

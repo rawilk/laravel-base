@@ -9,7 +9,7 @@
 
 @if ($selectPage)
 <x-laravel-base::table.tr wire:key="row-message">
-    <x-laravel-base::table.td class="bg-blue-gray-200" colspan="{{ $colspan }}">
+    <x-laravel-base::table.td class="bg-slate-200" colspan="{{ $colspan }}">
 
         @unless ($selectAll)
             <div class="space-x-1">

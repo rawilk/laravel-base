@@ -103,7 +103,7 @@ return [
              * You may customize the classes added to a <th> tag by default here instead of
              * overriding the view yourself. We've included a sensible default.
              */
-            'default_class' => 'relative overflow-hidden border-blue-gray-200 bg-blue-gray-50 text-left text-blue-gray-500 text-xs leading-4 font-medium uppercase focus:outline-none tracking-wider px-6 py-3',
+            'default_class' => 'relative overflow-hidden border-slate-200 bg-slate-50 text-left text-slate-500 text-xs leading-4 font-medium uppercase focus:outline-none tracking-wider px-6 py-3',
         ],
         'td' => Components\Table\Td::class,
         'column-select' => Components\Table\ColumnSelect::class,

@@ -89,7 +89,7 @@
              id="perm-group-{{ $loop->index }}"
              x-cloak
         >
-            <div class="bg-blue-gray-50 rounded-lg">
+            <div class="bg-slate-50 rounded-lg">
                 <div class="px-4 pb-5 sm:pb-6 sm:px-6"
                      x-bind:class="{ 'pb-5 sm:pb-6': open, 'pb-3': ! open }"
                 >
@@ -97,7 +97,7 @@
                          class="flex items-center justify-between space-x-1 cursor-pointer group pt-5 sm:pt-6"
                          role="button"
                     >
-                        <h4 class="capitalize text-sm leading-6 text-blue-gray-900 font-medium group-hover:text-blue-gray-600 transition-colors flex items-center space-x-1">
+                        <h4 class="capitalize text-sm leading-6 text-slate-900 font-medium group-hover:text-slate-600 transition-colors flex items-center space-x-1">
                             <span>{{ $groupName }}</span>
 
                             <x-heroicon-s-check-circle
@@ -111,9 +111,9 @@
                             />
                         </h4>
 
-                        <div class="p-1 h-6 w-6 rounded-full group-hover:bg-blue-gray-400 transition-all flex justify-center items-center">
+                        <div class="p-1 h-6 w-6 rounded-full group-hover:bg-slate-400 transition-all flex justify-center items-center">
                             <x-css-chevron-down
-                                class="h-5 w-5 text-blue-gray-600 group-hover:text-blue-gray-200 transition-all"
+                                class="h-5 w-5 text-slate-600 group-hover:text-slate-200 transition-all"
                                 x-bind:class="{ 'rotate-[270deg]': ! open }"
                             />
                         </div>
@@ -142,7 +142,7 @@
                                         'relative border first:rounded-tl-md first:rounded-tr-md last:rounded-bl-md last:rounded-br-md',
                                         'opacity-75' => ! $canEdit,
                                      ])
-                                     x-bind:class="{ 'bg-blue-50 border-blue-200 z-10': has('{{ $permission->id }}'), 'border-blue-gray-200': ! has('{{ $permission->id }}') }"
+                                     x-bind:class="{ 'bg-blue-50 border-blue-200 z-10': has('{{ $permission->id }}'), 'border-slate-200': ! has('{{ $permission->id }}') }"
                                 >
                                     <label @class([
                                         'flex p-4',
@@ -161,14 +161,14 @@
 
                                         <div class="ml-3 flex flex-col">
                                             <span class="block text-sm font-medium"
-                                                  x-bind:class="{ 'text-blue-900': has('{{ $permission->id }}'), 'text-blue-gray-900': ! has('{{ $permission->id }}') }"
+                                                  x-bind:class="{ 'text-blue-900': has('{{ $permission->id }}'), 'text-slate-900': ! has('{{ $permission->id }}') }"
                                             >
                                                 {{ $permission->name }}
                                             </span>
 
                                             @if ($permission->description)
                                                 <span class="text-sm block"
-                                                      x-bind:class="{ 'text-blue-700': has('{{ $permission->id }}'), 'text-blue-gray-500': ! has('{{ $permission->id }}') }"
+                                                      x-bind:class="{ 'text-blue-700': has('{{ $permission->id }}'), 'text-slate-500': ! has('{{ $permission->id }}') }"
                                                 >
                                                     {{ $permission->description }}
                                                 </span>

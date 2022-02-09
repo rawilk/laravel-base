@@ -22,7 +22,7 @@ class Tr extends BladeComponent
     public function classes(): string
     {
         return Arr::toCssClasses([
-            'odd:bg-white even:bg-blue-gray-50' => $this->striped && ! $this->selected,
+            'odd:bg-white even:bg-slate-50' => $this->striped && ! $this->selected,
             'bg-orange-100' => $this->selected,
         ]);
     }

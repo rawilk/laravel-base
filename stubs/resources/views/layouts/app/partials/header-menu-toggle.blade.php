@@ -2,7 +2,7 @@
         x-on:set-secondary-nav-open.window="open = $event.detail"
         x-init="$watch('open', value => { $dispatch('set-secondary-nav-open', value) })"
         x-on:click="open = ! open;"
-        class="inline-flex items-center justify-center p-2 rounded-md text-blue-gray-400 hover:text-blue-gray-500 hover:bg-blue-gray-100 focus:outline-blue-gray"
+        class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-slate"
         x-bind:aria-expanded="JSON.stringify(open)"
         id="secondary-menu-toggle"
 >

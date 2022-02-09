@@ -1,3 +1,3 @@
-<dl {{ $attributes->class('description-list | divide-y divide-y-blue-gray-200') }}>
+<dl {{ $attributes->class('description-list | divide-y divide-y-slate-200') }}>
     {{ $slot }}
 </dl>

@@ -13,25 +13,27 @@
 	</svg>');
 }
 
-.app-link {
-    @apply font-medium
+@layer components {
+    .app-link {
+        @apply font-medium
         text-blue-600
         transition
         hover:text-blue-500
         hover:underline
-        focus:outline-blue-gray
+        focus:outline-slate
         focus:underline
         relative;
-}
+    }
 
-.app-link--dark {
-    @apply text-blue-gray-600 hover:text-blue-gray-500;
-}
+    .app-link--dark {
+        @apply text-slate-600 hover:text-slate-500;
+    }
 
-a:not(.button):not(.no-external-indicator)[rel*="external"]:after {
-    content: "";
-    background: no-repeat var(--icon-external-link);
-    width: 15px;
-    height: 15px;
-    @apply absolute top-1 -right-4;
+    a:not(.button):not(.no-external-indicator)[rel*="external"]:after {
+        content: "";
+        background: no-repeat var(--icon-external-link);
+        width: 15px;
+        height: 15px;
+        @apply absolute top-1 -right-4;
+    }
 }

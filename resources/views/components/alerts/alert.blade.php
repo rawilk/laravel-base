@@ -27,7 +27,7 @@
                     <button
                         x-on:click="open = false"
                         type="button"
-                        class="alert-dismiss | inline-flex items-center p-1.5 rounded-full focus:outline-blue-gray transition-colors"
+                        class="alert-dismiss | inline-flex items-center p-1.5 rounded-full focus:outline-slate transition-colors"
                     >
                         <x-heroicon-s-x class="h-5 w-5" />
 

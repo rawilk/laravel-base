@@ -4,7 +4,7 @@
     :triggers="$triggers"
 >
     <span tabindex="-1"
-          class="text-xs cursor-help text-blue-gray-500 hover:text-blue-gray-400"
+          class="text-xs cursor-help text-slate-500 hover:text-slate-400"
     >
         <x-css-info class="{{ $iconHeight }} {{ $iconWidth }}" />
     </span>

@@ -26,7 +26,7 @@
             type="button"
             @class([
                 'badge__remove-button',
-                'flex-shrink-0 ml-1.5 inline-flex focus:outline-blue-gray',
+                'flex-shrink-0 ml-1.5 inline-flex focus:outline-slate',
                 '-mr-0.5' => $large,
             ])
             aria-label="{{ __('laravel-base::messages.badge.remove_button') }}"

@@ -22,7 +22,7 @@ class Table extends BladeComponent
     public function tbodyClasses(): string
     {
         return Arr::toCssClasses([
-            'bg-white divide-y divide-blue-gray-200' => $this->border,
+            'bg-white divide-y divide-slate-200' => $this->border,
         ]);
     }
 }

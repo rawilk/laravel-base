@@ -1,5 +1,6 @@
-kbd {
-    @apply font-mono
+@layer components {
+    kbd {
+        @apply font-mono
         text-sm
         inline-flex
         items-center
@@ -10,4 +11,5 @@ kbd {
         rounded-md
         border
         border-gray-50;
+    }
 }
