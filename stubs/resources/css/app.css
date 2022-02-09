@@ -1,17 +1,11 @@
 @charset "UTF-8";
 
 @import 'tailwindcss/base';
+
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-/* flatpickr */
 @import 'flatpickr/dist/flatpickr.min.css';
+@import '../../vendor/rawilk/laravel-form-components/resources/css/index.css';
+@import '../../vendor/rawilk/laravel-base/resources/css/components/index.css';
 
-@layer components {
-    @import '../../vendor/rawilk/laravel-form-components/resources/js/laravel-form-components-styles/src/styles.css';
-    @import '../../vendor/rawilk/laravel-base/resources/css/components/index.css';
-}
-
-@layer utilities {
-    @import '../../vendor/rawilk/laravel-base/resources/css/utils/app.css';
-}
+@import 'tailwindcss/utilities';
+@import '../../vendor/rawilk/laravel-base/resources/css/utils/app.css';
