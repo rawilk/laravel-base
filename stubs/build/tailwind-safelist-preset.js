@@ -20,11 +20,9 @@ module.exports = {
             'badge--indigo',
             'badge--pink',
             'badge--yellow',
-            'badge--gray',
 
             // Buttons...
             'button--slate',
-            'button--gray',
             'button--gray',
             'button--blue',
             'button--red',
@@ -36,7 +34,6 @@ module.exports = {
             'button--yellow',
             'button--white',
             'button--outline-slate',
-            'button--outline-gray',
             'button--outline-gray',
             'button--outline-blue',
             'button--outline-red',
