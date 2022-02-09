@@ -33,7 +33,7 @@ module.exports = function({ addComponents, addUtilities, theme, config }) {
             backgroundColor: theme('colors.transparent'),
             color: color['600'],
             '@apply border-solid': {},
-            [`@apply border-${colorName}-600`]: {},
+            [`@apply !border-${colorName}-600`]: {},
         };
 
         buttons[`.button--outline-${colorName}:hover:not([disabled]):not(.button--disabled):not(.button--busy):not(.button--no-hover)`] = {
