@@ -17,11 +17,11 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|^8.1",
         "bacon/bacon-qr-code": "^2.0",
         "danharrin/livewire-rate-limiting": "^0.3.0",
-        "illuminate/contracts": "^8.56",
-        "illuminate/support": "^8.56",
+        "illuminate/contracts": "^8.56|^9.0",
+        "illuminate/support": "^8.56|^9.0",
         "jenssegers/agent": "^2.6",
         "maatwebsite/excel": "^3.1",
         "pragmarx/google2fa": "^8.0"
