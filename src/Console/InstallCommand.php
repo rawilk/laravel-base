@@ -103,6 +103,7 @@ final class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Services'));
         (new Filesystem)->ensureDirectoryExists(app_path('Support'));
         (new Filesystem)->ensureDirectoryExists(app_path('Support/Auth'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Enums'));
         (new Filesystem)->ensureDirectoryExists(app_path('Notifications/Users'));
         (new Filesystem)->ensureDirectoryExists(app_path('Listeners/Users'));
         (new Filesystem)->ensureDirectoryExists(app_path('Helpers'));
@@ -121,8 +122,11 @@ final class InstallCommand extends Command
         $this->installServiceProviderAfter('BladeComponentsServiceProvider', 'BreadcrumbsServiceProvider');
         $this->installServiceProviderAfter('BreadcrumbsServiceProvider', 'NavigationServiceProvider');
 
+        // Enums...
+        copy(__DIR__ . '/../../stubs/app/Enums/PermissionEnum.php', app_path('Enums/PermissionEnum.php'));
+        copy(__DIR__ . '/../../stubs/app/Enums/QueuesEnum.php', app_path('Enums/QueuesEnum.php'));
+
         // Support...
-        copy(__DIR__ . '/../../stubs/app/Support/Queues.php', app_path('Support/Queues.php'));
         copy(__DIR__ . '/../../stubs/app/Support/Auth/CustomUserProvider.php', app_path('Support/Auth/CustomUserProvider.php'));
 
         // Services...
