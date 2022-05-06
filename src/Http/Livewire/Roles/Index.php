@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Http\Livewire\Roles;
 
-use App\Support\PermissionName;
+use App\Enums\PermissionEnum;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Config;
@@ -72,7 +72,7 @@ class Index extends Component
         // Each role will be authorized to be deleted in the role's "deleting" observer event.
         // Note: This requires the configured role model to be or to extend
         // the \Rawilk\LaravelBase\Models\Role model.
-        $this->authorize(PermissionName::ROLES_DELETE);
+        $this->authorize(PermissionEnum::ROLES_DELETE->value);
 
         $ids = $this->selectedRowsQuery->pluck('id');
 

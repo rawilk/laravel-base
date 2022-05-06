@@ -2,7 +2,7 @@
     <x-layout.page-title>
         {{ __('laravel-base::roles.index.title') }}
 
-        @can(\App\Support\PermissionName::ROLES_CREATE)
+        @can(\App\Enums\PermissionEnum::ROLES_CREATE->value)
             <x-slot name="actions">
                 <x-button href="{!! route('admin.roles.create') !!}" variant="blue">
                     <x-css-math-plus />

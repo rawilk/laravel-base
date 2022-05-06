@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Imports\Roles;
 
-use App\Support\PermissionName;
+use App\Enums\PermissionEnum;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -35,19 +35,19 @@ class RolesImport implements WithHeadingRow, OnEachRow
             return;
         }
 
-        if (Auth::user()->hasAllPermissions([PermissionName::ROLES_CREATE, PermissionName::ROLES_EDIT])) {
+        if (Auth::user()->hasAllPermissions([PermissionEnum::ROLES_CREATE->value, PermissionEnum::ROLES_EDIT->value])) {
             $this->updateOrCreate($data);
 
             return;
         }
 
-        if (Auth::user()->can(PermissionName::ROLES_CREATE)) {
+        if (Auth::user()->can(PermissionEnum::ROLES_CREATE->value)) {
             $this->createOnly($data);
 
             return;
         }
 
-        if (Auth::user()->can(PermissionName::ROLES_EDIT)) {
+        if (Auth::user()->can(PermissionEnum::ROLES_EDIT->value)) {
             $this->updateOnly($data);
         }
     }

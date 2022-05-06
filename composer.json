@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^8.0|^8.1",
+        "php": "^8.1",
         "bacon/bacon-qr-code": "^2.0",
         "danharrin/livewire-rate-limiting": "^1.0.0",
         "illuminate/contracts": "^8.56|^9.0",

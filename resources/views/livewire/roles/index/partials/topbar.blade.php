@@ -7,7 +7,7 @@
         <div class="topbar-section" id="bulk-actions">
             <x-dropdown trigger-text="{{ __('laravel-base::messages.bulk_actions') }}" right>
                 {{-- import --}}
-                @canany([\App\Support\PermissionName::ROLES_CREATE, \App\Support\PermissionName::ROLES_EDIT])
+                @canany([\App\Enums\PermissionEnum::ROLES_CREATE->value, \App\Enums\PermissionEnum::ROLES_EDIT->value])
                     <x-dropdown-item wire:click="$emit('{{ \Rawilk\LaravelBase\Http\Livewire\DataTable\ImportsModels::$showEvent }}', '{{ \Rawilk\LaravelBase\Http\Livewire\Roles\Import::importId() }}')">
                         <x-css-software-upload />
                         <span>{{ __('laravel-base::messages.import_button') }}</span>
@@ -21,7 +21,7 @@
                 </x-dropdown-item>
 
                 {{-- delete --}}
-                @can(\App\Support\PermissionName::ROLES_DELETE)
+                @can(\App\Enums\PermissionEnum::ROLES_DELETE->value)
                     <x-dropdown-divider />
                     <x-dropdown-item wire:click="$toggle('showDeleteAll')">
                         <x-css-trash />

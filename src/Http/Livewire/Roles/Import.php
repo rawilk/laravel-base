@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Http\Livewire\Roles;
 
-use App\Support\PermissionName;
+use App\Enums\PermissionEnum;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +55,7 @@ class Import extends Component
 
     public function import(): void
     {
-        if (! Auth::user()->canAny([PermissionName::ROLES_CREATE, PermissionName::ROLES_EDIT])) {
+        if (! Auth::user()->canAny([PermissionEnum::ROLES_CREATE->value, PermissionEnum::ROLES_EDIT->value])) {
             return;
         }
 

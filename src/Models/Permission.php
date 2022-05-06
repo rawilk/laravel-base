@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Models;
 
+use App\Enums\PermissionEnum;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission as BasePermission;
@@ -31,8 +32,17 @@ class Permission extends BasePermission
 
     protected $touches = ['roles'];
 
+    /*
+     * We will prefer to use the description provided by the enum, so we can
+     * translate it easier, if needed.
+     */
+    public function getDescriptionAttribute(): ?string
+    {
+        return PermissionEnum::tryFrom($this->name)?->description();
+    }
+
     /**
-     * Get all of the permissions grouped by the first part
+     * Get all the permissions grouped by the first part
      * of their name. Useful for rendering them
      * in groups in the UI.
      *
@@ -41,7 +51,7 @@ class Permission extends BasePermission
     public static function groupedPermissions(): Collection
     {
         return static::query()
-            ->get(['id', 'name', 'description'])
+            ->get(['id', 'name'])
             ->sortBy('name')
             ->groupBy(function ($permission) {
                 if (! Str::contains($permission->name, '.')) {

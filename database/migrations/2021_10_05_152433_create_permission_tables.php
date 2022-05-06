@@ -20,7 +20,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('guard_name');
-            $table->string('description', 255)->nullable();
             $table->dateTimestamps();
 
             $table->unique(['name', 'guard_name']);

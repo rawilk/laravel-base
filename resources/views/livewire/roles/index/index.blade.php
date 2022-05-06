@@ -9,13 +9,13 @@
         @include('laravel-base::livewire.roles.index.partials.results')
 
         {{-- delete --}}
-        @can(\App\Support\PermissionName::ROLES_DELETE)
+        @can(\App\Enums\PermissionEnum::ROLES_DELETE->value)
             @include('laravel-base::livewire.roles.index.partials.confirm-delete')
             @include('laravel-base::livewire.roles.index.partials.confirm-bulk-delete')
         @endcan
 
         {{-- import --}}
-        @canany([\App\Support\PermissionName::ROLES_CREATE, \App\Support\PermissionName::ROLES_EDIT])
+        @canany([\App\Enums\PermissionEnum::ROLES_CREATE->value, \App\Enums\PermissionEnum::ROLES_EDIT->value])
             <livewire:admin.roles.import />
         @endcanany
     </div>

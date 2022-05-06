@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Http\Livewire\Roles;
 
-use App\Support\PermissionName;
+use App\Enums\PermissionEnum;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +24,7 @@ class Create extends Component
 
     public function createRole(CreateRoleAction $creator)
     {
-        $this->authorize(PermissionName::ROLES_CREATE);
+        $this->authorize(PermissionEnum::ROLES_CREATE->value);
 
         $this->resetErrorBag();
 

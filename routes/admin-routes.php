@@ -1,6 +1,6 @@
 <?php
 
-use App\Support\PermissionName;
+use App\Enums\PermissionEnum;
 use Illuminate\Support\Facades\Route;
 use Rawilk\LaravelBase\Features;
 use Rawilk\LaravelBase\Http\Controllers;
@@ -21,7 +21,7 @@ Route::group(
                     Route::get('/', [Controllers\Admin\UsersController::class, 'index'])
                         ->name('index');
                     Route::get('/create', [Controllers\Admin\UsersController::class, 'create'])
-                        ->middleware('permission:' . PermissionName::USERS_CREATE)
+                        ->middleware('permission:' . PermissionEnum::USERS_CREATE->value)
                         ->name('create');
 
                     Route::prefix('/{user}')->group(function () {
@@ -41,10 +41,10 @@ Route::group(
                 ->as('roles.')
                 ->group(function () {
                     Route::get('/', config('laravel-base.livewire.roles.index', Livewire\Roles\Index::class))
-                        ->middleware('permission:' . PermissionName::ROLES_CREATE . '|' . PermissionName::ROLES_EDIT . '|' . PermissionName::ROLES_DELETE)
+                        ->middleware('permission:' . PermissionEnum::ROLES_CREATE->value . '|' . PermissionEnum::ROLES_EDIT->value . '|' . PermissionEnum::ROLES_DELETE->value)
                         ->name('index');
                     Route::get('/create', config('laravel-base.livewire.roles.create', Livewire\Roles\Create::class))
-                        ->middleware('permission:' . PermissionName::ROLES_CREATE)
+                        ->middleware('permission:' . PermissionEnum::ROLES_CREATE->value)
                         ->name('create');
                     Route::get('/{role}/edit', config('laravel-base.livewire.roles.edit', Livewire\Roles\Edit::class))
                         ->middleware('can:edit,role')

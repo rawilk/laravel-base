@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Policies;
 
+use App\Enums\PermissionEnum;
 use App\Models\User\User;
-use App\Support\PermissionName;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Contracts\Role;
 
@@ -28,7 +28,7 @@ class RolePolicy
             return true;
         }
 
-        return $user->hasPermissionTo(PermissionName::ROLES_EDIT)
+        return $user->hasPermissionTo(PermissionEnum::ROLES_EDIT->value)
             && ! $role->isSuperAdminRole();
     }
 
@@ -42,7 +42,7 @@ class RolePolicy
      */
     public function editPermissions(User $user, Role $role): bool
     {
-        return $user->hasPermissionTo(PermissionName::ROLES_EDIT)
+        return $user->hasPermissionTo(PermissionEnum::ROLES_EDIT->value)
             && ! $role->isSuperAdminRole();
     }
 
@@ -57,7 +57,7 @@ class RolePolicy
      */
     public function delete(User $user, Role $role): bool
     {
-        return $user->hasPermissionTo(PermissionName::ROLES_DELETE)
+        return $user->hasPermissionTo(PermissionEnum::ROLES_DELETE->value)
             && ! $role->isProtected();
     }
 }
