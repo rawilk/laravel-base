@@ -4,7 +4,6 @@ namespace Rawilk\LaravelBase\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Lang;
-use Rawilk\LaravelBase\Contracts\Enums\HasLabel;
 
 class EnumRule implements Rule
 {
