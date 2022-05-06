@@ -30,18 +30,7 @@ class EnumRule implements Rule
         return Lang::get('laravel-base::validation.enum', [
             'value' => $this->value,
             'enum' => $this->enum,
-            'other' => implode(', ', $this->getDisplayableOtherValues()),
+            'other' => implode(', ', enumToLabels($this->enum)),
         ]);
-    }
-
-    protected function getDisplayableOtherValues(): array
-    {
-        return array_map(function ($case): string {
-            if ($case instanceof HasLabel) {
-                return $case->label();
-            }
-
-            return $case->name;
-        }, $this->enum::cases());
     }
 }
