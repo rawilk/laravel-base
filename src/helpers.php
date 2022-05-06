@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Rawilk\LaravelBase\Contracts\Enums\HasLabel;
 use Rawilk\LaravelBase\LaravelBase;
 
 if (! function_exists('appName')) {
@@ -98,6 +99,60 @@ if (! function_exists('userTimezone')) {
             : call_user_func(LaravelBase::$findUserTimezoneUsingCallback, auth()->user());
 
         return $userTimezone ?? appTimezone();
+    }
+}
+
+if (! function_exists('enumToSelectOptions')) {
+    /**
+     * Map the given enum to an array of elements suitable for
+     * a select field.
+     *
+     * @param string $enum
+     * @param string $valueField
+     * @param string $labelField
+     * @return array
+     */
+    function enumToSelectOptions(string $enum, string $valueField = 'id', string $labelField = 'name'): array
+    {
+        return collect($enum::cases())
+            ->map(function ($case) use ($valueField, $labelField) {
+                return [
+                    $valueField => $case->value,
+                    $labelField => $case instanceof HasLabel ? $case->label() : $case->name,
+                ];
+            })
+            ->values()
+            ->toArray();
+    }
+}
+
+if (! function_exists('enumToValues')) {
+    /**
+     * Generate an array of all the values from a given enum.
+     *
+     * @param string $enum
+     * @return array
+     */
+    function enumToValues(string $enum): array
+    {
+        return array_map(fn ($case) => $case->value, $enum::cases());
+    }
+}
+
+if (! function_exists('enumToLabels')) {
+    /**
+     * Generate an array of all the labels from a given enum.
+     *
+     * @param string $enum
+     * @return array
+     */
+    function enumToLabels(string $enum): array
+    {
+        return array_map(function ($case) {
+            return $case instanceof HasLabel
+                ? $case->label()
+                : $case->name;
+        }, $enum::cases());
     }
 }
 
