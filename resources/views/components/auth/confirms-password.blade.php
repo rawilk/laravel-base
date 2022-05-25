@@ -6,7 +6,7 @@
     x-ref="span"
     x-on:click="$wire.startConfirmingPassword('{{ $confirmableId }}')"
     x-on:password-confirmed.window="setTimeout(() => $event.detail.id === '{{ $confirmableId }}' && $refs.span.dispatchEvent(new CustomEvent('then', { bubbles: false })), 250);"
-    class="inline"
+    {{ $attributes->class('inline') }}
 >
     {{ $slot }}
 </span>
