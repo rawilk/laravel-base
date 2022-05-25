@@ -27,6 +27,7 @@
                 wire:keydown.enter="confirmPassword"
                 name="confirmablePassword"
                 placeholder="{{ __('laravel-base::messages.confirms_password.password_placeholder') }}"
+                autocomplete="current-password"
                 focus
             />
 
