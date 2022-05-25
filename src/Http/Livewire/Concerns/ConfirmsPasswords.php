@@ -2,9 +2,12 @@
 
 namespace Rawilk\LaravelBase\Http\Livewire\Concerns;
 
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Rawilk\LaravelBase\Actions\Auth\ConfirmPasswordAction;
 
 /** @mixin \Livewire\Component */
 trait ConfirmsPasswords
@@ -52,12 +55,11 @@ trait ConfirmsPasswords
 
     public function confirmPassword(): void
     {
-        $this->validate([
-            'confirmablePassword' => ['required', 'string', 'password'],
-        ], [
-            'required' => __('laravel-base::validation.confirms_password.required'),
-            'password' => __('auth.password'),
-        ]);
+        if (! app(ConfirmPasswordAction::class)(app(StatefulGuard::class), Auth::user(), $this->confirmablePassword)) {
+            $this->addError('confirmablePassword', __('auth.password'));
+
+            return;
+        }
 
         Session::put('auth.password_confirmed_at', time());
 
@@ -68,7 +70,7 @@ trait ConfirmsPasswords
         $this->stopConfirmingPassword();
     }
 
-    protected function ensurePasswordIsConfirmed(null|int $maximumSecondsSinceConfirmation = null): void
+    protected function ensurePasswordIsConfirmed(?int $maximumSecondsSinceConfirmation = null): void
     {
         abort_unless(
             $this->passwordIsConfirmed($maximumSecondsSinceConfirmation),
@@ -76,7 +78,7 @@ trait ConfirmsPasswords
         );
     }
 
-    protected function passwordIsConfirmed(null|int $maximumSecondsSinceConfirmation = null): bool
+    protected function passwordIsConfirmed(?int $maximumSecondsSinceConfirmation = null): bool
     {
         $maximumSecondsSinceConfirmation = $maximumSecondsSinceConfirmation ?: Config::get('auth.password_timeout', 900);
 
