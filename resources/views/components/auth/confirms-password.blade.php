@@ -1,4 +1,4 @@
-@php($confirmableId = md5($attributes->wire('then')))
+@php($confirmableId = md5($confirmableId ?? $attributes->wire('then')))
 
 <span
     {{ $attributes->wire('then') }}

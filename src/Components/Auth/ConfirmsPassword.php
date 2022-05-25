@@ -9,14 +9,15 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class ConfirmsPassword extends BladeComponent
 {
     public function __construct(
-        public null|string $title = 'laravel-base::messages.confirms_password.title',
-        public null|string $content = 'laravel-base::messages.confirms_password.content',
-        public null|string $button = 'laravel-base::messages.confirms_password.button',
+        public ?string $title = null,
+        public ?string $content = null,
+        public ?string $button = null,
         public string $confirmButtonVariant = 'blue',
         public string $cancelButtonVariant = 'white',
+        public ?string $confirmableId = null,
     ) {
-        $this->title = __($title);
-        $this->content = __($content);
-        $this->button = __($button);
+        $this->title = $title ?: __('laravel-base::messages.confirms_password.title');
+        $this->content = $content ?: __('laravel-base::messages.confirms_password.content');
+        $this->button = $button ?: __('laravel-base::messages.confirms_password.button');
     }
 }
