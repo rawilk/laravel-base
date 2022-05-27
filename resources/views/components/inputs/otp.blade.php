@@ -1,4 +1,4 @@
-<div x-data="otp" class="grid {{ $gridCols() }} gap-4" x-on:focus-otp.window="reFocus">
+<div x-data="otp" class="grid {{ $gridCols() }} gap-4" x-on:focus-otp.window="reFocus" x-on:otp-reset.window="resetValue">
     <template x-for="(input, index) in length" :key="index">
         <input
             type="tel"
@@ -85,11 +85,7 @@ function otp() {
             const text = event.clipboardData.getData('text');
             this.value = text;
 
-            const inputs = Array.from(Array(this.length));
-
-            inputs.forEach((element, index) => {
-                this.getInput(index).value = text[index] || '';
-            });
+            this._updateInputValues(text);
 
             setTimeout(() => {
                 try {
@@ -105,6 +101,11 @@ function otp() {
             }, 50);
         },
 
+        resetValue() {
+            this.value = '';
+            this._updateInputValues(this.value);
+        },
+
         handleBackspace(index) {
             this.getInput(index).value = '';
 
@@ -114,6 +115,14 @@ function otp() {
             setTimeout(() => {
                 input && input.focus();
             }, 50);
+        },
+
+        _updateInputValues(value) {
+            const inputs = Array.from(Array(this.length));
+
+            inputs.forEach((element, index) => {
+                this.getInput(index).value = value[index] || '';
+            });
         },
     }
 }
