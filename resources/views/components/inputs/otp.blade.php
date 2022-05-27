@@ -46,6 +46,12 @@ function otp() {
         handleInput(event) {
             const input = event.target;
             const charCode = event.which ? event.which : event.keyCode;
+            const ctrlDown = event.ctrlKey || event.metaKey; // For paste support
+            const vKey = 86;
+
+            if (ctrlDown && charCode === vKey) {
+                return;
+            }
 
             if (event.key === 'Backspace') {
                 return;
@@ -87,6 +93,10 @@ function otp() {
 
             setTimeout(() => {
                 try {
+                    if (text.length >= this.length) {
+                        return this.$dispatch('otp-finish');
+                    }
+
                     const length = text.length >= this.length ? this.length - 1 : text.length;
 
                     this.getInput(length).focus();
@@ -107,5 +117,9 @@ function otp() {
         },
     }
 }
+
+window.addEventListener('alpine:initializing', function () {
+    window.Alpine.data('otp', otp);
+});
 </script>
 @endonce
