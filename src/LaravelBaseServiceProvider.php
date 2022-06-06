@@ -15,8 +15,10 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Component;
 use Livewire\Livewire;
 use Rawilk\LaravelBase\Console\InstallCommand;
+use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppContract;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
 use Rawilk\LaravelBase\Http\Responses;
+use Rawilk\LaravelBase\Models\AuthenticatorApp;
 
 class LaravelBaseServiceProvider extends ServiceProvider
 {
@@ -106,13 +108,22 @@ class LaravelBaseServiceProvider extends ServiceProvider
         }
 
         if (Features::canManageTwoFactorAuthentication()) {
+            Livewire::component('profile.two-factor-authentication-form', Http\Livewire\Profile\TwoFactorAuthenticationForm::class);
+        }
+
+        if (Features::canManageWebauthnAuthentication()) {
+            Livewire::component('profile.webauthn-security-keys-form', Http\Livewire\Profile\WebauthnSecurityKeysForm::class);
+            Livewire::component('profile.webauthn-internal-keys-form', Http\Livewire\Profile\WebauthnInternalKeysForm::class);
+        }
+
+        if (Features::canManageWebauthnAuthentication() || Features::canManageTwoFactorAuthentication()) {
             Livewire::component('two-factor-challenge', Http\Livewire\Auth\TwoFactorLogin::class);
+            Livewire::component('profile.2fa-recovery-codes', Http\Livewire\Profile\TwoFactorRecoveryCodes::class);
         }
 
         Livewire::component('profile-navigation-menu', Http\Livewire\Profile\ProfileNavigationMenu::class);
         Livewire::component('profile.update-profile-information-form', Http\Livewire\Profile\UpdateProfileInformationForm::class);
         Livewire::component('profile.update-password-form', Http\Livewire\Profile\UpdatePasswordForm::class);
-        Livewire::component('profile.two-factor-authentication-form', Http\Livewire\Profile\TwoFactorAuthenticationForm::class);
         Livewire::component('profile.delete-user-form', Http\Livewire\Profile\DeleteUserForm::class);
         Livewire::component('profile.logout-other-browser-sessions-form', Http\Livewire\Profile\LogoutOtherBrowserSessionsForm::class);
         Livewire::component('password.confirm', Http\Livewire\Auth\ConfirmPassword::class);
@@ -225,6 +236,9 @@ class LaravelBaseServiceProvider extends ServiceProvider
         $this->app->singleton(Contracts\Auth\TwoFactorLoginResponse::class, Responses\Auth\TwoFactorLoginResponse::class);
         $this->app->singleton(Contracts\Auth\PasswordConfirmedResponse::class, Responses\Auth\PasswordConfirmedResponse::class);
         $this->app->singleton(Contracts\Auth\FailedPasswordConfirmationResponse::class, Responses\Auth\FailedPasswordConfirmationResponse::class);
+
+        // Models
+        $this->app->bind(AuthenticatorAppContract::class, config('laravel-base.authenticator_apps.model', AuthenticatorApp::class));
     }
 
     protected function configureRoutes(): void

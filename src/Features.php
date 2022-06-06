@@ -36,11 +36,19 @@ class Features
     }
 
     /*
-     * Determine if the application can manage two factor authentication.
+     * Determine if the application can manage two-factor authentication.
      */
     public static function canManageTwoFactorAuthentication(): bool
     {
         return static::enabled(static::twoFactorAuthentication());
+    }
+
+    /*
+     * Determine if the application can manage WebAuthn authentication.
+     */
+    public static function canManageWebauthnAuthentication(): bool
+    {
+        return static::enabled(static::webauthn());
     }
 
     /*
@@ -148,7 +156,7 @@ class Features
     }
 
     /*
-     * Enable the two factor authentication feature.
+     * Enable the two-factor authentication feature.
      */
     public static function twoFactorAuthentication(array $options = []): string
     {
@@ -158,5 +166,17 @@ class Features
         }
 
         return 'two-factor-authentication';
+    }
+
+    /*
+     * Enable the WebAuthn feature.
+     */
+    public static function webauthn(array $options = []): string
+    {
+        if (count($options)) {
+            config(['laravel-base-options.webauthn' => $options]);
+        }
+
+        return 'webauthn';
     }
 }

@@ -246,6 +246,9 @@ return [
         Features::twoFactorAuthentication([
             'confirmPassword' => true, // Forces confirm password when enabling, disabling, etc.
         ]),
+        Features::webauthn([
+            'confirmPassword' => true, // Forces confirm password when enabling, disabling, etc.
+        ]),
 
         // Profile features...
         Features::avatars(),
@@ -319,6 +322,48 @@ return [
             'edit' => \Rawilk\LaravelBase\Http\Livewire\Roles\Edit::class,
             'import' => \Rawilk\LaravelBase\Http\Livewire\Roles\Import::class,
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authenticator App
+    |--------------------------------------------------------------------------
+    |
+    | Here you may customize the table name and model used for a user's stored
+    | two-factor authenticator apps.
+    |
+    */
+    'authenticator_apps' => [
+        'table' => 'authenticator_apps',
+
+        /*
+         * You may extend our model, or use your own. If you use your
+         * own model, it must implement the \Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp
+         * contract.
+         */
+        'model' => \Rawilk\LaravelBase\Models\AuthenticatorApp::class,
+
+        /*
+         * You may restrict the amount of authenticator apps a user may register to their account.
+         * Set to `null` for unlimited registrations per user.
+         */
+        'max_per_user' => env('AUTHENTICATOR_APP_USER_MAX', 3),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | WebAuthn
+    |--------------------------------------------------------------------------
+    |
+    | If you wish to restrict users on how many WebAuthn security keys
+    | they may register to their account, you may do so here. A `null` value
+    | will not have any limits on the keys.
+    |
+    */
+    'webauthn' => [
+        'max_security_keys_per_user' => env('WEBAUTHN_MAX_SECURITY_KEYS', 5),
+
+        'max_internal_keys_per_user' => env('WEBAUTHN_MAX_INTERNAL_KEYS'),
     ],
 
 ];

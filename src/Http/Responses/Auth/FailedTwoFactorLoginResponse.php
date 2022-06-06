@@ -12,7 +12,7 @@ class FailedTwoFactorLoginResponse implements FailedTwoFactorLoginResponseContra
     public function toResponse($request)
     {
         throw ValidationException::withMessages([
-            'two_factor' => [__('laravel-base::users.two_factor.invalid_code')],
+            'two_factor' => [__('laravel-base::2fa.challenge.alerts.invalid')],
         ]);
     }
 }

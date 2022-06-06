@@ -1,5 +1,2 @@
 <?php
-
-return [
-    'uncategorized' => 'Uncategorized',
-];
+return ["uncategorized" => "Uncategorized"];

@@ -10,9 +10,11 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Crypt;
 use Rawilk\LaravelBase\Contracts\Auth\FailedTwoFactorLoginResponse;
 use Rawilk\LaravelBase\Contracts\Auth\TwoFactorAuthenticationProvider;
+use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp;
+use Rawilk\LaravelBase\Events\Auth\TwoFactorAuthenticationAppUsed;
 
 /**
- * @property null|string $code
+ * @property null|string $totp
  * @property null|string $recoveryCode
  */
 class TwoFactorLoginRequest extends FormRequest
@@ -39,7 +41,7 @@ class TwoFactorLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['nullable', 'string'],
+            'totp' => ['nullable', 'string'],
             'recovery_code' => ['nullable', 'string'],
         ];
     }
@@ -87,7 +89,7 @@ class TwoFactorLoginRequest extends FormRequest
      *
      * @return string|null
      */
-    public function validRecoveryCode(): null|string
+    public function validRecoveryCode(): ?string
     {
         if (! $this->recoveryCode) {
             return null;
@@ -98,16 +100,29 @@ class TwoFactorLoginRequest extends FormRequest
     }
 
     /**
-     * Determine if the request has a valid two factor code.
+     * Determine if the request has a valid totp code.
      *
      * @return bool
      */
-    public function hasValidCode(): bool
+    public function hasValidTotpCode(): bool
     {
-        return $this->code && app(TwoFactorAuthenticationProvider::class)->verify(
-            Crypt::decrypt($this->challengedUser()->two_factor_secret),
-            $this->code
-        );
+        if (! $this->totp) {
+            return false;
+        }
+
+        $authenticatorApps = app(AuthenticatorApp::class)::query()
+            ->where('user_id', $this->challengedUser()->getAuthIdentifier())
+            ->get(['id', 'secret']);
+
+        foreach ($authenticatorApps as $authenticatorApp) {
+            if (app(TwoFactorAuthenticationProvider::class)->verify(Crypt::decrypt($authenticatorApp->secret), $this->totp)) {
+                TwoFactorAuthenticationAppUsed::dispatch($this->challengedUser(), $authenticatorApp);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

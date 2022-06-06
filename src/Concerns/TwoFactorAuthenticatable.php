@@ -8,6 +8,7 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Crypt;
 use Rawilk\LaravelBase\Contracts\Auth\TwoFactorAuthenticationProvider;
 use Rawilk\LaravelBase\LaravelBase;
@@ -15,7 +16,6 @@ use Rawilk\LaravelBase\Services\RecoveryCode;
 
 /**
  * @property null|string $two_factor_recovery_codes
- * @property null|string $two_factor_secret
  * @mixin \Eloquent
  */
 trait TwoFactorAuthenticatable
@@ -38,24 +38,8 @@ trait TwoFactorAuthenticatable
         ])->save();
     }
 
-    public function twoFactorQrCodeSvg(): string
+    public function authenticatorApps(): HasMany
     {
-        $svg = (new Writer(
-            new ImageRenderer(
-                new RendererStyle(192, 0, null, null, Fill::uniformColor(new Rgb(255, 255, 255), new Rgb(45, 55, 72))),
-                new SvgImageBackEnd
-            )
-        ))->writeString($this->twoFactorQrCodeUrl());
-
-        return trim(substr($svg, strpos($svg, PHP_EOL) + 1));
-    }
-
-    public function twoFactorQrCodeUrl(): string
-    {
-        return app(TwoFactorAuthenticationProvider::class)->qrCodeUrl(
-            appName(),
-            $this->{LaravelBase::username()},
-            Crypt::decrypt($this->two_factor_secret),
-        );
+        return $this->hasMany(config('laravel-base.authenticator_apps.model'));
     }
 }

@@ -1,99 +1,78 @@
 <?php
-
 return [
-    'action_message' => 'Saved.',
-    'add_button' => 'Add :item',
-    'bulk_actions' => 'Bulk Actions',
-    'cancel_button' => 'Cancel',
-    'copy_to_clipboard' => 'Copy to clipboard',
-    'copied_to_clipboard' => 'Copied!',
-    'confirm_modal_cancel' => 'Nevermind',
-    'create_button' => 'Create',
-    'delete_button' => 'Delete',
-    'edit_button' => 'Edit',
-    'export_button' => 'Export Excel',
-    'import_button' => 'Import',
-    'remove_filter' => 'Remove filter',
-    'update_button' => 'Update',
-    'save_button' => 'Save',
-
-    'confirms_password' => [
-        'title' => 'Confirm Password',
-        'content' => 'For your security, please confirm your password to continue.',
-        'button' => 'Confirm',
-        'password_placeholder' => 'Password',
+    "action_message" => "Saved.",
+    "add_button" => "Add :item",
+    "badge" => ["remove_button" => "Remove"],
+    "bulk_actions" => "Bulk Actions",
+    "cancel_button" => "Cancel",
+    "confirm_modal_cancel" => "Nevermind",
+    "confirms_password" => [
+        "button" => "Confirm",
+        "content" => "For your security, please confirm your password to continue.",
+        "password_placeholder" => "Password",
+        "title" => "Confirm Password"
     ],
-
-    'badge' => [
-        'remove_button' => 'Remove',
-    ],
-
-    'dropdown' => [
-        'open_menu' => 'Open menu',
-    ],
-
-    'filters' => [
-        'apply_button' => 'Apply Filters',
-        'reset_button' => 'Clear Filters',
-        // 'trigger_button_tooltip' => 'Filters',
-        'trigger_button_tooltip' => "Filters<br>Shortcut: Press <kbd>ctrl</kbd> + <kbd>f</kbd>",
-        'modal_title' => 'Filters',
-        // General labels...
-        'labels' => [
-            'created_at_min' => 'Created Min.',
-            'created_at_max' => 'Created Max.',
-            'updated_at_min' => 'Last Updated Min.',
-            'updated_at_max' => 'Last Updated Max.',
+    "copied_to_clipboard" => "Copied!",
+    "copy_to_clipboard" => "Copy to clipboard",
+    "create_button" => "Create",
+    "delete_button" => "Delete",
+    "dropdown" => ["open_menu" => "Open menu"],
+    "edit_button" => "Edit",
+    "export_button" => "Export Excel",
+    "filters" => [
+        "apply_button" => "Apply Filters",
+        "labels" => [
+            "created_at_max" => "Created Max.",
+            "created_at_min" => "Created Min.",
+            "updated_at_max" => "Last Updated Max.",
+            "updated_at_min" => "Last Updated Min."
         ],
+        "modal_title" => "Filters",
+        "reset_button" => "Clear Filters",
+        "trigger_button_tooltip" => "Filters<br>Shortcut: Press <kbd>ctrl</kbd> + <kbd>f</kbd>"
     ],
-
-    'labels' => [
-        'form' => [
-            'max_characters' => 'Max of :max characters allowed.',
-            'errors_found' => 'Your submission contains some errors. Please fix them before continuing.',
-            'make_selection' => 'Select',
-            'select_all' => 'All',
-            'select_none' => 'None',
-            'collapse_all' => 'Collapse All',
-            'expand_all' => 'Expand All',
-            'search_placeholder' => 'Search...',
-            'per_page' => 'Per page',
+    "import_button" => "Import",
+    "labels" => [
+        "form" => [
+            "collapse_all" => "Collapse All",
+            "errors_found" => "Your submission contains some errors. Please fix them before continuing.",
+            "expand_all" => "Expand All",
+            "make_selection" => "Select",
+            "max_characters" => "Max of :max characters allowed.",
+            "per_page" => "Per page",
+            "search_placeholder" => "Search...",
+            "select_all" => "All",
+            "select_none" => "None"
         ],
-        'model' => [
-            'id' => 'ID',
-            'created_at' => 'Created',
-            'updated_at' => 'Last Updated',
-        ],
-        'topbar' => [
-            'show_menu' => 'Show menu',
-            'hide_menu' => 'Hide menu',
-        ],
+        "model" => ["created_at" => "Created", "id" => "ID", "updated_at" => "Last Updated"],
+        "topbar" => ["hide_menu" => "Hide menu", "show_menu" => "Show menu"]
     ],
-
-    'modal' => [
-        'close_button' => 'Close',
-        'import' => [
-            'title' => 'Import',
-            'button' => 'Import',
-            'upload_hint' => '.csv, .xls, or .xlsx file',
-            'importing' => 'Importing',
-            'change_upload' => 'Change',
-        ],
+    "modal" => [
+        "close_button" => "Close",
+        "import" => [
+            "button" => "Import",
+            "change_upload" => "Change",
+            "importing" => "Importing",
+            "title" => "Import",
+            "upload_hint" => ".csv, .xls, or .xlsx file"
+        ]
     ],
-
-    'tabs' => [
-        'nav_label' => 'Tabs',
-        'select_tab' => 'Select a tab',
-        'selected_tab_label' => 'Selected tab',
+    "recommended" => "Recommended",
+    "remove_filter" => "Remove filter",
+    "save_button" => "Save",
+    "table" => [
+        "all_rows_selected" => "All <strong>:total</strong> :item_name are selected.",
+        "clear_selection" => "Clear selection",
+        "clear_sort" => "Click to clear sorting",
+        "click_to_sort" => "Click to sort :direction",
+        "column_select" => "Columns",
+        "page_selected" => "All <strong>:count</strong> :item_name on this page are selected.",
+        "select_all_rows" => "Select all <strong>:total</strong> :item_name"
     ],
-
-    'table' => [
-        'click_to_sort' => 'Click to sort :direction',
-        'clear_sort' => 'Click to clear sorting',
-        'page_selected' => 'All <strong>:count</strong> :item_name on this page are selected.',
-        'select_all_rows' => 'Select all <strong>:total</strong> :item_name',
-        'clear_selection' => 'Clear selection',
-        'all_rows_selected' => 'All <strong>:total</strong> :item_name are selected.',
-        'column_select' => 'Columns',
+    "tabs" => [
+        "nav_label" => "Tabs",
+        "select_tab" => "Select a tab",
+        "selected_tab_label" => "Selected tab"
     ],
+    "update_button" => "Update"
 ];

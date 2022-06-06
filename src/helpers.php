@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Rawilk\LaravelBase\Contracts\Enums\HasLabel;
 use Rawilk\LaravelBase\LaravelBase;
@@ -179,6 +180,13 @@ if (! function_exists('pageTitle')) {
     function pageTitle(...$segments): string
     {
         return collect($segments)->flatten()->implode(' | ');
+    }
+}
+
+if (! function_exists('bladeRender')) {
+    function bladeRender(string $blade, array $data = []): string
+    {
+        return Blade::render($blade, $data);
     }
 }
 

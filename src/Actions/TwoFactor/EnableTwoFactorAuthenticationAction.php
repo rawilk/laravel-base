@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Actions\TwoFactor;
 
-use Illuminate\Support\Collection;
+use Illuminate\Contracts\Auth\Authenticatable as User;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\ValidationException;
 use Rawilk\LaravelBase\Contracts\Auth\TwoFactorAuthenticationProvider;
-use Rawilk\LaravelBase\Services\RecoveryCode;
+use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp;
+use Rawilk\LaravelBase\Events\TwoFactorAuth\TwoFactorAuthEnabled;
 
 class EnableTwoFactorAuthenticationAction
 {
@@ -15,13 +17,29 @@ class EnableTwoFactorAuthenticationAction
     {
     }
 
-    public function __invoke($user)
+    public function __invoke(User $user, string $twoFactorSecret, string|int $confirmationCode): void
     {
-        $user->forceFill([
-            'two_factor_secret' => Crypt::encrypt($this->provider->generateSecretKey()),
-            'two_factor_recovery_codes' => Crypt::encrypt(
-                json_encode(Collection::times(8, fn () => RecoveryCode::generate())->all())
-            ),
-        ])->save();
+        $this->ensureCodeIsValid($twoFactorSecret, $confirmationCode);
+
+        $authenticatorApp = tap(app(AuthenticatorApp::class)::make(), function (AuthenticatorApp $authenticatorApp) use ($user, $twoFactorSecret) {
+            $authenticatorApp->forceFill([
+                'name' => 'Authenticator app',
+                'secret' => Crypt::encrypt($twoFactorSecret),
+                'user_id' => $user->getAuthIdentifier(),
+            ])->save();
+        });
+
+        event(new TwoFactorAuthEnabled($user, $authenticatorApp));
+    }
+
+    private function ensureCodeIsValid(string $twoFactorSecret, string|int $confirmationCode): void
+    {
+        $valid = $this->provider->verify($twoFactorSecret, (string) $confirmationCode);
+
+        if (! $valid) {
+            throw ValidationException::withMessages([
+                'confirmationCode' => __('laravel-base::2fa.authenticator.alerts.invalid_code'),
+            ]);
+        }
     }
 }

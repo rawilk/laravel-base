@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\ValidationException;
-use Rawilk\LaravelBase\Concerns\TwoFactorAuthenticatable;
+use Rawilk\LaravelBase\Events\Auth\TwoFactorAuthenticationChallenged;
 use Rawilk\LaravelBase\LaravelBase;
 use Rawilk\LaravelBase\Support\Auth\LoginRateLimiter;
 
@@ -22,10 +22,7 @@ class RedirectIfTwoFactorAuthenticatable
     {
         $user = $this->validateCredentials($request);
 
-        if (
-            $user?->two_factor_secret
-                 && in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user), true)
-        ) {
+        if ($this->isEnabledForUser($user)) {
             return $this->twoFactorChallengeResponse($request, $user);
         }
 
@@ -75,10 +72,17 @@ class RedirectIfTwoFactorAuthenticatable
     protected function twoFactorChallengeResponse($request, $user)
     {
         $request->session()->put([
-            'login.id' => $user->getKey(),
+            'login.id' => $user->getAuthIdentifier(),
             'login.remember' => $request->boolean('remember'),
         ]);
 
+        TwoFactorAuthenticationChallenged::dispatch($user);
+
         return redirect()->route('two-factor.login');
+    }
+
+    protected function isEnabledForUser($user): bool
+    {
+        return $user?->two_factor_enabled === true;
     }
 }

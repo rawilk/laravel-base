@@ -52,7 +52,7 @@ class Login extends Component
             ->send($request)
             ->through(array_filter([
                 EnsureLoginIsNotThrottled::class,
-                Features::canManageTwoFactorAuthentication() ? RedirectIfTwoFactorAuthenticatable::class : null,
+                (Features::canManageTwoFactorAuthentication() || Features::canManageWebauthnAuthentication()) ? RedirectIfTwoFactorAuthenticatable::class : null,
                 AttemptToAuthenticate::class,
                 EnsureUserAccountIsActive::class,
                 PrepareAuthenticatedSession::class,
