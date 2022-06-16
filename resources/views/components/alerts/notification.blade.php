@@ -1,5 +1,6 @@
 <div x-data="notification({{ $optionsToJson() }})"
      x-on:notify.window="add($event.detail)"
+     aria-live="assertive"
      class="fixed inset-0 flex flex-col space-y-4 items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-end"
 >
     <template x-for="notice in notices" :key="notice.id">
