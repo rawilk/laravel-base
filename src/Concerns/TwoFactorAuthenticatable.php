@@ -2,16 +2,8 @@
 
 namespace Rawilk\LaravelBase\Concerns;
 
-use BaconQrCode\Renderer\Color\Rgb;
-use BaconQrCode\Renderer\Image\SvgImageBackEnd;
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\RendererStyle\Fill;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Crypt;
-use Rawilk\LaravelBase\Contracts\Auth\TwoFactorAuthenticationProvider;
-use Rawilk\LaravelBase\LaravelBase;
 use Rawilk\LaravelBase\Services\RecoveryCode;
 
 /**
