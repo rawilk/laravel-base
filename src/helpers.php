@@ -15,7 +15,7 @@ if (! function_exists('appName')) {
      *
      * @return string|null
      */
-    function appName(): null|string
+    function appName(): ?string
     {
         return config('app.name');
     }
@@ -43,7 +43,7 @@ if (! function_exists('minDateToUTC')) {
      * @param null|string|\Carbon\Carbon $date
      * @return \Carbon\CarbonInterface|null
      */
-    function minDateToUTC($date): null|\Carbon\CarbonInterface
+    function minDateToUTC($date): ?\Carbon\CarbonInterface
     {
         if (! $date) {
             return null;
@@ -62,7 +62,7 @@ if (! function_exists('maxDateToUTC')) {
      * @param null|string|\Carbon\Carbon $date
      * @return \Carbon\CarbonInterface|null
      */
-    function maxDateToUTC($date): null|\Carbon\CarbonInterface
+    function maxDateToUTC($date): ?\Carbon\CarbonInterface
     {
         if (! $date) {
             return null;
@@ -91,13 +91,16 @@ if (! function_exists('userTimezone')) {
      * Retrieve the authenticated user's timezone.
      * Fallback on the appTimezone if no authenticated user.
      *
+     * @param null|\Illuminate\Contracts\Auth\Authenticatable $user
      * @return string
      */
-    function userTimezone(): string
+    function userTimezone(?\Illuminate\Contracts\Auth\Authenticatable $user = null): string
     {
+        $user = $user ?: auth()->user();
+
         $userTimezone = is_null(LaravelBase::$findUserTimezoneUsingCallback)
-            ? auth()->user()?->timezone
-            : call_user_func(LaravelBase::$findUserTimezoneUsingCallback, auth()->user());
+            ? $user?->timezone
+            : call_user_func(LaravelBase::$findUserTimezoneUsingCallback, $user);
 
         return $userTimezone ?? appTimezone();
     }
@@ -209,7 +212,7 @@ if (! function_exists('realUserId')) {
      *
      * @return null|int
      */
-    function realUserId(): null|int
+    function realUserId(): ?int
     {
         return isImpersonating()
             ? (int) session()->get('impersonate')
@@ -244,7 +247,7 @@ if (! function_exists('isExternalLink')) {
      * @param string|null $url
      * @return bool
      */
-    function isExternalLink(null|string $url): bool
+    function isExternalLink(?string $url): bool
     {
         // This is probably a relative link.
         if (Str::startsWith($url, ['#', '/'])) {
