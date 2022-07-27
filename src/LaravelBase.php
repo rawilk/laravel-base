@@ -81,8 +81,12 @@ class LaravelBase
     /*
      * Get the completion redirect path for a specific feature.
      */
-    public static function redirects(string $redirect, null|string $default = null): string
+    public static function redirects(string $redirect, ?string $default = null): string
     {
+        if ($redirect === 'login' && function_exists('defaultLoginRedirect')) {
+            return (string) (defaultLoginRedirect() ?? $default ?? Routing::home());
+        }
+
         return (string) (Config::get("laravel-base.redirects.{$redirect}") ?? $default ?? Routing::home());
     }
 

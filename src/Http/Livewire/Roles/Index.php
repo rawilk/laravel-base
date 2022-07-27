@@ -27,7 +27,7 @@ class Index extends Component
 
     public bool $showDelete = false;
     public bool $showDeleteAll = false;
-    public null|Role $deleting = null;
+    public ?Role $deleting = null;
     protected bool $isExporting = false;
 
     private const SELECTABLE_COLUMNS = ['id', 'name', 'description', 'created_at', 'updated_at'];
@@ -101,7 +101,6 @@ class Index extends Component
 
     public function getRowsQueryProperty()
     {
-        /** @psalm-suppress UndefinedMethod */
         $query = $this->roleModel::query()
             ->when($this->filters['search'], fn ($query, $search) => $query->modelSearch(['name', 'description'], $search))
             ->when($this->filters['created-min'], fn ($query, $date) => $query->where('created_at', '>=', $this->localizeMinDate($date)))
