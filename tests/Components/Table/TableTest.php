@@ -21,7 +21,7 @@ final class TableTest extends TestCase
     /** @test */
     public function can_have_thead_and_tbody_content(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-table>
             <x-slot name="head">
                 <tr>
@@ -49,7 +49,7 @@ final class TableTest extends TestCase
     /** @test */
     public function custom_attributes_can_be_applied(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-table id="my-table" class="my-table-class">
             <x-slot name="head" id="my-th" class="th-class">
                 <tr><th>My heading</th></tr>

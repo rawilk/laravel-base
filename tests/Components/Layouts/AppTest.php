@@ -41,7 +41,7 @@ final class AppTest extends TestCase
     /** @test */
     public function renders_title_correctly(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-app :livewire="false" :laravel-form-components="false" :assets="false" title="My Custom Title">
         </x-app>
         HTML;
@@ -52,7 +52,7 @@ final class AppTest extends TestCase
     /** @test */
     public function can_have_a_custom_title_separator(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-app :livewire="false" :laravel-form-components="false" :assets="false" title="My Custom Title" title-separator="-">
         </x-app>
         HTML;
@@ -63,7 +63,7 @@ final class AppTest extends TestCase
     /** @test */
     public function renders_content_in_default_slot(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <div>My content</div>
         </x-app>
@@ -75,7 +75,7 @@ final class AppTest extends TestCase
     /** @test */
     public function tags_can_be_added_to_head_via_slot(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <x-slot name="headTop">
                 <link rel="stylesheet" href="/css/top-styles.css">
@@ -95,7 +95,7 @@ final class AppTest extends TestCase
     /** @test */
     public function tags_can_be_added_to_head_via_slot_or_stacks(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <x-slot name="headTop">
                 <link rel="stylesheet" href="/css/top-styles.css">
@@ -123,7 +123,7 @@ final class AppTest extends TestCase
     /** @test */
     public function scripts_can_be_added_to_end_of_body_via_slot_or_stacks(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-app :livewire="false" :laravel-form-components="false" :assets="false">
             <div>My content</div>
 

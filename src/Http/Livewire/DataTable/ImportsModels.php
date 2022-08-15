@@ -14,7 +14,9 @@ trait ImportsModels
     public static string $showEvent = 'showImportModal';
 
     public bool $showImport = false;
+
     public $columns = [];
+
     public $upload;
 
     abstract protected function guesses(): array;

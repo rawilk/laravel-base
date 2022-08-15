@@ -8,6 +8,7 @@ namespace Rawilk\LaravelBase\Http\Livewire\DataTable;
 trait HidesColumns
 {
     public array $hidden = [];
+
     public array $hideableColumns = [];
 
     /*

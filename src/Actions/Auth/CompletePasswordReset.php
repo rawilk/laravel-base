@@ -13,8 +13,8 @@ class CompletePasswordReset
     /**
      * Complete the password reset process for the given user.
      *
-     * @param \Illuminate\Contracts\Auth\StatefulGuard $guard
-     * @param mixed $user
+     * @param  \Illuminate\Contracts\Auth\StatefulGuard  $guard
+     * @param  mixed  $user
      */
     public function __invoke(StatefulGuard $guard, $user)
     {

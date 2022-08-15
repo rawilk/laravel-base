@@ -20,9 +20,10 @@ class AttemptToAuthenticate
     /**
      * Attempt to authenticate a user.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param callable $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  callable  $next
      * @return mixed
+     *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function handle($request, $next)
@@ -44,8 +45,8 @@ class AttemptToAuthenticate
     /**
      * Attempt to authenticate using a custom callback.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param callable $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  callable  $next
      * @return mixed
      */
     protected function handleUsingCustomCallback($request, $next)
@@ -75,7 +76,7 @@ class AttemptToAuthenticate
     /**
      * Fire the failed authentication attempt event with the given arguments.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      */
     protected function fireFailedEvent($request): void
     {

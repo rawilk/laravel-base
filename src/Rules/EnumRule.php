@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Lang;
 class EnumRule implements Rule
 {
     protected $value;
+
     protected ?array $onlyCases = null;
 
     public function __construct(protected readonly string $enum)

@@ -15,8 +15,8 @@ class PrepareAuthenticatedSession
     /**
      * Prepare a new session for the new logged in user.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param callable $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  callable  $next
      * @return mixed
      */
     public function handle($request, $next)

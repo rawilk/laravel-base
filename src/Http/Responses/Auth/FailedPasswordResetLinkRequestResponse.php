@@ -10,7 +10,7 @@ use Rawilk\LaravelBase\Contracts\Auth\FailedPasswordResetLinkRequestResponse as 
 class FailedPasswordResetLinkRequestResponse implements FailedPasswordResetLinkRequestResponseContract
 {
     /**
-     * @param string $status The response status language key
+     * @param  string  $status The response status language key
      */
     public function __construct(protected string $status)
     {

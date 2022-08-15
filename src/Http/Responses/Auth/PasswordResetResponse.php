@@ -11,7 +11,7 @@ use Rawilk\LaravelBase\LaravelBase;
 class PasswordResetResponse implements PasswordResetResponseContract
 {
     /**
-     * @param string $status The response status language key
+     * @param  string  $status The response status language key
      */
     public function __construct(protected string $status)
     {

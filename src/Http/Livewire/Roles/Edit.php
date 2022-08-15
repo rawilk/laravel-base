@@ -18,6 +18,7 @@ class Edit extends Component
     use AuthorizesRequests;
 
     public Role $role;
+
     public array $state;
 
     public function updateDetails(UpdateRoleAction $updater): void

@@ -11,8 +11,11 @@ class Alert extends BladeComponent
 {
     // Available types
     public const INFO = 'info';
+
     public const SUCCESS = 'success';
+
     public const ERROR = 'error';
+
     public const WARNING = 'warning';
 
     public function __construct(

@@ -21,7 +21,7 @@ class UpdateUserProfileInformationAction implements UpdatesUserProfileInformatio
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('users')->ignore($user->getKey())
+                Rule::unique('users')->ignore($user->getKey()),
             ],
             'timezone' => ['required', 'string'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],

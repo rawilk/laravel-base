@@ -19,6 +19,7 @@ use Spatie\Permission\Models\Permission as BasePermission;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Rawilk\LaravelBase\Models\Permission[] $permissions
  * @property-read \Illuminate\Database\Eloquent\Collection|\Rawilk\LaravelBase\Models\Role[] $roles
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\User[] $users
+ *
  * @method \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method \Illuminate\Database\Eloquent\Builder|Permission newQuery()
  * @method \Illuminate\Database\Eloquent\Builder|Permission permission($permissions)

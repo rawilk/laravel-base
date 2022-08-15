@@ -22,6 +22,7 @@ class Email extends Component
     use ThrottlesAuthenticationAttempts;
 
     public string $email = '';
+
     public bool $emailSent = false;
 
     public function sendPasswordResetLink()

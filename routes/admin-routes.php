@@ -51,4 +51,4 @@ Route::group(
                         ->name('edit');
                 });
         }
-});
+    });

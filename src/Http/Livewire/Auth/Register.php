@@ -16,7 +16,9 @@ use Rawilk\LaravelBase\Contracts\Auth\RegisterViewResponse;
 class Register extends Component
 {
     public string $name = '';
+
     public string $email = '';
+
     public string $password = '';
 
     public function register(RegistersNewUsers $action)

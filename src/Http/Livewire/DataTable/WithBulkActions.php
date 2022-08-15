@@ -11,7 +11,9 @@ namespace Rawilk\LaravelBase\Http\Livewire\DataTable;
 trait WithBulkActions
 {
     public bool $selectPage = false;
+
     public bool $selectAll = false;
+
     public $selected = [];
 
     public function getHasSelectionProperty(): bool

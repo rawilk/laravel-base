@@ -23,11 +23,15 @@ use Spatie\Permission\Contracts\Role;
 class Index extends Component
 {
     use AuthorizesRequests;
-    use HasDataTable, WithHighlighting;
+    use HasDataTable;
+    use WithHighlighting;
 
     public bool $showDelete = false;
+
     public bool $showDeleteAll = false;
+
     public ?Role $deleting = null;
+
     protected bool $isExporting = false;
 
     private const SELECTABLE_COLUMNS = ['id', 'name', 'description', 'created_at', 'updated_at'];

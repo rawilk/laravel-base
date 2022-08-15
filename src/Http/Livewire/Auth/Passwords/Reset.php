@@ -22,8 +22,11 @@ use Rawilk\LaravelBase\LaravelBase;
 class Reset extends Component
 {
     public string $token;
+
     public string $email = '';
+
     public string $password = '';
+
     public bool $needsEmail = true;
 
     public function resetPassword()

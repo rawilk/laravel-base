@@ -19,6 +19,7 @@ use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppCont
  * @property \Illuminate\Support\Carbon|null $last_used_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rawilk\LaravelBase\Models\AuthenticatorApp newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rawilk\LaravelBase\Models\AuthenticatorApp query()
  * @mixin \Eloquent

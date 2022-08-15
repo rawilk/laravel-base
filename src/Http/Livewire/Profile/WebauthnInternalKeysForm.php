@@ -7,6 +7,7 @@ namespace Rawilk\LaravelBase\Http\Livewire\Profile;
 class WebauthnInternalKeysForm extends RegisterWebauthnKeyForm
 {
     protected string $attachmentType = 'platform';
+
     protected string $viewName = 'livewire.profile.webauthn-internal-keys-form';
 
     public function boot(): void

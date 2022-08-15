@@ -11,7 +11,9 @@ class Tabs extends BladeComponent
 {
     // Nav style types
     public const BAR = 'bar';
+
     public const UNDERLINE = 'underline';
+
     public const PILLS = 'pills';
 
     public function __construct(

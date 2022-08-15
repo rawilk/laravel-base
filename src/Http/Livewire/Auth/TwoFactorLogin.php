@@ -35,8 +35,11 @@ class TwoFactorLogin extends Component
     use ThrottlesAuthenticationAttempts;
 
     public string $totp = '';
+
     public string $recoveryCode = '';
+
     public array $challengeOptions = [];
+
     public string $currentChallengeType = 'backup_code';
 
     /*
@@ -44,6 +47,7 @@ class TwoFactorLogin extends Component
      * a user has at least one key registered.
      */
     public string $publicKey = '';
+
     public $keyData;
 
     public function guard(): StatefulGuard
@@ -202,7 +206,7 @@ class TwoFactorLogin extends Component
      * Certain actions do not (and should not) need to be performed on this step
      * of the authentication process, so we'll filter them out here.
      *
-     * @param array $pipes
+     * @param  array  $pipes
      * @return array
      */
     private function filterPipes(array $pipes): array

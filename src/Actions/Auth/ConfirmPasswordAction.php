@@ -16,9 +16,9 @@ class ConfirmPasswordAction
 
         return is_null(LaravelBase::$confirmPasswordsUsingCallback)
             ? $guard->validate([
-                  $username => $user->{$username},
-                  'password' => $password,
-              ])
+                $username => $user->{$username},
+                'password' => $password,
+            ])
             : $this->confirmPasswordUsingCustomCallback($user, $password);
     }
 

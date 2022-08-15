@@ -16,8 +16,8 @@ class EnsureUserAccountIsActive
     /**
      * Ensure the user's account is active.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param callable $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  callable  $next
      * @return mixed
      */
     public function handle($request, $next)

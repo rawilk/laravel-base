@@ -21,7 +21,9 @@ use Rawilk\LaravelBase\LaravelBase;
 class Login extends Component
 {
     public string $email = '';
+
     public string $password = '';
+
     public bool $remember = false;
 
     public function login(Request $request)

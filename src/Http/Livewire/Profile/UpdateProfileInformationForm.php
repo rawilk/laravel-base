@@ -19,6 +19,7 @@ class UpdateProfileInformationForm extends Component
     use WithFileUploads;
 
     public array $state = [];
+
     public $photo;
 
     public function getUserProperty()

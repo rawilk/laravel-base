@@ -18,8 +18,8 @@ class EnsureLoginIsNotThrottled
      * Throttle the login requests if the user has attempted to login
      * too many times and failed.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param callable $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  callable  $next
      * @return mixed
      */
     public function handle($request, $next)

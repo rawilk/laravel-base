@@ -40,7 +40,7 @@ final class HtmlTest extends TestCase
     /** @test */
     public function can_have_custom_content_at_top_of_head(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-html>
             <x-slot name="headTop">
                 <link rel="icon" href="favicon.ico" />
@@ -56,7 +56,7 @@ final class HtmlTest extends TestCase
     /** @test */
     public function can_have_slotted_head_content(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-html>
             <x-slot name="head">
                 <link rel="icon" href="favicon.ico" />
@@ -72,7 +72,7 @@ final class HtmlTest extends TestCase
     /** @test */
     public function can_assign_attributes_to_html_tag_via_slot(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-html class="my-body-class">
             <x-slot name="html" class="my-html-class" data-foo="bar"></x-slot>
 

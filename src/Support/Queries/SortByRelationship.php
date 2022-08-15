@@ -13,9 +13,13 @@ use Illuminate\Support\Str;
 class SortByRelationship
 {
     private Model $model;
+
     private string $column = 'name';
+
     private string $direction = 'asc';
+
     private null|string $foreignKey = null;
+
     private string $primaryKey = 'id';
 
     public static function make(EloquentBuilder|QueryBuilder|Relation $query): self

@@ -10,6 +10,7 @@ class Card extends BladeComponent
 {
     // Types (for header styling)
     public const ERROR = 'error';
+
     public const SUCCESS = 'success';
 
     public function __construct(

@@ -1,20 +1,21 @@
 @props([
     'action',
-    'stack' => 'js',
     'separator' => ' | ',
     'selector' => '.page-title',
 ])
 
-@push($stack)
+@once
 <script>
-    @this.on('{{ $action }}', () => {
-        @if ($slot->isEmpty())
-            const newTitle = `Edit ${@this.state['name']}`;
-        @else
-            {{ $slot }}
-        @endif
+    document.addEventListener('livewire:load', function() {
+        @this.on('{{ $action }}', () => {
+            @if ($slot->isEmpty())
+                const newTitle = `Edit ${@this.state['name']}`;
+            @else
+                {{ $slot }}
+            @endif
 
-        updatePageTitle({ newTitle, separator: '{{ $separator }}', selector: '{{ $selector }}' });
+            updatePageTitle({ newTitle, separator: '{{ $separator }}', selector: '{{ $selector }}' });
+        });
     });
 </script>
-@endpush
+@endonce

@@ -10,7 +10,7 @@ use Rawilk\LaravelBase\Contracts\Auth\TwoFactorAuthenticationProvider as TwoFact
 class TwoFactorAuthenticationProvider implements TwoFactorAuthenticationProviderContract
 {
     /**
-     * @param \PragmaRX\Google2FA\Google2FA $engine The underlying library providing two-factor authentication helper services
+     * @param  \PragmaRX\Google2FA\Google2FA  $engine The underlying library providing two-factor authentication helper services
      */
     public function __construct(protected Google2FA $engine)
     {

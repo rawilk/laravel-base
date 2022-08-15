@@ -40,18 +40,25 @@ class TwoFactorAuthenticationForm extends Component
     protected ?int $maxAppsAllowed = null;
 
     public User $user;
+
     public bool $showingEnable = false;
+
     public ?string $twoFactorSecret = null;
+
     public bool $showEnableInstructions = true;
+
     public string $confirmationCode = '';
 
     // For editing an app's name
     public bool $showEdit = false;
+
     public ?AuthenticatorApp $editing = null;
+
     public array $editState = [];
 
     // For deleting an app
     public bool $showDelete = false;
+
     public ?AuthenticatorApp $deleting = null;
 
     public function getMustConfirmPasswordProperty(): bool

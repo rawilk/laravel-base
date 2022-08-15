@@ -19,7 +19,9 @@ class TwoFactorRecoveryCodes extends Component
     use ConfirmsPasswords;
 
     public User $user;
+
     public bool $enabled;
+
     public bool $showingCodes = false;
 
     protected $listeners = [

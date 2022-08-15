@@ -13,17 +13,10 @@ use Rawilk\LaravelBase\Contracts\Auth\ResetPasswordViewResponse;
 use Rawilk\LaravelBase\Contracts\Auth\TwoFactorChallengeViewResponse;
 use Rawilk\LaravelBase\Contracts\Auth\VerifyEmailViewResponse;
 
-class SimpleViewResponse implements
-    LoginViewResponse,
-    ResetPasswordViewResponse,
-    RegisterViewResponse,
-    RequestPasswordResetLinkViewResponse,
-    TwoFactorChallengeViewResponse,
-    VerifyEmailViewResponse,
-    ConfirmPasswordViewResponse
+class SimpleViewResponse implements LoginViewResponse, ResetPasswordViewResponse, RegisterViewResponse, RequestPasswordResetLinkViewResponse, TwoFactorChallengeViewResponse, VerifyEmailViewResponse, ConfirmPasswordViewResponse
 {
     /**
-     * @param callable|string $view The name of the view or the callable used to generate the view.
+     * @param  callable|string  $view The name of the view or the callable used to generate the view.
      */
     public function __construct(protected $view)
     {

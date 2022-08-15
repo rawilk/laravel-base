@@ -44,8 +44,8 @@ final class ViewHighlighter implements Highlighter
     }
 
     /**
-     * @param \DOMText|\DOMDocumentType $node
-     * @param \Illuminate\Support\Collection $matches
+     * @param  \DOMText|\DOMDocumentType  $node
+     * @param  \Illuminate\Support\Collection  $matches
      */
     private function replaceTextInNode($node, Collection $matches): void
     {

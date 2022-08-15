@@ -40,10 +40,10 @@ if (! function_exists('minDateToUTC')) {
      * into a UTC equivalent for filtering from a minimum date to properly
      * filter by a date column stored in the UTC timezone.
      *
-     * @param null|string|\Carbon\Carbon $date
+     * @param  null|string|\Carbon\Carbon  $date
      * @return \Carbon\CarbonInterface|null
      */
-    function minDateToUTC($date): ?\Carbon\CarbonInterface
+    function minDateToUTC($date): ?Carbon\CarbonInterface
     {
         if (! $date) {
             return null;
@@ -59,10 +59,10 @@ if (! function_exists('maxDateToUTC')) {
      * into a UTC equivalent for filtering from a maximum date to properly
      * filter by a date column stored in the UTC timezone.
      *
-     * @param null|string|\Carbon\Carbon $date
+     * @param  null|string|\Carbon\Carbon  $date
      * @return \Carbon\CarbonInterface|null
      */
-    function maxDateToUTC($date): ?\Carbon\CarbonInterface
+    function maxDateToUTC($date): ?Carbon\CarbonInterface
     {
         if (! $date) {
             return null;
@@ -91,10 +91,10 @@ if (! function_exists('userTimezone')) {
      * Retrieve the authenticated user's timezone.
      * Fallback on the appTimezone if no authenticated user.
      *
-     * @param null|\Illuminate\Contracts\Auth\Authenticatable $user
+     * @param  null|\Illuminate\Contracts\Auth\Authenticatable  $user
      * @return string
      */
-    function userTimezone(?\Illuminate\Contracts\Auth\Authenticatable $user = null): string
+    function userTimezone(?Illuminate\Contracts\Auth\Authenticatable $user = null): string
     {
         $user = $user ?: auth()->user();
 
@@ -111,9 +111,9 @@ if (! function_exists('enumToSelectOptions')) {
      * Map the given enum to an array of elements suitable for
      * a select field.
      *
-     * @param string $enum
-     * @param string $valueField
-     * @param string $labelField
+     * @param  string  $enum
+     * @param  string  $valueField
+     * @param  string  $labelField
      * @return array
      */
     function enumToSelectOptions(string $enum, string $valueField = 'id', string $labelField = 'name'): array
@@ -134,7 +134,7 @@ if (! function_exists('enumToValues')) {
     /**
      * Generate an array of all the values from a given enum.
      *
-     * @param string $enum
+     * @param  string  $enum
      * @return array
      */
     function enumToValues(string $enum): array
@@ -147,7 +147,7 @@ if (! function_exists('enumToLabels')) {
     /**
      * Generate an array of all the labels from a given enum.
      *
-     * @param string $enum
+     * @param  string  $enum
      * @return array
      */
     function enumToLabels(string $enum): array
@@ -164,7 +164,7 @@ if (! function_exists('convertEmptyStringsToNull')) {
     /**
      * Convert any empty strings to null values from the given dataset.
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     function convertEmptyStringsToNull(array $data): array
@@ -177,7 +177,7 @@ if (! function_exists('pageTitle')) {
     /**
      * Format the given title segments into a single string for the <title> tag.
      *
-     * @param mixed ...$segments
+     * @param  mixed  ...$segments
      * @return string
      */
     function pageTitle(...$segments): string
@@ -225,8 +225,8 @@ if (! function_exists('prefixSelectColumns')) {
      * Prefix the given columns with the given model's table name for a select statement.
      * Useful to avoid ambiguous select statements for polymorphic relationships.
      *
-     * @param string $model
-     * @param string|array|\Illuminate\Support\Collection ...$columns
+     * @param  string  $model
+     * @param  string|array|\Illuminate\Support\Collection  ...$columns
      * @return string
      */
     function prefixSelectColumns(string $model, ...$columns): string
@@ -244,7 +244,7 @@ if (! function_exists('isExternalLink')) {
     /**
      * Determine if the given url is an external url (i.e. not the app's url).
      *
-     * @param string|null $url
+     * @param  string|null  $url
      * @return bool
      */
     function isExternalLink(?string $url): bool

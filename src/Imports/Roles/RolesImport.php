@@ -67,7 +67,7 @@ class RolesImport implements WithHeadingRow, OnEachRow
             $role->givePermissionTo($permissions);
         }
 
-        ++$this->count;
+        $this->count++;
     }
 
     protected function updateOnly(array $data): void
@@ -87,7 +87,7 @@ class RolesImport implements WithHeadingRow, OnEachRow
                 $role->syncPermissions($permissions);
             }
 
-            ++$this->count;
+            $this->count++;
         }
     }
 
@@ -101,7 +101,7 @@ class RolesImport implements WithHeadingRow, OnEachRow
             $role->syncPermissions($permissions);
         }
 
-        ++$this->count;
+        $this->count++;
     }
 
     protected function extractPermissionsFromData(array $data): array

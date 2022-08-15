@@ -93,7 +93,7 @@ class LaravelBase
     /**
      * Register a callback that is responsible for retrieving the configured app timezone.
      *
-     * @param callable $callback
+     * @param  callable  $callback
      */
     public static function findAppTimezoneUsing(callable $callback): void
     {
@@ -103,7 +103,7 @@ class LaravelBase
     /**
      * Register a callback that is responsible for retrieving the authenticated user's timezone.
      *
-     * @param callable $callback
+     * @param  callable  $callback
      */
     public static function findUserTimezoneUsing(callable $callback): void
     {
@@ -113,7 +113,7 @@ class LaravelBase
     /**
      * Register a callback that is responsible for validating incoming authentication credentials.
      *
-     * @param callable $callback
+     * @param  callable  $callback
      */
     public static function authenticateUsing(callable $callback): void
     {
@@ -123,7 +123,7 @@ class LaravelBase
     /**
      * Register a callback that is responsible for building the authentication pipeline array.
      *
-     * @param callable $callback
+     * @param  callable  $callback
      */
     public static function authenticateThrough(callable $callback): void
     {
@@ -133,7 +133,7 @@ class LaravelBase
     /**
      * Specify which view should be used as the login view.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function loginView(callable|string $view): void
     {
@@ -143,7 +143,7 @@ class LaravelBase
     /**
      * Specify which view should be used as the register view.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function registerView(callable|string $view): void
     {
@@ -153,7 +153,7 @@ class LaravelBase
     /**
      * Specify which view should be used as the email verification prompt.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function verifyEmailView(callable|string $view): void
     {
@@ -163,7 +163,7 @@ class LaravelBase
     /**
      * Specify which view should be used as teh request password reset link view.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function requestPasswordResetLinkView(callable|string $view): void
     {
@@ -173,7 +173,7 @@ class LaravelBase
     /**
      * Specify which view should be used as the new password view.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function resetPasswordView(callable|string $view): void
     {
@@ -183,7 +183,7 @@ class LaravelBase
     /**
      * Specify which view should be used as the two factor authentication challenge view.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function twoFactorChallengeView(callable|string $view): void
     {
@@ -193,7 +193,7 @@ class LaravelBase
     /**
      * Specify which view should be used as the password confirmation prompt.
      *
-     * @param callable|string $view
+     * @param  callable|string  $view
      */
     public static function confirmPasswordView(callable|string $view): void
     {
@@ -203,7 +203,7 @@ class LaravelBase
     /**
      * Register a class that should be used to register new users.
      *
-     * @param string $class
+     * @param  string  $class
      */
     public static function registerUsersUsing(string $class): void
     {
@@ -213,7 +213,7 @@ class LaravelBase
     /**
      * Register a class that should be used to reset user passwords.
      *
-     * @param string $class
+     * @param  string  $class
      */
     public static function resetUserPasswordsUsing(string $class): void
     {
@@ -223,7 +223,7 @@ class LaravelBase
     /**
      * Register a class that should be used to update user profile information.
      *
-     * @param string $class
+     * @param  string  $class
      */
     public static function updateUserProfileInformationUsing(string $class): void
     {
@@ -233,7 +233,7 @@ class LaravelBase
     /**
      * Register a class that should be used to update user passwords.
      *
-     * @param string $class
+     * @param  string  $class
      */
     public static function updateUserPasswordsUsing(string $class): void
     {
@@ -243,7 +243,7 @@ class LaravelBase
     /**
      * Register a class that should be used to delete users.
      *
-     * @param string $class
+     * @param  string  $class
      */
     public static function deleteUsersUsing(string $class): void
     {
@@ -253,7 +253,7 @@ class LaravelBase
     /**
      * Register a callback that is responsible for confirming existing user passwords as valid.
      *
-     * @param callable $callback
+     * @param  callable  $callback
      */
     public static function confirmPasswordsUsing(callable $callback): void
     {

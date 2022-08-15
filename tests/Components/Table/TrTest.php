@@ -18,7 +18,7 @@ final class TrTest extends TestCase
     /** @test */
     public function can_have_content_and_attributes(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
         <x-tr row-index="2" wire-loads selected tab-index="-1">
             <td>My cell</td>
         </x-tr>

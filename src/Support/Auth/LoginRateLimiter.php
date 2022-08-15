@@ -37,7 +37,7 @@ class LoginRateLimiter
     /**
      * Specify a custom callback to use to generate the throttle key.
      *
-     * @param callable $callback
+     * @param  callable  $callback
      */
     public static function keyBy($callback): void
     {
@@ -47,7 +47,7 @@ class LoginRateLimiter
     /**
      * Specify the amount of seconds the user should be throttled for.
      *
-     * @param int $seconds
+     * @param  int  $seconds
      */
     public static function secondsToThrottleFor(int $seconds): void
     {
@@ -57,7 +57,7 @@ class LoginRateLimiter
     /**
      * Specify how many attempts are allowed for a user to try and login.
      *
-     * @param int $attempts
+     * @param  int  $attempts
      */
     public static function maxAttemptsAllowed(int $attempts): void
     {

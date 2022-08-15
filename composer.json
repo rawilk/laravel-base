@@ -30,7 +30,7 @@
     "require-dev": {
         "blade-ui-kit/blade-heroicons": "^1.2",
         "doctrine/dbal": "^3.1",
-        "friendsofphp/php-cs-fixer": "^3.0",
+        "laravel/pint": "^1.1",
         "livewire/livewire": "^2.5",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^6.0",
@@ -57,10 +57,8 @@
         }
     },
     "scripts": {
-        "psalm": "vendor/bin/psalm",
         "test": "vendor/bin/phpunit --colors=always",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        "format": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true

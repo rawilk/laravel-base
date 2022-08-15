@@ -7,6 +7,7 @@ namespace Rawilk\LaravelBase\Http\Livewire\Profile;
 class WebauthnSecurityKeysForm extends RegisterWebauthnKeyForm
 {
     protected string $attachmentType = 'cross-platform';
+
     protected string $viewName = 'livewire.profile.webauthn-security-keys-form';
 
     public function boot(): void

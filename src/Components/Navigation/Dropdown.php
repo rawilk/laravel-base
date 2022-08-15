@@ -12,6 +12,7 @@ use Rawilk\LaravelBase\Services\Popper;
 class Dropdown extends BladeComponent
 {
     private null|string $triggerId = null;
+
     private null|string $menuId = null;
 
     public function __construct(

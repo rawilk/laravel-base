@@ -13,13 +13,18 @@ class Tooltip extends BladeComponent
 {
     // Placements
     public const TOP = 'top';
+
     public const BOTTOM = 'bottom';
+
     public const LEFT = 'left';
+
     public const RIGHT = 'right';
 
     // Triggers
     public const CLICK = 'click';
+
     public const HOVER = 'hover';
+
     public const FOCUS = 'focus';
 
     public function __construct(

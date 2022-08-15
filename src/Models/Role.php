@@ -24,6 +24,7 @@ use Spatie\Permission\Models\Role as BaseRole;
  * @property string|null $updated_at_for_humans
  * @property-read \Illuminate\Database\Eloquent\Collection|\Rawilk\LaravelBase\Models\Permission[] $permissions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\User[] $users
+ *
  * @method static Builder|Role canBeDefault()
  * @method static Builder|Role newModelQuery()
  * @method static Builder|Role newQuery()
@@ -42,9 +43,13 @@ class Role extends BaseRole
 
     // Protected Roles...
     public static $superAdminName = 'Super Admin';
+
     public static $adminName = 'Admin';
+
     public static $userName = 'User';
+
     public static $protectedRoleNames;
+
     public static $defaultRoleName;
 
     /**

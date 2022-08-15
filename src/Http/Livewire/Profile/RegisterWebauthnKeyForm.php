@@ -35,20 +35,29 @@ abstract class RegisterWebauthnKeyForm extends Component
     protected ?int $maxKeysAllowed = null;
 
     public string $newKeyName = '';
+
     public bool $showInstructions = true;
+
     public bool $showAddKey = false;
+
     protected string $attachmentType = 'cross-platform';
+
     public User $user;
+
     public ?string $publicKey = null;
+
     protected string $viewName = '';
 
     // For editing a key's name
     public bool $showEdit = false;
+
     public ?WebauthnKey $editing = null;
+
     public array $editState = [];
 
     // For deleting a key
     public bool $showDelete = false;
+
     public ?WebauthnKey $deleting = null;
 
     public function getMustConfirmPasswordProperty(): bool

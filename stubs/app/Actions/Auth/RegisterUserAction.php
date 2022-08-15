@@ -24,7 +24,7 @@ class RegisterUserAction implements RegistersNewUsers
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('users')
+                Rule::unique('users'),
             ],
             'password' => $this->passwordRules(needsConfirm: false),
         ])->validate();
