@@ -64,7 +64,7 @@ class AuthenticatorApp extends Model implements AuthenticatorAppContract
         $date = $this->last_used_at?->clone()->tz($timezone);
 
         if (! $date) {
-            return __('laravel-base::2fa.authenticator.app_never_used');
+            return __('base::2fa.authenticator.app_never_used');
         }
 
         return <<<HTML

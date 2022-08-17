@@ -1,7 +1,11 @@
 {
     "private": true,
-    "scripts": {},
+    "scripts": {
+        "build": "vite build"
+    },
     "devDependencies": {
-        "laravel-mix": "^6.0.31"
+        "laravel-mix": "^6.0.31",
+        "laravel-vite-plugin": "^0.5.4",
+        "vite": "^3.0.8"
     }
 }

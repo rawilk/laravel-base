@@ -113,7 +113,7 @@ abstract class RegisterWebauthnKeyForm extends Component
 
         $updater($this->editing, $this->editState);
 
-        $this->notify(__('laravel-base::webauthn.alerts.updated'));
+        $this->notify(__('base::webauthn.alerts.updated'));
 
         $this->editing = null;
         $this->showEdit = false;
@@ -143,7 +143,7 @@ abstract class RegisterWebauthnKeyForm extends Component
 
         $deleter($this->deleting);
 
-        $this->notify(__('laravel-base::webauthn.alerts.deleted'));
+        $this->notify(__('base::webauthn.alerts.deleted'));
 
         $this->editing = null;
         $this->deleting = null;
@@ -163,7 +163,7 @@ abstract class RegisterWebauthnKeyForm extends Component
 
         if (! $this->canAddMoreKeys()) {
             $this->showAddKey = false;
-            $this->notify(__('laravel-base::webauthn.alerts.max_reached'), 'error');
+            $this->notify(__('base::webauthn.alerts.max_reached'), 'error');
 
             return;
         }

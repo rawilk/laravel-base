@@ -5,7 +5,7 @@
 
 @unless ($canEdit)
     <x-alert :type="\Rawilk\LaravelBase\Components\Alerts\Alert::WARNING" class="mb-4">
-        <p>{!! __('laravel-base::roles.alerts.permissions_cannot_be_modified', ['name' => $roleName]) !!}</p>
+        <p>{!! __('base::roles.alerts.permissions_cannot_be_modified', ['name' => $roleName]) !!}</p>
     </x-alert>
 @endunless
 
@@ -37,14 +37,14 @@
         <div class="text-xs">
             {{-- select all --}}
             @if ($canEdit)
-                <span>{{ __('laravel-base::messages.labels.form.make_selection') }}</span>
+                <span>{{ __('base::messages.labels.form.make_selection') }}</span>
 
                 <x-laravel-base::button.link x-on:click="selectAllIn($root)">
-                    {{ __('laravel-base::messages.labels.form.select_all') }}
+                    {{ __('base::messages.labels.form.select_all') }}
                 </x-laravel-base::button.link>
                 <span>/</span>
                 <x-laravel-base::button.link x-on:click="removeAllIn($root)">
-                    {{ __('laravel-base::messages.labels.form.select_none') }}
+                    {{ __('base::messages.labels.form.select_none') }}
                 </x-laravel-base::button.link>
             @endif
         </div>
@@ -52,11 +52,11 @@
         {{-- collapse/expand all --}}
         <div class="text-xs mt-2 sm:mt-0">
             <x-laravel-base::button.link x-on:click="$dispatch('perm-collapse')">
-                {{ __('laravel-base::messages.labels.form.collapse_all') }}
+                {{ __('base::messages.labels.form.collapse_all') }}
             </x-laravel-base::button.link>
             <span>/</span>
             <x-laravel-base::button.link x-on:click="$dispatch('perm-expand')">
-                {{ __('laravel-base::messages.labels.form.expand_all') }}
+                {{ __('base::messages.labels.form.expand_all') }}
             </x-laravel-base::button.link>
         </div>
     </div>
@@ -123,14 +123,14 @@
                         {{-- select all in group --}}
                         @if ($canEdit)
                             <div class="text-xs">
-                                <span>{{ __('laravel-base::messages.labels.form.make_selection') }}</span>
+                                <span>{{ __('base::messages.labels.form.make_selection') }}</span>
 
                                 <x-laravel-base::button.link x-on:click="selectAllIn($root)">
-                                    {{ __('laravel-base::messages.labels.form.select_all') }}
+                                    {{ __('base::messages.labels.form.select_all') }}
                                 </x-laravel-base::button.link>
                                 <span>/</span>
                                 <x-laravel-base::button.link x-on:click="removeAllIn($root)">
-                                    {{ __('laravel-base::messages.labels.form.select_none') }}
+                                    {{ __('base::messages.labels.form.select_none') }}
                                 </x-laravel-base::button.link>
                             </div>
                         @endif

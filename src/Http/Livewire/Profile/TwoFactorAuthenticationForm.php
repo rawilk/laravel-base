@@ -97,7 +97,7 @@ class TwoFactorAuthenticationForm extends Component
 
         if (! $this->canAddMoreApps()) {
             $this->showingEnable = false;
-            $this->notify(__('laravel-base::2fa.authenticator.alerts.max_reached'), 'error');
+            $this->notify(__('base::2fa.authenticator.alerts.max_reached'), 'error');
 
             return;
         }
@@ -110,7 +110,7 @@ class TwoFactorAuthenticationForm extends Component
         $this->confirmationCode = '';
         $this->showingEnable = false;
 
-        $this->notify(__('laravel-base::2fa.authenticator.alerts.enabled'));
+        $this->notify(__('base::2fa.authenticator.alerts.enabled'));
     }
 
     public function showEnable(TwoFactorAuthenticationProvider $provider): void
@@ -143,7 +143,7 @@ class TwoFactorAuthenticationForm extends Component
 
         $updater($this->editing, $this->editState);
 
-        $this->notify(__('laravel-base::2fa.authenticator.alerts.app_updated'));
+        $this->notify(__('base::2fa.authenticator.alerts.app_updated'));
 
         $this->editing = null;
         $this->showEdit = false;
@@ -173,7 +173,7 @@ class TwoFactorAuthenticationForm extends Component
 
         $deleter($this->deleting);
 
-        $this->notify(__('laravel-base::2fa.authenticator.alerts.app_deleted'));
+        $this->notify(__('base::2fa.authenticator.alerts.app_deleted'));
 
         $this->editing = null;
         $this->deleting = null;

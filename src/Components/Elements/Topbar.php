@@ -20,7 +20,7 @@ class Topbar extends BladeComponent
         public $filters = null,
     ) {
         if (is_null($searchPlaceholder)) {
-            $this->searchPlaceholder = __('laravel-base::messages.labels.form.search_placeholder');
+            $this->searchPlaceholder = __('base::messages.labels.form.search_placeholder');
         }
     }
 }

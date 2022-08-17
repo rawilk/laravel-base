@@ -65,7 +65,7 @@ class Index extends Component
 
         $this->deleting->delete();
 
-        $this->notify(__('laravel-base::roles.alerts.deleted', ['name' => $this->deleting->name]));
+        $this->notify(__('base::roles.alerts.deleted', ['name' => $this->deleting->name]));
 
         $this->showDelete = false;
         $this->deleting = null;
@@ -86,7 +86,7 @@ class Index extends Component
         $this->showDeleteAll = false;
         $this->deleting = null;
 
-        $this->notify(Lang::choice('laravel-base::roles.alerts.bulk_deleted', $deleteCount, ['count' => $deleteCount]));
+        $this->notify(Lang::choice('base::roles.alerts.bulk_deleted', $deleteCount, ['count' => $deleteCount]));
     }
 
     public function exportSelected(): \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
@@ -138,11 +138,11 @@ class Index extends Component
     public function mount(): void
     {
         $this->hideableColumns = [
-            'id' => __('laravel-base::messages.labels.model.id'),
-            'name' => __('laravel-base::roles.labels.name'),
-            'description' => __('laravel-base::roles.labels.description'),
-            'created_at' => __('laravel-base::messages.labels.model.created_at'),
-            'updated_at' => __('laravel-base::messages.labels.model.updated_at'),
+            'id' => __('base::messages.labels.model.id'),
+            'name' => __('base::roles.labels.name'),
+            'description' => __('base::roles.labels.description'),
+            'created_at' => __('base::messages.labels.model.created_at'),
+            'updated_at' => __('base::messages.labels.model.updated_at'),
         ];
 
         $this->hidden = ['id', 'created_at'];
@@ -153,7 +153,7 @@ class Index extends Component
         return view('laravel-base::livewire.roles.index.index', [
             'roles' => $this->rows,
         ])->layout(LaravelBase::adminViewLayout(), [
-            'title' => __('laravel-base::roles.index.title'),
+            'title' => __('base::roles.index.title'),
         ]);
     }
 

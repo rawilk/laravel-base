@@ -30,7 +30,7 @@ class Create extends Component
 
         $creator($this->state);
 
-        Session::flash('success', __('laravel-base::roles.alerts.created'));
+        Session::flash('success', __('base::roles.alerts.created'));
 
         return redirect()->route('admin.roles.index');
     }
@@ -40,7 +40,7 @@ class Create extends Component
         return view('laravel-base::livewire.roles.create.index', [
             'permissions' => app(config('permission.models.permission'))::groupedPermissions(),
         ])->layout(LaravelBase::adminViewLayout(), [
-            'title' => __('laravel-base::roles.create.title'),
+            'title' => __('base::roles.create.title'),
         ]);
     }
 }

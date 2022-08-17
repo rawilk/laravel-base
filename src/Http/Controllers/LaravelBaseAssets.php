@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Http\Controllers;
 
+use Illuminate\Support\Facades\File;
 use Livewire\Controllers\CanPretendToBeAFile;
 
 final class LaravelBaseAssets
 {
     use CanPretendToBeAFile;
 
-    public function source()
+    public function source(string $asset)
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/laravel-base.js');
-    }
+        $path = __DIR__ . "/../../../dist/assets/{$asset}";
 
-    public function maps()
-    {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/laravel-base.js.map');
+        if (! File::exists($path)) {
+            return '';
+        }
+
+        return $this->pretendResponseIsFile(__DIR__ . "/../../../dist/assets/{$asset}");
     }
 }

@@ -24,8 +24,13 @@ return [
     ],
     'impersonate' => [
         'button' => 'Impersonate',
+        'cannot_impersonate_others' => 'You are not allowed to impersonate users.',
+        'cannot_impersonate_self' => 'You are not allowed to impersonate yourself.',
+        'cannot_impersonate_user' => 'You are not allowed to impersonate this user.',
         'leave' => 'Leave impersonation',
-        'notice' => 'You are impersonating :name.',
+        'notice' => 'You are impersonating :name. Logs are still able to identify you as :impersonator.',
+        'only_one_allowed_alert' => 'Impersonation ended; Only one impersonation is allowed at a time.',
+        'route_protected' => 'You cannot view this resource while impersonating someone.',
     ],
     'index' => ['title' => 'Users'],
     'labels' => [

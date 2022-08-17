@@ -30,13 +30,13 @@
                     <header class="flex-shrink-0">
                         <div class="pt-6 pb-4 sm:pt-10 px-4 sm:px-6">
                             <div class="flex justify-between items-center space-x-2">
-                                <div class="text-base sm:text-xl font-semibold">{{ __('laravel-base::messages.filters.modal_title') }}</div>
+                                <div class="text-base sm:text-xl font-semibold">{{ __('base::messages.filters.modal_title') }}</div>
                                 <div class="h-7 flex items-center">
                                     <button
                                         x-on:click="show = false"
                                         class="text-slate-400 hover:text-slate-200 hover:bg-slate-400 rounded-full transition-colors focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 p-3"
                                     >
-                                        <span class="sr-only">{{ __('laravel-base::messages.modal.close_button') }}</span>
+                                        <span class="sr-only">{{ __('base::messages.modal.close_button') }}</span>
                                         <x-heroicon-s-x class="h-6 w-6" />
                                     </button>
                                 </div>
@@ -62,7 +62,7 @@
                                         variant="blue"
                                         block
                                     >
-                                        {{ __('laravel-base::messages.filters.apply_button') }}
+                                        {{ __('base::messages.filters.apply_button') }}
                                     </x-button>
                                 @endif
 
@@ -72,7 +72,7 @@
                                         wire:click="{{ $resetClick }}"
                                         wire:target="{{ $resetClick }}"
                                     >
-                                        {{ __('laravel-base::messages.filters.reset_button') }}
+                                        {{ __('base::messages.filters.reset_button') }}
                                     </x-laravel-base::button.link>
                                 @endif
                             </div>

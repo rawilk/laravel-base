@@ -18,11 +18,11 @@ class ImportModal extends BladeComponent
         public $showModel = 'showImport',
     ) {
         if (is_null($title)) {
-            $this->title = __('laravel-base::messages.modal.import.title');
+            $this->title = __('base::messages.modal.import.title');
         }
 
         if (is_null($button)) {
-            $this->button = __('laravel-base::messages.modal.import.button');
+            $this->button = __('base::messages.modal.import.button');
         }
     }
 

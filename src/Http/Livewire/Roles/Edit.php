@@ -68,7 +68,7 @@ class Edit extends Component
         return view('laravel-base::livewire.roles.edit.index', [
             'permissions' => app(config('permission.models.permission'))::groupedPermissions(),
         ])->layout(LaravelBase::adminViewLayout(), [
-            'title' => pageTitle($this->role->name, __('laravel-base::roles.edit.title')),
+            'title' => pageTitle($this->role->name, __('base::roles.edit.title')),
         ]);
     }
 }

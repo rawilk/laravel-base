@@ -16,8 +16,8 @@ class ConfirmsPassword extends BladeComponent
         public string $cancelButtonVariant = 'white',
         public ?string $confirmableId = null,
     ) {
-        $this->title = $title ?: __('laravel-base::messages.confirms_password.title');
-        $this->content = $content ?: __('laravel-base::messages.confirms_password.content');
-        $this->button = $button ?: __('laravel-base::messages.confirms_password.button');
+        $this->title = $title ?: __('base::messages.confirms_password.title');
+        $this->content = $content ?: __('base::messages.confirms_password.content');
+        $this->button = $button ?: __('base::messages.confirms_password.button');
     }
 }

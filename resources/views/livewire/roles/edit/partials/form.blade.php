@@ -2,22 +2,22 @@
     {{-- role info --}}
     <x-card>
         <x-slot name="header">
-            <h2>{{ __('laravel-base::roles.create.role_info_title') }}</h2>
-            <p class="text-sm text-gray-500">{{ __('laravel-base::roles.edit.role_info_subtitle') }}</p>
+            <h2>{{ __('base::roles.create.role_info_title') }}</h2>
+            <p class="text-sm text-gray-500">{{ __('base::roles.edit.role_info_subtitle') }}</p>
         </x-slot>
 
         <x-form-components::form wire:submit.prevent="updateDetails" id="edit-details-form">
             <div>
                 {{-- description --}}
-                <x-form-components::form-group label="{{ __('laravel-base::roles.labels.form.description') }}" name="description" inline optional>
+                <x-form-components::form-group label="{{ __('base::roles.labels.form.description') }}" name="description" inline optional>
                     <x-form-components::inputs.textarea
                         wire:model.defer="state.description"
                         name="description"
-                        placeholder="{{ __('laravel-base::roles.labels.form.description_placeholder') }}"
+                        placeholder="{{ __('base::roles.labels.form.description_placeholder') }}"
                         maxlength="{{ \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH }}"
                     />
 
-                    <x-slot name="helpText">{{ __('laravel-base::messages.labels.form.max_characters', ['max' => \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH]) }}</x-slot>
+                    <x-slot name="helpText">{{ __('base::messages.labels.form.max_characters', ['max' => \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH]) }}</x-slot>
                 </x-form-components::form-group>
             </div>
         </x-form-components::form>
@@ -27,7 +27,7 @@
                 <x-action-message on="details.updated" />
 
                 <x-button type="submit" variant="blue" form="edit-details-form" wire:target="updateDetails">
-                    <span>{{ __('laravel-base::messages.update_button') }}</span>
+                    <span>{{ __('base::messages.update_button') }}</span>
                     <x-heroicon-s-check />
                 </x-button>
             </div>
@@ -38,8 +38,8 @@
     @can('editPermissions', $role)
         <x-card>
             <x-slot name="header">
-                <h2>{{ __('laravel-base::roles.create.permissions_title') }}</h2>
-                <p class="text-sm text-gray-500">{{ __('laravel-base::roles.create.permissions_subtitle') }}</p>
+                <h2>{{ __('base::roles.create.permissions_title') }}</h2>
+                <p class="text-sm text-gray-500">{{ __('base::roles.create.permissions_subtitle') }}</p>
             </x-slot>
 
             <x-form-components::form wire:submit.prevent="updatePermissions" id="edit-perms-form">
@@ -52,7 +52,7 @@
                         <x-action-message on="permissions.updated" />
 
                         <x-button type="submit" variant="blue" form="edit-perms-form" wire:target="updatePermissions">
-                            <span>{{ __('laravel-base::messages.update_button') }}</span>
+                            <span>{{ __('base::messages.update_button') }}</span>
                             <x-heroicon-s-check />
                         </x-button>
                     </div>

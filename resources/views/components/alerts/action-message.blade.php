@@ -11,7 +11,7 @@
         <div class="inline-flex">
             <span class="relative inline-flex items-center">
                 <x-heroicon-s-check-circle class="mr-1 -ml-0.5 h-4 w-4" />
-                <span>{{ $slot->isEmpty() ? __('laravel-base::messages.action_message') : $slot }}</span>
+                <span>{{ $slot->isEmpty() ? __('base::messages.action_message') : $slot }}</span>
             </span>
         </div>
     </div>

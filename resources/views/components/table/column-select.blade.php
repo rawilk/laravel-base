@@ -1,4 +1,4 @@
-<x-laravel-base::navigation.dropdown trigger-text="{{ __('laravel-base::messages.table.column_select') }}" :right="$right" {{ $attributes }}>
+<x-laravel-base::navigation.dropdown trigger-text="{{ __('base::messages.table.column_select') }}" :right="$right" {{ $attributes }}>
     @foreach ($columns as $field => $label)
         <x-laravel-base::navigation.dropdown-item
             wire:click.prevent.stop="toggleColumn('{{ $field }}')"

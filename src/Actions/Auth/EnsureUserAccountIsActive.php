@@ -42,7 +42,7 @@ class EnsureUserAccountIsActive
         $this->logoutAction->handle();
 
         throw ValidationException::withMessages([
-            $key => [__('laravel-base::users.deactivated.message')],
+            $key => [__('base::users.deactivated.message')],
         ]);
     }
 }

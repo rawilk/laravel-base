@@ -75,7 +75,7 @@ final class LaravelBaseServiceProvider extends ServiceProvider
         LaravelBase::twoFactorChallengeView(function () {
             return view('livewire.auth.two-factor-challenge')
                 ->layout('layouts.auth.base', [
-                    'title' => __('laravel-base::users.two_factor.title'),
+                    'title' => __('base::users.two_factor.title'),
                 ]);
         });
 

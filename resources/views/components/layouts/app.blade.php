@@ -1,17 +1,17 @@
 <x-laravel-base::layouts.html :title="$title ?? ''" {{ $attributes }}>
-    <x-slot name="headTop">
+    <x-slot:headTop>
         {{ $headTop ?? '' }}
         @stack('head-top')
-    </x-slot>
+    </x-slot:headTop>
 
-    <x-slot name="head">
+    <x-slot:head>
         @if ($livewire)
             <livewire:styles />
         @endif
 
         {{ $head ?? '' }}
         @stack('head')
-    </x-slot>
+    </x-slot:head>
 
     {{ $slot }}
 

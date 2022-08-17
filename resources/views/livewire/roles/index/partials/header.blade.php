@@ -1,12 +1,12 @@
 <x-slot name="pageTitle">
     <x-layout.page-title>
-        {{ __('laravel-base::roles.index.title') }}
+        {{ __('base::roles.index.title') }}
 
         @can(\App\Enums\PermissionEnum::ROLES_CREATE->value)
             <x-slot name="actions">
                 <x-button href="{!! route('admin.roles.create') !!}" variant="blue">
                     <x-css-math-plus />
-                    <span class="capitalize">{{ __('laravel-base::messages.add_button', ['item' => __('laravel-base::roles.singular')]) }}</span>
+                    <span class="capitalize">{{ __('base::messages.add_button', ['item' => __('base::roles.singular')]) }}</span>
                 </x-button>
             </x-slot>
         @endcan

@@ -12,8 +12,8 @@ Route::group(
         // Users...
         if (Features::managesUsers()) {
             // Impersonation...
-            Route::get('/impersonate/leave', Controllers\Auth\ImpersonationController::class)
-                ->name('impersonate.leave');
+            Route::post('/impersonate', [Controllers\Auth\ImpersonationController::class, 'impersonate'])->name('impersonate');
+            Route::delete('/impersonate', [Controllers\Auth\ImpersonationController::class, 'stopImpersonating'])->name('impersonate.leave');
 
             Route::prefix('users')
                 ->as('users.')

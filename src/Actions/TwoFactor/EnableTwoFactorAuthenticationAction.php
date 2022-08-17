@@ -38,7 +38,7 @@ class EnableTwoFactorAuthenticationAction
 
         if (! $valid) {
             throw ValidationException::withMessages([
-                'confirmationCode' => __('laravel-base::2fa.authenticator.alerts.invalid_code'),
+                'confirmationCode' => __('base::2fa.authenticator.alerts.invalid_code'),
             ]);
         }
     }

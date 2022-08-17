@@ -9,10 +9,10 @@
         <button
             wire:click="removeFilter('{{ $breadcrumb['key'] }}', '{{ $breadcrumb['value'] }}')"
             type="button"
-            title="{{ __('laravel-base::messages.remove_filter') }}"
+            title="{{ __('base::messages.remove_filter') }}"
             class="flex justify-center items-center focus:ring-0 focus:outline-slate rounded-full hover:bg-slate-300 p-1 group"
         >
-            <span class="sr-only">{{ __('laravel-base::messages.remove_filter') }}</span>
+            <span class="sr-only">{{ __('base::messages.remove_filter') }}</span>
             <x-css-close class="h-3 w-3 text-slate-800 group-hover:text-slate-500" />
         </button>
     </div>

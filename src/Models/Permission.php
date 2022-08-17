@@ -56,7 +56,7 @@ class Permission extends BasePermission
             ->sortBy('name')
             ->groupBy(function ($permission) {
                 if (! Str::contains($permission->name, '.')) {
-                    return __('laravel-base::permissions.uncategorized');
+                    return __('base::permissions.uncategorized');
                 }
 
                 $group = Str::of($permission->name)

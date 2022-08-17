@@ -5,11 +5,11 @@
                 <x-checkbox wire:model="selectPage" />
             </x-th>
             <x-th class="table-actions" />
-            <x-th sortable multi-column wire:click="sortBy('id')" :direction="$sorts['id'] ?? null" :hidden="$this->isHidden('id')">{{ __('laravel-base::messages.labels.model.id') }}</x-th>
-            <x-th sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" :hidden="$this->isHidden('name')" class="w-full">{{ __('laravel-base::roles.labels.name') }}</x-th>
-            <x-th sortable multi-column wire:click="sortBy('description')" :direction="$sorts['description'] ?? null" :hidden="$this->isHidden('description')">{{ __('laravel-base::roles.labels.description') }}</x-th>
-            <x-th sortable multi-column wire:click="sortBy('created_at')" :direction="$sorts['created_at'] ?? null" :hidden="$this->isHidden('created_at')">{{ __('laravel-base::messages.labels.model.created_at') }}</x-th>
-            <x-th sortable multi-column wire:click="sortBy('updated_at')" :direction="$sorts['updated_at'] ?? null" :hidden="$this->isHidden('updated_at')">{{ __('laravel-base::messages.labels.model.updated_at') }}</x-th>
+            <x-th sortable multi-column wire:click="sortBy('id')" :direction="$sorts['id'] ?? null" :hidden="$this->isHidden('id')">{{ __('base::messages.labels.model.id') }}</x-th>
+            <x-th sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" :hidden="$this->isHidden('name')" class="w-full">{{ __('base::roles.labels.name') }}</x-th>
+            <x-th sortable multi-column wire:click="sortBy('description')" :direction="$sorts['description'] ?? null" :hidden="$this->isHidden('description')">{{ __('base::roles.labels.description') }}</x-th>
+            <x-th sortable multi-column wire:click="sortBy('created_at')" :direction="$sorts['created_at'] ?? null" :hidden="$this->isHidden('created_at')">{{ __('base::messages.labels.model.created_at') }}</x-th>
+            <x-th sortable multi-column wire:click="sortBy('updated_at')" :direction="$sorts['updated_at'] ?? null" :hidden="$this->isHidden('updated_at')">{{ __('base::messages.labels.model.updated_at') }}</x-th>
         </x-tr>
     </x-slot>
 
@@ -39,14 +39,14 @@
                     @can('edit', $role)
                         <x-dropdown-item href="{{ $role->edit_url }}">
                             <x-heroicon-s-pencil />
-                            <span>{{ __('laravel-base::messages.edit_button') }}</span>
+                            <span>{{ __('base::messages.edit_button') }}</span>
                         </x-dropdown-item>
                     @endcan
 
                     @can('delete', $role)
                         <x-dropdown-item wire:click="confirmDelete({{ $role->id }})">
                             <x-css-trash />
-                            <span>{{ __('laravel-base::messages.delete_button') }}</span>
+                            <span>{{ __('base::messages.delete_button') }}</span>
                         </x-dropdown-item>
                     @endcan
                 </x-action-menu>
@@ -70,7 +70,7 @@
         </x-tr>
     @empty
         <x-laravel-base::table.no-results colspan="{{ $this->visibleColumns }}">
-            {{ __('laravel-base::roles.alerts.no_results') }}
+            {{ __('base::roles.alerts.no_results') }}
         </x-laravel-base::table.no-results>
     @endforelse
 </x-table>

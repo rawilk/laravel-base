@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Rawilk\LaravelBase\Contracts\Enums\HasLabel;
+use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 use Rawilk\LaravelBase\LaravelBase;
 
 if (! function_exists('appName')) {
@@ -201,7 +202,7 @@ if (! function_exists('isImpersonating')) {
      */
     function isImpersonating(): bool
     {
-        return session()->has('impersonate');
+        return app(ImpersonatesUsers::class)->impersonating(request());
     }
 }
 
@@ -215,8 +216,27 @@ if (! function_exists('realUserId')) {
     function realUserId(): ?int
     {
         return isImpersonating()
-            ? (int) session()->get('impersonate')
+            ? (int) app(ImpersonatesUsers::class)->impersonatorId(request())
             : auth()->id();
+    }
+}
+
+if (! function_exists('getModelForGuard')) {
+    /**
+     * Get the user model used for a given guard.
+     *
+     * We have this function here just in-case spatie/laravel-permissions is not installed.
+     */
+    function getModelForGuard(string $guard): ?string
+    {
+        return collect(config('auth.guards'))
+            ->map(function ($guard) {
+                if (! isset($guard['provider'])) {
+                    return;
+                }
+
+                return config("auth.providers.{$guard['provider']}.model");
+            })->get($guard);
     }
 }
 

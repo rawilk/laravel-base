@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rawilk\LaravelBase;
 
+use Illuminate\Auth\Events\Attempting;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,23 +13,40 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Component;
 use Livewire\Livewire;
 use Rawilk\LaravelBase\Console\InstallCommand;
 use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppContract;
+use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
 use Rawilk\LaravelBase\Http\Responses;
 use Rawilk\LaravelBase\Models\AuthenticatorApp;
+use Rawilk\LaravelBase\Services\Auth\SessionImpersonator;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelBaseServiceProvider extends ServiceProvider
+class LaravelBaseServiceProvider extends PackageServiceProvider
 {
-    public function register(): void
+    public function configurePackage(Package $package): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-base.php', 'laravel-base');
+        $package
+            ->name('laravel-base')
+            ->hasConfigFile('laravel-base')
+            ->hasViews('laravel-base')
+            ->hasCommands([
+                InstallCommand::class,
+            ])
+            ->hasMigrations([
+                'create_users_table',
+                'create_permission_tables',
+            ])
+            ->hasTranslations();
+    }
 
+    public function packageRegistered(): void
+    {
         $this->registerResponseBindings();
 
         $this->app->singleton(
@@ -38,30 +59,49 @@ class LaravelBaseServiceProvider extends ServiceProvider
             fn () => Auth::guard(config('laravel-base.guard'))
         );
 
+        $this->app->singleton(ImpersonatesUsers::class, SessionImpersonator::class);
+
         $this->app->register(EventServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
     }
 
-    public function boot(): void
+    public function packageBooted(): void
     {
-        $this->configurePublishing();
         $this->configureRoutes();
-        $this->configureCommands();
-
-        $this->bootResources();
         $this->bootBladeComponents();
         $this->bootLivewire();
         $this->bootDirectives();
         $this->bootMacros();
         $this->bootRoutes();
+        $this->bootEvents();
     }
 
-    protected function bootResources(): void
+    /*
+     * Registering...
+     */
+
+    protected function registerResponseBindings(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-base');
+        $this->app->singleton(Contracts\Auth\LockoutResponse::class, Responses\Auth\LockoutResponse::class);
+        $this->app->singleton(Contracts\Auth\LoginResponse::class, Responses\Auth\LoginResponse::class);
+        $this->app->singleton(Contracts\Auth\LogoutResponse::class, Responses\Auth\LogoutResponse::class);
+        $this->app->singleton(Contracts\Auth\RegisterResponse::class, Responses\Auth\RegisterResponse::class);
+        $this->app->singleton(Contracts\Auth\FailedPasswordResetLinkRequestResponse::class, Responses\Auth\FailedPasswordResetLinkRequestResponse::class);
+        $this->app->singleton(Contracts\Auth\FailedTwoFactorLoginResponse::class, Responses\Auth\FailedTwoFactorLoginResponse::class);
+        $this->app->singleton(Contracts\Auth\SuccessfulPasswordResetLinkRequestResponse::class, Responses\Auth\SuccessfulPasswordResetLinkRequestResponse::class);
+        $this->app->singleton(Contracts\Auth\PasswordResetResponse::class, Responses\Auth\PasswordResetResponse::class);
+        $this->app->singleton(Contracts\Auth\FailedPasswordResetResponse::class, Responses\Auth\FailedPasswordResetResponse::class);
+        $this->app->singleton(Contracts\Auth\TwoFactorLoginResponse::class, Responses\Auth\TwoFactorLoginResponse::class);
+        $this->app->singleton(Contracts\Auth\PasswordConfirmedResponse::class, Responses\Auth\PasswordConfirmedResponse::class);
+        $this->app->singleton(Contracts\Auth\FailedPasswordConfirmationResponse::class, Responses\Auth\FailedPasswordConfirmationResponse::class);
 
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'laravel-base');
+        // Models
+        $this->app->bind(AuthenticatorAppContract::class, config('laravel-base.authenticator_apps.model', AuthenticatorApp::class));
     }
+
+    /*
+     * Booting...
+     */
 
     protected function bootBladeComponents(): void
     {
@@ -83,6 +123,19 @@ class LaravelBaseServiceProvider extends ServiceProvider
     {
         Blade::directive('lbJavaScript', function (string $expression) {
             return "<?php echo \\Rawilk\\LaravelBase\\Facades\\LaravelBaseAssets::javaScript({$expression}); ?>";
+        });
+    }
+
+    protected function bootEvents(): void
+    {
+        tap($this->app['events'], function ($event) {
+            $event->listen(Attempting::class, function () {
+                app(ImpersonatesUsers::class)->flushImpersonationData(request());
+            });
+
+            $event->listen(Logout::class, function () {
+                app(ImpersonatesUsers::class)->flushImpersonationData(request());
+            });
         });
     }
 
@@ -181,70 +234,17 @@ class LaravelBaseServiceProvider extends ServiceProvider
 
     protected function bootRoutes(): void
     {
-        Route::get('/laravel-base/laravel-base.js', [LaravelBaseAssets::class, 'source']);
-        Route::get('/laravel-base/laravel-base.js.map', [LaravelBaseAssets::class, 'maps']);
-    }
-
-    protected function configurePublishing(): void
-    {
-        if (! $this->app->runningInConsole()) {
-            return;
-        }
-
-        $this->publishes([
-            __DIR__ . '/../config/laravel-base.php' => config_path('laravel-base.php'),
-        ], 'laravel-base-config');
-
-        $this->publishes([
-            __DIR__ . '/../stubs/app/Actions/Auth/RegisterUserAction.php' => app_path('Actions/Auth/RegisterUserAction.php'),
-            __DIR__ . '/../stubs/app/Providers/LaravelBaseServiceProvider.php' => app_path('Providers/LaravelBaseServiceProvider.php'),
-            __DIR__ . '/../stubs/app/Actions/LaravelBase/PasswordValidationRules.php' => app_path('Actions/LaravelBase/PasswordValidationRules.php'),
-            __DIR__ . '/../stubs/app/Actions/Auth/ResetUserPasswordAction.php' => app_path('Actions/Auth/ResetUserPasswordAction.php'),
-        ], 'laravel-base-support');
-
-        $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/laravel-base'),
-        ], 'laravel-base-views');
-
-        $this->publishes([
-            __DIR__ . '/../database/migrations/2014_10_12_000000_create_users_table.php' => database_path('migrations/2014_10_12_000000_create_users_table.php'),
-        ], 'laravel-base-migrations');
-    }
-
-    protected function configureCommands(): void
-    {
-        if (! $this->app->runningInConsole()) {
-            return;
-        }
-
-        $this->commands([
-            InstallCommand::class,
-        ]);
-    }
-
-    protected function registerResponseBindings(): void
-    {
-        $this->app->singleton(Contracts\Auth\LockoutResponse::class, Responses\Auth\LockoutResponse::class);
-        $this->app->singleton(Contracts\Auth\LoginResponse::class, Responses\Auth\LoginResponse::class);
-        $this->app->singleton(Contracts\Auth\LogoutResponse::class, Responses\Auth\LogoutResponse::class);
-        $this->app->singleton(Contracts\Auth\RegisterResponse::class, Responses\Auth\RegisterResponse::class);
-        $this->app->singleton(Contracts\Auth\FailedPasswordResetLinkRequestResponse::class, Responses\Auth\FailedPasswordResetLinkRequestResponse::class);
-        $this->app->singleton(Contracts\Auth\FailedTwoFactorLoginResponse::class, Responses\Auth\FailedTwoFactorLoginResponse::class);
-        $this->app->singleton(Contracts\Auth\SuccessfulPasswordResetLinkRequestResponse::class, Responses\Auth\SuccessfulPasswordResetLinkRequestResponse::class);
-        $this->app->singleton(Contracts\Auth\PasswordResetResponse::class, Responses\Auth\PasswordResetResponse::class);
-        $this->app->singleton(Contracts\Auth\FailedPasswordResetResponse::class, Responses\Auth\FailedPasswordResetResponse::class);
-        $this->app->singleton(Contracts\Auth\TwoFactorLoginResponse::class, Responses\Auth\TwoFactorLoginResponse::class);
-        $this->app->singleton(Contracts\Auth\PasswordConfirmedResponse::class, Responses\Auth\PasswordConfirmedResponse::class);
-        $this->app->singleton(Contracts\Auth\FailedPasswordConfirmationResponse::class, Responses\Auth\FailedPasswordConfirmationResponse::class);
-
-        // Models
-        $this->app->bind(AuthenticatorAppContract::class, config('laravel-base.authenticator_apps.model', AuthenticatorApp::class));
+        Route::get('/laravel-base/assets/{asset}', [LaravelBaseAssets::class, 'source']);
     }
 
     protected function configureRoutes(): void
     {
-        // Most of our routes are bound to Livewire components, so if Livewire has not been
-        // installed yet, it will break the application.
+        /*
+         * Most of our routes are bound to Livewire components, so if Livewire has not been
+         * installed yet, it will break the application.
+         *
+         * TODO: remove livewire binding from routes.
+         */
         if (! class_exists(Component::class)) {
             return;
         }

@@ -1,16 +1,16 @@
 <div>
-    <x-auth.authentication-form title="{{ __('laravel-base::users.two_factor.title') }}">
+    <x-auth.authentication-form title="{{ __('base::users.two_factor.title') }}">
         <x-form wire:submit.prevent="login">
             <div x-data="{ recovery: false }"
                  x-on:otp-finish.window="$wire.login()"
                  class="space-y-6"
             >
                 <p class="text-gray-600" x-show="! recovery">
-                    {{ __('laravel-base::users.two_factor.app_code_description') }}
+                    {{ __('base::users.two_factor.app_code_description') }}
                 </p>
 
                 <p class="text-gray-600" x-show="recovery" x-cloak>
-                    {{ __('laravel-base::users.two_factor.recovery_code_description') }}
+                    {{ __('base::users.two_factor.recovery_code_description') }}
                 </p>
 
                 <x-form-error name="two_factor" wire:key="two-factor-error">
@@ -49,7 +49,7 @@
                         "
                         class="text-xs"
                     >
-                        {{ __('laravel-base::users.two_factor.use_recovery_code_button') }}
+                        {{ __('base::users.two_factor.use_recovery_code_button') }}
                     </x-laravel-base::button.link>
 
                     <x-laravel-base::button.link
@@ -62,14 +62,14 @@
                         "
                         class="text-xs"
                     >
-                        {{ __('laravel-base::users.two_factor.use_auth_code_button') }}
+                        {{ __('base::users.two_factor.use_auth_code_button') }}
                     </x-laravel-base::button.link>
                 </div>
             </div>
 
             <div class="mt-6">
                 <x-button variant="blue" type="submit" block wire:target="login">
-                    {{ __('laravel-base::users.two_factor.verify_button') }}
+                    {{ __('base::users.two_factor.verify_button') }}
                 </x-button>
             </div>
         </x-form>

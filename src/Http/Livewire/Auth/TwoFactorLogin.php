@@ -173,9 +173,9 @@ class TwoFactorLogin extends Component
     public function challengeOptionName(string $type): string
     {
         return match ($type) {
-            'backup_code' => __('laravel-base::2fa.challenge.types.backup_code_name'),
-            'totp' => __('laravel-base::2fa.challenge.types.totp_name'),
-            'key' => __('laravel-base::2fa.challenge.types.key_name'),
+            'backup_code' => __('base::2fa.challenge.types.backup_code_name'),
+            'totp' => __('base::2fa.challenge.types.totp_name'),
+            'key' => __('base::2fa.challenge.types.key_name'),
         };
     }
 

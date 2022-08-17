@@ -2,22 +2,22 @@
     <x-topbar
         :hideable-columns="$hideableColumns"
         :hidden-columns="$hidden"
-        search-placeholder="{{ __('laravel-base::roles.labels.search_placeholder') }}"
+        search-placeholder="{{ __('base::roles.labels.search_placeholder') }}"
     >
         <div class="topbar-section" id="bulk-actions">
-            <x-dropdown trigger-text="{{ __('laravel-base::messages.bulk_actions') }}" right>
+            <x-dropdown trigger-text="{{ __('base::messages.bulk_actions') }}" right>
                 {{-- import --}}
                 @canany([\App\Enums\PermissionEnum::ROLES_CREATE->value, \App\Enums\PermissionEnum::ROLES_EDIT->value])
                     <x-dropdown-item wire:click="$emit('{{ \Rawilk\LaravelBase\Http\Livewire\Roles\Import::$showEvent }}', '{{ \Rawilk\LaravelBase\Http\Livewire\Roles\Import::importId() }}')">
                         <x-css-software-upload />
-                        <span>{{ __('laravel-base::messages.import_button') }}</span>
+                        <span>{{ __('base::messages.import_button') }}</span>
                     </x-dropdown-item>
                 @endcanany
 
                 {{-- export --}}
                 <x-dropdown-item wire:click="exportSelected">
                     <x-css-software-download />
-                    <span>{{ __('laravel-base::messages.export_button') }}</span>
+                    <span>{{ __('base::messages.export_button') }}</span>
                 </x-dropdown-item>
 
                 {{-- delete --}}
@@ -25,7 +25,7 @@
                     <x-dropdown-divider />
                     <x-dropdown-item wire:click="$toggle('showDeleteAll')">
                         <x-css-trash />
-                        <span>{{ __('laravel-base::messages.delete_button') }}</span>
+                        <span>{{ __('base::messages.delete_button') }}</span>
                     </x-dropdown-item>
                 @endcan
             </x-dropdown>

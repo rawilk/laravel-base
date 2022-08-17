@@ -25,7 +25,8 @@
         "jenssegers/agent": "^2.6",
         "maatwebsite/excel": "^3.1",
         "pragmarx/google2fa": "^8.0",
-        "rawilk/laravel-webauthn": "^1.0"
+        "rawilk/laravel-webauthn": "^1.0",
+        "spatie/laravel-package-tools": "^1.12"
     },
     "require-dev": {
         "blade-ui-kit/blade-heroicons": "^1.2",

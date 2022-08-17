@@ -9,7 +9,7 @@
 
                     <x-form-components::files.file-pond
                         wire:model="upload"
-                        description="{{ __('laravel-base::messages.modal.import.upload_hint') }}"
+                        description="{{ __('base::messages.modal.import.upload_hint') }}"
                     />
                 </div>
 
@@ -17,7 +17,7 @@
             </div>
         @else
             <div class="flex items-center space-x-2 mb-6">
-                <p class="font-semibold">{{ __('laravel-base::messages.modal.import.importing') }}:</p>
+                <p class="font-semibold">{{ __('base::messages.modal.import.importing') }}:</p>
 
                 <div>
                     <x-badge variant="blue">{{ $upload->getClientOriginalName() }}</x-badge>
@@ -28,7 +28,7 @@
                     x-on:click="$wire.removeUpload('upload', '{{ $upload->getFilename() }}')"
                     wire:target="removeUpload"
                 >
-                    {{ __('laravel-base::messages.modal.import.change_upload') }}
+                    {{ __('base::messages.modal.import.change_upload') }}
                 </x-laravel-base::button.link>
             </div>
 
@@ -61,7 +61,7 @@
             wire:loading.attr="disabled"
             variant="white"
         >
-            {{ __('laravel-base::messages.confirm_modal_cancel') }}
+            {{ __('base::messages.confirm_modal_cancel') }}
         </x-button>
     </x-slot>
 </x-dialog-modal>

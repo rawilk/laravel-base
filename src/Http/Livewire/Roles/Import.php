@@ -38,17 +38,17 @@ class Import extends Component
     {
         return [
             'name' => [
-                'label' => __('laravel-base::roles.labels.name'),
+                'label' => __('base::roles.labels.name'),
                 'required' => true,
             ],
             'description' => [
-                'label' => __('laravel-base::roles.labels.description'),
+                'label' => __('base::roles.labels.description'),
                 'required' => false,
             ],
             'permissions' => [
-                'label' => __('laravel-base::roles.labels.permissions'),
+                'label' => __('base::roles.labels.permissions'),
                 'required' => false,
-                'hint' => __('laravel-base::roles.import.permissions_hint'),
+                'hint' => __('base::roles.import.permissions_hint'),
             ],
         ];
     }
@@ -71,7 +71,7 @@ class Import extends Component
         $this->emit('refresh-roles');
 
         $this->notify(
-            Lang::choice('laravel-base::roles.alerts.import_success', $import->count(), ['count' => $import->count()])
+            Lang::choice('base::roles.alerts.import_success', $import->count(), ['count' => $import->count()])
         );
     }
 

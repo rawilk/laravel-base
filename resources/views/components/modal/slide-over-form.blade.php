@@ -22,7 +22,7 @@
                             x-on:click="show = false"
                             class="text-slate-400 hover:text-slate-200 hover:bg-slate-400 rounded-full transition-colors focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 p-3"
                         >
-                            <span class="sr-only">{{ __('laravel-base::messages.modal.close_button') }}</span>
+                            <span class="sr-only">{{ __('base::messages.modal.close_button') }}</span>
                             <x-heroicon-s-x class="h-6 w-6" />
                         </button>
                     </div>

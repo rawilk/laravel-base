@@ -32,7 +32,7 @@
 
                     @if ($filters && $filterId)
                         <div class="flex-shrink-0 pl-1.5">
-                            <x-tooltip title="{!! __('laravel-base::messages.filters.trigger_button_tooltip') !!}">
+                            <x-tooltip title="{!! __('base::messages.filters.trigger_button_tooltip') !!}">
                                 <button
                                     x-on:click="$dispatch('show-filters', '{{ $filterId }}')"
                                     x-on:keydown.ctrl.f.window="$dispatch('show-filters', '{{ $filterId }}')"
@@ -54,7 +54,7 @@
                     x-on:click="show = ! show"
                     class="text-xs"
                 >
-                    <span x-text="show ? '{{ __('laravel-base::messages.labels.topbar.hide_menu') }}' : '{{ __('laravel-base::messages.labels.topbar.show_menu') }}'"></span>
+                    <span x-text="show ? '{{ __('base::messages.labels.topbar.hide_menu') }}' : '{{ __('base::messages.labels.topbar.show_menu') }}'"></span>
                 </x-laravel-base::button.link>
             </div>
 
@@ -66,7 +66,7 @@
                     <div class="topbar-section w-full lg:w-auto">
                         <div class="grid grid-cols-3 gap-4 items-center">
                             <x-form-components::label for="{{ $perPageModel }}">
-                                {{ __('laravel-base::messages.labels.form.per_page') }}
+                                {{ __('base::messages.labels.form.per_page') }}
                             </x-form-components::label>
                             <div class="col-span-2">
                                 <x-form-components::inputs.select

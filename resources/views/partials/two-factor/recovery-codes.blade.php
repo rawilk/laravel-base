@@ -1,6 +1,6 @@
 <div class="mt-4 max-w-xl text-sm text-gray-600">
     <p class="font-semibold">
-        {{ __('laravel-base::users.profile.two_factor_recovery_codes_description') }}
+        {{ __('base::users.profile.two_factor_recovery_codes_description') }}
     </p>
 </div>
 
