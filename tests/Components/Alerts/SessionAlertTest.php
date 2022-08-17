@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests\Components\Alerts;
-
 it('can be rendered', function () {
     session()->flash('alert', 'Form was successfully submitted.');
 

@@ -64,7 +64,7 @@ class ImpersonationController
         }
 
         return response()->json([
-            'redirect' => homeRoute(),
+            'redirect' => $this->getRedirect(),
         ]);
     }
 
@@ -81,5 +81,14 @@ class ImpersonationController
         return response()->json([
             'redirect' => route('admin.users.index'),
         ]);
+    }
+
+    protected function getRedirect(): string
+    {
+        if (function_exists('homeRoute')) {
+            return homeRoute();
+        }
+
+        return '/';
     }
 }

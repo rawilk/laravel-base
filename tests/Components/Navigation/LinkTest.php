@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests\Components\Navigation;
-
 beforeEach(function () {
     config(['app.url' => 'http://acme.test']);
 });

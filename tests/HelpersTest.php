@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests;
-
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use function Pest\Laravel\actingAs;

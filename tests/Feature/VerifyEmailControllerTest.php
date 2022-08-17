@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests\Feature;
-
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;

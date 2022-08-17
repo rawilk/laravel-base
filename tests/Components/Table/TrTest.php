@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests\Components\Table;
-
 it('can be rendered', function () {
     $this->blade('<x-tr />')
         ->assertSee('<tr', false);

@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests\Components\DateTime;
-
 it('can be rendered', function () {
     $expires = now()->addMinute();
 

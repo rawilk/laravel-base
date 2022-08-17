@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rawilk\LaravelBase\Tests\Components;
+use Rawilk\LaravelBase\Tests\Components\ComponentPrefixTestCase;
 
 uses(ComponentPrefixTestCase::class);
 
