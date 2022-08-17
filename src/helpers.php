@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Rawilk\LaravelBase\Contracts\Enums\HasLabel;
@@ -44,7 +45,7 @@ if (! function_exists('minDateToUTC')) {
      * @param  null|string|\Carbon\Carbon  $date
      * @return \Carbon\CarbonInterface|null
      */
-    function minDateToUTC($date): ?Carbon\CarbonInterface
+    function minDateToUTC($date): ?CarbonInterface
     {
         if (! $date) {
             return null;
@@ -63,7 +64,7 @@ if (! function_exists('maxDateToUTC')) {
      * @param  null|string|\Carbon\Carbon  $date
      * @return \Carbon\CarbonInterface|null
      */
-    function maxDateToUTC($date): ?Carbon\CarbonInterface
+    function maxDateToUTC($date): ?CarbonInterface
     {
         if (! $date) {
             return null;

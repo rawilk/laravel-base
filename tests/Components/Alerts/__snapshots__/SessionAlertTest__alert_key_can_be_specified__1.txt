@@ -1,3 +1,0 @@
-<div role="alert" >
-                    Form contains some errors.
-            </div>

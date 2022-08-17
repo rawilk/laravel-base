@@ -6,134 +6,102 @@ namespace Rawilk\LaravelBase\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
+use function Pest\Laravel\actingAs;
 use Rawilk\LaravelBase\LaravelBase;
 
-final class HelpersTest extends TestCase
-{
-    protected function setUp(): void
-    {
-        parent::setUp();
+beforeEach(function () {
+    LaravelBase::$findAppTimezoneUsingCallback = null;
+    LaravelBase::$findUserTimezoneUsingCallback = null;
+});
 
-        LaravelBase::$findAppTimezoneUsingCallback = null;
-        LaravelBase::$findUserTimezoneUsingCallback = null;
-    }
+test('minDateToUTC() converts correctly', function () {
+    $user = new TestUser(['timezone' => 'America/Chicago']);
 
-    /** @test */
-    public function minDateToUTC_converts_correctly(): void
-    {
-        $user = new TestUser(['timezone' => 'America/Chicago']);
+    $expected = Carbon::parse('2021-09-01 05:00:00');
 
-        $expected = Carbon::parse('2021-09-01 05:00:00');
+    actingAs($user)
+        ->expect($expected->equalTo(minDateToUTC('2021-09-01 23:00:00')))->toBeTrue();
+});
 
-        $this->actingAs($user)
-            ->assertTrue($expected->equalTo(minDateToUTC('2021-09-01 23:00:00')));
-    }
+test('maxDateToUTC() converts correctly', function () {
+    $user = new TestUser(['timezone' => 'America/Chicago']);
 
-    /** @test */
-    public function maxDateToUTC_converts_correctly(): void
-    {
-        $user = new TestUser(['timezone' => 'America/Chicago']);
+    actingAs($user);
 
-        $this->actingAs($user);
-        $expected = Carbon::parse('2021-09-02 04:59:59');
-        $converted = maxDateToUTC('2021-09-01');
+    $expected = Carbon::parse('2021-09-02 04:59:59');
+    $converted = maxDateToUTC('2021-09-01');
 
-        // For some reason, carbon's equalTo() is returning false, so we will compare
-        // it a different way here...
-        $this->assertSame($expected->timestamp, $converted->timestamp);
-        $this->assertEquals('UTC', $converted->timezone);
-    }
+    /*
+     * For some reason, Carbon's equalTo() is returning false, so we will
+     * compare the values a different way in this test...
+     */
 
-    /** @test */
-    public function appTimezone_gets_the_configured_timezone(): void
-    {
-        $this->assertEquals('UTC', appTimezone());
+    expect($converted->timestamp)
+        ->toBe($expected->timestamp)
+        ->and($converted->timezone)
+        ->toEqual('UTC');
+});
 
-        config(['app.timezone' => 'America/Chicago']);
+test('appTimezone() gets the configured timezone', function () {
+    expect(appTimezone())->toEqual('UTC');
 
-        $this->assertEquals('America/Chicago', appTimezone());
-    }
+    config(['app.timezone' => 'America/Chicago']);
 
-    /** @test */
-    public function appTimezone_can_use_a_custom_callback_to_get_the_application_timezone(): void
-    {
-        $callback = function () {
-            return 'America/New_York';
-        };
+    expect(appTimezone())->toEqual('America/Chicago');
+});
 
-        LaravelBase::findAppTimezoneUsing($callback);
+test('appTimezone() can use a custom callback to get the application timezone', function () {
+    LaravelBase::findAppTimezoneUsing(fn () => 'America/New_York');
 
-        $this->assertEquals('America/New_York', appTimezone());
-    }
+    expect(appTimezone())->toEqual('America/New_York');
+});
 
-    /** @test */
-    public function userTimezone_gets_the_authenticated_users_timezone(): void
-    {
-        $user = new TestUser(['timezone' => 'America/Chicago']);
-        config(['app.timezone' => 'UTC']);
+test("userTimezone() gets the authenticated user's timezone", function () {
+    $user = new TestUser(['timezone' => 'America/Chicago']);
+    config(['app.timezone' => 'UTC']);
 
-        // Before we are logged in, the app timezone should be returned as a fallback value.
-        $this->assertEquals('UTC', userTimezone());
+    // Before we are logged in, the app timezone should be returned as a fallback value.
+    expect(userTimezone())->toEqual('UTC');
 
-        $this->actingAs($user);
+    actingAs($user)
+        ->expect(userTimezone())->toEqual('America/Chicago');
+});
 
-        $this->assertEquals('America/Chicago', userTimezone());
-    }
+test("userTimezone() can use a custom callback to find the user's timezone", function () {
+    $user = new TestUser(['tz' => 'America/New_York']);
+    config(['app.timezone' => 'UTC']);
 
-    /** @test */
-    public function userTimezone_can_use_a_custom_callback_to_find_the_users_timezone(): void
-    {
-        $user = new TestUser(['tz' => 'America/New_York']);
-        config(['app.timezone' => 'UTC']);
-        $this->actingAs($user);
+    actingAs($user);
 
-        $callback = function ($user) {
-            return $user->tz;
-        };
+    LaravelBase::findUserTimezoneUsing(fn ($user) => $user->tz);
 
-        LaravelBase::findUserTimezoneUsing($callback);
+    expect(userTimezone())->toEqual('America/New_York');
 
-        $this->assertEquals('America/New_York', userTimezone());
+    // userTimezone() should still fallback if no timezone is returned.
+    LaravelBase::findUserTimezoneUsing(fn () => null);
 
-        // userTimezone should still fallback on the appTimezone if no timezone is returned.
-        LaravelBase::findUserTimezoneUsing(fn () => null);
+    expect(userTimezone())->toEqual('UTC');
+});
 
-        $this->assertEquals('UTC', userTimezone());
-    }
+it('can convert empty strings to null', function () {
+    $data = [
+        'foo' => 'bar',
+        'bool_value' => true,
+        'int_value' => 0,
+        'empty_value' => '',
+        'value_with_space' => ' ',
+    ];
 
-    /** @test */
-    public function can_convert_empty_strings_to_null(): void
-    {
-        $data = [
-            'foo' => 'bar',
-            'bool_value' => true,
-            'int_value' => 0,
-            'empty_value' => '',
-            'value_with_space' => ' ',
-        ];
+    $expected = [
+        'foo' => 'bar',
+        'bool_value' => true,
+        'int_value' => 0,
+        'empty_value' => null,
+        'value_with_space' => ' ',
+    ];
 
-        $expected = [
-            'foo' => 'bar',
-            'bool_value' => true,
-            'int_value' => 0,
-            'empty_value' => null,
-            'value_with_space' => ' ',
-        ];
-
-        $this->assertSame($expected, convertEmptyStringsToNull($data));
-    }
-
-    /** @test */
-    public function can_prefix_a_list_of_columns_with_a_models_table(): void
-    {
-        $expected = 'test_users.name,test_users.email,test_users.timezone';
-
-        $this->assertEquals(
-            $expected,
-            prefixSelectColumns(TestUser::class, 'name', 'email', 'timezone')
-        );
-    }
-}
+    expect(convertEmptyStringsToNull($data))->toBe($expected);
+});
 
 class TestUser extends User
 {

@@ -5,109 +5,114 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Tests\Feature;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Mockery;
+use function Pest\Laravel\actingAs;
 use Rawilk\LaravelBase\Features;
-use Rawilk\LaravelBase\Tests\TestCase;
+use Rawilk\LaravelBase\Http\Controllers\Auth\VerifyEmailController;
+use Rawilk\LaravelBase\Http\Livewire\Auth\Verify;
 
-final class VerifyEmailControllerTest extends TestCase
-{
-    public function getEnvironmentSetUp($app): void
-    {
-        $features = array_merge($app['config']->get('laravel-base.features', []), [
-            Features::emailVerification(),
-        ]);
+beforeEach(function () {
+    $features = array_merge(config('laravel-base.features', []), [
+        Features::emailVerification(),
+    ]);
 
-        $app['config']->set('laravel-base.features', $features);
+    config()->set('laravel-base.features', $features);
 
-        parent::getEnvironmentSetUp($app);
-    }
+    $verificationLimiter = config('laravel-base.limiters.verification', '6,1');
 
-    /** @test */
-    public function email_can_be_verified(): void
-    {
-        $url = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addMinutes(60),
-            [
-                'id' => 1,
-                'hash' => sha1('email@example.com'),
-            ]
-        );
+    Route::get('/email/verify', Verify::class)
+        ->middleware(['auth:' . config('laravel-base.guard')])
+        ->name('verification.notice');
 
-        $user = Mockery::mock(Authenticatable::class);
-        $user->shouldReceive('getKey')->andReturn(1);
-        $user->shouldReceive('getAuthIdentifier')->andReturn(1);
-        $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
-        $user->shouldReceive('hasVerifiedEmail')->andReturn(false);
-        $user->shouldReceive('markEmailAsVerified')->once();
+    Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)
+        ->middleware(['auth:' . config('laravel-base.guard'), 'signed', 'throttle:' . $verificationLimiter])
+        ->name('verification.verify');
+});
 
-        $response = $this->actingAs($user)
-            ->withSession(['url.intended' => 'http://foo.com/bar'])
-            ->get($url);
+test('email can be verified', function () {
+    $url = URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(60),
+        [
+            'id' => 1,
+            'hash' => sha1('email@example.com'),
+        ],
+    );
 
-        $response->assertRedirect('http://foo.com/bar');
-    }
+    $user = Mockery::mock(Authenticatable::class);
+    $user->shouldReceive('getKey')->andReturn(1);
+    $user->shouldReceive('getAuthIdentifier')->andReturn(1);
+    $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
+    $user->shouldReceive('hasVerifiedEmail')->andReturn(false);
+    $user->shouldReceive('markEmailAsVerified')->once();
 
-    /** @test */
-    public function redirects_if_email_is_already_verified(): void
-    {
-        $url = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addMinutes(60),
-            [
-                'id' => 1,
-                'hash' => sha1('email@example.com'),
-            ],
-        );
+    $response = actingAs($user)
+        ->withSession(['url.intended' => 'http://foo.com/bar'])
+        ->get($url);
 
-        $user = Mockery::mock(Authenticatable::class);
-        $user->shouldReceive('getKey')->andReturn(1);
-        $user->shouldReceive('getAuthIdentifier')->andReturn(1);
-        $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
-        $user->shouldReceive('hasVerifiedEmail')->andReturn(true);
-        $user->shouldReceive('markEmailAsVerified')->never();
+    $response->assertRedirect('http://foo.com/bar');
+});
 
-        $this->actingAs($user)->get($url)->assertStatus(302);
-    }
+it('redirects if email is already verified', function () {
+    $url = URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(60),
+        [
+            'id' => 1,
+            'hash' => sha1('email@example.com'),
+        ],
+    );
 
-    /** @test */
-    public function email_is_not_verified_if_id_does_not_match(): void
-    {
-        $url = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addMinutes(60),
-            [
-                'id' => 2,
-                'hash' => sha1('email@example.com'),
-            ],
-        );
+    $user = Mockery::mock(Authenticatable::class);
+    $user->shouldReceive('getKey')->andReturn(1);
+    $user->shouldReceive('getAuthIdentifier')->andReturn(1);
+    $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
+    $user->shouldReceive('hasVerifiedEmail')->andReturn(true);
+    $user->shouldReceive('markEmailAsVerified')->never();
 
-        $user = Mockery::mock(Authenticatable::class);
-        $user->shouldReceive('getKey')->andReturn(1);
-        $user->shouldReceive('getAuthIdentifier')->andReturn(1);
-        $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
+    actingAs($user)
+        ->get($url)
+        ->assertStatus(302);
+});
 
-        $this->actingAs($user)->get($url)->assertStatus(403);
-    }
+it('does not verify email if id does not match', function () {
+    $url = URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(60),
+        [
+            'id' => 2,
+            'hash' => sha1('email@example.com'),
+        ],
+    );
 
-    /** @test */
-    public function email_is_not_verified_if_email_does_not_match(): void
-    {
-        $url = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addMinutes(60),
-            [
-                'id' => 1,
-                'hash' => sha1('other@example.com'),
-            ],
-        );
+    $user = Mockery::mock(Authenticatable::class);
+    $user->shouldReceive('getKey')->andReturn(1);
+    $user->shouldReceive('getAuthIdentifier')->andReturn(1);
+    $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
 
-        $user = Mockery::mock(Authenticatable::class);
-        $user->shouldReceive('getKey')->andReturn(1);
-        $user->shouldReceive('getAuthIdentifier')->andReturn(1);
-        $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
+    actingAs($user)
+        ->get($url)
+        ->assertStatus(403);
+});
 
-        $this->actingAs($user)->get($url)->assertStatus(403);
-    }
-}
+it('does not verify email if the email does not match', function () {
+    $url = URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(60),
+        [
+            'id' => 1,
+            'hash' => sha1('other@example.com'),
+        ],
+    );
+
+    $user = Mockery::mock(Authenticatable::class);
+    $user->shouldReceive('getKey')->andReturn(1);
+    $user->shouldReceive('getAuthIdentifier')->andReturn(1);
+    $user->shouldReceive('getEmailForVerification')->andReturn('email@example.com');
+
+    actingAs($user)
+        ->get($url)
+        ->assertStatus(403);
+});

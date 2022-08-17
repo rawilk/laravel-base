@@ -36,12 +36,13 @@
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^6.0",
         "orchestra/testbench": "^7.0",
-        "phpunit/phpunit": "^9.5",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "pestphp/pest-plugin-parallel": "^1.2",
         "rawilk/laravel-casters": "^2.0",
         "rawilk/laravel-form-components": "^7.0.0",
         "spatie/laravel-permission": "^5.1",
-        "spatie/laravel-ray": "^1.25",
-        "spatie/phpunit-snapshot-assertions": "^4.2"
+        "spatie/laravel-ray": "^1.25"
     },
     "autoload": {
         "psr-4": {
@@ -58,11 +59,14 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --colors=always",
+        "test": "vendor/bin/pest -p",
         "format": "vendor/bin/pint"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {

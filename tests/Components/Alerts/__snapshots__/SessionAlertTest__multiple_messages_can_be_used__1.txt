@@ -1,5 +1,0 @@
-<div role="alert" >
-                    <span>Hello world</span>
-    Form was successfully submitted.
-We have sent you a confirmation email.
-            </div>

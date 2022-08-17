@@ -4,59 +4,56 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Tests\Components\Alerts;
 
-use Rawilk\LaravelBase\Tests\TestCase;
-use Spatie\Snapshots\MatchesSnapshots;
+it('can be rendered', function () {
+    session()->flash('alert', 'Form was successfully submitted.');
 
-final class SessionAlertTest extends TestCase
-{
-    use MatchesSnapshots;
+    $this->blade('<x-session-alert />')
+        ->assertSeeText('Form was successfully submitted.')
+        ->assertSee('role="alert"', false);
+});
 
-    /** @test */
-    public function can_be_rendered(): void
-    {
-        session()->flash('alert', 'Form was successfully submitted.');
+test('alert key can be specified', function () {
+    session()->flash('error', 'Form contains some errors.');
 
-        $this->assertMatchesSnapshot((string) $this->blade('<x-session-alert />'));
-    }
+    $this->blade('<x-session-alert type="error" />')
+        ->assertSee('Form contains some errors.');
+});
 
-    /** @test */
-    public function alert_key_can_be_specified(): void
-    {
-        session()->flash('error', 'Form contains some errors.');
+it('can be slotted', function () {
+    session()->flash('alert', 'Form was successfully submitted.');
 
-        $this->assertMatchesSnapshot((string) $this->blade('<x-session-alert type="error" />'));
-    }
+    $template = <<<'HTML'
+    <x-session-alert>
+        <span>Hello world</span>
+        {{ $component->message() }}
+    </x-session-alert>
+    HTML;
 
-    /** @test */
-    public function it_can_be_slotted(): void
-    {
-        session()->flash('alert', 'Form was successfully submitted.');
+    $this->blade($template)
+        ->assertSeeInOrder([
+            'role="alert"',
+            '<span>Hello world</span>',
+            'Form was successfully submitted.',
+        ], false);
+});
 
-        $template = <<<'HTML'
-        <x-session-alert>
-            <span>Hello world</span>
-            {{ $component->message() }}
-        </x-session-alert>
-        HTML;
+it('can render multiple messages', function () {
+    session()->flash('alert', [
+        'Form was successfully submitted.',
+        'We have sent you a confirmation email.',
+    ]);
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+    $template = <<<'HTML'
+    <x-session-alert>
+        <span>Hello world</span>
+        {{ implode(PHP_EOL, $component->messages()) }}
+    </x-session-alert>
+    HTML;
 
-    /** @test */
-    public function multiple_messages_can_be_used(): void
-    {
-        session()->flash('alert', [
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<span>Hello world</span>',
             'Form was successfully submitted.',
             'We have sent you a confirmation email.',
-        ]);
-
-        $template = <<<'HTML'
-        <x-session-alert>
-            <span>Hello world</span>
-            {{ implode(PHP_EOL, $component->messages()) }}
-        </x-session-alert>
-        HTML;
-
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
-}
+        ], false);
+});

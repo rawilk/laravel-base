@@ -1,6 +1,0 @@
-<a href="google.com"
-          rel="nofollow noopener external "
-      class="app-link inline-flex items-center space-x-2"
->
-   google
-</a>

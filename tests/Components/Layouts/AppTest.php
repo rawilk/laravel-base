@@ -4,139 +4,142 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Tests\Components\Layouts;
 
-use Rawilk\LaravelBase\Tests\TestCase;
-use Spatie\Snapshots\MatchesSnapshots;
+it('can be rendered', function () {
+    $this->blade('<x-app />')
+        ->assertSeeInOrder([
+            '<!DOCTYPE html>',
+            '<title>Laravel</title>',
+            '<body',
+        ], false);
+});
 
-final class AppTest extends TestCase
-{
-    use MatchesSnapshots;
+it('can include livewire and laravel form components scripts automatically', function () {
+    $this->blade('<x-app />')
+        ->assertSee('[wire\:loading]', false) // livewire styles
+        ->assertSee('livewire.js')
+        ->assertSee('<script src="/form-components', false);
+});
 
-    /** @test */
-    public function can_be_rendered(): void
-    {
-        $this->assertMatchesSnapshot(
-            (string) $this->blade('<x-app :livewire="false" :laravel-form-components="false" :assets="false" />')
-        );
-    }
+it('forwards custom attributes to the body tag', function () {
+    $this->blade('<x-app class="my-body-class" id="my-body" />')
+        ->assertSeeInOrder([
+            '<body',
+            'class="my-body-class"',
+            'id="my-body"',
+            '>',
+        ], false);
+});
 
-    /** @test */
-    public function can_include_livewire_and_laravel_form_components_scripts_automatically(): void
-    {
-        $rendered = (string) $this->blade(
-            '<x-app livewire laravel-form-components :assets="false" />'
-        );
+it('renders the title correctly', function () {
+    config(['app.name' => 'Acme']);
 
-        $this->assertStringContainsString('livewire', $rendered);
-        $this->assertStringContainsString('form-components', $rendered);
-    }
+    $this->blade('<x-app title="My custom title" />')
+        ->assertSee('<title>My custom title | Acme</title>', false);
+});
 
-    /** @test */
-    public function custom_attributes_are_forwarded_to_the_body_tag(): void
-    {
-        $this->assertMatchesSnapshot(
-            (string) $this->blade('<x-app :livewire="false" :laravel-form-components="false" :assets="false" class="my-body-class" id="my-body" />')
-        );
-    }
+it('can have a custom title separator', function () {
+    config(['app.name' => 'Acme']);
 
-    /** @test */
-    public function renders_title_correctly(): void
-    {
-        $template = <<<'HTML'
-        <x-app :livewire="false" :laravel-form-components="false" :assets="false" title="My Custom Title">
-        </x-app>
-        HTML;
+    $this->blade('<x-app title="My custom title" title-separator="-" />')
+        ->assertSee('<title>My custom title - Acme</title>', false);
+});
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+it('renders content in the body', function () {
+    $template = <<<'HTML'
+    <x-app>
+        <div>My content</div>
+    </x-app>
+    HTML;
 
-    /** @test */
-    public function can_have_a_custom_title_separator(): void
-    {
-        $template = <<<'HTML'
-        <x-app :livewire="false" :laravel-form-components="false" :assets="false" title="My Custom Title" title-separator="-">
-        </x-app>
-        HTML;
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<body',
+            '<div>My content</div>',
+        ], false);
+});
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+test('tags can be added to the head via slot', function () {
+    $template = <<<'HTML'
+    <x-app>
+        <x-slot:head-top>
+            <link rel="stylesheet" href="/css/top-styles.css" />
+        </x-slot:head-top>
 
-    /** @test */
-    public function renders_content_in_default_slot(): void
-    {
-        $template = <<<'HTML'
-        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
-            <div>My content</div>
-        </x-app>
-        HTML;
+        <x-slot:head>
+            <link rel="stylesheet" href="/css/app.css" />
+        </x-slot:head>
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+        <div>My content</div>
+    </x-app>
+    HTML;
 
-    /** @test */
-    public function tags_can_be_added_to_head_via_slot(): void
-    {
-        $template = <<<'HTML'
-        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
-            <x-slot name="headTop">
-                <link rel="stylesheet" href="/css/top-styles.css">
-            </x-slot>
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<head',
+            '<link rel="stylesheet" href="/css/top-styles.css" />',
+            '<title>',
+            '<link rel="stylesheet" href="/css/app.css" />',
+            '<body',
+            '<div>My content</div>',
+        ], false);
+});
 
-            <x-slot name="head">
-                <link rel="stylesheet" href="/css/app.css">
-            </x-slot>
+test('tags can be added via slot and stacks at same time', function () {
+    $template = <<<'HTML'
+    <x-app>
+        <x-slot:head-top>
+            <link rel="stylesheet" href="/css/top-styles.css" />
+        </x-slot:head-top>
 
-            <div>My content</div>
-        </x-app>
-        HTML;
+        <x-slot:head>
+            <link rel="stylesheet" href="/css/app.css" />
+        </x-slot:head>
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+        <div>My content</div>
 
-    /** @test */
-    public function tags_can_be_added_to_head_via_slot_or_stacks(): void
-    {
-        $template = <<<'HTML'
-        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
-            <x-slot name="headTop">
-                <link rel="stylesheet" href="/css/top-styles.css">
-            </x-slot>
+        @push('head-top')
+            <link rel="stylesheet" href="/css/other-top-styles.css" />
+        @endpush
 
-            <x-slot name="head">
-                <link rel="stylesheet" href="/css/app.css">
-            </x-slot>
+        @push('head')
+            <link rel="stylesheet" href="/css/other-styles.css" />
+        @endpush
+    </x-app>
+    HTML;
 
-            <div>My content</div>
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<head',
+            '<link rel="stylesheet" href="/css/top-styles.css" />',
+            '<link rel="stylesheet" href="/css/other-top-styles.css" />',
+            '<title>',
+            '<link rel="stylesheet" href="/css/app.css" />',
+            '<link rel="stylesheet" href="/css/other-styles.css" />',
+            '<body',
+            '<div>My content</div>',
+        ], false);
+});
 
-            @push('head-top')
-                <link rel="stylesheet" href="/css/other-top-styles.css">
-            @endpush
+test('scripts can be added via slot or stacks', function () {
+    $template = <<<'HTML'
+    <x-app>
+        <div>My content</div>
 
-            @push('head')
-                <link rel="stylesheet" href="/css/other-styles.css">
-            @endpush
-        </x-app>
-        HTML;
+        <x-slot:js>
+            <script>alert('my script')</script>
+        </x-slot:js>
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+        @push('js')
+            <script>alert('my other script')</script>
+        @endpush
+    </x-app>
+    HTML;
 
-    /** @test */
-    public function scripts_can_be_added_to_end_of_body_via_slot_or_stacks(): void
-    {
-        $template = <<<'HTML'
-        <x-app :livewire="false" :laravel-form-components="false" :assets="false">
-            <div>My content</div>
-
-            <x-slot name="js">
-                <script>alert('my script')</script>
-            </x-slot>
-
-            @push('js')
-                <script>alert('my other script')</script>
-            @endpush
-        </x-app>
-        HTML;
-
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
-}
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<body',
+            '<div>My content</div>',
+            "<script>alert('my script')</script>",
+            "<script>alert('my other script')</script>",
+        ], false);
+});

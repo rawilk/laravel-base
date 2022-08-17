@@ -4,86 +4,91 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Tests\Components\Layouts;
 
-use Rawilk\LaravelBase\Tests\TestCase;
-use Spatie\Snapshots\MatchesSnapshots;
+it('can be rendered', function () {
+    $this->blade('<x-html />')
+        ->assertSeeInOrder([
+            '<!DOCTYPE html>',
+            '<html',
+            '<head',
+            '</head>',
+            '<body',
+            '</body>',
+            '</html>',
+        ], false);
+});
 
-final class HtmlTest extends TestCase
-{
-    use MatchesSnapshots;
+it('can have content', function () {
+    $this->blade('<x-html><div>My content here</div></x-html>')
+        ->assertSeeInOrder([
+            '<body',
+            '<div>My content here</div>',
+            '</body>',
+        ], false);
+});
 
-    /** @test */
-    public function can_be_rendered(): void
-    {
-        $this->assertMatchesSnapshot((string) $this->blade('<x-html />'));
-    }
+it('accepts a title', function () {
+    $this->blade('<x-html title="My custom title"></x-html>')
+        ->assertSee('<title>My custom title</title>', false);
+});
 
-    /** @test */
-    public function can_have_content(): void
-    {
-        $this->assertMatchesSnapshot(
-            (string) $this->blade('<x-html><div>My content here</div></x-html>')
-        );
-    }
+test('body can have custom attributes', function () {
+    $this->blade('<x-html class="my-class"></x-html>')
+        ->assertSee('<body class="my-class"', false);
+});
 
-    /** @test */
-    public function body_can_have_custom_attributes(): void
-    {
-        $this->assertMatchesSnapshot((string) $this->blade('<x-html class="my-class" />'));
-    }
+it('can have custom content at top of head', function () {
+    $template = <<<'HTML'
+    <x-html>
+        <x-slot:headTop>
+            <link rel="icon" href="favicon.ico" />
+        </x-slot:headTop>
+    </x-html>
+    HTML;
 
-    /** @test */
-    public function title_can_be_set(): void
-    {
-        $this->assertMatchesSnapshot((string) $this->blade('<x-html title="My custom title" />'));
-    }
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<link rel="icon" href="favicon.ico" />',
+            '<title',
+        ], false);
+});
 
-    /** @test */
-    public function can_have_custom_content_at_top_of_head(): void
-    {
-        $template = <<<'HTML'
-        <x-html>
-            <x-slot name="headTop">
-                <link rel="icon" href="favicon.ico" />
-            </x-slot>
+it('can have slotted head content', function () {
+    $template = <<<'HTML'
+    <x-html>
+        <x-slot:head>
+            <link rel="icon" href="favicon.ico" />
+        </x-slot:head>
 
-            <div>My content</div>
-        </x-html>
-        HTML;
+        <div>My content</div>
+    </x-html>
+    HTML;
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<link rel="icon" href="favicon.ico" />',
+            '</head>',
+            '<body',
+            '<div>My content</div>',
+        ], false);
+});
 
-    /** @test */
-    public function can_have_slotted_head_content(): void
-    {
-        $template = <<<'HTML'
-        <x-html>
-            <x-slot name="head">
-                <link rel="icon" href="favicon.ico" />
-            </x-slot>
+it('can assign attributes to the html tag via slot', function () {
+    $template = <<<'HTML'
+    <x-html class="my-body-class">
+        <x-slot:html class="my-html-class" data-foo="bar"></x-slot:html>
 
-            <div>My content</div>
-        </x-html>
-        HTML;
+        <div>My content</div>
+    </x-html>
+    HTML;
 
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
-
-    /** @test */
-    public function can_assign_attributes_to_html_tag_via_slot(): void
-    {
-        $template = <<<'HTML'
-        <x-html class="my-body-class">
-            <x-slot name="html" class="my-html-class" data-foo="bar"></x-slot>
-
-            <x-slot name="headTop">
-                <link rel="icon" href="favicon.ico" />
-            </x-slot>
-
-            <div>My content</div>
-        </x-html>
-        HTML;
-
-        $this->assertMatchesSnapshot((string) $this->blade($template));
-    }
-}
+    $this->blade($template)
+        ->assertSeeInOrder([
+            '<html',
+            'class="my-html-class" data-foo="bar"',
+            '>',
+            '<body',
+            'class="my-body-class"',
+            '>',
+            '<div>My content</div>',
+        ], false);
+});

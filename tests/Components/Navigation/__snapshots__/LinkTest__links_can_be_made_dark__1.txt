@@ -1,5 +1,0 @@
-<a href="#"
-      class="app-link app-link--dark inline-flex items-center space-x-2"
->
-   dark link
-</a>

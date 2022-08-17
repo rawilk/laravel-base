@@ -1,3 +1,0 @@
-<div role="alert" >
-                    Form was successfully submitted.
-            </div>

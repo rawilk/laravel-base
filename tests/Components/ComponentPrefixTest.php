@@ -4,25 +4,11 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Tests\Components;
 
-use Rawilk\LaravelBase\Tests\TestCase;
-use Spatie\Snapshots\MatchesSnapshots;
+uses(ComponentPrefixTestCase::class);
 
-final class ComponentPrefixTest extends TestCase
-{
-    use MatchesSnapshots;
-
-    public function getEnvironmentSetup($app)
-    {
-        parent::getEnvironmentSetUp($app);
-
-        $app['config']->set('laravel-base.component_prefix', 'tw');
-    }
-
-    /** @test */
-    public function a_custom_prefix_can_be_used(): void
-    {
-        $this->assertMatchesSnapshot(
-            (string) $this->blade('<x-tw-html title="HTML with custom prefix" />')
-        );
-    }
-}
+test('a custom prefix can be used', function () {
+    $this->blade('<x-tw-html title="Hello World"></x-tw-html>')
+        ->assertSee('<!DOCTYPE html>', false)
+        ->assertSee('<html', false)
+        ->assertSee('<title>Hello World</title>', false);
+});

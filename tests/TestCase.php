@@ -2,7 +2,6 @@
 
 namespace Rawilk\LaravelBase\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Livewire\LivewireServiceProvider;
 use Mockery;
@@ -15,16 +14,7 @@ class TestCase extends Orchestra
 {
     use InteractsWithViews;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        // Factory::guessFactoryNamesUsing(
-        //     fn (string $modelName) => 'Rawilk\\LaravelBase\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
-        // );
-    }
-
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -41,11 +31,8 @@ class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('view.paths', [__DIR__ . '/Fixtures/Views']);
-
-        // include_once __DIR__ . '/../database/migrations/create_laravel-base_table.php.stub';
-        // (new \CreatePackageTable())->up();
     }
 }
