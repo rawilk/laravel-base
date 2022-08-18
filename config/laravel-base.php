@@ -297,6 +297,7 @@ return [
         'session_key' => env('LARAVEL_BASE_IMPERSONATION_KEY', 'laravel_base.impersonated_by'),
         'remember_session_key' => env('LARAVEL_BASE_IMPERSONATION_REMEMBER_KEY', 'laravel_base.impersonated_remember'),
         'name_session_key' => env('LARAVEL_BASE_IMPERSONATION_NAME_KEY', 'laravel_base.impersonated_name'),
+        'session_id_key' => env('LARAVEL_BASE_IMPERSONATION_SESSION_ID_KEY', 'laravel_base.impersonated_session_id'),
     ],
 
     /*

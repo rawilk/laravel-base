@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
@@ -155,6 +157,9 @@ it('dispatches an event when impersonation is successful', function () {
     Event::assertDispatched(UserWasImpersonated::class, function ($event) use ($admin, $user) {
         return $event->impersonator->id === $admin->id && $event->user->id === $user->id;
     });
+
+    Event::assertNotDispatched(Login::class);
+    Event::assertDispatched(Authenticated::class);
 });
 
 it('clears impersonate session on logout', function () {

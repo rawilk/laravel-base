@@ -7,6 +7,8 @@ namespace Rawilk\LaravelBase\Services\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 
 class SessionImpersonator implements ImpersonatesUsers
@@ -20,14 +22,32 @@ class SessionImpersonator implements ImpersonatesUsers
             );
             $request->session()->put(
                 $this->rememberSessionKey(),
-                $guard->viaRemember(),
+
+                /*
+                 * We are checking if there is a cookie created to remember login instead of
+                 * $guard->viaRemember() for more reliability.
+                 *
+                 * See: https://github.com/laravel/framework/issues/19499#issuecomment-707822740
+                 */
+                Cookie::has($guard->getRecallerName()),
             );
             $request->session()->put(
                 $this->nameSessionKey(),
                 $request->user()->nameForImpersonation(),
             );
 
-            $guard->login($user);
+            $guard->quietLogin($user);
+
+            /*
+             * We are storing the impersonated user's session id in the session, so we can
+             * remove that session from their account when we leave the impersonation.
+             * This can help reduce confusion from seeing that session on their account
+             * when the database session driver is used.
+             */
+            $request->session()->put(
+                $this->sessionIdSessionKey(),
+                $request->session()->getId(),
+            );
 
             return true;
         }, false);
@@ -42,9 +62,14 @@ class SessionImpersonator implements ImpersonatesUsers
             );
             $impersonator = $userModel::findOrFail($impersonatorId);
 
-            $guard->login($impersonator, $request->session()->get($this->rememberSessionKey()) ?? false);
+            $sessionId = $request->session()->get($this->sessionIdSessionKey());
+            $user = $request->user();
+
+            $guard->quietLogin($impersonator, $request->session()->get($this->rememberSessionKey()) ?? false);
 
             $this->flushImpersonationData($request);
+
+            $this->removeImpersonatedSession($sessionId, $user);
 
             return true;
         }, false);
@@ -71,7 +96,20 @@ class SessionImpersonator implements ImpersonatesUsers
             $request->session()->forget($this->sessionKey());
             $request->session()->forget($this->rememberSessionKey());
             $request->session()->forget($this->nameSessionKey());
+            $request->session()->forget($this->sessionIdSessionKey());
         }
+    }
+
+    protected function removeImpersonatedSession($sessionId, Authenticatable $user): void
+    {
+        if (config('session.driver') !== 'database') {
+            return;
+        }
+
+        DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
+            ->where('user_id', $user->getAuthIdentifier())
+            ->where('id', $sessionId)
+            ->delete();
     }
 
     protected function nameSessionKey(): string
@@ -87,5 +125,10 @@ class SessionImpersonator implements ImpersonatesUsers
     protected function sessionKey(): string
     {
         return config('laravel-base.impersonation.session_key', 'laravel_base.impersonated_by');
+    }
+
+    protected function sessionIdSessionKey(): string
+    {
+        return config('laravel-base.impersonation.session_id_key', 'laravel_base.impersonated_session_id');
     }
 }

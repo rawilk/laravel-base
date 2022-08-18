@@ -65,6 +65,10 @@ class LogoutOtherBrowserSessionsForm extends Component
 
     public function logoutOtherBrowserSessions(StatefulGuard $guard)
     {
+        if (Config::get('session.driver') !== 'database') {
+            return;
+        }
+
         $this->resetErrorBag();
 
         if (! Hash::check($this->password, Auth::user()->password)) {
@@ -76,6 +80,10 @@ class LogoutOtherBrowserSessionsForm extends Component
         $guard->logoutOtherDevices($this->password);
 
         $this->deleteOtherSessionRecords();
+
+        request()->session()->put([
+            'password_hash_' . Auth::getDefaultDriver() => Auth::user()->getAuthPassword(),
+        ]);
 
         $this->confirmingLogout = false;
 

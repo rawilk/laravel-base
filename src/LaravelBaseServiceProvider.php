@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
@@ -23,6 +24,7 @@ use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
 use Rawilk\LaravelBase\Http\Responses;
 use Rawilk\LaravelBase\Models\AuthenticatorApp;
+use Rawilk\LaravelBase\Services\Auth\CustomSessionGuard;
 use Rawilk\LaravelBase\Services\Auth\SessionImpersonator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -48,6 +50,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->registerResponseBindings();
+        $this->registerAuthDriver();
 
         $this->app->singleton(
             Contracts\Auth\TwoFactorAuthenticationProvider::class,
@@ -79,6 +82,32 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
     /*
      * Registering...
      */
+
+    protected function registerAuthDriver(): void
+    {
+        /** @var \Illuminate\Auth\AuthManager $auth */
+        $auth = $this->app['auth'];
+
+        $auth->extend('session', function (Application $app, $name, array $config) use ($auth) {
+            $provider = $auth->createUserProvider($config['provider']);
+
+            $guard = new CustomSessionGuard($name, $provider, $app['session.store']);
+
+            if (method_exists($guard, 'setCookieJar')) {
+                $guard->setCookieJar($app['cookie']);
+            }
+
+            if (method_exists($guard, 'setDispatcher')) {
+                $guard->setDispatcher($app['events']);
+            }
+
+            if (method_exists($guard, 'setRequest')) {
+                $guard->setRequest($app->refresh('request', $guard, 'setRequest'));
+            }
+
+            return $guard;
+        });
+    }
 
     protected function registerResponseBindings(): void
     {
