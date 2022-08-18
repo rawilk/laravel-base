@@ -60,7 +60,7 @@ class SessionImpersonator implements ImpersonatesUsers
                 $this->sessionKey(),
                 null,
             );
-            $impersonator = $userModel::findOrFail($impersonatorId);
+            $impersonator = $userModel::withoutGlobalScopes()->findOrFail($impersonatorId);
 
             $sessionId = $request->session()->get($this->sessionIdSessionKey());
             $user = $request->user();
