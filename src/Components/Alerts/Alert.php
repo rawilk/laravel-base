@@ -49,7 +49,7 @@ class Alert extends BladeComponent
         return match ($this->type) {
             static::ERROR => 'heroicon-s-x-circle',
             static::SUCCESS => 'heroicon-s-check-circle',
-            static::WARNING => 'heroicon-s-exclamation',
+            static::WARNING => 'heroicon-s-exclamation-triangle',
             default => 'heroicon-s-information-circle',
         };
     }
