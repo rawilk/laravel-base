@@ -3,7 +3,7 @@
     <x-heroicon-s-chevron-down class="w-4 h-4 opacity-0 group-hover:opacity-100 absolute" />
 @elseif ($direction === 'desc')
     <div class="opacity-0 group-hover:opacity-100 absolute">
-        <x-heroicon-s-selector class="w-4 h-4" />
+        <x-heroicon-s-arrows-up-down class="w-4 h-4" />
     </div>
 
     <x-heroicon-s-chevron-down class="w-4 h-4 group-hover:opacity-0" />

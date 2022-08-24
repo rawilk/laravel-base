@@ -39,7 +39,7 @@
                                     type="button"
                                     class="p-2 rounded-full hover:bg-slate-200 group focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none transition-colors"
                                 >
-                                    <x-heroicon-s-filter class="w-4 h-4 text-slate-500 group-hover:text-slate-600 transition-colors" />
+                                    <x-heroicon-s-funnel class="w-4 h-4 text-slate-500 group-hover:text-slate-600 transition-colors" />
                                 </button>
                             </x-tooltip>
                         </div>
