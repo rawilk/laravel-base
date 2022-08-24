@@ -58,7 +58,7 @@
                         class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-slate-900 hover:bg-slate-200 transition-colors focus:outline-slate"
                         role="menuitem"
                     >
-                        <x-heroicon-s-logout class="flex-shrink-0 h-6 w-6 text-slate-400" />
+                        <x-heroicon-s-arrow-left-on-rectangle class="flex-shrink-0 h-6 w-6 text-slate-400" />
                         <span class="ml-3">{{ __('Sign Out') }}</span>
                     </button>
                 </div>

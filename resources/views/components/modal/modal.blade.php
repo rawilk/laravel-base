@@ -48,7 +48,7 @@
                         class="text-gray-400 hover:text-gray-500 focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 focus:text-gray-500 transition ease-in-out duration-150"
                     >
                         <span class="sr-only">{{ __('base::messages.modal.close_button') }}</span>
-                        <x-heroicon-s-x class="h-6 w-6" />
+                        <x-heroicon-s-x-mark class="h-6 w-6" />
                     </button>
                 </div>
             @endif

@@ -17,7 +17,7 @@
             form="logout-form"
             class="{{ config('site.main_menu.item_base_class') }} {{ config('site.main_menu.item_inactive_class') }} w-full"
         >
-            <x-heroicon-s-logout class="{{ config('site.main_menu.icon_base_class') }} {{ config('site.main_menu.icon_inactive_class') }}" />
+            <x-heroicon-s-arrow-left-on-rectangle class="{{ config('site.main_menu.icon_base_class') }} {{ config('site.main_menu.icon_inactive_class') }}" />
 
             <span>{{ __('labels.user.logout_button') }}</span>
         </button>

@@ -29,7 +29,7 @@
                         type="button"
                         class="alert-dismiss | inline-flex items-center p-1.5 rounded-full focus:outline-slate transition-colors"
                     >
-                        <x-heroicon-s-x class="h-5 w-5" />
+                        <x-heroicon-s-x-mark class="h-5 w-5" />
 
                         <span class="sr-only">{{ __('Dismiss') }}</span>
                     </button>

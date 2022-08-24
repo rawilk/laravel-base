@@ -9,8 +9,8 @@
     <span class="sr-only">{{ __('Open secondary menu') }}</span>
 
     {{-- "closed" icon --}}
-    <x-heroicon-s-menu id="secondary-menu-closed" class="h-6 w-6" x-bind:class="{ 'hidden': open, 'block': ! open }" />
+    <x-heroicon-s-bars-3 id="secondary-menu-closed" class="h-6 w-6" x-bind:class="{ 'hidden': open, 'block': ! open }" />
 
     {{-- "open" icon --}}
-    <x-heroicon-s-x class="h-6 w-6" x-bind:class="{ 'block': open, 'hidden': ! open }" />
+    <x-heroicon-s-x-mark class="h-6 w-6" x-bind:class="{ 'block': open, 'hidden': ! open }" />
 </button>
