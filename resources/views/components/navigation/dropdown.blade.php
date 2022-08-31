@@ -2,6 +2,7 @@
      x-on:keydown.escape.prevent.window="closeMenu"
      x-on:click.outside="closeMenu(false)"
      x-on:modal-shown.window="closeMenu(false)"
+     x-on:dropdown-close.window="closeMenu(false)"
      x-on:keydown.tab.prevent="closeMenu"
      x-on:keydown.arrow-down.prevent="focusNext"
      x-on:keydown.arrow-up.prevent="focusPrevious"
