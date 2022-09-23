@@ -1,6 +1,6 @@
 @props([
     'colspan' => 1,
-    'icon' => 'heroicon-o-database',
+    'icon' => 'heroicon-o-circle-stack',
 ])
 
 <x-laravel-base::table.tr>
