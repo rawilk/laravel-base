@@ -6,59 +6,63 @@ namespace Rawilk\LaravelBase\Imports\Roles;
 
 use App\Enums\PermissionEnum;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\OnEachRow;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Row;
-use Rawilk\LaravelBase\Concerns\Imports\MapsFields;
+use Rawilk\LaravelBase\Imports\GeneralImport;
+use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 
-class RolesImport implements WithHeadingRow, OnEachRow
+class RolesImport extends GeneralImport
 {
-    use Importable;
-    use MapsFields;
-
-    protected int $count = 0;
-
-    public function count(): int
+    protected function processChunk(array $chunk): void
     {
-        return $this->count;
+        foreach ($chunk as $record) {
+            $this->processRecord($record);
+        }
+
+        $this->incrementProcessedByChunkSize();
     }
 
-    public function onRow(Row $row): void
+    protected function processRecord(array $record): void
     {
-        $data = $this->extractFieldsFromRow($row->toArray(), ['guard_name' => 'web']);
-
-        if (empty($data['name'])) {
+        if (empty($record['name'])) {
             return;
         }
 
-        if (Auth::user()->hasAllPermissions([PermissionEnum::ROLES_CREATE->value, PermissionEnum::ROLES_EDIT->value])) {
-            $this->updateOrCreate($data);
-
-            return;
-        }
-
-        if (Auth::user()->can(PermissionEnum::ROLES_CREATE->value)) {
-            $this->createOnly($data);
+        if ($this->canUpdateOrCreate()) {
+            $this->updateOrCreate($record);
 
             return;
         }
 
-        if (Auth::user()->can(PermissionEnum::ROLES_EDIT->value)) {
-            $this->updateOnly($data);
+        if ($this->canCreate()) {
+            $this->createOnly($record);
+
+            return;
+        }
+
+        if ($this->canUpdate()) {
+            $this->updateOnly($record);
+        }
+    }
+
+    protected function updateOrCreate(array $data): void
+    {
+        ['permissions' => $permissions, 'data' => $data] = $this->normalizeData($data);
+
+        $role = $this->model::withoutGlobalScopes()->updateOrCreate(['name' => $data['name']], Arr::except($data, 'name'));
+
+        if (is_array($permissions) && $this->canEditPermissions($role)) {
+            $role->syncPermissions($permissions);
         }
     }
 
     protected function createOnly(array $data): void
     {
-        ['permissions' => $permissions, 'data' => $data] = $this->extractPermissionsFromData($data);
+        ['permissions' => $permissions, 'data' => $data] = $this->normalizeData($data);
 
         try {
             // An error will be thrown if the role already exists with the given name.
-            $role = app(config('permission.models.role'))->create($data);
+            $role = $this->model::create($data);
         } catch (RoleAlreadyExists) {
             return;
         }
@@ -66,45 +70,73 @@ class RolesImport implements WithHeadingRow, OnEachRow
         if (is_array($permissions)) {
             $role->givePermissionTo($permissions);
         }
-
-        $this->count++;
     }
 
     protected function updateOnly(array $data): void
     {
-        ['permissions' => $permissions, 'data' => $data] = $this->extractPermissionsFromData($data);
+        ['permissions' => $permissions, 'data' => $data] = $this->normalizeData($data);
 
         try {
-            $role = app(config('permission.models.role'))::findByName($data['name'] ?? '');
+            $role = $this->model::findByName($data['name']);
         } catch (RoleDoesNotExist) {
             return;
         }
 
-        if (Auth::user()->can('edit', $role)) {
+        if ($this->canEditRole($role)) {
             $role->forceFill(Arr::except($data, 'name'))->save();
 
-            if (is_array($permissions) && Auth::user()->can('editPermissions', $role)) {
+            if (is_array($permissions) && $this->canEditPermissions($role)) {
                 $role->syncPermissions($permissions);
             }
-
-            $this->count++;
         }
     }
 
-    protected function updateOrCreate(array $data): void
+    protected function canUpdateOrCreate(): bool
     {
-        ['permissions' => $permissions, 'data' => $data] = $this->extractPermissionsFromData($data);
-
-        $role = app(config('permission.models.role'))::withoutGlobalScopes()->updateOrCreate(['name' => $data['name']], Arr::except($data, 'name'));
-
-        if (is_array($permissions) && Auth::user()->can('editPermissions', $role)) {
-            $role->syncPermissions($permissions);
+        if (! $this->user) {
+            return true;
         }
 
-        $this->count++;
+        return $this->user->hasAllPermissions([PermissionEnum::ROLES_CREATE->value, PermissionEnum::ROLES_EDIT->value]);
     }
 
-    protected function extractPermissionsFromData(array $data): array
+    protected function canCreate(): bool
+    {
+        if (! $this->user) {
+            return true;
+        }
+
+        return $this->user->can(PermissionEnum::ROLES_CREATE->value);
+    }
+
+    protected function canUpdate(): bool
+    {
+        if (! $this->user) {
+            return true;
+        }
+
+        return $this->user->can(PermissionEnum::ROLES_EDIT->value);
+    }
+
+    protected function canEditRole(Role $role): bool
+    {
+        if (! $this->user) {
+            return true;
+        }
+
+        return $this->user->can('edit', $role);
+    }
+
+    protected function canEditPermissions(Role $role): bool
+    {
+        if (! $this->user) {
+            return true;
+        }
+
+        return $this->user->can('editPermissions', $role);
+    }
+
+    protected function normalizeData(array $data): array
     {
         $permissions = Arr::get($data, 'permissions');
 

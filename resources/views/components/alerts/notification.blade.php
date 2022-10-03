@@ -1,7 +1,7 @@
 <div x-data="notification({{ $optionsToJson() }})"
      x-on:notify.window="add($event.detail)"
      aria-live="assertive"
-     class="fixed inset-0 flex flex-col space-y-4 items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-end"
+     class="fixed inset-0 flex flex-col space-y-4 items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-end z-[100]"
 >
     <template x-for="notice in notices" :key="notice.id">
         <div
@@ -12,7 +12,7 @@
             x-transition:leave="transition ease-out duration-500"
             x-transition:leave-start="transform translate-x-0 opacity-100"
             x-transition:leave-end="transform translate-x-full opacity-0"
-            class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
+            class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto z-100"
         >
             <div class="rounded-lg shadow-xs overflow-hidden">
                 <div class="p-4">

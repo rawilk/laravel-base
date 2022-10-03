@@ -1,0 +1,27 @@
+preset: Rawilk\Stubs\Canvas\Package
+
+namespace: Rawilk\LaravelBase
+user-auth-provider: App\Models\User\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: Rawilk\LaravelBase\Console
+
+model:
+  namespace: Rawilk\LaravelBase\Models
+
+provider:
+  namespace: Rawilk\LaravelBase\Providers
+
+testing:
+  namespace: Rawilk\LaravelBase\Tests

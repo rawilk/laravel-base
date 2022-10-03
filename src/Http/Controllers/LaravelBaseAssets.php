@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Livewire\Controllers\CanPretendToBeAFile;
 
 final class LaravelBaseAssets
@@ -13,12 +14,14 @@ final class LaravelBaseAssets
 
     public function source(string $asset)
     {
-        $path = __DIR__ . "/../../../dist/assets/{$asset}";
+        $fileName = Str::before($asset, '?');
+
+        $path = __DIR__ . "/../../../dist/assets/{$fileName}";
 
         if (! File::exists($path)) {
             return '';
         }
 
-        return $this->pretendResponseIsFile(__DIR__ . "/../../../dist/assets/{$asset}");
+        return $this->pretendResponseIsFile($path);
     }
 }

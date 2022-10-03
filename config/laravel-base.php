@@ -333,8 +333,25 @@ return [
             'index' => \Rawilk\LaravelBase\Http\Livewire\Roles\Index::class,
             'create' => \Rawilk\LaravelBase\Http\Livewire\Roles\Create::class,
             'edit' => \Rawilk\LaravelBase\Http\Livewire\Roles\Edit::class,
-            'import' => \Rawilk\LaravelBase\Http\Livewire\Roles\Import::class,
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model Binding
+    |--------------------------------------------------------------------------
+    |
+    | Here you may extend or define your own models to use instead of ours for
+    | certain things. Be sure to implement the correct interfaces for each
+    | of them though.
+    |
+    */
+    'models' => [
+        /*
+         * Model used to track user initiated imports.
+         * Interface: \Rawilk\LaravelBase\Contracts\Importable
+         */
+        'import' => \App\Models\Imports\Import::class,
     ],
 
     /*

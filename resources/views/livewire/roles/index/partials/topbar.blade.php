@@ -8,7 +8,7 @@
             <x-dropdown trigger-text="{{ __('base::messages.bulk_actions') }}" right>
                 {{-- import --}}
                 @canany([\App\Enums\PermissionEnum::ROLES_CREATE->value, \App\Enums\PermissionEnum::ROLES_EDIT->value])
-                    <x-dropdown-item wire:click="$emit('{{ \Rawilk\LaravelBase\Http\Livewire\Roles\Import::$showEvent }}', '{{ \Rawilk\LaravelBase\Http\Livewire\Roles\Import::importId() }}')">
+                    <x-dropdown-item wire:click="$emitTo('csv-importer', 'toggle')">
                         <x-css-software-upload />
                         <span>{{ __('base::messages.import_button') }}</span>
                     </x-dropdown-item>

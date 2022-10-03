@@ -1,4 +1,4 @@
-<div x-cloak x-data="scrollToTopButton" class="scroll-to-top-button | absolute top-0 right-0 h-screen w-screen pointer-events-none">
+<div x-cloak x-data="scrollToTopButton" class="scroll-to-top-button | absolute top-0 right-0 h-screen w-screen pointer-events-none z-[100]">
     <button
         x-on:click="toTop"
         type="button"

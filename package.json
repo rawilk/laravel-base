@@ -1,11 +1,13 @@
 {
     "private": true,
     "scripts": {
-        "build": "vite build"
+        "build": "npx mix --production",
+        "dev": "npx mix",
+        "watch": "npx mix watch"
     },
+    "author": "Randall Wilk",
+    "license": "MIT",
     "devDependencies": {
-        "laravel-mix": "^6.0.31",
-        "laravel-vite-plugin": "^0.5.4",
-        "vite": "^3.0.8"
+        "laravel-mix": "^6.0.49"
     }
 }

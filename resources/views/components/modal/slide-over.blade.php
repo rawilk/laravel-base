@@ -18,7 +18,7 @@
              x-transition:leave="ease-in-out duration-500"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
-             class="absolute inset-0 bg-slate-500 bg-opacity-75 transition-opacity"
+             class="absolute inset-0 bg-slate-500 bg-opacity-50 backdrop-blur transition-opacity"
         >
         </div>
 
@@ -41,7 +41,7 @@
                 ]) }}
             >
                 {{-- Content --}}
-                <div class="h-full flex flex-col space-y-6 bg-white shadow-xl">
+                <div class="h-full flex flex-col bg-white shadow-xl">
                     <div class="min-h-0 flex-1 flex flex-col space-y-6 overflow-y-scroll">
                         {{-- Header --}}
                         @if ($header)
@@ -49,7 +49,7 @@
                         @endif
 
                         {{-- Body --}}
-                        <div class="relative flex-1 px-4 sm:px-6">
+                        <div class="relative flex-1 px-4 sm:px-6 pb-4">
                             {{ $slot }}
                         </div>
                     </div>

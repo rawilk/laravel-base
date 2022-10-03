@@ -16,7 +16,18 @@
 
         {{-- import --}}
         @canany([\App\Enums\PermissionEnum::ROLES_CREATE->value, \App\Enums\PermissionEnum::ROLES_EDIT->value])
-            <livewire:admin.roles.import />
+            <livewire:csv-importer
+                :model="config('permission.models.role')"
+                :import-class="\Rawilk\LaravelBase\Imports\Roles\RolesImport::class"
+                :columns-to-map="['name', 'description', 'permissions']"
+                :required-columns="['name']"
+                :column-labels="['name' => __('base::roles.labels.name'), 'description' => __('base::roles.labels.description'), 'permissions' => __('base::roles.labels.permissions')]"
+                :guesses="[
+                    'name' => ['name', 'title'],
+                    'description' => ['description', 'desc', 'about'],
+                    'permissions' => ['permissions', 'perms', 'abilities'],
+                ]"
+            />
         @endcanany
     </div>
 </div>

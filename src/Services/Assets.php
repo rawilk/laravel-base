@@ -19,13 +19,13 @@ final class Assets
     {
         $appUrl = config('laravel-base.asset_url', rtrim($options['asset_url'] ?? '', '/'));
 
-        $manifest = json_decode(file_get_contents(__DIR__ . '/../../dist/manifest.json'), true);
-        $filename = $manifest['resources/js/index.js']['file'];
+        $manifest = json_decode(file_get_contents(__DIR__ . '/../../dist/mix-manifest.json'), true);
+        $versionedFileName = ltrim($manifest['/assets/laravel-base.js'], '/');
 
-        $fullAssetPath = "{$appUrl}/laravel-base/{$filename}";
+        $fullAssetPath = "{$appUrl}/laravel-base/{$versionedFileName}";
 
         return <<<HTML
-        <script src="{$fullAssetPath}" data-turbolinks-eval="false"></script>
+        <script src="{$fullAssetPath}" data-turbolinks-eval="false" data-turbo-eval="false"></script>
         HTML;
     }
 }

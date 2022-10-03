@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
@@ -21,11 +22,15 @@ use Livewire\Livewire;
 use Rawilk\LaravelBase\Console\InstallCommand;
 use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppContract;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
+use Rawilk\LaravelBase\Contracts\Models\Import as ImportContract;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
+use Rawilk\LaravelBase\Http\Livewire\CsvImporter;
+use Rawilk\LaravelBase\Http\Livewire\CsvImports;
 use Rawilk\LaravelBase\Http\Responses;
 use Rawilk\LaravelBase\Models\AuthenticatorApp;
 use Rawilk\LaravelBase\Services\Auth\CustomSessionGuard;
 use Rawilk\LaravelBase\Services\Auth\SessionImpersonator;
+use Rawilk\LaravelBase\Services\Files\SizeUnitFactor;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -66,6 +71,9 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
 
         $this->app->register(EventServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
+
+        // For file size formatting
+        $this->app->singleton(SizeUnitFactor::class, fn () => new SizeUnitFactor);
     }
 
     public function packageBooted(): void
@@ -77,6 +85,12 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
         $this->bootMacros();
         $this->bootRoutes();
         $this->bootEvents();
+
+        AboutCommand::add('Laravel Base', fn () => [
+            'Version' => LaravelBase::VERSION,
+            'Asset URL' => config('laravel-base.asset_url') ?? 'default',
+            'Admin Route Prefix' => config('laravel-base.admin_route_prefix'),
+        ]);
     }
 
     /*
@@ -126,6 +140,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
 
         // Models
         $this->app->bind(AuthenticatorAppContract::class, config('laravel-base.authenticator_apps.model', AuthenticatorApp::class));
+        $this->app->bind(ImportContract::class, config('laravel-base.models.import', \App\Models\Imports\Import::class));
     }
 
     /*
@@ -214,8 +229,10 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
             Livewire::component('admin.roles.index', Config::get('laravel-base.livewire.roles.index', Http\Livewire\Roles\Index::class));
             Livewire::component('admin.roles.create', Config::get('laravel-base.livewire.roles.create', Http\Livewire\Roles\Create::class));
             Livewire::component('admin.roles.edit', Config::get('laravel-base.livewire.roles.edit', Http\Livewire\Roles\Edit::class));
-            Livewire::component('admin.roles.import', Config::get('laravel-base.livewire.roles.import', Http\Livewire\Roles\Import::class));
         }
+
+        Livewire::component('csv-importer', CsvImporter::class);
+        Livewire::component('csv-imports', CsvImports::class);
     }
 
     protected function bootMacros(): void

@@ -23,6 +23,13 @@ use Rawilk\LaravelBase\Services\Routing;
 class LaravelBase
 {
     /**
+     * The current laravel-base version.
+     *
+     * @bar string
+     */
+    public const VERSION = '0.4.7';
+
+    /**
      * The callback that is responsible for retrieving the configured app timezone.
      *
      * @var callable|null

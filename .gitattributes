@@ -9,6 +9,7 @@
 /.php_cs.dist.php   export-ignore
 /.travis.yml        export-ignore
 /bin                export-ignore
+/canvas.yaml        export-ignore
 /docs               export-ignore
 /package-lock.json  export-ignore
 /package.json       export-ignore

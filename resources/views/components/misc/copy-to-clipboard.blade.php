@@ -29,12 +29,12 @@
         :component="$icon"
         x-show="! copied"
         role="button"
-        class="h-5 w-5 text-gray-500 group-hover:text-gray-700 cursor-pointer transition duration-150 ease-in-out"
+        class="h-4 w-4 text-gray-500 group-hover:text-gray-700 cursor-pointer transition duration-150 ease-in-out"
     />
 
     <x-dynamic-component
         :component="$copiedIcon"
         x-show="copied"
-        class="h-5 w-5 text-green-500 transition"
+        class="h-4 w-4 text-green-500 transition"
     />
 </div>

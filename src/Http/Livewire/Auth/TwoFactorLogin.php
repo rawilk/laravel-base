@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Rawilk\LaravelBase\Actions\Auth\AttemptToAuthenticate;
@@ -30,6 +31,9 @@ use Rawilk\Webauthn\Actions\PrepareAssertionData;
 use Rawilk\Webauthn\Contracts\WebauthnKey;
 use Rawilk\Webauthn\Facades\Webauthn;
 
+/**
+ * @property-read array<string, string> $errorMessages
+ */
 class TwoFactorLogin extends Component
 {
     use ThrottlesAuthenticationAttempts;
@@ -49,6 +53,16 @@ class TwoFactorLogin extends Component
     public string $publicKey = '';
 
     public $keyData;
+
+    public function getErrorMessagesProperty(): array
+    {
+        return [
+            ...Lang::get('webauthn::alerts.auth') ?? [],
+            'InvalidStateError' => __('webauthn::alerts.login_not_allowed_error'),
+            'notSupported' => __('webauthn::alerts.browser_not_supported'),
+            'notSecured' => __('webauthn::alerts.browser_not_secure'),
+        ];
+    }
 
     public function guard(): StatefulGuard
     {

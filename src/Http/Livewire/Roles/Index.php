@@ -80,7 +80,6 @@ class Index extends Component
 
         $ids = $this->selectedRowsQuery->pluck('id');
 
-        /** @psalm-suppress UndefinedMethod */
         $deleteCount = $this->roleModel::destroy($ids);
 
         $this->showDeleteAll = false;
@@ -95,7 +94,7 @@ class Index extends Component
 
         return (new RolesExport($this->hasSelection ? $this->selectedRowsQuery : $this->rowsQuery))
             ->usingColumns(array_merge(static::SELECTABLE_COLUMNS, ['permissions']))
-            ->download('roles_' . time() . '.xlsx');
+            ->download('roles_' . time() . '.csv');
     }
 
     public function getRoleModelProperty(): Role

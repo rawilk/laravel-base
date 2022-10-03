@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable as User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Lang;
 use Livewire\Component;
 use Rawilk\LaravelBase\Actions\Webauthn\DeleteWebauthnKeyAction;
 use Rawilk\LaravelBase\Actions\Webauthn\UpdateWebauthnKeyAction;
@@ -20,6 +21,7 @@ use Rawilk\Webauthn\Exceptions\WebauthnRegisterException;
 use Rawilk\Webauthn\Facades\Webauthn;
 
 /**
+ * @property-read array<string, string> $errorMessages
  * @property-read bool $mustConfirmPassword
  * @property-read \Illuminate\Database\Eloquent\Collection $rows
  */
@@ -59,6 +61,16 @@ abstract class RegisterWebauthnKeyForm extends Component
     public bool $showDelete = false;
 
     public ?WebauthnKey $deleting = null;
+
+    public function getErrorMessagesProperty(): array
+    {
+        return [
+            ...Lang::get('webauthn::alerts.auth') ?? [],
+            'InvalidStateError' => __('webauthn::alerts.login_not_allowed_error'),
+            'notSupported' => __('webauthn::alerts.browser_not_supported'),
+            'notSecured' => __('webauthn::alerts.browser_not_secure'),
+        ];
+    }
 
     public function getMustConfirmPasswordProperty(): bool
     {

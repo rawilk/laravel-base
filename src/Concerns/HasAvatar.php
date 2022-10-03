@@ -22,7 +22,7 @@ trait HasAvatar
             ])->save();
 
             if ($previous) {
-                Storage::disk($this->avatarDisk())->delete($previous);
+                rescue(fn () => Storage::disk($this->avatarDisk())->delete($previous));
             }
         });
     }
@@ -33,7 +33,7 @@ trait HasAvatar
             return;
         }
 
-        Storage::disk($this->avatarDisk())->delete($this->avatar_path);
+        rescue(fn () => Storage::disk($this->avatarDisk())->delete($this->avatar_path));
 
         $this->forceFill([
             'avatar_path' => null,
