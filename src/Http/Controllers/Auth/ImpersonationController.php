@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Rawilk\LaravelBase\Components\Alerts\Alert;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
+use Rawilk\LaravelBase\Enums\HttpStatus;
 use Rawilk\LaravelBase\Events\Auth\UserWasImpersonated;
 
 class ImpersonationController
@@ -47,8 +47,8 @@ class ImpersonationController
          * would be unnecessary.
          */
         if (! $currentUser->is($user)) {
-            abort_unless($currentUser?->canImpersonate() ?? false, Response::HTTP_FORBIDDEN, __('base::users.impersonate.cannot_impersonate_others'));
-            abort_unless($user?->canBeImpersonated($currentUser) ?? false, Response::HTTP_FORBIDDEN, __('base::users.impersonate.cannot_impersonate_user'));
+            abort_unless($currentUser?->canImpersonate() ?? false, HttpStatus::Forbidden->value, __('base::users.impersonate.cannot_impersonate_others'));
+            abort_unless($user?->canBeImpersonated($currentUser) ?? false, HttpStatus::Forbidden->value, __('base::users.impersonate.cannot_impersonate_user'));
 
             $impersonator->impersonate(
                 $request,

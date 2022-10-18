@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Http\Responses\Auth;
 
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Rawilk\LaravelBase\Contracts\Auth\LockoutResponse as LockoutResponseContract;
+use Rawilk\LaravelBase\Enums\HttpStatus;
 use Rawilk\LaravelBase\LaravelBase;
 use Rawilk\LaravelBase\Support\Auth\LoginRateLimiter;
 
@@ -26,7 +26,7 @@ class LockoutResponse implements LockoutResponseContract
                         'minutes' => ceil($seconds / 60),
                     ]),
                 ],
-            ])->status(Response::HTTP_TOO_MANY_REQUESTS);
+            ])->status(HttpStatus::TooManyRequests->value);
         });
     }
 }

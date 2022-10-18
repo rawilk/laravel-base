@@ -6,8 +6,8 @@ namespace Rawilk\LaravelBase\Http\Controllers\Admin;
 
 use App\Models\User\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Rawilk\LaravelBase\Enums\HttpStatus;
 use Rawilk\LaravelBase\LaravelBase;
 
 class UsersController
@@ -33,7 +33,7 @@ class UsersController
     {
         abort_unless(
             Auth::user()->canAny(['assignRolesTo', 'assignPermissionsTo'], $user),
-            Response::HTTP_FORBIDDEN
+            HttpStatus::Forbidden->value,
         );
 
         return view(LaravelBase::configuredView('users.abilities', 'livewire.admin.users.edit.abilities'), [

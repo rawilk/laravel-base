@@ -3,11 +3,11 @@
 namespace Rawilk\LaravelBase\Http\Livewire\Concerns;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Rawilk\LaravelBase\Actions\Auth\ConfirmPasswordAction;
+use Rawilk\LaravelBase\Enums\HttpStatus;
 
 /** @mixin \Livewire\Component */
 trait ConfirmsPasswords
@@ -74,7 +74,7 @@ trait ConfirmsPasswords
     {
         abort_unless(
             $this->passwordIsConfirmed($maximumSecondsSinceConfirmation),
-            Response::HTTP_FORBIDDEN,
+            HttpStatus::Forbidden->value,
         );
     }
 
