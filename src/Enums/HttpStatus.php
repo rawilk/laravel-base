@@ -8,6 +8,9 @@ namespace Rawilk\LaravelBase\Enums;
  * The list of codes is complete according to the
  * {@link https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml Hypertext Transfer Protocol (HTTP) Status Code Registry}
  * (last updated 2022-06-08).
+ *
+ * Descriptions for each status according to:
+ * {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status}
  */
 enum HttpStatus: int
 {
