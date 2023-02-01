@@ -1,8 +1,11 @@
-<x-laravel-base::button.button
-    :variant="$buttonVariant"
+<x-blade::button.button
+    :color="$buttonVariant"
     :size="$size"
     :extra-attributes="$triggerAttributes()"
 >
-    <span>{{ $triggerText }}</span>
-    <x-heroicon-s-chevron-down aria-hidden="true" />
-</x-laravel-base::button.button>
+    {{ $triggerText }}
+
+    <x-slot:icon-right>
+        <x-heroicon-s-chevron-down />
+    </x-slot:icon-right>
+</x-blade::button.button>

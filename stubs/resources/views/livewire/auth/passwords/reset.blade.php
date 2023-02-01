@@ -27,9 +27,9 @@
             </x-form-group>
 
             <div class="mt-6">
-                <x-button type="submit" variant="blue" block wire:target="resetPassword">
+                <x-blade::button.button type="submit" color="blue" block wire:target="resetPassword">
                     {{ __('Reset Password') }}
-                </x-button>
+                </x-blade::button.button>
             </div>
         </x-form>
 

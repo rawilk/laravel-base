@@ -23,13 +23,13 @@
                     <x-badge variant="blue">{{ $upload->getClientOriginalName() }}</x-badge>
                 </div>
 
-                <x-laravel-base::button.link
+                <x-blade::button.link
                     class="text-xs"
                     x-on:click="$wire.removeUpload('upload', '{{ $upload->getFilename() }}')"
                     wire:target="removeUpload"
                 >
                     {{ __('base::messages.modal.import.change_upload') }}
-                </x-laravel-base::button.link>
+                </x-blade::button.link>
             </div>
 
             <x-form-components::form
@@ -46,22 +46,22 @@
 
     <x-slot name="footer">
         @if ($upload)
-            <x-button
+            <x-blade::button.button
                 wire:target="import"
                 type="submit"
                 form="{{ $id }}-import-form"
-                variant="blue"
+                color="blue"
             >
                 {{ $button }}
-            </x-button>
+            </x-blade::button.button>
         @endif
 
-        <x-button
+        <x-blade::button.button
             x-on:click="$wire.set('{{ $showModel }}', false)"
             wire:loading.attr="disabled"
-            variant="white"
+            color="white"
         >
             {{ __('base::messages.confirm_modal_cancel') }}
-        </x-button>
+        </x-blade::button.button>
     </x-slot>
 </x-dialog-modal>

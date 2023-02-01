@@ -9,9 +9,9 @@
 
                     <span class="block sm:ml-2 sm:inline-block">
                         <x-laravel-base::auth.stop-impersonation-button>
-                            <x-laravel-base::button.link class="text-white hover:text-gray-300 focus:outline-white">
+                            <x-blade::button.link class="text-white hover:text-gray-300">
                                 {{ __('base::users.impersonate.leave') }} &rarr;
-                            </x-laravel-base::button.link>
+                            </x-blade::button.link>
                         </x-laravel-base::auth.stop-impersonation-button>
                     </span>
                 </p>

@@ -17,9 +17,9 @@
             </x-form-group>
 
             <div class="mt-6">
-                <x-button variant="blue" type="submit" block wire:target="confirm">
+                <x-blade::button.button color="blue" type="submit" block wire:target="confirm">
                     {{ __('Confirm') }}
-                </x-button>
+                </x-blade::button.button>
             </div>
         </x-form>
     </x-auth.authentication-form>

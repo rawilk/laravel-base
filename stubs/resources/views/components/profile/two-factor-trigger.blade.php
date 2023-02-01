@@ -6,13 +6,13 @@
 
 @if ($confirmEnabled)
     <x-confirms-password wire:then="{{ $action }}">
-        <x-button variant="{{ $variant }}" wire:target="{{ $action }}">
+        <x-blade::button.button color="{{ $variant }}" wire:target="{{ $action }}">
             {{ $slot }}
-        </x-button>
+        </x-blade::button.button>
     </x-confirms-password>
 @else
-    <x-button variant="{{ $variant }}" wire:click="{{ $action }}" wire:target="{{ $action }}" {{ $attributes }}>
+    <x-blade::button.button color="{{ $variant }}" wire:click="{{ $action }}" {{ $attributes }}>
         {{ $slot }}
-    </x-button>
+    </x-blade::button.button>
 @endif
 

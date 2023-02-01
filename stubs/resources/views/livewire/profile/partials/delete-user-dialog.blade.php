@@ -24,20 +24,19 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-button
+        <x-blade::button.button
             wire:click="deleteUser"
-            wire:target="deleteUser"
-            variant="red"
+            color="red"
         >
             {{ __('Delete Account') }}
-        </x-button>
+        </x-blade::button.button>
 
-        <x-button
+        <x-blade::button.button
             wire:click="$set('confirmingUserDeletion', false)"
             wire:loading.attr="disabled"
-            variant="white"
+            color="white"
         >
             {{ __('Nevermind') }}
-        </x-button>
+        </x-blade::button.button>
     </x-slot>
 </x-dialog-modal>

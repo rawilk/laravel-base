@@ -50,12 +50,12 @@
 
         <div x-data="{ show: false }">
             <div class="px-2 pb-1 lg:hidden">
-                <x-laravel-base::button.link
+                <x-blade::button.link
                     x-on:click="show = ! show"
                     class="text-xs"
                 >
                     <span x-text="show ? '{{ __('base::messages.labels.topbar.hide_menu') }}' : '{{ __('base::messages.labels.topbar.show_menu') }}'"></span>
-                </x-laravel-base::button.link>
+                </x-blade::button.link>
             </div>
 
             <div class="flex flex-wrap items-center px-2"

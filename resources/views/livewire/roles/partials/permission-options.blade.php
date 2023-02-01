@@ -39,25 +39,25 @@
             @if ($canEdit)
                 <span>{{ __('base::messages.labels.form.make_selection') }}</span>
 
-                <x-laravel-base::button.link x-on:click="selectAllIn($root)">
+                <x-blade::button.link x-on:click="selectAllIn($root)">
                     {{ __('base::messages.labels.form.select_all') }}
-                </x-laravel-base::button.link>
+                </x-blade::button.link>
                 <span>/</span>
-                <x-laravel-base::button.link x-on:click="removeAllIn($root)">
+                <x-blade::button.link x-on:click="removeAllIn($root)">
                     {{ __('base::messages.labels.form.select_none') }}
-                </x-laravel-base::button.link>
+                </x-blade::button.link>
             @endif
         </div>
 
         {{-- collapse/expand all --}}
         <div class="text-xs mt-2 sm:mt-0">
-            <x-laravel-base::button.link x-on:click="$dispatch('perm-collapse')">
+            <x-blade::button.link x-on:click="$dispatch('perm-collapse')">
                 {{ __('base::messages.labels.form.collapse_all') }}
-            </x-laravel-base::button.link>
+            </x-blade::button.link>
             <span>/</span>
-            <x-laravel-base::button.link x-on:click="$dispatch('perm-expand')">
+            <x-blade::button.link x-on:click="$dispatch('perm-expand')">
                 {{ __('base::messages.labels.form.expand_all') }}
-            </x-laravel-base::button.link>
+            </x-blade::button.link>
         </div>
     </div>
 
@@ -125,13 +125,13 @@
                             <div class="text-xs">
                                 <span>{{ __('base::messages.labels.form.make_selection') }}</span>
 
-                                <x-laravel-base::button.link x-on:click="selectAllIn($root)">
+                                <x-blade::button.link x-on:click="selectAllIn($root)">
                                     {{ __('base::messages.labels.form.select_all') }}
-                                </x-laravel-base::button.link>
+                                </x-blade::button.link>
                                 <span>/</span>
-                                <x-laravel-base::button.link x-on:click="removeAllIn($root)">
+                                <x-blade::button.link x-on:click="removeAllIn($root)">
                                     {{ __('base::messages.labels.form.select_none') }}
-                                </x-laravel-base::button.link>
+                                </x-blade::button.link>
                             </div>
                         @endif
 

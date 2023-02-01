@@ -20,20 +20,19 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-button
+        <x-blade::button.button
             wire:click="logoutOtherBrowserSessions"
-            wire:target="logoutOtherBrowserSessions"
-            variant="blue"
+            color="blue"
         >
             {{ __('Logout Other Browser Sessions') }}
-        </x-button>
+        </x-blade::button.button>
 
-        <x-button
+        <x-blade::button.button
             wire:click="$set('confirmingLogout', false)"
             wire:loading.attr="disabled"
-            variant="white"
+            color="white"
         >
             {{ __('Nevermind') }}
-        </x-button>
+        </x-blade::button.button>
     </x-slot>
 </x-dialog-modal>

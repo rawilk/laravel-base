@@ -16,15 +16,15 @@
 
         <x-slot:footer>
             <div class="flex flex-shrink-0 justify-end">
-                <x-laravel-base::button.button
-                    variant="blue"
+                <x-blade::button.button
+                    color="blue"
                     type="submit"
                     form="import{{ $this->id }}form"
                     :disabled="$fileRowCount === 0"
                     wire:target="import"
                 >
                     {{ __('base::messages.modal.import.button') }}
-                </x-laravel-base::button.button>
+                </x-blade::button.button>
             </div>
         </x-slot:footer>
     </x-laravel-base::modal.slide-over-form>

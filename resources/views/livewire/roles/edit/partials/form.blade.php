@@ -26,10 +26,9 @@
             <div class="flex justify-end items-center space-x-4">
                 <x-action-message on="details.updated" />
 
-                <x-button type="submit" variant="blue" form="edit-details-form" wire:target="updateDetails">
-                    <span>{{ __('base::messages.update_button') }}</span>
-                    <x-heroicon-s-check />
-                </x-button>
+                <x-blade::button.button type="submit" color="blue" form="edit-details-form" wire:target="updateDetails" right-icon="heroicon-s-check">
+                    {{ __('base::messages.update_button') }}
+                </x-blade::button.button>
             </div>
         </x-slot>
     </x-card>
@@ -51,10 +50,9 @@
                     <div class="flex justify-end items-center space-x-4">
                         <x-action-message on="permissions.updated" />
 
-                        <x-button type="submit" variant="blue" form="edit-perms-form" wire:target="updatePermissions">
-                            <span>{{ __('base::messages.update_button') }}</span>
-                            <x-heroicon-s-check />
-                        </x-button>
+                        <x-blade::button.button type="submit" color="blue" form="edit-perms-form" wire:target="updatePermissions" right-icon="heroicon-s-check">
+                            {{ __('base::messages.update_button') }}
+                        </x-blade::button.button>
                     </div>
                 </x-slot>
             @endunless

@@ -40,7 +40,7 @@
                 </x-form-group>
 
                 <div class="flex items-center justify-end">
-                    <x-laravel-base::button.link
+                    <x-blade::button.link
                         x-show="! recovery"
                         x-on:click.prevent="
                             recovery = true;
@@ -50,9 +50,9 @@
                         class="text-xs"
                     >
                         {{ __('base::users.two_factor.use_recovery_code_button') }}
-                    </x-laravel-base::button.link>
+                    </x-blade::button.link>
 
-                    <x-laravel-base::button.link
+                    <x-blade::button.link
                         x-show="recovery"
                         x-cloak
                         x-on:click.prevent="
@@ -63,14 +63,14 @@
                         class="text-xs"
                     >
                         {{ __('base::users.two_factor.use_auth_code_button') }}
-                    </x-laravel-base::button.link>
+                    </x-blade::button.link>
                 </div>
             </div>
 
             <div class="mt-6">
-                <x-button variant="blue" type="submit" block wire:target="login">
+                <x-blade::button.button color="blue" type="submit" block wire:target="login">
                     {{ __('base::users.two_factor.verify_button') }}
-                </x-button>
+                </x-blade::button.button>
             </div>
         </x-form>
     </x-auth.authentication-form>

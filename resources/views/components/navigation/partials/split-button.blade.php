@@ -1,12 +1,11 @@
 <span class="-ml-px relative block">
-    <x-laravel-base::button.button
-        :variant="$buttonVariant"
-        icon
+    <x-blade::button.icon
+        :color="$buttonVariant"
         :size="$size"
-        class="rounded-l-none"
+        class="rounded-md rounded-l-none"
         :extra-attributes="$triggerAttributes()"
     >
         <span class="sr-only">{{ __('base::messages.dropdown.open_menu') }}</span>
-        <x-heroicon-s-chevron-down aria-hidden="true" />
-    </x-laravel-base::button.button>
+        <x-heroicon-s-chevron-down />
+    </x-blade::button.icon>
 </span>

@@ -1,4 +1,3 @@
-
 <div @class(['p-4 sm:p-6' => ! $file])>
     @unless ($file)
     <div>
@@ -65,12 +64,11 @@
             </x-laravel-base::elements.badge>
         </div>
 
-        <x-laravel-base::button.link
+        <x-blade::button.link
             class="text-xs"
             wire:click="cancelUpload"
-            wire:target="cancelUpload"
         >
             {{ __('base::messages.modal.import.change_upload') }}
-        </x-laravel-base::button.link>
+        </x-blade::button.link>
     </div>
 @endif

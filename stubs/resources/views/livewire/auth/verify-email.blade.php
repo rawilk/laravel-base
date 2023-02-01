@@ -14,17 +14,17 @@
 
         <x-form class="mt-4" wire:submit.prevent="resend">
             <div>
-                <x-button type="submit" variant="blue" block wire:target="resend">
+                <x-blade::button.button type="submit" color="blue" block wire:target="resend">
                     {{ __('Resend Verification Email') }}
-                </x-button>
+                </x-blade::button.button>
             </div>
         </x-form>
 
         <x-form action="{{ route('logout') }}">
             <div class="py-4 text-center">
-                <x-laravel-base::button.link type="submit" dark>
+                <x-blade::button.link type="submit" dark>
                     <span>{{ __('labels.user.logout_button') }}</span>
-                </x-laravel-base::button.link>
+                </x-blade::button.link>
             </div>
         </x-form>
     </x-auth.authentication-form>

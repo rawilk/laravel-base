@@ -1,4 +1,4 @@
-<x-laravel-base::navigation.link
+<x-blade::navigation.link
     :app-link="false"
     :href="$href"
     hide-external-indicator
@@ -13,4 +13,4 @@
     @endif
 
     <span class="truncate w-full">{{ $slot }}</span>
-</x-laravel-base::navigation.link>
+</x-blade::navigation.link>

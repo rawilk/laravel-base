@@ -8,18 +8,17 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-button wire:click="deleteRole"
-                  wire:target="deleteRole"
-                  variant="red"
+        <x-blade::button.button wire:click="deleteRole"
+                  color="red"
         >
             {{ __('base::messages.delete_button') }}
-        </x-button>
+        </x-blade::button.button>
 
-        <x-button wire:click="$set('showDelete', false)"
+        <x-blade::button.button wire:click="$set('showDelete', false)"
                   wire:loading.attr="disabled"
-                  variant="white"
+                  color="white"
         >
             {{ __('base::messages.confirm_modal_cancel') }}
-        </x-button>
+        </x-blade::button.button>
     </x-slot>
 </x-dialog-modal>

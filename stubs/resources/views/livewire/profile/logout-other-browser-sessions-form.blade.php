@@ -44,9 +44,9 @@
         @endif
 
         <div class="flex items-center mt-5 space-x-4">
-            <x-button variant="blue" wire:click="confirmLogout">
+            <x-blade::button.button color="blue" wire:click="confirmLogout">
                 {{ __('Logout Other Browser Sessions') }}
-            </x-button>
+            </x-blade::button.button>
 
             <x-action-message on="logged_out">{{ __('Done.') }}</x-action-message>
         </div>

@@ -7,9 +7,9 @@
         </div>
 
         <div class="mt-5">
-            <x-button variant="red" wire:click="confirmUserDeletion">
+            <x-blade::button.button color="red" wire:click="confirmUserDeletion">
                 {{ __('Delete Account') }}
-            </x-button>
+            </x-blade::button.button>
         </div>
     </x-card>
 

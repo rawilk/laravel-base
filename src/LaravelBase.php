@@ -27,7 +27,7 @@ class LaravelBase
      *
      * @var string
      */
-    public const VERSION = '0.5.0';
+    public const VERSION = '0.5.1';
 
     /**
      * The callback that is responsible for retrieving the configured app timezone.

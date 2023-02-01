@@ -27,16 +27,16 @@
 
         <div>
             @if ($photo)
-                <x-button wire:click="cancelUpload" variant="red" id="cancel-upload-button">
+                <x-blade::button.button wire:click="cancelUpload" color="red" id="cancel-upload-button">
                     {{ __('Cancel Upload') }}
-                </x-button>
+                </x-blade::button.button>
             @elseif ($this->user->avatar_path)
-                <x-button wire:click="deleteProfilePhoto"
-                          variant="red"
+                <x-blade::button.button wire:click="deleteProfilePhoto"
+                          color="red"
                           id="remove-photo-button"
                 >
                     {{ __('Remove Photo') }}
-                </x-button>
+                </x-blade::button.button>
             @endif
         </div>
     </div>

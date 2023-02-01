@@ -56,24 +56,22 @@
                         <footer class="flex-shrink-0">
                             <div class="pb-4 md:pb-8 pt-2 px-4 sm:px-6 flex flex-col items-center space-y-3">
                                 @if ($applyClick)
-                                    <x-button
+                                    <x-blade::button.button
                                         wire:click="{{ $applyClick }}"
-                                        wire:target="{{ $applyClick }}"
-                                        variant="blue"
+                                        color="blue"
                                         block
                                     >
                                         {{ __('base::messages.filters.apply_button') }}
-                                    </x-button>
+                                    </x-blade::button.button>
                                 @endif
 
                                 @if ($resetClick)
-                                    <x-laravel-base::button.link
+                                    <x-blade::button.link
                                         class="text-xs text-gray-300 hover:text-gray-200"
                                         wire:click="{{ $resetClick }}"
-                                        wire:target="{{ $resetClick }}"
                                     >
                                         {{ __('base::messages.filters.reset_button') }}
-                                    </x-laravel-base::button.link>
+                                    </x-blade::button.link>
                                 @endif
                             </div>
                         </footer>

@@ -50,16 +50,15 @@
 
         <div class="content-container lg:flex lg:flex-row-reverse lg:items-center">
             <span class="flex w-full lg:ml-3 lg:w-auto">
-                <x-button type="submit" variant="blue" wire:target="createRole" block>
-                    <span>{{ __('base::messages.create_button') }}</span>
-                    <x-heroicon-s-check />
-                </x-button>
+                <x-blade::button.button type="submit" color="blue" wire:target="createRole" right-icon="heroicon-s-check" block>
+                    {{ __('base::messages.create_button') }}
+                </x-blade::button.button>
             </span>
 
             <span class="mt-3 flex w-full lg:mt-0 lg:w-auto">
-                <x-button variant="white" href="{{ url()->previous() }}" block>
+                <x-blade::button.button color="white" href="{{ url()->previous() }}" block>
                     {{ __('base::messages.cancel_button') }}
-                </x-button>
+                </x-blade::button.button>
             </span>
         </div>
     </div>

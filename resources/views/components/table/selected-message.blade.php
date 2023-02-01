@@ -15,17 +15,17 @@
                 <div class="space-x-1">
                     <span>{!! __('base::messages.table.page_selected', ['count' => $count, 'item_name' => $itemName]) !!}</span>
 
-                    <x-laravel-base::button.link :supports-icons="false" wire:click="selectAll">
+                    <x-blade::button.link wire:click="selectAll">
                         {!! __('base::messages.table.select_all_rows', ['total' => $total, 'item_name' => $itemName]) !!}
-                    </x-laravel-base::button.link>
+                    </x-blade::button.link>
                 </div>
             @else
                 <span class="block space-x-1">
                 <span>{!! __('base::messages.table.all_rows_selected', ['total' => $total, 'item_name' => $itemName]) !!}</span>
 
-                <x-laravel-base::button.link wire:click="clearSelection">
+                <x-blade::button.link wire:click="clearSelection">
                     {{ __('base::messages.table.clear_selection') }}
-                </x-laravel-base::button.link>
+                </x-blade::button.link>
             </span>
             @endunless
 

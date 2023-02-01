@@ -14,7 +14,7 @@
 
     <div @class(['mt-8' => $icon || $before])>
         <h3 class="text-lg font-medium">
-            <x-laravel-base::navigation.link
+            <x-blade::navigation.link
                 :app-link="false"
                 href="{{ $href }}"
                 class="focus:outline-none"
@@ -24,7 +24,7 @@
                 {{-- extended touch target to entire panel --}}
                 <span class="absolute inset-0" aria-hidden="true"></span>
                 {{ $slot }}
-            </x-laravel-base::navigation.link>
+            </x-blade::navigation.link>
         </h3>
 
         @if ($description)

@@ -36,21 +36,20 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-laravel-base::button.button
+            <x-blade::button.button
                 wire:click="confirmPassword"
-                wire:target="confirmPassword"
-                variant="{{ $confirmButtonVariant }}"
+                color="{{ $confirmButtonVariant }}"
             >
                 {{ $button }}
-            </x-laravel-base::button.button>
+            </x-blade::button.button>
 
-            <x-laravel-base::button.button
+            <x-blade::button.button
                 wire:click="stopConfirmingPassword"
                 wire:loading.attr="disabled"
-                variant="{{ $cancelButtonVariant }}"
+                color="{{ $cancelButtonVariant }}"
             >
                 {{ __('base::messages.confirm_modal_cancel') }}
-            </x-laravel-base::button.button>
+            </x-blade::button.button>
         </x-slot>
     </x-laravel-base::modal.dialog-modal>
 @endonce

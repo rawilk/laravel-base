@@ -53,10 +53,9 @@
             <div class="flex justify-end items-center space-x-4">
                 <x-action-message on="saved" />
 
-                <x-button type="submit" variant="blue" form="update-password-form" wire:target="updatePassword">
-                    <span>{{ __('Save') }}</span>
-                    <x-heroicon-s-check />
-                </x-button>
+                <x-blade::button.button type="submit" color="blue" form="update-password-form" wire:target="updatePassword" right-icon="heroicon-s-check">
+                    {{ __('Save') }}
+                </x-blade::button.button>
             </div>
         </x-slot>
     </x-card>

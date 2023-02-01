@@ -52,10 +52,9 @@
             <div class="flex items-center justify-end space-x-4">
                 <x-action-message on="profile.updated" />
 
-                <x-button type="submit" variant="blue" form="update-profile-form" wire:target="updateProfileInformation">
-                    <span>{{ __('Save') }}</span>
-                    <x-heroicon-s-check />
-                </x-button>
+                <x-blade::button.button type="submit" color="blue" form="update-profile-form" wire:target="updateProfileInformation" right-icon="heroicon-s-check">
+                    {{ __('Save') }}
+                </x-blade::button.button>
             </div>
         </x-slot>
     </x-card>
