@@ -35,7 +35,6 @@ return [
         'confirms-password' => Components\Auth\ConfirmsPassword::class,
 
         // Button
-        'button' => Components\Button\Button::class,
         'scroll-to-top-button' => 'laravel-base::components.button.scroll-to-top-button',
 
         // DateTime
@@ -91,7 +90,6 @@ return [
             'default_sticky_offset' => 'md:top-2',
         ],
         'inner-nav-item' => Components\Navigation\InnerNavItem::class,
-        'link' => Components\Navigation\Link::class,
 
         // Table
         'table' => Components\Table\Table::class,
