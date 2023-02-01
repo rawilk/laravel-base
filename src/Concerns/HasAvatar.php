@@ -10,6 +10,7 @@ use Rawilk\LaravelBase\Features;
 
 /**
  * @property null|string $avatar_path
+ *
  * @mixin \Eloquent
  */
 trait HasAvatar
