@@ -22,6 +22,7 @@ use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppCont
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rawilk\LaravelBase\Models\AuthenticatorApp newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rawilk\LaravelBase\Models\AuthenticatorApp query()
+ *
  * @mixin \Eloquent
  */
 class AuthenticatorApp extends Model implements AuthenticatorAppContract

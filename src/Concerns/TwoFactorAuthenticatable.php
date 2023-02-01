@@ -8,6 +8,7 @@ use Rawilk\LaravelBase\Services\RecoveryCode;
 
 /**
  * @property null|string $two_factor_recovery_codes
+ *
  * @mixin \Eloquent
  */
 trait TwoFactorAuthenticatable

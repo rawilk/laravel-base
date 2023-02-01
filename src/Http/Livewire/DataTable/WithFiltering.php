@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property-read \Illuminate\Support\Collection $filterBreadcrumbs
+ *
  * @mixin \Livewire\Component
  * @mixin \Livewire\WithPagination
  */

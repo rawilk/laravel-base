@@ -30,6 +30,7 @@ use Spatie\Permission\Models\Role as BaseRole;
  * @method static Builder|Role newQuery()
  * @method static Builder|Role permission($permissions)
  * @method static Builder|Role query()
+ *
  * @mixin \Eloquent
  */
 class Role extends BaseRole

@@ -25,6 +25,7 @@ use Spatie\Permission\Models\Permission as BasePermission;
  * @method \Illuminate\Database\Eloquent\Builder|Permission permission($permissions)
  * @method \Illuminate\Database\Eloquent\Builder|Permission query()
  * @method \Illuminate\Database\Eloquent\Builder|Permission role($roles, $guard = null)
+ *
  * @mixin \Eloquent
  */
 class Permission extends BasePermission
