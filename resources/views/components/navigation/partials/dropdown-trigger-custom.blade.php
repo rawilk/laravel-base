@@ -1,3 +1,3 @@
-<div {{ $triggerAttributes() }} {{ $componentSlot($trigger ?? null)->attributes }}>
+<div {{ $triggerAttributesToString() }} {{ $componentSlot($trigger ?? null)->attributes }}>
     {{ $trigger ?? '' }}
 </div>

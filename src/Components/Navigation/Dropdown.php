@@ -18,7 +18,8 @@ class Dropdown extends BladeComponent
     public function __construct(
         public bool $right = false,
         public bool $splitButton = false,
-        public string $buttonVariant = 'white', // Only applies when $triggerText is supplied
+        public string $buttonVariant = 'outlined', // Only applies when $triggerText is supplied
+        public string $buttonColor = 'slate', // Only applies when $triggerText is supplied
         public null|string $triggerText = null,
         public bool $disabled = false,
         public null|string $size = null, // Only applies when $triggerText is supplied
@@ -72,16 +73,26 @@ class Dropdown extends BladeComponent
         return $this->triggerId = "trigger-{$this->id}";
     }
 
-    public function triggerAttributes(): HtmlString
+    public function triggerAttributes(): array
     {
-        return new HtmlString(implode(PHP_EOL, array_filter([
-            'x-ref="trigger"',
-            'x-on:click="toggleMenu"',
-            'aria-haspopup="true"',
-            'x-bind:aria-expanded="JSON.stringify(open)"',
-            $this->id === false ? null : 'id="' . $this->triggerId() . '"',
-            $this->id === false ? null : 'aria-controls="' . $this->menuId() . '"',
-        ])));
+        return [
+            'x-ref' => 'trigger',
+            'x-on:click' => 'toggleMenu',
+            'aria-haspopup' => 'true',
+            'x-bind:aria-expanded' => 'JSON.stringify(open)',
+            'id' => $this->id === false ? null : $this->triggerId(),
+            'aria-controls' => $this->id === false ? null : $this->menuId(),
+        ];
+    }
+
+    public function triggerAttributesToString(): HtmlString
+    {
+        $attributes = collect($this->triggerAttributes())
+            ->filter()
+            ->map(fn ($value, $key) => "{$key}=\"{$value}\"")
+            ->implode(PHP_EOL);
+
+        return new HtmlString($attributes);
     }
 
     public function configToJson(): string

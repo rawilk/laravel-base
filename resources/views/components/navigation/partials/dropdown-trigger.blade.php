@@ -1,11 +1,12 @@
 <x-blade::button.button
-    :color="$buttonVariant"
+    :color="$buttonColor"
+    :variant="$buttonVariant"
     :size="$size"
     :extra-attributes="$triggerAttributes()"
 >
     {{ $triggerText }}
 
     <x-slot:icon-right>
-        <x-heroicon-s-chevron-down />
+        <x-heroicon-m-chevron-down />
     </x-slot:icon-right>
 </x-blade::button.button>
