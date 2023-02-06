@@ -42,7 +42,9 @@
                 <x-blade::button.link x-on:click="selectAllIn($root)">
                     {{ __('base::messages.labels.form.select_all') }}
                 </x-blade::button.link>
+
                 <span>/</span>
+
                 <x-blade::button.link x-on:click="removeAllIn($root)">
                     {{ __('base::messages.labels.form.select_none') }}
                 </x-blade::button.link>
@@ -54,7 +56,9 @@
             <x-blade::button.link x-on:click="$dispatch('perm-collapse')">
                 {{ __('base::messages.labels.form.collapse_all') }}
             </x-blade::button.link>
+
             <span>/</span>
+
             <x-blade::button.link x-on:click="$dispatch('perm-expand')">
                 {{ __('base::messages.labels.form.expand_all') }}
             </x-blade::button.link>
@@ -128,7 +132,9 @@
                                 <x-blade::button.link x-on:click="selectAllIn($root)">
                                     {{ __('base::messages.labels.form.select_all') }}
                                 </x-blade::button.link>
+
                                 <span>/</span>
+
                                 <x-blade::button.link x-on:click="removeAllIn($root)">
                                     {{ __('base::messages.labels.form.select_none') }}
                                 </x-blade::button.link>

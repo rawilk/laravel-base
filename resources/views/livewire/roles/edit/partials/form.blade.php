@@ -1,10 +1,10 @@
 <div class="space-y-6">
     {{-- role info --}}
     <x-card>
-        <x-slot name="header">
+        <x-slot:header>
             <h2>{{ __('base::roles.create.role_info_title') }}</h2>
             <p class="text-sm text-gray-500">{{ __('base::roles.edit.role_info_subtitle') }}</p>
-        </x-slot>
+        </x-slot:header>
 
         <x-form-components::form wire:submit.prevent="updateDetails" id="edit-details-form">
             <div>
@@ -26,7 +26,7 @@
             <div class="flex justify-end items-center space-x-4">
                 <x-action-message on="details.updated" />
 
-                <x-blade::button.button type="submit" color="blue" form="edit-details-form" wire:target="updateDetails" right-icon="heroicon-s-check">
+                <x-blade::button.button type="submit" color="blue" form="edit-details-form" wire:target="updateDetails" right-icon="heroicon-m-check">
                     {{ __('base::messages.update_button') }}
                 </x-blade::button.button>
             </div>
@@ -36,25 +36,25 @@
     {{-- role permissions --}}
     @can('editPermissions', $role)
         <x-card>
-            <x-slot name="header">
+            <x-slot:header>
                 <h2>{{ __('base::roles.create.permissions_title') }}</h2>
                 <p class="text-sm text-gray-500">{{ __('base::roles.create.permissions_subtitle') }}</p>
-            </x-slot>
+            </x-slot:header>
 
             <x-form-components::form wire:submit.prevent="updatePermissions" id="edit-perms-form">
                 @include('laravel-base::livewire.roles.partials.permission-options', ['roleName' => $role->name])
             </x-form-components::form>
 
             @unless ($role->name === \Rawilk\LaravelBase\Models\Role::$adminName)
-                <x-slot name="footer">
+                <x-slot:footer>
                     <div class="flex justify-end items-center space-x-4">
                         <x-action-message on="permissions.updated" />
 
-                        <x-blade::button.button type="submit" color="blue" form="edit-perms-form" wire:target="updatePermissions" right-icon="heroicon-s-check">
+                        <x-blade::button.button type="submit" color="blue" form="edit-perms-form" wire:target="updatePermissions" right-icon="heroicon-m-check">
                             {{ __('base::messages.update_button') }}
                         </x-blade::button.button>
                     </div>
-                </x-slot>
+                </x-slot:footer>
             @endunless
         </x-card>
     @endcan

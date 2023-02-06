@@ -1,4 +1,4 @@
-<x-slot name="filters">
+<x-slot:filters>
     {{-- updated_at min --}}
     <x-form-components::form-group label="{{ __('base::messages.filters.labels.updated_at_min') }}" name="filters.updated-min">
         <x-form-components::inputs.date-picker
@@ -40,4 +40,4 @@
             clearable
         />
     </x-form-components::form-group>
-</x-slot>
+</x-slot:filters>

@@ -1,3 +1,3 @@
-<x-slot name="pageTitle">
+<x-slot:page-title>
     <x-layout.page-title>{{ $role->name }}</x-layout.page-title>
-</x-slot>
+</x-slot:page-title>

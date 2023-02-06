@@ -1,9 +1,9 @@
 <x-dialog-modal wire:model.defer="showDeleteAll" max-width="md">
-    <x-slot name="title">{{ __('base::roles.confirm_bulk_delete.title') }}</x-slot>
+    <x-slot:title>{{ __('base::roles.confirm_bulk_delete.title') }}</x-slot:title>
 
-    <x-slot name="content">
+    <x-slot:content>
         <p>{!! __('base::roles.confirm_bulk_delete.text') !!}</p>
-    </x-slot>
+    </x-slot:content>
 
     <x-slot name="footer">
         <x-blade::button.button
@@ -15,8 +15,8 @@
 
         <x-blade::button.button
             wire:click="$set('showDeleteAll', false)"
-            wire:loading.attr="disabled"
-            color="white"
+            color="slate"
+            variant="text"
         >
             {{ __('base::messages.confirm_modal_cancel') }}
         </x-blade::button.button>

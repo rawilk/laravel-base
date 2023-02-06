@@ -2,10 +2,10 @@
     <div class="space-y-6">
         {{-- role info --}}
         <x-card>
-            <x-slot name="header">
+            <x-slot:header>
                 <h2>{{ __('base::roles.create.role_info_title') }}</h2>
                 <p class="text-sm text-gray-500">{{ __('base::roles.create.role_info_subtitle') }}</p>
-            </x-slot>
+            </x-slot:header>
 
             {{-- name --}}
             <x-form-components::form-group label="{{ __('base::roles.labels.form.name') }}" name="name" inline>
@@ -34,10 +34,10 @@
 
         {{-- permissions --}}
         <x-card>
-            <x-slot name="header">
+            <x-slot:header>
                 <h2>{{ __('base::roles.create.permissions_title') }}</h2>
                 <p class="text-sm text-gray-500">{{ __('base::roles.create.permissions_subtitle') }}</p>
-            </x-slot>
+            </x-slot:header>
 
             @include('laravel-base::livewire.roles.partials.permission-options')
         </x-card>
@@ -50,15 +50,15 @@
 
         <div class="content-container lg:flex lg:flex-row-reverse lg:items-center">
             <span class="flex w-full lg:ml-3 lg:w-auto">
-                <x-blade::button.button type="submit" color="blue" wire:target="createRole" right-icon="heroicon-s-check" block>
+                <x-blade::button.button type="submit" color="blue" wire:target="createRole" right-icon="heroicon-m-check" block>
                     {{ __('base::messages.create_button') }}
                 </x-blade::button.button>
             </span>
 
             <span class="mt-3 flex w-full lg:mt-0 lg:w-auto">
-                <x-blade::button.button color="white" href="{{ url()->previous() }}" block>
+                <x-link class="w-full" href="{!! route('admin.roles.index') !!}">
                     {{ __('base::messages.cancel_button') }}
-                </x-blade::button.button>
+                </x-link>
             </span>
         </div>
     </div>

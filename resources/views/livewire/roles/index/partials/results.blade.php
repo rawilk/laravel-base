@@ -1,5 +1,5 @@
 <x-table>
-    <x-slot name="head">
+    <x-slot:head>
         <x-tr>
             <x-th class="table-check">
                 <x-checkbox wire:model="selectPage" />
@@ -11,7 +11,7 @@
             <x-th sortable multi-column wire:click="sortBy('created_at')" :direction="$sorts['created_at'] ?? null" :hidden="$this->isHidden('created_at')">{{ __('base::messages.labels.model.created_at') }}</x-th>
             <x-th sortable multi-column wire:click="sortBy('updated_at')" :direction="$sorts['updated_at'] ?? null" :hidden="$this->isHidden('updated_at')">{{ __('base::messages.labels.model.updated_at') }}</x-th>
         </x-tr>
-    </x-slot>
+    </x-slot:head>
 
     <x-laravel-base::table.selected-message
         :select-page="$selectPage"
