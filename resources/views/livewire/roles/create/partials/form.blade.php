@@ -56,7 +56,7 @@
             </span>
 
             <span class="mt-3 flex w-full lg:mt-0 lg:w-auto">
-                <x-link class="w-full" href="{!! route('admin.roles.index') !!}">
+                <x-link class="w-full" href="{!! route('admin.roles.index') !!}" dark>
                     {{ __('base::messages.cancel_button') }}
                 </x-link>
             </span>
