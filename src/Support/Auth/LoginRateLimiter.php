@@ -46,8 +46,6 @@ class LoginRateLimiter
 
     /**
      * Specify the amount of seconds the user should be throttled for.
-     *
-     * @param  int  $seconds
      */
     public static function secondsToThrottleFor(int $seconds): void
     {
@@ -56,8 +54,6 @@ class LoginRateLimiter
 
     /**
      * Specify how many attempts are allowed for a user to try and login.
-     *
-     * @param  int  $attempts
      */
     public static function maxAttemptsAllowed(int $attempts): void
     {

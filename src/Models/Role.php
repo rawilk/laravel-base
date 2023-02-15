@@ -56,8 +56,6 @@ class Role extends BaseRole
     /**
      * Determine the name of the role that should be assigned as
      * the "default" user role.
-     *
-     * @return string
      */
     public static function defaultRoleName(): string
     {
@@ -67,8 +65,6 @@ class Role extends BaseRole
     /**
      * Get a list of role names that should not be allowed to be removed
      * from the application.
-     *
-     * @return array
      */
     public static function protectedRoleNames(): array
     {
@@ -86,8 +82,6 @@ class Role extends BaseRole
     /**
      * Determine if the current role is considered the "super admin" role
      * of the application.
-     *
-     * @return bool
      */
     public function isSuperAdminRole(): bool
     {
@@ -96,8 +90,6 @@ class Role extends BaseRole
 
     /**
      * Determine if the current role is considered a "protected" role in the application.
-     *
-     * @return bool
      */
     public function isProtected(): bool
     {

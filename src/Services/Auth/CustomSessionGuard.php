@@ -12,9 +12,7 @@ class CustomSessionGuard extends SessionGuard
     /**
      * Log a user in the application without firing the Login event.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  bool  $remember
-     * @return void
      */
     public function quietLogin(Authenticatable $user, $remember = false): void
     {
