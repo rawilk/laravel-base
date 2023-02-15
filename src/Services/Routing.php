@@ -11,8 +11,6 @@ class Routing
 {
     /**
      * Determine what the "home" url of the application should be.
-     *
-     * @return string|null
      */
     public static function home(): null|string
     {

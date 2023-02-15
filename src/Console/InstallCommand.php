@@ -261,9 +261,6 @@ EOF;
 
     /**
      * Update the "package.json" file.
-     *
-     * @param  callable  $callback
-     * @param  bool  $dev
      */
     private function updateNodePackages(callable $callback, bool $dev = true): void
     {

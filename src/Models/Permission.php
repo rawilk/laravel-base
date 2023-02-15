@@ -47,8 +47,6 @@ class Permission extends BasePermission
      * Get all the permissions grouped by the first part
      * of their name. Useful for rendering them
      * in groups in the UI.
-     *
-     * @return \Illuminate\Support\Collection
      */
     public static function groupedPermissions(): Collection
     {

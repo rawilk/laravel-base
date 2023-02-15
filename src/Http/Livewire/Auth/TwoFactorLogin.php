@@ -219,9 +219,6 @@ class TwoFactorLogin extends Component
     /**
      * Certain actions do not (and should not) need to be performed on this step
      * of the authentication process, so we'll filter them out here.
-     *
-     * @param  array  $pipes
-     * @return array
      */
     private function filterPipes(array $pipes): array
     {

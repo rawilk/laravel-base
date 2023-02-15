@@ -40,9 +40,6 @@ abstract class BladeComponent extends Component
      * Ensures we always have an instance of ComponentSlot for merging attributes in slots.
      * Useful when the "slot" may not always be provided to the component but we
      * need some default attributes always present.
-     *
-     * @param  mixed  $slot
-     * @return \Illuminate\View\ComponentSlot
      */
     public function componentSlot(mixed $slot): ComponentSlot
     {
