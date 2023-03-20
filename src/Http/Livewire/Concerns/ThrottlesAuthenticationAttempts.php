@@ -21,8 +21,6 @@ trait ThrottlesAuthenticationAttempts
 
     /**
      * Specify how many attempts are allowed for a user to try the action.
-     *
-     * @param  int  $attempts
      */
     public static function maxAttemptsAllowed(int $attempts): void
     {
@@ -31,8 +29,6 @@ trait ThrottlesAuthenticationAttempts
 
     /**
      * Specify the amount of seconds the user should be throttled for.
-     *
-     * @param  int  $seconds
      */
     public static function secondsToThrottleFor(int $seconds): void
     {

@@ -43,7 +43,6 @@ class RolesExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
 
     /**
      * @param  \Spatie\Permission\Contracts\Role  $role
-     * @return array
      */
     public function map($role): array
     {

@@ -65,6 +65,10 @@ Please review [my security policy](.github/SECURITY.md) on how to report securit
 - [Randall Wilk](https://github.com/rawilk)
 - [All Contributors](../../contributors)
 
+## Disclaimer
+
+This package is not affiliated with, maintained, authorized, endorsed or sponsored by Laravel or any of its affiliates.
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

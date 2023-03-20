@@ -8,8 +8,6 @@ trait Impersonatable
 {
     /**
      * Determine if the user can impersonate another user.
-     *
-     * @return bool
      */
     public function canImpersonate(): bool
     {
@@ -18,9 +16,6 @@ trait Impersonatable
 
     /**
      * Determine if the user can be impersonated.
-     *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $impersonator
-     * @return bool
      */
     public function canBeImpersonated(?User $impersonator = null): bool
     {
@@ -29,8 +24,6 @@ trait Impersonatable
 
     /**
      * Get the name of the impersonator to put in the session.
-     *
-     * @return string|null
      */
     public function nameForImpersonation(): ?string
     {

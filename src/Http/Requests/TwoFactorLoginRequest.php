@@ -48,8 +48,6 @@ class TwoFactorLoginRequest extends FormRequest
 
     /**
      * Determine if there is a challenged user in the current session.
-     *
-     * @return bool
      */
     public function hasChallengedUser(): bool
     {
@@ -86,8 +84,6 @@ class TwoFactorLoginRequest extends FormRequest
 
     /**
      * Get the valid recovery code if one exists on the request.
-     *
-     * @return string|null
      */
     public function validRecoveryCode(): ?string
     {
@@ -101,8 +97,6 @@ class TwoFactorLoginRequest extends FormRequest
 
     /**
      * Determine if the request has a valid totp code.
-     *
-     * @return bool
      */
     public function hasValidTotpCode(): bool
     {
@@ -127,8 +121,6 @@ class TwoFactorLoginRequest extends FormRequest
 
     /**
      * Determine if the user wanted to be remembered after login.
-     *
-     * @return bool
      */
     public function remember(): bool
     {
