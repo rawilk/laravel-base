@@ -1,8 +1,8 @@
 <x-laravel-base::layouts.html :title="$title ?? ''" {{ $attributes }}>
-    <x-slot:headTop>
+    <x-slot:head-top>
         {{ $headTop ?? '' }}
         @stack('head-top')
-    </x-slot:headTop>
+    </x-slot:head-top>
 
     <x-slot:head>
         @if ($livewire)
@@ -24,7 +24,7 @@
     @endif
 
     @if ($assets)
-        @lbJavaScript
+        <lb:scripts />
     @endif
 
     {{ $js ?? '' }}

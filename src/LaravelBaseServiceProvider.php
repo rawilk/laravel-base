@@ -31,6 +31,7 @@ use Rawilk\LaravelBase\Models\AuthenticatorApp;
 use Rawilk\LaravelBase\Services\Auth\CustomSessionGuard;
 use Rawilk\LaravelBase\Services\Auth\SessionImpersonator;
 use Rawilk\LaravelBase\Services\Files\SizeUnitFactor;
+use Rawilk\LaravelBase\Support\BaseTagCompiler;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -165,6 +166,14 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
 
     protected function bootDirectives(): void
     {
+        // Our custom tag compiler will allow us to use self-closing tags instead of a directive,
+        // i.e. <lb:javaScript /> instead of @lbJavaScript.
+        if (method_exists($this->app['blade.compiler'], 'precompiler')) {
+            $this->app['blade.compiler']->precompiler(function ($string) {
+                return app(BaseTagCompiler::class)->compile($string);
+            });
+        }
+
         Blade::directive('lbJavaScript', function (string $expression) {
             return "<?php echo \\Rawilk\\LaravelBase\\Facades\\LaravelBaseAssets::javaScript({$expression}); ?>";
         });
