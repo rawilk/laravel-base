@@ -39,7 +39,7 @@ class EnumRule implements Rule
 
     public function message(): string
     {
-        return Lang::get('laravel-base::validation.enum', [
+        return Lang::get('base::validation.enum', [
             'value' => $this->value,
             'enum' => $this->enum,
             'other' => implode(', ', enumToLabels($this->enum)),
