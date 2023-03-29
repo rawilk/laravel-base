@@ -25,7 +25,7 @@
     </div>
 
     @if ($footer)
-        <footer {{ $footer->attributes->class('modal-footer') }}>
+        <footer {{ $footer->attributes->class('modal-footer dark:bg-gray-700') }}>
             {{ $footer }}
         </footer>
     @endif
