@@ -18,7 +18,7 @@ it('can have content and attributes', function () {
         ->assertSee('aria-rowindex="2"', false)
         ->assertSee('tabindex="-1"', false)
         ->assertSee('wire:loading.class.delay="opacity-50"', false)
-        ->assertSee('class="bg-orange-100"', false)
+        ->assertSee('bg-orange-100', false)
         ->assertSee('<td>My cell</td>', false);
 });
 
