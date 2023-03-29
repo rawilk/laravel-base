@@ -1,10 +1,3 @@
-:root {
-    --tooltip-arrow-color: theme('colors.gray.800');
-    --tooltip-arrow-width: 1rem;
-    --tooltip-arrow-height: .6rem;
-    --tooltip-arrow-offset: 10px;
-}
-
 @layer components {
     .tooltip {
         @apply absolute
@@ -12,15 +5,16 @@
         py-2
         rounded-md
         text-sm
-        bg-gray-800
         shadow-md
-        text-white
         text-center
         whitespace-pre-wrap;
+
         z-index: 9999;
         min-width: 50px;
         max-width: 300px;
         width: max-content;
+        background-color: var(--tooltip-bg);
+        color: var(--tooltip-color);
     }
 
     .tooltip-arrow {
@@ -47,7 +41,7 @@
     .tooltip[data-popper-placement="left"] .tooltip-arrow::before {
         left: var(--tooltip-arrow-offset);
         border-width: calc(var(--tooltip-arrow-width) / 2) 0 calc(var(--tooltip-arrow-width) / 2) var(--tooltip-arrow-height);
-        border-left-color: var(--tooltip-arrow-color);
+        border-left-color: var(--tooltip-bg);
     }
 
     .tooltip kbd {
@@ -67,7 +61,7 @@
     .tooltip[data-popper-placement="right"] .tooltip-arrow::before {
         right: var(--tooltip-arrow-offset);
         border-width: calc(var(--tooltip-arrow-width) / 2) var(--tooltip-arrow-height) calc(var(--tooltip-arrow-width) / 2) 0;
-        border-right-color: var(--tooltip-arrow-color);
+        border-right-color: var(--tooltip-bg);
     }
 
     /* top placement */
@@ -82,7 +76,7 @@
     .tooltip[data-popper-placement="top"] .tooltip-arrow::before {
         top: var(--tooltip-arrow-offset);
         border-width: var(--tooltip-arrow-height) calc(var(--tooltip-arrow-width) / 2) 0;
-        border-top-color: var(--tooltip-arrow-color);
+        border-top-color: var(--tooltip-bg);
     }
 
     /* bottom placement */
@@ -97,6 +91,6 @@
     .tooltip[data-popper-placement="bottom"] .tooltip-arrow::before {
         bottom: var(--tooltip-arrow-offset);
         border-width: 0 calc(var(--tooltip-arrow-width) / 2) var(--tooltip-arrow-height);
-        border-bottom-color: var(--tooltip-arrow-color);
+        border-bottom-color: var(--tooltip-bg);
     }
 }

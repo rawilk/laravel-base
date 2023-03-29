@@ -37,7 +37,7 @@
              role="dialog"
              aria-modal="true"
             {{ $attributes->except(['wire:model', 'wire:model.defer'])->merge([
-               'class' => "inline-block align-bottom text-left bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full {$maxWidth()}",
+               'class' => "inline-block align-bottom text-left bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full {$maxWidth()}",
             ]) }}
         >
             @if ($showClose)
@@ -45,7 +45,7 @@
                     <button
                         x-on:click="hideModal"
                         type="button"
-                        class="text-gray-400 hover:text-gray-500 focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 focus:text-gray-500 transition ease-in-out duration-150"
+                        class="text-gray-400 hover:text-gray-500 dark:hover:text-white focus:ring-2 focus:outline-none focus:ring-offset-1 focus:ring-opacity-25 focus:text-gray-500 transition ease-in-out duration-150"
                     >
                         <span class="sr-only">{{ __('base::messages.modal.close_button') }}</span>
                         <x-heroicon-s-x-mark class="h-6 w-6" />

@@ -14,7 +14,7 @@
             <div class="min-w-0 flex-1 py-0">
 
                 <div>
-                    <div class="text-sm leading-8 text-slate-500">
+                    <div class="text-sm leading-8 text-slate-500 dark:text-slate-300">
                         <span class="mr-0 5">{{ $slot }}</span>
 
                         @if ($ago)
@@ -27,13 +27,13 @@
                     </div>
 
                     @if ($extra)
-                        <div {{ $componentSlot($extra)->attributes->class('text-sm leading-8 -mt-2 text-slate-500') }}>
+                        <div {{ $componentSlot($extra)->attributes->class('text-sm leading-8 -mt-2 text-slate-500 dark:text-slate-400') }}>
                             {{ $extra }}
                         </div>
                     @endif
 
                     @if ($ago)
-                        <div class="text-xs text-slate-500">
+                        <div class="text-xs text-slate-500 dark:text-slate-400">
                             {{ $ago->format($dateFormat) }}
                         </div>
                     @endif

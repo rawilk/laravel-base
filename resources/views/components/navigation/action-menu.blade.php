@@ -5,10 +5,10 @@
     {{ $attributes }}
 >
     <x-slot:trigger>
-        <button class="p-2 hover:bg-slate-200 rounded-full focus:outline-slate focus:opacity-75 transition-colors">
+        <button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-500 text-slate-500 dark:hover:text-slate-300 rounded-full focus:outline-slate focus:opacity-75 transition-colors">
             <x-dynamic-component
                 :component="$icon"
-                class="h-5 w-5 text-slate-500"
+                class="h-5 w-5"
             />
         </button>
     </x-slot:trigger>

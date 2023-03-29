@@ -17,10 +17,10 @@ class InfoListItem extends BladeComponent
     {
         return Arr::toCssClasses([
             'info-list-item',
-            'odd:bg-white even:bg-slate-50' => ! $this->dimmed,
+            'odd:bg-white even:bg-slate-50 dark:even:bg-slate-900 dark:odd:bg-slate-800' => ! $this->dimmed,
             'dimmed' => $this->dimmed,
             'px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6',
-            'opacity-50 bg-slate-300 text-white pointer-events-none select-none' => $this->dimmed,
+            'opacity-50 bg-slate-300 dark:bg-slate-600 text-white pointer-events-none select-none' => $this->dimmed,
         ]);
     }
 
@@ -28,8 +28,8 @@ class InfoListItem extends BladeComponent
     {
         return Arr::toCssClasses([
             'text-sm leading-5 font-medium',
-            'text-slate-500' => $this->dimmed,
-            'text-gray-500' => ! $this->dimmed,
+            'text-slate-500 dark:text-slate-200' => $this->dimmed,
+            'text-gray-500 dark:text-gray-300' => ! $this->dimmed,
         ]);
     }
 }

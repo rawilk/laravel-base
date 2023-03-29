@@ -24,9 +24,9 @@ class Card extends BladeComponent
     public function headerColorClasses(): string
     {
         return match ($this->type) {
-            static::ERROR => 'bg-red-300 text-red-800',
-            static::SUCCESS => 'bg-green-300 text-green-800',
-            default => 'bg-slate-50',
+            static::ERROR => 'bg-red-300 text-red-800 dark:bg-red-400 dark:text-red-900',
+            static::SUCCESS => 'bg-green-300 text-green-800 dark:bg-green-400 dark:text-green-900',
+            default => 'bg-slate-50 dark:bg-gray-700 dark:text-white',
         };
     }
 }

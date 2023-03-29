@@ -13,7 +13,7 @@ class ConfirmsPassword extends BladeComponent
         public ?string $content = null,
         public ?string $button = null,
         public string $confirmButtonVariant = 'blue',
-        public string $cancelButtonVariant = 'white',
+        public string $cancelButtonVariant = 'slate',
         public ?string $confirmableId = null,
     ) {
         $this->title = $title ?: __('base::messages.confirms_password.title');

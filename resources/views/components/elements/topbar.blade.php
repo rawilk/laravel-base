@@ -14,7 +14,7 @@
         </x-laravel-base::modal.advanced-filters>
     @endif
 
-    <div class="bg-white border shadow-sm lg:flex lg:divide-x lg:divide-x-slate-200 divide-y divide-y-slate-200 lg:divide-y-0">
+    <div class="bg-white dark:bg-slate-700 border dark:border-slate-500 shadow-sm dark:shadow-none lg:flex lg:divide-x divide-slate-200 dark:divide-slate-500 divide-y lg:divide-y-0">
         {{-- search --}}
         <div class="lg:flex-1 lg:min-w-[50%] xl:min-w-[33.333%] px-2 py-2 flex items-center">
             @if ($searchModel)
@@ -37,9 +37,9 @@
                                     x-on:click="$dispatch('show-filters', '{{ $filterId }}')"
                                     x-on:keydown.ctrl.f.window="$dispatch('show-filters', '{{ $filterId }}')"
                                     type="button"
-                                    class="p-2 rounded-full hover:bg-slate-200 group focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none transition-colors"
+                                    class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-500 group focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none transition-colors"
                                 >
-                                    <x-heroicon-s-funnel class="w-4 h-4 text-slate-500 group-hover:text-slate-600 transition-colors" />
+                                    <x-heroicon-s-funnel class="w-4 h-4 text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors" />
                                 </button>
                             </x-tooltip>
                         </div>

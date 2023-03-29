@@ -29,7 +29,7 @@
         :component="$icon"
         x-show="! copied"
         role="button"
-        class="h-4 w-4 text-gray-500 group-hover:text-gray-700 cursor-pointer transition duration-150 ease-in-out"
+        class="h-4 w-4 text-gray-500 dark:text-gray-300 group-hover:text-gray-700 cursor-pointer transition duration-150 ease-in-out"
     />
 
     <x-dynamic-component

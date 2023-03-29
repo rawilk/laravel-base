@@ -34,7 +34,7 @@
          x-transition:enter-end="transform opacity-100 scale-100"
          x-bind:aria-hidden="JSON.stringify(! open)"
          x-bind:class="{ 'invisible': ! open }"
-         class="dropdown-menu z-top absolute origin-top-right right-0 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none min-w-48 {{ $widthClass }}"
+         class="dropdown-menu z-top absolute origin-top-right right-0 rounded-md bg-white dark:bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none min-w-48 {{ $widthClass }}"
          role="menu"
          aria-orientation="vertical"
          @unless ($id === false)

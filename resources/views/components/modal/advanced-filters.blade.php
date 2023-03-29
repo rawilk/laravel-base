@@ -12,7 +12,7 @@
         {{-- backdrop --}}
         <div x-show="show"
              x-on:click="show = false"
-             class="absolute inset-0 bg-slate-500 bg-opacity-75"
+             class="absolute inset-0 bg-slate-500 bg-opacity-75 backdrop-blur"
         >
         </div>
 
@@ -25,7 +25,7 @@
                  aria-modal="true"
                  class="w-screen max-w-xl"
             >
-                <div class="h-full flex flex-col space-y-6 bg-slate-800 text-gray-300 dark-inputs shadow-xl">
+                <div class="h-full flex flex-col space-y-6 bg-white text-slate-600 dark:bg-slate-800 dark:text-gray-300 shadow-xl">
                     {{-- header --}}
                     <header class="flex-shrink-0">
                         <div class="pt-6 pb-4 sm:pt-10 px-4 sm:px-6">
@@ -45,7 +45,7 @@
                     </header>
 
                     {{-- content --}}
-                    <section class="min-h-0 flex-1 flex flex-col overflow-y-scroll">
+                    <section class="min-h-0 flex-1 flex flex-col overflow-y-auto">
                         <div class="relative flex-1 px-4 sm:px-6">
                             {{ $slot }}
                         </div>
@@ -67,7 +67,7 @@
 
                                 @if ($resetClick)
                                     <x-blade::button.link
-                                        class="text-xs text-gray-300 hover:text-gray-200"
+                                        class="text-xs dark:text-gray-300 dark:hover:text-gray-200"
                                         wire:click="{{ $resetClick }}"
                                     >
                                         {{ __('base::messages.filters.reset_button') }}

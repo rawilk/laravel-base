@@ -16,9 +16,9 @@
         wire:model.defer="confirmingPassword"
         max-width="lg"
     >
-        <x-slot name="title">{{ $title }}</x-slot>
+        <x-slot:title>{{ $title }}</x-slot:title>
 
-        <x-slot name="content">
+        <x-slot:content>
             <p>{{ $content }}</p>
 
             <div class="mt-4">
@@ -33,9 +33,9 @@
 
                 <x-form-components::form-error name="confirmablePassword" />
             </div>
-        </x-slot>
+        </x-slot:content>
 
-        <x-slot name="footer">
+        <x-slot:footer>
             <x-blade::button.button
                 wire:click="confirmPassword"
                 color="{{ $confirmButtonVariant }}"
@@ -47,9 +47,10 @@
                 wire:click="stopConfirmingPassword"
                 wire:loading.attr="disabled"
                 color="{{ $cancelButtonVariant }}"
+                variant="text"
             >
                 {{ __('base::messages.confirm_modal_cancel') }}
             </x-blade::button.button>
-        </x-slot>
+        </x-slot:footer>
     </x-laravel-base::modal.dialog-modal>
 @endonce

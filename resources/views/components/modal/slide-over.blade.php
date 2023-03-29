@@ -41,8 +41,8 @@
                 ]) }}
             >
                 {{-- Content --}}
-                <div class="h-full flex flex-col bg-white shadow-xl">
-                    <div class="min-h-0 flex-1 flex flex-col space-y-6 overflow-y-scroll">
+                <div class="h-full flex flex-col bg-white dark:bg-gray-800 shadow-xl">
+                    <div class="min-h-0 flex-1 flex flex-col space-y-6 overflow-y-auto">
                         {{-- Header --}}
                         @if ($header)
                             {{ $header }}

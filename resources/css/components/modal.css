@@ -1,15 +1,18 @@
 @layer components {
     .modal-title {
-        @apply text-lg leading-6 font-medium text-slate-900;
+        @apply text-lg leading-6 font-medium;
+
+        color: var(--modal-title-color);
     }
 
     .modal-content {
-        @apply text-sm leading-5 text-slate-500;
+        @apply text-sm leading-5;
+
+        color: var(--modal-content-color);
     }
 
     .modal-footer {
-        @apply bg-slate-50
-        px-4
+        @apply px-4
         py-3
         mt-3
         space-y-3
@@ -19,6 +22,8 @@
         sm:px-6
         sm:flex
         sm:flex-row-reverse;
+
+        background-color: var(--modal-footer-bg);
     }
 
     .modal-footer .button:not(.button--block),

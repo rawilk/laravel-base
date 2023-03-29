@@ -1,12 +1,16 @@
 @layer components {
     .action-item {
         @apply relative
-        bg-white
         p-6
         cursor-pointer
         focus-within:ring-2
-        focus-within:ring-inset
-        focus-within:ring-blue-500;
+        focus-within:ring-inset;
+
+        background-color: var(--action-item-bg);
+    }
+
+    .action-item:focus-within {
+        --tw-ring-color: var(--action-item-ring-color);
     }
 
     .action-item:first-child {

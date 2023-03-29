@@ -3,7 +3,7 @@
     <x-card>
         <x-slot:header>
             <h2>{{ __('base::roles.create.role_info_title') }}</h2>
-            <p class="text-sm text-gray-500">{{ __('base::roles.edit.role_info_subtitle') }}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300">{{ __('base::roles.edit.role_info_subtitle') }}</p>
         </x-slot:header>
 
         <x-form-components::form wire:submit.prevent="updateDetails" id="edit-details-form">
@@ -17,12 +17,12 @@
                         maxlength="{{ \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH }}"
                     />
 
-                    <x-slot name="helpText">{{ __('base::messages.labels.form.max_characters', ['max' => \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH]) }}</x-slot>
+                    <x-slot:help-text>{{ __('base::messages.labels.form.max_characters', ['max' => \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH]) }}</x-slot:help-text>
                 </x-form-components::form-group>
             </div>
         </x-form-components::form>
 
-        <x-slot name="footer">
+        <x-slot:footer>
             <div class="flex justify-end items-center space-x-4">
                 <x-action-message on="details.updated" />
 
@@ -30,7 +30,7 @@
                     {{ __('base::messages.update_button') }}
                 </x-blade::button.button>
             </div>
-        </x-slot>
+        </x-slot:footer>
     </x-card>
 
     {{-- role permissions --}}
@@ -38,7 +38,7 @@
         <x-card>
             <x-slot:header>
                 <h2>{{ __('base::roles.create.permissions_title') }}</h2>
-                <p class="text-sm text-gray-500">{{ __('base::roles.create.permissions_subtitle') }}</p>
+                <p class="text-sm text-gray-500 dark:text-gray-300">{{ __('base::roles.create.permissions_subtitle') }}</p>
             </x-slot:header>
 
             <x-form-components::form wire:submit.prevent="updatePermissions" id="edit-perms-form">

@@ -4,23 +4,28 @@
         py-2
         text-sm
         leading-5
-        text-slate-500
         flex
         items-center;
+
+        color: var(--dropdown-item-color);
     }
 
     .dropdown-item:not(.dropdown-item--active):not([disabled]) {
-        @apply hover:bg-slate-100
-        hover:text-slate-700
-        focus:outline-slate
-        focus:bg-slate-100
-        focus:text-slate-700;
+        @apply focus:outline-slate;
+    }
+
+    .dropdown-item:not(.dropdown-item--active):not([disabled]):is(:hover, :focus) {
+        background-color: var(--dropdown-item-hover-bg);
+        color: var(--dropdown-item-hover-color);
     }
 
     .dropdown-item--active {
-        @apply bg-slate-200
-        text-slate-700
-        hover:bg-slate-300;
+        background-color: var(--dropdown-item-active-bg);
+        color: var(--dropdown-item-active-color);
+    }
+
+    .dropdown-item--active:hover {
+        background-color: var(--dropdown-item-active-hover-bg);
     }
 
     .dropdown-item svg {

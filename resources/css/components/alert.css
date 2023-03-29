@@ -1,13 +1,9 @@
 @layer components {
     .alert-text {
-        @apply text-sm leading-5 font-medium;
-    }
-
-    .alert-title + .alert-text {
-        @apply font-normal;
+        @apply text-sm leading-5;
     }
 
     .alert-text a {
-        @apply font-medium underline transition focus:outline-slate;
+        @apply font-medium underline transition-colors;
     }
 }

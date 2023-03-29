@@ -1,0 +1,41 @@
+:root {
+    /* action list items */
+    --action-item-bg: theme('colors.white');
+    --action-item-ring-color: theme('colors.blue.500');
+
+    --action-item-dark-bg: theme('colors.slate.700');
+    --action-item-dark-ring-color: theme('colors.blue.600');
+
+    /* dropdown */
+    --dropdown-item-color: theme('colors.slate.500');
+    --dropdown-item-hover-bg: theme('colors.slate.100');
+    --dropdown-item-hover-color: theme('colors.slate.700');
+    --dropdown-item-active-bg: theme('colors.slate.200');
+    --dropdown-item-active-color: theme('colors.slate.700');
+    --dropdown-item-active-hover-bg: theme('colors.slate.300');
+
+    --dropdown-dark-item-color: theme('colors.slate.200');
+    --dropdown-dark-item-hover-bg: theme('colors.slate.600');
+    --dropdown-dark-item-hover-color: theme('colors.white');
+    --dropdown-dark-item-active-bg: theme('colors.slate.500');
+    --dropdown-dark-item-active-color: theme('colors.slate.200');
+    --dropdown-dark-item-active-hover-bg: theme('colors.slate.600');
+
+    /* modal */
+    --modal-title-color: theme('colors.slate.900');
+    --modal-content-color: theme('colors.slate.500');
+    --modal-footer-bg: theme('colors.slate.50');
+
+    --modal-dark-title-color: theme('colors.white');
+    --modal-dark-content-color: theme('colors.slate.300');
+    --modal-dark-footer-bg: theme('colors.slate.700');
+
+    /* tooltip */
+    --tooltip-bg: theme('colors.gray.800');
+    --tooltip-color: theme('colors.white');
+    --tooltip-arrow-width: 1rem;
+    --tooltip-arrow-height: .6rem;
+    --tooltip-arrow-offset: 8px;
+
+    --tooltip-dark-bg: theme('colors.gray.600');
+}

@@ -13,12 +13,12 @@
 
         <div @class(['ml-3' => $icon])>
             @if ($title)
-                <h3 class="alert-title | text-sm leading-5 font-medium">
+                <h3 class="alert-title | text-base leading-5 font-medium">
                     {{ $title }}
                 </h3>
             @endif
 
-            <div class="alert-text">{{ $slot }}</div>
+            <div class="alert-text mt-2 first:mt-0">{{ $slot }}</div>
         </div>
 
         @if ($dismiss)

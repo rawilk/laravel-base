@@ -1,42 +1,59 @@
-module.exports = function({ addComponents, theme }) {
-    const variants = {
-        error: 'red',
-        info: 'blue',
-        success: 'green',
-        warning: 'orange',
+const darkModeSelector = require('./util/darkModeSelector');
+const addDarkVariant = require('./util/addDarkVariant');
+const plugin = require('tailwindcss/plugin');
+
+module.exports = plugin.withOptions(function (options = {}) {
+    return function ({ addComponents, config, theme }) {
+        const darkSelector = darkModeSelector(config('darkMode', 'class'));
+        const alerts = {};
+
+        const darkBackgroundColor = options.darkBackgroundColor ?? theme('colors.gray.800');
+        const darkDismissHoverBackgroundColor = options.darkDismissHoverBackgroundColor ?? theme('colors.gray.700');
+
+        const variants = {
+            error: 'red',
+            info: 'blue',
+            success: 'green',
+            warning: 'orange',
+        };
+
+        for (const variant in variants) {
+            const color = variants[variant];
+
+            alerts[`.alert--${variant}`] = {
+                color: theme(`colors.${color}.800`),
+                backgroundColor: theme(`colors.${color}.50`),
+                borderColor: theme(`colors.${color}.300`),
+            };
+
+            alerts[`.alert--${variant} .alert-dismiss`] = {
+                color: theme(`colors.${color}.500`),
+                '&:hover, &:focus': {
+                    backgroundColor: theme(`colors.${color}.200`),
+                }
+            };
+
+            alerts[`.alert--${variant} .alert-text a`] = {
+                '&:hover': {
+                    color: theme(`colors.${color}.600`),
+                }
+            };
+
+            // Dark Mode
+            addDarkVariant(alerts, `.alert--${variant}`, darkSelector, {
+                color: theme(`colors.${color}.400`),
+                backgroundColor: darkBackgroundColor,
+                borderColor: theme(`colors.${color}.800`),
+            });
+
+            addDarkVariant(alerts, `.alert--${variant} .alert-dismiss`, darkSelector, {
+                color: theme(`colors.${color}.400`),
+                '&:hover, &:focus': {
+                    backgroundColor: darkDismissHoverBackgroundColor,
+                }
+            });
+        }
+
+        addComponents(alerts);
     };
-
-    const alerts = {};
-
-    Object.keys(variants).forEach(key => {
-        const color = variants[key];
-
-        alerts[`.alert--${key}`] = {
-            color: theme(`colors.${color}.700`),
-            backgroundColor: theme(`colors.${color}.50`),
-            borderColor: theme(`colors.${color}.400`),
-        };
-
-        alerts[`.alert--${key} .alert-title`] = {
-            color: theme(`colors.${color}.800`),
-        };
-
-        alerts[`.alert--${key} .alert-icon`] = {
-            color: theme(`colors.${color}.500`),
-        };
-
-        alerts[`.alert--${key} .alert-dismiss`] = {
-            color: theme(`colors.${color}.500`),
-        };
-
-        alerts[`.alert--${key} .alert-dismiss:hover, .alert--${key} .alert-dismiss:focus`] = {
-            backgroundColor: theme(`colors.${color}.200`),
-        };
-
-        alerts[`.alert--${key} .alert-text a:hover`] = {
-            color: theme(`colors.${color}.600`),
-        };
-    });
-
-    addComponents(alerts);
-};
+});

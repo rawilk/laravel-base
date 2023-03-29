@@ -1,16 +1,16 @@
 <x-laravel-base::modal.slide-over :id="$id" :wide="$wide" {{ $attributes }}>
     <x-slot:header>
-        <header {{ $componentSlot($header)->attributes->class('px-4 py-6 bg-slate-200 sm:px-6 sticky top-0 z-10') }}>
+        <header {{ $componentSlot($header)->attributes->class('px-4 py-6 bg-slate-200 dark:bg-gray-800 sm:px-6 sticky top-0 z-10') }}>
             <div class="flex items-start justify-between space-x-3">
                 <div class="space-y-1">
                     @if ($title)
-                        <div {{ $componentSlot($title)->attributes->class('text-lg leading-7 font-medium text-slate-900') }}>
+                        <div {{ $componentSlot($title)->attributes->class('text-lg leading-7 font-medium text-slate-900 dark:text-white') }}>
                             {{ $title }}
                         </div>
                     @endif
 
                     @if ($subTitle)
-                        <div {{ $componentSlot($subTitle)->attributes->class('text-sm text-slate-500 leading-5') }}>
+                        <div {{ $componentSlot($subTitle)->attributes->class('text-sm text-slate-500 dark:text-slate-300 leading-5') }}>
                             {{ $subTitle }}
                         </div>
                     @endif
@@ -39,7 +39,7 @@
                 {{ $footerBefore }}
             @endisset
 
-            <div {{ $footer->attributes->class('bg-slate-100 px-4 py-4') }}>
+            <div {{ $footer->attributes->class('bg-slate-100 dark:bg-gray-800 px-4 py-4') }}>
                 {{ $footer }}
             </div>
         </x-slot:footer>

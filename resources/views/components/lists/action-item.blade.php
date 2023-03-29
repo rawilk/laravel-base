@@ -17,7 +17,7 @@
             <x-blade::navigation.link
                 :app-link="false"
                 href="{{ $href }}"
-                class="focus:outline-none"
+                class="focus:outline-none dark:text-slate-300"
                 hide-external-indicator
                 x-ref="link"
             >
@@ -28,7 +28,7 @@
         </h3>
 
         @if ($description)
-            <p {{ $componentSlot($description)->attributes->class('mt-2 text-sm text-slate-500') }}>
+            <p {{ $componentSlot($description)->attributes->class('mt-2 text-sm text-slate-500 dark:text-slate-400') }}>
                 {{ $description }}
             </p>
         @endif
