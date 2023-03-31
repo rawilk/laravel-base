@@ -51,13 +51,13 @@
 
             @unless ($role->name === \Rawilk\LaravelBase\Models\Role::$adminName)
                 <x-slot:footer>
-                    <x-card::card.footer :reverse="false">
+                    <x-blade::card.footer :reverse="false">
                         <x-action-message on="permissions.updated" />
 
                         <x-blade::button.button type="submit" color="blue" form="edit-perms-form" wire:target="updatePermissions" right-icon="heroicon-m-check">
                             {{ __('base::messages.update_button') }}
                         </x-blade::button.button>
-                    </x-card::card.footer>
+                    </x-blade::card.footer>
                 </x-slot:footer>
             @endunless
         </x-blade::card.card>
