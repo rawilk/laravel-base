@@ -1,10 +1,12 @@
 <x-form-components::form wire:submit.prevent="createRole">
     <div class="space-y-6">
         {{-- role info --}}
-        <x-card>
+        <x-blade::card.card>
             <x-slot:header>
-                <h2>{{ __('base::roles.create.role_info_title') }}</h2>
-                <p class="text-sm text-gray-500 dark:text-gray-300">{{ __('base::roles.create.role_info_subtitle') }}</p>
+                <x-blade::card.actions
+                    title="{{ __('base::roles.create.role_info_title') }}"
+                    subtitle="{{ __('base::roles.create.role_info_subtitle') }}"
+                />
             </x-slot:header>
 
             {{-- name --}}
@@ -30,17 +32,19 @@
 
                 <x-slot name="helpText">{{ __('base::messages.labels.form.max_characters', ['max' => \Rawilk\LaravelBase\Models\Role::MAX_DESCRIPTION_LENGTH]) }}</x-slot>
             </x-form-components::form-group>
-        </x-card>
+        </x-blade::card.card>
 
         {{-- permissions --}}
-        <x-card>
+        <x-blade::card.card>
             <x-slot:header>
-                <h2>{{ __('base::roles.create.permissions_title') }}</h2>
-                <p class="text-sm text-gray-500 dark:text-gray-300">{{ __('base::roles.create.permissions_subtitle') }}</p>
+                <x-blade::card.actions
+                    title="{{ __('base::roles.create.permissions_title') }}"
+                    subtitle="{{ __('base::roles.create.permissions_subtitle') }}"
+                />
             </x-slot:header>
 
             @include('laravel-base::livewire.roles.partials.permission-options')
-        </x-card>
+        </x-blade::card.card>
 
         @if ($errors->any())
             <x-alert :type="\Rawilk\LaravelBase\Components\Alerts\Alert::ERROR">
@@ -56,9 +60,9 @@
             </span>
 
             <span class="mt-3 flex w-full lg:mt-0 lg:w-auto">
-                <x-link class="w-full" href="{!! route('admin.roles.index') !!}" dark>
+                <x-blade::navigation.link class="w-full" href="{!! route('admin.roles.index') !!}" dark>
                     {{ __('base::messages.cancel_button') }}
-                </x-link>
+                </x-blade::navigation.link>
             </span>
         </div>
     </div>
