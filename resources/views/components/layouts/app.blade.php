@@ -23,6 +23,10 @@
         <fc:scripts />
     @endif
 
+    @if ($bladeAssets)
+        <blade:scripts />
+    @endif
+
     @if ($assets)
         <lb:scripts />
     @endif
