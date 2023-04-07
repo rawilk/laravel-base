@@ -393,4 +393,7 @@ return [
         'max_internal_keys_per_user' => env('WEBAUTHN_MAX_INTERNAL_KEYS'),
     ],
 
+    // Temp config...
+    'user_route_key' => 'uuid',
+
 ];
