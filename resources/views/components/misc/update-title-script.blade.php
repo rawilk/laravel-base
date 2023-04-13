@@ -5,7 +5,7 @@
 ])
 
 @once
-<script>
+<script nonce="{{ cspNonce() }}">
     document.addEventListener('livewire:load', function() {
         @this.on('{{ $action }}', () => {
             @if ($slot->isEmpty())

@@ -16,7 +16,7 @@
 </div>
 
 @once
-<script>
+<script nonce="{{ cspNonce() }}">
 function otp() {
     return {
         length: {{ $length }},
