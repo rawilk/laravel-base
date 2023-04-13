@@ -52,7 +52,8 @@
             "Rawilk\\LaravelBase\\": "src"
         },
         "files": [
-            "src/helpers.php"
+            "src/helpers.php",
+            "src/Csp/helpers.php"
         ]
     },
     "autoload-dev": {

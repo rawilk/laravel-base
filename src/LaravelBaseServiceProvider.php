@@ -23,6 +23,7 @@ use Rawilk\LaravelBase\Console\InstallCommand;
 use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppContract;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 use Rawilk\LaravelBase\Contracts\Models\Import as ImportContract;
+use Rawilk\LaravelBase\Csp\Nonce\NonceGenerator;
 use Rawilk\LaravelBase\Http\Controllers\LaravelBaseAssets;
 use Rawilk\LaravelBase\Http\Livewire\CsvImporter;
 use Rawilk\LaravelBase\Http\Livewire\CsvImports;
@@ -41,7 +42,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-base')
-            ->hasConfigFile('laravel-base')
+            ->hasConfigFile(['laravel-base', 'csp'])
             ->hasViews('laravel-base')
             ->hasCommands([
                 InstallCommand::class,
@@ -86,6 +87,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
         $this->bootMacros();
         $this->bootRoutes();
         $this->bootEvents();
+        $this->bootCsp();
 
         AboutCommand::add('Laravel Base', fn () => [
             'Version' => LaravelBase::VERSION,
@@ -161,6 +163,30 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
 
                 $blade->component($componentClass, $alias, $prefix);
             }
+        });
+    }
+
+    protected function bootCsp(): void
+    {
+        $this->app->singleton(NonceGenerator::class, config('csp.nonce_generator'));
+
+        $this->app->singleton('csp-nonce', function () {
+            return app(NonceGenerator::class)->generate();
+        });
+
+        $this->callAfterResolving('view', fn () => $this->bootCspDirectives());
+    }
+
+    protected function bootCspDirectives(): void
+    {
+        $bladeCompiler = $this->app->view->getEngineResolver()->resolve('blade')->getCompiler();
+
+        $bladeCompiler->directive('nonce', function () {
+            return '<?php echo "nonce=\"" . cspNonce() . "\""; ?>';
+        });
+
+        $bladeCompiler->directive('cspMetaTag', function ($policyClass) {
+            return "<?php echo cspMetaTag({$policyClass}); ?>";
         });
     }
 
