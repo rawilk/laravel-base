@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Rawilk\LaravelBase\Csp\PolicyFactory;
 use Rawilk\LaravelBase\Exceptions\MissingCspMetaTagPolicy;
 
-if (! function_exists('cspNonce')) {
-    function cspNonce(): string
+if (! function_exists('csp_nonce')) {
+    function csp_nonce(): string
     {
         return app('csp-nonce');
     }

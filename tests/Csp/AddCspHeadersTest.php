@@ -359,7 +359,7 @@ it('provides helper functions for empty value directives', function () {
 });
 
 it('can use a nonce value for a directive', function () {
-    $nonce = cspNonce();
+    $nonce = csp_nonce();
 
     $policy = new class extends CspPolicy
     {

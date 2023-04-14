@@ -5,10 +5,10 @@ declare(strict_types=1);
 use Rawilk\LaravelBase\Csp\Nonce\RandomStringNonceGenerator;
 
 it('will generate the same result', function () {
-    $nonce = cspNonce();
+    $nonce = csp_nonce();
 
     foreach (range(1, 5) as $i) {
-        expect(cspNonce())->toBe($nonce);
+        expect(csp_nonce())->toBe($nonce);
     }
 });
 

@@ -1,4 +1,5 @@
-<div x-data="otp" class="grid {{ $gridCols() }} gap-4" x-on:focus-otp.window="reFocus" x-on:otp-reset.window="resetValue">
+<div x-data="otp" class="grid {{ $gridCols() }} gap-4" x-on:focus-otp.window="reFocus"
+     x-on:otp-reset.window="resetValue">
     <template x-for="(input, index) in length" :key="index">
         <input
             type="tel"
@@ -16,19 +17,19 @@
 </div>
 
 @once
-<script nonce="{{ cspNonce() }}">
+    <script nonce="{{ csp_nonce() }}">
 function otp() {
     return {
         length: {{ $length }},
         @if ($attributes->hasStartsWith('wire:model'))
-            value: @entangle($attributes->wire('model')),
+        value: @entangle($attributes->wire('model')),
         @else
-            value: '{{ $value }}',
+        value: '{{ $value }}',
         @endif
 
         init() {
             @if ($focus)
-            this.$nextTick(() => {
+                this.$nextTick(() => {
                 this.reFocus();
             });
             @endif
@@ -97,7 +98,8 @@ function otp() {
 
                     this.getInput(length).focus();
                     this.getInput(length).select();
-                } catch (e) {}
+                } catch (e) {
+                }
             }, 50);
         },
 

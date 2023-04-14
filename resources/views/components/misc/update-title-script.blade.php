@@ -5,13 +5,14 @@
 ])
 
 @once
-<script nonce="{{ cspNonce() }}">
-    document.addEventListener('livewire:load', function() {
-        @this.on('{{ $action }}', () => {
+    <script nonce="{{ csp_nonce() }}">
+    document.addEventListener('livewire:load', function () {
+        @this.
+        on('{{ $action }}', () => {
             @if ($slot->isEmpty())
-                const newTitle = `Edit ${@this.state['name']}`;
+            const newTitle = `Edit ${@this.state['name']}`;
             @else
-                {{ $slot }}
+            {{ $slot }}
             @endif
 
             updatePageTitle({ newTitle, separator: '{{ $separator }}', selector: '{{ $selector }}' });

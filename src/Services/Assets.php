@@ -36,7 +36,7 @@ final class Assets
             return "nonce=\"{$options['nonce']}\"";
         }
 
-        if ($nonce = cspNonce()) {
+        if ($nonce = csp_nonce()) {
             return "nonce=\"{$nonce}\"";
         }
 
