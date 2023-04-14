@@ -6,7 +6,7 @@
 
     <x-slot:head>
         @if ($livewire)
-            @livewireStyles(['nonce' => cspNonce()])
+            @livewireStyles(['nonce' => csp_nonce()])
         @endif
 
         {{ $head ?? '' }}
@@ -16,7 +16,7 @@
     {{ $slot }}
 
     @if ($livewire)
-        @livewireScripts(['nonce' => cspNonce()])
+        @livewireScripts(['nonce' => csp_nonce()])
     @endif
 
     @if ($laravelFormComponents)

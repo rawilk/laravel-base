@@ -182,7 +182,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
         $bladeCompiler = $this->app->view->getEngineResolver()->resolve('blade')->getCompiler();
 
         $bladeCompiler->directive('nonce', function () {
-            return '<?php echo "nonce=\"" . cspNonce() . "\""; ?>';
+            return '<?php echo "nonce=\"" . csp_nonce() . "\""; ?>';
         });
 
         $bladeCompiler->directive('cspMetaTag', function ($policyClass) {
