@@ -106,6 +106,10 @@ class LoginRateLimiter
             return call_user_func(static::$keyBy, $request);
         }
 
-        return Str::lower($request->input(LaravelBase::username())) . '|' . $request->ip();
+        // We will not use the IP address when throttling login attempts
+        // to prevent brute force attacks from different IPs.
+        return Str::transliterate(
+            Str::lower($request->input(LaravelBase::username()))
+        );
     }
 }
