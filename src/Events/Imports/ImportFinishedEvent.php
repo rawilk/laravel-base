@@ -13,7 +13,7 @@ class ImportFinishedEvent
     use Dispatchable;
     use SerializesModels;
 
-    public function __construct(public Import $import)
+    public function __construct(public Import $import, public ?array $extras = null)
     {
     }
 }

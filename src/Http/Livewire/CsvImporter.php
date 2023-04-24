@@ -172,15 +172,16 @@ class CsvImporter extends Component
          * the queues are run on a separate db than the tenant imports.
          */
         $importId = $import->id;
+        $extras = $this->importExtras;
 
         Bus::batch($batches)
-            ->finally(function () use ($importId) {
+            ->finally(function () use ($importId, $extras) {
                 $import = app(Import::class)->find($importId);
 
                 $import?->touch('completed_at');
 
                 if ($import) {
-                    ImportFinishedEvent::dispatch($import);
+                    ImportFinishedEvent::dispatch($import, $extras);
                 }
             })
             ->name("import_{$import->file_name}")
