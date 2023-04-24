@@ -29,6 +29,7 @@ class ImportCsvJob implements ShouldQueue
         public array $chunk,
         public array $columns,
         public ?User $user = null,
+        public ?array $importExtras = null,
     ) {
     }
 
@@ -50,6 +51,7 @@ class ImportCsvJob implements ShouldQueue
             ->forChunk($this->chunk)
             ->usingColumns($this->columns)
             ->withAuthenticatedUser($this->user)
+            ->withExtras($this->importExtras ?? [])
             ->handle();
 
         sleep(1);

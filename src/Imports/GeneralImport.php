@@ -20,6 +20,8 @@ class GeneralImport implements Importable
 
     protected ?User $user = null;
 
+    protected array $extras = [];
+
     public function handle(): void
     {
         $this->processChunk($this->mapChunk());
@@ -80,6 +82,13 @@ class GeneralImport implements Importable
     public function usingColumns(array $columns): self
     {
         $this->columns = $columns;
+
+        return $this;
+    }
+
+    public function withExtras(array $extras): self
+    {
+        $this->extras = $extras;
 
         return $this;
     }

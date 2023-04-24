@@ -17,5 +17,7 @@ interface Importable
 
     public function usingColumns(array $columns): self;
 
+    public function withExtras(array $extras): self;
+
     public function withAuthenticatedUser(?User $user = null): self;
 }

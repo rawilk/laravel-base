@@ -60,6 +60,8 @@ class CsvImporter extends Component
      */
     public array $guesses = [];
 
+    public array $importExtras = [];
+
     public function getReadCsvProperty(): Reader
     {
         return $this->readCsv($this->file->getRealPath());
@@ -86,7 +88,7 @@ class CsvImporter extends Component
         return [
             'file' => [
                 'required',
-                File::types(['csv'])
+                File::types(['csv', 'txt'])
                     ->max((int) $this->maxFileSize->asKiloBytes()->value()),
             ],
             ...$columnRules,
@@ -113,6 +115,7 @@ class CsvImporter extends Component
             'model',
             'importClass',
             'open',
+            'importExtras',
         ]);
 
         if ($filename) {
@@ -159,6 +162,7 @@ class CsvImporter extends Component
                 $chunk,
                 array_filter($this->columnsToMap),
                 Auth::user()->withoutRelations(),
+                $this->importExtras,
             ))->delay(now()->addSeconds(2));
         })->toArray();
 
