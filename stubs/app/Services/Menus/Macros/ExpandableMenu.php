@@ -25,12 +25,12 @@ final class ExpandableMenu extends MenuMacro
                     hasActiveChild = open;
                 ",
             ])
-            ->withoutParentTag()
-            ->withoutWrapperTag()
-            ->setActiveClassOnLink()
-            ->setActiveClass(Config::get('site.main_menu.item_active_class') . ' active')
-            ->setItemAttribute('x-bind:class', "{ 'hidden': ! open }")
-            ->addItemClass(Config::get('site.main_menu.submenu_item_class') . ' ' . Config::get('site.main_menu.item_inactive_class'));
+                ->withoutParentTag()
+                ->withoutWrapperTag()
+                ->setActiveClassOnLink()
+                ->setActiveClass(Config::get('site.main_menu.item_active_class') . ' active')
+                ->setItemAttribute('x-bind:class', "{ 'hidden': ! open }")
+                ->addItemClass(Config::get('site.main_menu.submenu_item_class') . ' ' . Config::get('site.main_menu.item_inactive_class'));
 
             is_callable($callback) && $callback($this);
         });
