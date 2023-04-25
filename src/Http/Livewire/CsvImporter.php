@@ -207,6 +207,7 @@ class CsvImporter extends Component
             'total_rows' => count($this->csvRecords),
             'model' => $this->model,
             'import' => $this->importClass,
+            'impersonated_by' => isImpersonating() ? realUserId() : null,
         ]);
     }
 

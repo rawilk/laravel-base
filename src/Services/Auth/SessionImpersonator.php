@@ -77,7 +77,7 @@ class SessionImpersonator implements ImpersonatesUsers
 
     public function impersonating(Request $request): bool
     {
-        return $request->session()->has($this->sessionKey());
+        return session()->has($this->sessionKey());
     }
 
     public function impersonatorId(Request $request)
