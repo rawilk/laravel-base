@@ -213,13 +213,13 @@ it('can add multiple values for the same directive at the same time', function (
 });
 
 it('will automatically quote special directive values', function () {
-   $policy = new class extends CspPolicy
-   {
-       public function configure(): void
-       {
-           $this->addDirective(CspDirective::Script, [CspKeyword::Self]);
-       }
-   };
+    $policy = new class extends CspPolicy
+    {
+        public function configure(): void
+        {
+            $this->addDirective(CspDirective::Script, [CspKeyword::Self]);
+        }
+    };
 
     config(['csp.policy' => $policy::class]);
 
