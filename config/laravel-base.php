@@ -394,6 +394,6 @@ return [
     ],
 
     // Temp config...
-    'user_route_key' => 'uuid',
+    'user_route_key' => 'id',
 
 ];

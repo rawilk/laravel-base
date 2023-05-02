@@ -186,10 +186,10 @@ if (! function_exists('realUserId')) {
      * Return the correct authenticated user's id depending on
      * if a user is being impersonated or not.
      */
-    function realUserId(): ?int
+    function realUserId(): mixed
     {
         return isImpersonating()
-            ? (int) app(ImpersonatesUsers::class)->impersonatorId(request())
+            ? app(ImpersonatesUsers::class)->impersonatorId(request())
             : auth()->id();
     }
 }
