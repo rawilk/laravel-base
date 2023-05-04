@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Models;
 
 use App\Enums\PermissionEnum;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission as BasePermission;
 
 /**
- * @property int $id
+ * @property string $id
  * @property string $name
  * @property string $guard_name
  * @property string|null $description
@@ -30,6 +32,8 @@ use Spatie\Permission\Models\Permission as BasePermission;
  */
 class Permission extends BasePermission
 {
+    use HasUuids;
+
     protected $hidden = ['pivot'];
 
     protected $touches = ['roles'];
@@ -38,9 +42,11 @@ class Permission extends BasePermission
      * We will prefer to use the description provided by the enum, so we can
      * translate it easier, if needed.
      */
-    public function getDescriptionAttribute(): ?string
+    protected function description(): Attribute
     {
-        return PermissionEnum::tryFrom($this->name)?->description();
+        return Attribute::make(
+            get: fn (): ?string => PermissionEnum::tryFrom($this->name)?->description(),
+        )->shouldCache();
     }
 
     /**

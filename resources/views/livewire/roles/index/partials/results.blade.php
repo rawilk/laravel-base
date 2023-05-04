@@ -44,7 +44,7 @@
                     @endcan
 
                     @can('delete', $role)
-                        <x-dropdown-item wire:click="confirmDelete({{ $role->id }})">
+                        <x-dropdown-item wire:click="confirmDelete('{{ $role->id }}')">
                             <x-css-trash />
                             <span>{{ __('base::messages.delete_button') }}</span>
                         </x-dropdown-item>

@@ -24,7 +24,7 @@ Route::group(
                         ->middleware('permission:' . PermissionEnum::USERS_CREATE->value)
                         ->name('create');
 
-                    Route::prefix('/{user:' . config('laravel-base.user_route_key', 'id') . '}')->group(function () {
+                    Route::prefix('/{user}')->group(function () {
                         Route::get('/', [Controllers\Admin\UsersController::class, 'edit'])
                             ->middleware('can:edit,user')
                             ->name('edit');

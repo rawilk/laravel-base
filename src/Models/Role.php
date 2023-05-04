@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Rawilk\LaravelBase\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Rawilk\LaravelBase\Concerns\HasDatesForHumans;
@@ -13,7 +15,7 @@ use Rawilk\LaravelBase\Scopes\RoleScope;
 use Spatie\Permission\Models\Role as BaseRole;
 
 /**
- * @property int $id
+ * @property string $id
  * @property string $name
  * @property string $guard_name
  * @property string|null $description
@@ -36,6 +38,7 @@ use Spatie\Permission\Models\Role as BaseRole;
 class Role extends BaseRole
 {
     use HasDatesForHumans;
+    use HasUuids;
 
     /** @var int */
     public const MAX_DESCRIPTION_LENGTH = 100;
@@ -111,7 +114,7 @@ class Role extends BaseRole
      */
     public function giveAllPermissions(): void
     {
-        $ids = app(Config::get('permission.models.permission', static::class))->pluck('id');
+        $ids = app(Config::get('permission.models.permission', Permission::class))->pluck('id');
 
         $this->syncPermissions($ids);
     }
@@ -124,19 +127,25 @@ class Role extends BaseRole
         ]);
     }
 
-    public function getEditUrlAttribute(): string
+    protected function editUrl(): Attribute
     {
-        return route('admin.roles.edit', $this);
+        return Attribute::make(
+            get: fn () => route('admin.roles.edit', $this),
+        );
     }
 
-    public function setNameAttribute($name): void
+    protected function name(): Attribute
     {
-        // Name cannot be modified on existing roles.
-        if ($this->exists) {
-            return;
-        }
+        return Attribute::make(
+            set: function (string $name): string {
+                // Name cannot be modified on existing roles.
+                if ($this->getKey()) {
+                    return $this->getOriginal('name');
+                }
 
-        $this->attributes['name'] = $name;
+                return $name;
+            },
+        );
     }
 
     protected static function booted(): void

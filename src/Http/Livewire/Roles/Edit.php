@@ -56,10 +56,7 @@ class Edit extends Component
     {
         $this->state = [
             'description' => $this->role->description,
-            'permissions' => array_map(
-                'strval',
-                $this->role->getAllPermissions()->pluck('id')->toArray()
-            ),
+            'permissions' => $this->role->getAllPermissions()->pluck('id')->toArray(),
         ];
     }
 

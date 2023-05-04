@@ -176,7 +176,7 @@ class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
         }
 
         // Determine how many decimals we actually need for `number_format`.
-        $decimals = (int) strpos(strrev(strval($rounded)), '.');
+        $decimals = (int) strpos(strrev((string) $rounded), '.');
 
         $unit = app(SizeUnitFactor::class)->units()[$i] ?? FilesizeEnum::YottaByte->value;
 
@@ -194,7 +194,7 @@ class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
         $value = round((float) $size->value(), $this->precision);
 
         // Determine how many decimals we actually need for `number_format`.
-        $decimals = (int) strpos(strrev(strval($value)), '.');
+        $decimals = (int) strpos(strrev((string) $value), '.');
 
         return number_format($value, $decimals) . ' ' . $size->unit()->value;
     }
