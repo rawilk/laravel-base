@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 use Rawilk\LaravelBase\Concerns\HasDatesForHumans;
 use Rawilk\LaravelBase\Events\Roles\RoleWasDeletedEvent;
 use Rawilk\LaravelBase\Scopes\RoleScope;
@@ -207,15 +208,11 @@ class Role extends BaseRole
             return false;
         }
 
-        // check if is UUID/GUID
-        $uid = preg_match('/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iD', $value) > 0;
-        if ($uid) {
+        if (Str::isUuid($value)) {
             return true;
         }
 
-        // check if is ULID
-        $ulid = 26 == strlen($value) && 26 == strspn($value, '0123456789ABCDEFGHJKMNPQRSTVWXYZabcdefghjkmnpqrstvwxyz') && $value[0] <= '7';
-        if ($ulid) {
+        if (Str::isUlid($value)) {
             return true;
         }
 
