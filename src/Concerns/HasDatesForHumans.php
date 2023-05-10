@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
  */
 trait HasDatesForHumans
 {
-    public function getCreatedAtForHumansAttribute(): null|string
+    public function getCreatedAtForHumansAttribute(): ?string
     {
         if (! ($date = $this->{$this->getCreatedAtColumn()})) {
             return null;
@@ -22,7 +22,7 @@ trait HasDatesForHumans
         return $this->getDateTimeForHumans($date);
     }
 
-    public function getUpdatedAtForHumansAttribute(): null|string
+    public function getUpdatedAtForHumansAttribute(): ?string
     {
         if (! ($date = $this->{$this->getUpdatedAtColumn()})) {
             return null;
@@ -39,7 +39,7 @@ trait HasDatesForHumans
             : 'M. d, Y g:i a';
     }
 
-    protected function getDateTimeForHumans(null|CarbonInterface $date): null|string
+    protected function getDateTimeForHumans(?CarbonInterface $date): ?string
     {
         if (! $date) {
             return null;
