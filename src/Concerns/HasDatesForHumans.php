@@ -50,8 +50,7 @@ trait HasDatesForHumans
 
     protected function isForHumansDateAttribute(string $attribute): bool
     {
-        $methodName = 'get' . Str::studly($attribute) . 'Attribute';
-        if (method_exists($this, $methodName)) {
+        if ($this->hasGetMutator($attribute) || $this->hasAttributeMutator($attribute)) {
             return false;
         }
 
