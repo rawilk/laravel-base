@@ -19,8 +19,8 @@ return [
         'title' => 'Delete User',
     ],
     'deactivated' => [
-        'message' => 'Your account has been deactivated. If you believe this is a mistake, please contact our support to resolve this issue.',
-        'title' => 'Account Deactivated',
+        'message' => 'Your account has been suspended. If you believe this is a mistake, please contact your administrator to resolve this issue.',
+        'title' => 'Account Suspended',
     ],
     'impersonate' => [
         'button' => 'Impersonate',
