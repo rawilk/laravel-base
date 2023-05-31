@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Rawilk\LaravelBase\Components\Alerts\Alert;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 use Rawilk\LaravelBase\Enums\HttpStatus;
+use Rawilk\LaravelBase\Events\Auth\UserImpersonationEnded;
 use Rawilk\LaravelBase\Events\Auth\UserWasImpersonated;
 
 class ImpersonationController
@@ -71,11 +72,17 @@ class ImpersonationController
     public function stopImpersonating(Request $request, ImpersonatesUsers $impersonator)
     {
         if ($impersonator->impersonating($request)) {
+            $userBeingImpersonated = $request->user();
+
+            $guard = config('laravel-base.guard') ?? config('auth.defaults.guard');
+
             $impersonator->stopImpersonating(
                 $request,
-                Auth::guard($guard = config('laravel-base.guard') ?? config('auth.defaults.guard')),
+                Auth::guard($guard),
                 getModelForGuard($guard),
             );
+
+            UserImpersonationEnded::dispatch($userBeingImpersonated, Auth::guard($guard)->user());
         }
 
         return response()->json([

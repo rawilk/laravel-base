@@ -14,6 +14,7 @@ use function Pest\Laravel\post;
 use Rawilk\LaravelBase\Components\Alerts\Alert;
 use Rawilk\LaravelBase\Concerns\Impersonatable;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
+use Rawilk\LaravelBase\Events\Auth\UserImpersonationEnded;
 use Rawilk\LaravelBase\Events\Auth\UserWasImpersonated;
 
 beforeEach(function () {
@@ -175,6 +176,22 @@ it('clears impersonate session on logout', function () {
 
     expect(Session::has($this->sessionKey))
         ->toBeFalse();
+});
+
+it('dispatches an event when impersonation is ended', function () {
+    Event::fake();
+
+    $admin = adminUser();
+    $user = normalUser();
+
+    startImpersonation($admin, $user);
+
+    delete(route('admin.impersonate.leave'))
+        ->assertSuccessful();
+
+    Event::assertDispatched(UserImpersonationEnded::class, function (UserImpersonationEnded $event) use ($admin, $user) {
+        return $event->impersonator->id === $admin->id && $event->userBeingImpersonated->id === $user->id;
+    });
 });
 
 class User extends \Illuminate\Foundation\Auth\User
