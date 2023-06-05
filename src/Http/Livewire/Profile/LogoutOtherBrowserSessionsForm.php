@@ -6,10 +6,9 @@ namespace Rawilk\LaravelBase\Http\Livewire\Profile;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -30,12 +29,12 @@ class LogoutOtherBrowserSessionsForm extends Component
 
     public function getSessionsProperty(): Collection
     {
-        if (Config::get('session.driver') !== 'database') {
+        if (config('session.driver') !== 'database') {
             return collect();
         }
 
         return collect(
-            DB::connection(Config::get('session.connection'))->table(Config::get('session.table', 'sessions'))
+            DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
                 ->where('user_id', Auth::user()->getAuthIdentifier())
                 ->orderBy('last_activity', 'desc')
                 ->get()
@@ -44,7 +43,7 @@ class LogoutOtherBrowserSessionsForm extends Component
                 'agent' => $this->createAgent($session),
                 'ip_address' => $session->ip_address,
                 'is_current_device' => $session->id === request()->session()->getId(),
-                'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
+                'last_active' => Date::createFromTimestamp($session->last_activity)->diffForHumans(),
             ];
         });
     }
@@ -65,7 +64,7 @@ class LogoutOtherBrowserSessionsForm extends Component
 
     public function logoutOtherBrowserSessions(StatefulGuard $guard)
     {
-        if (Config::get('session.driver') !== 'database') {
+        if (config('session.driver') !== 'database') {
             return;
         }
 
@@ -81,7 +80,7 @@ class LogoutOtherBrowserSessionsForm extends Component
 
         $this->deleteOtherSessionRecords();
 
-        request()->session()->put([
+        session()->put([
             'password_hash_' . Auth::getDefaultDriver() => Auth::user()->getAuthPassword(),
         ]);
 
@@ -100,13 +99,13 @@ class LogoutOtherBrowserSessionsForm extends Component
      */
     protected function deleteOtherSessionRecords(): void
     {
-        if (Config::get('session.driver') !== 'database') {
+        if (config('session.driver') !== 'database') {
             return;
         }
 
-        DB::connection(Config::get('session.connection'))->table(Config::get('session.table', 'sessions'))
+        DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
             ->where('user_id', Auth::user()->getAuthIdentifier())
-            ->where('id', '!=', request()->session()->getId())
+            ->where('id', '!=', session()->getId())
             ->delete();
     }
 
