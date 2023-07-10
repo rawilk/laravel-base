@@ -4,32 +4,14 @@ declare(strict_types=1);
 
 namespace Rawilk\LaravelBase\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Rawilk\LaravelBase\Contracts\Models\AuthenticatorApp as AuthenticatorAppContract;
 
-/**
- * Rawilk\LaravelBase\Models\AuthenticatorApp
- *
- * @property string $id
- * @property string $user_id
- * @property string $name
- * @property string $secret
- * @property \Illuminate\Support\Carbon|null $last_used_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\Rawilk\LaravelBase\Models\AuthenticatorApp newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Rawilk\LaravelBase\Models\AuthenticatorApp query()
- *
- * @mixin \Eloquent
- */
 class AuthenticatorApp extends Model implements AuthenticatorAppContract
 {
     use HasFactory;
-    use HasUuids;
 
     protected $guarded = ['id'];
 

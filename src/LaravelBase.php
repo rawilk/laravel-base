@@ -27,7 +27,7 @@ class LaravelBase
      *
      * @var string
      */
-    public const VERSION = '0.5.2';
+    public const VERSION = '0.7.2';
 
     /**
      * The callback that is responsible for retrieving the configured app timezone.
@@ -64,6 +64,8 @@ class LaravelBase
      */
     public static $confirmPasswordsUsingCallback;
 
+    public static $resolveDefaultLoginRedirect;
+
     /*
      * Indicates if LaravelBase routes will be registered.
      */
@@ -90,8 +92,10 @@ class LaravelBase
      */
     public static function redirects(string $redirect, ?string $default = null): string
     {
-        if ($redirect === 'login' && function_exists('defaultLoginRedirect')) {
-            return (string) (defaultLoginRedirect() ?? $default ?? Routing::home());
+        if ($redirect === 'login') {
+            return is_callable(self::$resolveDefaultLoginRedirect)
+                ? call_user_func(self::$resolveDefaultLoginRedirect)
+                : (string) ($default ?? Routing::home());
         }
 
         return (string) (Config::get("laravel-base.redirects.{$redirect}") ?? $default ?? Routing::home());
@@ -127,6 +131,11 @@ class LaravelBase
     public static function authenticateThrough(callable $callback): void
     {
         static::$authenticateThroughCallback = $callback;
+    }
+
+    public static function resolveDefaultLoginRedirectUsing(callable $callback): void
+    {
+        static::$resolveDefaultLoginRedirect = $callback;
     }
 
     /**
