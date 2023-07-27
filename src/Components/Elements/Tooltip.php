@@ -29,7 +29,7 @@ class Tooltip extends BladeComponent
 
     public function __construct(
         public string $placement = '',
-        public null|string $title = '',
+        public ?string $title = '',
         private null|string|array|Collection $triggers = null,
     ) {
         if (! $placement) {

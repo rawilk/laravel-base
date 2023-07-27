@@ -29,7 +29,7 @@ trait FormatsColumns
         return Coordinate::stringFromColumnIndex($index + 1);
     }
 
-    protected function columnFormat(string $column): null|string
+    protected function columnFormat(string $column): ?string
     {
         if ($this->isDateTimeColumn($column)) {
             return NumberFormat::FORMAT_DATE_YYYYMMDD . ' ' . NumberFormat::FORMAT_DATE_TIME4;

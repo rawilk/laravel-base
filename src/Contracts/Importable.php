@@ -19,5 +19,5 @@ interface Importable
 
     public function withExtras(array $extras): self;
 
-    public function withAuthenticatedUser(?User $user = null): self;
+    public function withAuthenticatedUser(User $user = null): self;
 }

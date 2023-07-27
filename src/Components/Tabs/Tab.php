@@ -10,9 +10,9 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class Tab extends BladeComponent
 {
     public function __construct(
-        public null|string $name = '',
-        public null|string $href = '#',
-        public null|string $id = null, // An alternative to tab name as the id
+        public ?string $name = '',
+        public ?string $href = '#',
+        public ?string $id = null, // An alternative to tab name as the id
         public bool $active = false,
         public bool $disabled = false,
     ) {

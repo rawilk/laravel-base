@@ -87,7 +87,7 @@ if (! function_exists('userTimezone')) {
      *
      * @param  null|\Illuminate\Contracts\Auth\Authenticatable  $user
      */
-    function userTimezone(?Illuminate\Contracts\Auth\Authenticatable $user = null): string
+    function userTimezone(Illuminate\Contracts\Auth\Authenticatable $user = null): string
     {
         $user = $user ?: auth()->user();
 

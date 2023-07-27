@@ -130,12 +130,12 @@ trait WithFiltering
         }
     }
 
-    protected function localizeMinDate($date): null|CarbonInterface
+    protected function localizeMinDate($date): ?CarbonInterface
     {
         return minDateToUTC($date);
     }
 
-    protected function localizeMaxDate($date): null|CarbonInterface
+    protected function localizeMaxDate($date): ?CarbonInterface
     {
         return maxDateToUTC($date);
     }

@@ -9,13 +9,13 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class Modal extends BladeComponent
 {
     public function __construct(
-        public null|string $id = null,
-        public null|string $maxWidth = null,
+        public ?string $id = null,
+        public ?string $maxWidth = null,
         public bool $showClose = true,
     ) {
     }
 
-    public function id(): null|string
+    public function id(): ?string
     {
         return $this->id ?? $this->id = md5((string) $this->attributes->wire('model'));
     }

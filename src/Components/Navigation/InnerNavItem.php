@@ -14,7 +14,7 @@ class InnerNavItem extends BladeComponent
     public function __construct(
         public string $href = '#',
         public $icon = false,
-        null|bool $active = null,
+        bool $active = null,
     ) {
         $this->active = is_null($active)
             ? request()->fullUrlIs($href)

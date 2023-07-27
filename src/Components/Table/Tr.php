@@ -10,7 +10,7 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class Tr extends BladeComponent
 {
     public function __construct(
-        public null|string $role = 'row',
+        public ?string $role = 'row',
         public bool|string|int $tabIndex = false,
         public bool|string|int $rowIndex = false,
         public bool $striped = true,

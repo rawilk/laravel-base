@@ -9,14 +9,14 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class SlideOver extends BladeComponent
 {
     public function __construct(
-        public null|string $id = null,
+        public ?string $id = null,
         public bool $wide = true,
         public $header = null,
         public $footer = null,
     ) {
     }
 
-    public function id(): null|string
+    public function id(): ?string
     {
         return $this->id ?? md5((string) $this->attributes->wire('model'));
     }

@@ -90,7 +90,7 @@ class LaravelBase
     /*
      * Get the completion redirect path for a specific feature.
      */
-    public static function redirects(string $redirect, ?string $default = null): string
+    public static function redirects(string $redirect, string $default = null): string
     {
         if ($redirect === 'login') {
             return is_callable(self::$resolveDefaultLoginRedirect)

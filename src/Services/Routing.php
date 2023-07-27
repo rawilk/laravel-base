@@ -12,7 +12,7 @@ class Routing
     /**
      * Determine what the "home" url of the application should be.
      */
-    public static function home(): null|string
+    public static function home(): ?string
     {
         if (function_exists('homeRoute')) {
             return homeRoute();

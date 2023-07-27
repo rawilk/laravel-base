@@ -93,7 +93,7 @@ class GeneralImport implements Importable
         return $this;
     }
 
-    public function withAuthenticatedUser(?User $user = null): self
+    public function withAuthenticatedUser(User $user = null): self
     {
         $this->user = $user;
 

@@ -11,19 +11,19 @@ use Rawilk\LaravelBase\Services\Popper;
 
 class Dropdown extends BladeComponent
 {
-    private null|string $triggerId = null;
+    private ?string $triggerId = null;
 
-    private null|string $menuId = null;
+    private ?string $menuId = null;
 
     public function __construct(
         public bool $right = false,
         public bool $splitButton = false,
         public string $buttonVariant = 'outlined', // Only applies when $triggerText is supplied
         public string $buttonColor = 'slate', // Only applies when $triggerText is supplied
-        public null|string $triggerText = null,
+        public ?string $triggerText = null,
         public bool $disabled = false,
-        public null|string $size = null, // Only applies when $triggerText is supplied
-        public null|string $placement = null,
+        public ?string $size = null, // Only applies when $triggerText is supplied
+        public ?string $placement = null,
         public bool $dropUp = false,
         public string|int $offset = 8,
         public bool $fixed = false,

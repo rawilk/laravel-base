@@ -17,7 +17,7 @@ trait Impersonatable
     /**
      * Determine if the user can be impersonated.
      */
-    public function canBeImpersonated(?User $impersonator = null): bool
+    public function canBeImpersonated(User $impersonator = null): bool
     {
         return true;
     }

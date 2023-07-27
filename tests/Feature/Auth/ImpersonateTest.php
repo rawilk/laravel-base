@@ -204,7 +204,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'is_admin' => 'boolean',
     ];
 
-    public function canBeImpersonated(?User $impersonator = null): bool
+    public function canBeImpersonated(User $impersonator = null): bool
     {
         return $this->name !== 'do not impersonate me';
     }
@@ -227,7 +227,7 @@ function normalUser(): User
     return User::create(['name' => 'John Smith', 'email' => 'john@email.com', 'is_admin' => false]);
 }
 
-function startImpersonation(?User $impersonator = null, ?User $toImpersonate = null): void
+function startImpersonation(User $impersonator = null, User $toImpersonate = null): void
 {
     $impersonator = $impersonator ?: adminUser();
     $toImpersonate = $toImpersonate ?: normalUser();

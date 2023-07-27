@@ -11,7 +11,7 @@ class TooltipHelp extends BladeComponent
 {
     public function __construct(
         public string $placement = '',
-        public null|string $title = '',
+        public ?string $title = '',
         public null|string|array|Collection $triggers = null,
         public string $iconHeight = 'h-4',
         public string $iconWidth = 'w-4',

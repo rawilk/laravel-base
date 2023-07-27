@@ -273,7 +273,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
     protected function bootMacros(): void
     {
         if (class_exists(Component::class)) {
-            Component::macro('notify', function (string|null $message, string $type = 'success', array $options = []) {
+            Component::macro('notify', function (?string $message, string $type = 'success', array $options = []) {
                 /** @var \Livewire\Component $this */
                 $this->dispatchBrowserEvent('notify', [
                     'message' => $message,
@@ -290,7 +290,7 @@ class LaravelBaseServiceProvider extends PackageServiceProvider
             $this->dateTime('updated_at')->nullable();
         });
 
-        Builder::macro('modelSearch', function (array|string $field, string|null $string, $boolean = 'and') {
+        Builder::macro('modelSearch', function (array|string $field, ?string $string, $boolean = 'and') {
             /** @var \Illuminate\Database\Eloquent\Builder $this */
             if (is_array($field) && ! empty($string)) {
                 return $this->where(function ($query) use ($field, $string) {

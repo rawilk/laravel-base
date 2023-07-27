@@ -20,7 +20,7 @@ trait ConfirmsPasswords
     /*
      * The ID of the operation being confirmed.
      */
-    public null|string $confirmableId = null;
+    public ?string $confirmableId = null;
 
     /*
      * The user's password.
@@ -70,7 +70,7 @@ trait ConfirmsPasswords
         $this->stopConfirmingPassword();
     }
 
-    protected function ensurePasswordIsConfirmed(?int $maximumSecondsSinceConfirmation = null): void
+    protected function ensurePasswordIsConfirmed(int $maximumSecondsSinceConfirmation = null): void
     {
         abort_unless(
             $this->passwordIsConfirmed($maximumSecondsSinceConfirmation),
@@ -78,7 +78,7 @@ trait ConfirmsPasswords
         );
     }
 
-    protected function passwordIsConfirmed(?int $maximumSecondsSinceConfirmation = null): bool
+    protected function passwordIsConfirmed(int $maximumSecondsSinceConfirmation = null): bool
     {
         $maximumSecondsSinceConfirmation = $maximumSecondsSinceConfirmation ?: Config::get('auth.password_timeout', 900);
 

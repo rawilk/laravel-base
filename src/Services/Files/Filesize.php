@@ -53,7 +53,7 @@ class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
 
     protected null|bool|FilesizeEnum $preferredUnitFormat = null;
 
-    public function __construct(string $size, null|string|FilesizeEnum $unit = null, protected int $precision = 3, string $system = 'binary')
+    public function __construct(string $size, string|FilesizeEnum $unit = null, protected int $precision = 3, string $system = 'binary')
     {
         $this->ensureValidSystem($system);
 
@@ -62,7 +62,7 @@ class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
         $this->parseSize($size, $unit);
     }
 
-    public static function of(string $size, null|string|FilesizeEnum $unit = null, int $precision = 3, string $system = 'binary'): self
+    public static function of(string $size, string|FilesizeEnum $unit = null, int $precision = 3, string $system = 'binary'): self
     {
         return new self($size, $unit, $precision, $system);
     }
@@ -85,7 +85,7 @@ class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
         return $this;
     }
 
-    protected function parseSize(string $size, null|string|FilesizeEnum $unit = null): void
+    protected function parseSize(string $size, string|FilesizeEnum $unit = null): void
     {
         $unit = $unit ?: FilesizeEnum::Byte;
         if (! $unit instanceof FilesizeEnum) {
@@ -229,7 +229,7 @@ class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
         return $this;
     }
 
-    protected function sizeFromBytes(?string $bytes = null, ?FilesizeEnum $unit = null, ?int $precision = null, ?string $system = null): string
+    protected function sizeFromBytes(string $bytes = null, FilesizeEnum $unit = null, int $precision = null, string $system = null): string
     {
         $bytes = $bytes ?: $this->sizeInBytes;
         $unit = $unit ?: $this->unit;

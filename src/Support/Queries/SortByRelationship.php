@@ -18,7 +18,7 @@ class SortByRelationship
 
     private string $direction = 'asc';
 
-    private null|string $foreignKey = null;
+    private ?string $foreignKey = null;
 
     private string $primaryKey = 'id';
 

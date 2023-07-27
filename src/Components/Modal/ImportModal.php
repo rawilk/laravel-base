@@ -9,8 +9,8 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class ImportModal extends BladeComponent
 {
     public function __construct(
-        public null|string $title = null,
-        public null|string $button = null,
+        public ?string $title = null,
+        public ?string $button = null,
         public $upload = null,
         public $id = null,
         // Useful if not bundling filepond together with rest of build
@@ -26,7 +26,7 @@ class ImportModal extends BladeComponent
         }
     }
 
-    public function id(): null|string
+    public function id(): ?string
     {
         return $this->id ?? $this->id = md5((string) $this->attributes->wire('model'));
     }

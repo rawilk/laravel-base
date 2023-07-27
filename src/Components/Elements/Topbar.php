@@ -9,7 +9,7 @@ use Rawilk\LaravelBase\Components\BladeComponent;
 class Topbar extends BladeComponent
 {
     public function __construct(
-        public null|string $searchPlaceholder = null,
+        public ?string $searchPlaceholder = null,
         public string $searchModel = 'filters.search',
         public bool $showPerPage = true,
         public string $perPageModel = 'perPage',

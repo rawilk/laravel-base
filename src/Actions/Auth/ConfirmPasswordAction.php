@@ -10,7 +10,7 @@ use Rawilk\LaravelBase\LaravelBase;
 
 class ConfirmPasswordAction
 {
-    public function __invoke(StatefulGuard $guard, $user, ?string $password = null): bool
+    public function __invoke(StatefulGuard $guard, $user, string $password = null): bool
     {
         $username = Config::get('laravel-base.username');
 
@@ -22,7 +22,7 @@ class ConfirmPasswordAction
             : $this->confirmPasswordUsingCustomCallback($user, $password);
     }
 
-    protected function confirmPasswordUsingCustomCallback($user, ?string $password = null): bool
+    protected function confirmPasswordUsingCustomCallback($user, string $password = null): bool
     {
         return call_user_func(
             LaravelBase::$confirmPasswordsUsingCallback,
