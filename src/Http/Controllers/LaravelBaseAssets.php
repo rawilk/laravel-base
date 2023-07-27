@@ -6,7 +6,6 @@ namespace Rawilk\LaravelBase\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Livewire\Controllers\CanPretendToBeAFile;
 
 final class LaravelBaseAssets
 {
