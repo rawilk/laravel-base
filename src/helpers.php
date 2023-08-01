@@ -108,9 +108,13 @@ if (! function_exists('enumToSelectOptions')) {
     {
         return collect($enum::cases())
             ->map(function ($case) use ($valueField, $labelField) {
+                $label = $case instanceof HasLabel || method_exists($case, 'label')
+                    ? $case->label()
+                    : $case->name;
+
                 return [
                     $valueField => $case->value,
-                    $labelField => $case instanceof HasLabel ? $case->label() : $case->name,
+                    $labelField => $label,
                 ];
             })
             ->values()
@@ -135,7 +139,7 @@ if (! function_exists('enumToLabels')) {
     function enumToLabels(string $enum): array
     {
         return array_map(function ($case) {
-            return $case instanceof HasLabel
+            return $case instanceof HasLabel || method_exists($case, 'label')
                 ? $case->label()
                 : $case->name;
         }, $enum::cases());
