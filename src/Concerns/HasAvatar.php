@@ -34,6 +34,10 @@ trait HasAvatar
             return;
         }
 
+        if (! $this->avatar_path) {
+            return;
+        }
+
         rescue(fn () => Storage::disk($this->avatarDisk())->delete($this->avatar_path));
 
         $this->forceFill([
