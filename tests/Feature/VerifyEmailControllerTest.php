@@ -5,10 +5,11 @@ declare(strict_types=1);
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use function Pest\Laravel\actingAs;
 use Rawilk\LaravelBase\Features;
 use Rawilk\LaravelBase\Http\Controllers\Auth\VerifyEmailController;
 use Rawilk\LaravelBase\Http\Livewire\Auth\Verify;
+
+use function Pest\Laravel\actingAs;
 
 beforeEach(function () {
     $features = array_merge(config('laravel-base.features', []), [

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-use function Pest\Laravel\get;
 use Rawilk\LaravelBase\LaravelBase;
+
+use function Pest\Laravel\get;
 
 test('views can be customized', function () {
     LaravelBase::loginView(fn () => view('login-custom')->layout('layout'));
