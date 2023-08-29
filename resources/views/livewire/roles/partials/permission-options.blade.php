@@ -12,7 +12,7 @@
 <div x-data="{
         permissions: @entangle('state.permissions').defer,
         has(id) {
-            return this.permissions.includes(id);
+            return this.permissions.includes(Number(id));
         },
         selectAllIn(el) {
             el && el.querySelectorAll('[type=checkbox]').forEach(el => {
@@ -71,10 +71,10 @@
                 open: true,
                 groupPermissionIds: {{ $groupedPermissions->pluck('id')->toJson() }},
                 allSelected() {
-                    return this.groupPermissionIds.every(id => this.has(String(id)));
+                    return this.groupPermissionIds.every(id => this.has(Number(id)));
                 },
                 someSelected() {
-                    return this.groupPermissionIds.some(id => this.has(String(id)));
+                    return this.groupPermissionIds.some(id => this.has(Number(id)));
                 },
                 status() {
                     if (this.allSelected()) {
@@ -157,7 +157,7 @@
                                     ])>
                                         <div class="flex items-center h-5">
                                             <x-form-components::choice.checkbox
-                                                x-model="permissions"
+                                                x-model.number="permissions"
                                                 value="{{ $permission->id }}"
                                                 id="perm-option-{{ $permission->id }}"
                                                 name="permissions[]"
