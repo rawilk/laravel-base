@@ -17,7 +17,7 @@
         selectAllIn(el) {
             el && el.querySelectorAll('[type=checkbox]').forEach(el => {
                 if (! el.checked) {
-                    this.permissions.push(el.value);
+                    this.permissions.push(Number(el.value));
                 }
             });
         },
@@ -25,7 +25,7 @@
             el && el.querySelectorAll('[type=checkbox]').forEach(el => {
                 if (el.checked) {
                     this.permissions.splice(
-                        this.permissions.indexOf(el.value), 1
+                        this.permissions.indexOf(Number(el.value)), 1
                     );
                 }
             });
