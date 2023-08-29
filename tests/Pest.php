@@ -1,7 +1,8 @@
 <?php
 
-use function Orchestra\Testbench\artisan;
 use Rawilk\LaravelBase\Tests\TestCase;
+
+use function Orchestra\Testbench\artisan;
 
 uses(TestCase::class)->in(__DIR__);
 

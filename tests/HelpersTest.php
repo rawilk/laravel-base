@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
-use function Pest\Laravel\actingAs;
 use Rawilk\LaravelBase\LaravelBase;
+
+use function Pest\Laravel\actingAs;
 
 beforeEach(function () {
     LaravelBase::$findAppTimezoneUsingCallback = null;
