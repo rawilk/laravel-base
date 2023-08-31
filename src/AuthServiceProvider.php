@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $this->registerSuperAdmin();
+//        $this->registerSuperAdmin();
     }
 
     protected function registerSuperAdmin(): void

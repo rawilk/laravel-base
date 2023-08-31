@@ -8,15 +8,14 @@ use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\delete;
+use function Pest\Laravel\post;
 use Rawilk\LaravelBase\Components\Alerts\Alert;
 use Rawilk\LaravelBase\Concerns\Impersonatable;
 use Rawilk\LaravelBase\Contracts\Models\ImpersonatesUsers;
 use Rawilk\LaravelBase\Events\Auth\UserImpersonationEnded;
 use Rawilk\LaravelBase\Events\Auth\UserWasImpersonated;
-
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\delete;
-use function Pest\Laravel\post;
 
 beforeEach(function () {
     config(['auth.providers.users.model' => User::class]);
