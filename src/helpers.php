@@ -84,8 +84,6 @@ if (! function_exists('userTimezone')) {
     /**
      * Retrieve the authenticated user's timezone.
      * Fallback on the appTimezone if no authenticated user.
-     *
-     * @param  null|\Illuminate\Contracts\Auth\Authenticatable  $user
      */
     function userTimezone(Illuminate\Contracts\Auth\Authenticatable $user = null): string
     {

@@ -30,12 +30,12 @@ use Stringable;
  * @method self asZettaBytes()
  * @method self asYottaBytes()
  */
-class Filesize implements Stringable, Arrayable, JsonSerializable, Jsonable
+class Filesize implements Arrayable, Jsonable, JsonSerializable, Stringable
 {
-    use PerformsArithmetic;
     use Macroable {
         __call as __callMacroable;
     }
+    use PerformsArithmetic;
 
     protected string $size;
 

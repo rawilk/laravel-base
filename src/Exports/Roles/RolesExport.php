@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Rawilk\LaravelBase\Concerns\Exports\FormatsColumns;
 
-class RolesExport implements FromQuery, WithHeadings, WithMapping, WithColumnFormatting
+class RolesExport implements FromQuery, WithColumnFormatting, WithHeadings, WithMapping
 {
     use Exportable;
     use FormatsColumns;

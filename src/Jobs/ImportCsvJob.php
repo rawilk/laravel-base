@@ -16,11 +16,11 @@ use Rawilk\LaravelBase\Contracts\Models\Import;
 
 class ImportCsvJob implements ShouldQueue
 {
+    use Batchable;
     use Dispatchable;
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
-    use Batchable;
 
     public function __construct(
         public Import $import,

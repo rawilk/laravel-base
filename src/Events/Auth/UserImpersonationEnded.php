@@ -10,8 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class UserImpersonationEnded
 {
-    use SerializesModels;
     use Dispatchable;
+    use SerializesModels;
 
     public function __construct(public User $userBeingImpersonated, public User $impersonator)
     {

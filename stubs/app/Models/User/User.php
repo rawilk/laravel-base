@@ -18,15 +18,15 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory;
-    use Notifiable;
-    use HasDatesForHumans;
     use HasAvatar;
-    use TwoFactorAuthenticatable;
+    use HasDatesForHumans;
+    use HasFactory;
     use HasRoles {
         hasRole as hasRolesHasRole;
         roles as hasRolesRoles;
     }
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     protected $guarded = ['id'];
 
