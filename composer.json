@@ -34,7 +34,7 @@
         "blade-ui-kit/blade-heroicons": "^2.0",
         "doctrine/dbal": "^3.4.1",
         "laravel/pint": "^1.5",
-        "livewire/livewire": "^2.10.7",
+        "livewire/livewire": "^3.0.5",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
         "orchestra/canvas": "^8.0",
