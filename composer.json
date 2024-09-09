@@ -32,7 +32,7 @@
     },
     "require-dev": {
         "blade-ui-kit/blade-heroicons": "^2.0",
-        "doctrine/dbal": "^3.4.1",
+        "doctrine/dbal": "^4.1.1",
         "laravel/pint": "^1.5",
         "livewire/livewire": "^2.10.7",
         "mockery/mockery": "^1.5",
