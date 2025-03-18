@@ -1,3 +1,5 @@
+> Package Abandonment: No plans to finish this one.
+
 # laravel-base
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rawilk/laravel-base.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-base)
