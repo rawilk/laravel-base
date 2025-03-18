@@ -24,6 +24,7 @@ composer require rawilk/laravel-base
 ```
 
 You can publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Rawilk\LaravelBase\LaravelBaseServiceProvider" --tag="laravel-base-config"
 ```
@@ -46,7 +47,7 @@ More documentation pending!
 
 ## Testing
 
-``` bash
+```bash
 composer test
 ```
 
